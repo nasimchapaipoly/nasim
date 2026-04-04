@@ -2,144 +2,143 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nasim Al Masud - Food Portfolio</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Nasim Al Masud - Premium Portfolio</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
-:root{--bg:#0f1f14;--text:#eaf7ee;--muted:#9fb3a6;--neon:#34d399;--accent:#f59e0b}
+:root{--bg:#0f1f14;--card:#132a1c;--text:#eaf7ee;--muted:#9fb3a6;--accent:#34d399;--gold:#f59e0b}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#0f1f14,#1f3d2b,#0f1f14);
+  background:linear-gradient(120deg,#0f1f14,#1f3d2b,#0f1f14);
+  background-size:200% 200%;
+  animation:bgMove 10s ease infinite;
   color:var(--text);
-  display:flex;
 }
+@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-/* subtle food pattern */
-body::after{
-  content:"";
-  position:fixed;
-  width:100%;height:100%;
-  background-image:radial-gradient(rgba(52,211,153,0.08) 1px, transparent 1px);
-  background-size:40px 40px;
-  z-index:-1;
-}
+.container{max-width:1100px;margin:auto;padding:20px}
 
-.sidebar{
-  width:230px;height:100vh;position:fixed;
-  background:#132a1c;padding:20px;
-}
+/* headings */
+h1{font-weight:600;background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);-webkit-background-clip:text;color:transparent;letter-spacing:.5px}
+h2{font-weight:600;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;color:transparent;display:flex;align-items:center;gap:8px}
+.small{color:var(--muted)}
 
-.sidebar a{
-  display:flex;gap:10px;margin:12px 0;color:var(--text);text-decoration:none;
-}
+.header{text-align:center;margin-bottom:30px}
+.profile{width:130px;height:130px;border-radius:50%;border:2px dashed var(--accent);display:flex;align-items:center;justify-content:center;margin:15px auto;background:linear-gradient(145deg,#132a1c,#0f1f14);box-shadow:0 0 15px rgba(52,211,153,.3)}
 
-.sidebar a i{
-  background:linear-gradient(45deg,#34d399,#22c55e);
-  -webkit-background-clip:text;color:transparent;
-}
+.grid{display:grid;grid-template-columns:1fr 2fr;gap:20px}
 
-.main{margin-left:230px;width:100%}
-section{padding:28px;text-align:center}
+.card{background:linear-gradient(145deg,#132a1c,#0f1f14);padding:18px;border-radius:14px;margin-bottom:15px;border:1px solid rgba(52,211,153,.2);transition:.3s}
+.card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 12px 28px rgba(34,197,94,.25)}
 
-h1{
-  background:linear-gradient(135deg,#34d399,#22c55e,#f59e0b);
-  -webkit-background-clip:text;color:transparent;
-  text-shadow:0 0 12px rgba(34,197,94,0.6);
-}
+/* buttons */
+.btn{display:inline-block;margin-top:12px;padding:10px 16px;background:linear-gradient(90deg,#22c55e,#f59e0b);color:#000;text-decoration:none;border-radius:10px;font-weight:500;box-shadow:0 4px 12px rgba(34,197,94,.3);transition:.2s}
+.btn:hover{transform:scale(1.06)}
 
-.glass{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(52,211,153,0.2);
-  padding:20px;border-radius:15px;margin-top:10px;
-}
+/* lists */
+ul{padding-left:18px}
+li{margin:6px 0}
 
-.profile{
-  width:140px;height:140px;border-radius:50%;
-  border:2px dashed rgba(255,255,255,0.3);
-  display:flex;align-items:center;justify-content:center;margin:auto;
-}
+/* skill bars */
+.skill{margin:10px 0}
+.skill-head{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+.bar{height:10px;background:#1e293b;border-radius:10px;overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);border-radius:10px;transition:1.2s ease}
 
-.btn{background:linear-gradient(135deg,#22c55e,#f59e0b);padding:10px 16px;border:none;border-radius:8px;color:#fff}
+/* badges */
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{padding:6px 10px;border-radius:999px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35);font-size:12px}
 
-.grid{display:grid;grid-template-columns:1fr 2fr;gap:20px;padding:20px}
+/* project img */
+.img-box{height:120px;border:2px dashed #999;display:flex;align-items:center;justify-content:center;margin:10px 0;border-radius:8px}
 
-.bar{height:10px;background:#1e293b;border-radius:10px}
-.bar div{height:100%;background:var(--neon);width:0}
+/* stats */
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
+.stat{flex:1 1 120px;background:rgba(255,255,255,.04);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:12px;text-align:center}
+.stat .num{font-size:22px;color:var(--accent)}
 
-/* badge */
-.badges{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
-.badge{
-  padding:10px 15px;border-radius:20px;
-  background:rgba(34,197,94,0.2);
-  border:1px solid var(--neon);
-}
-
-/* image placeholder */
-.img-box{
-  width:100%;height:150px;border:2px dashed rgba(255,255,255,0.3);
-  display:flex;align-items:center;justify-content:center;margin-top:10px;border-radius:10px
-}
-
+@media(max-width:768px){.grid{grid-template-columns:1fr}}
 </style></head>
-<body><div class="sidebar">
-<a href="#home"><i class="fa fa-home"></i> Home</a>
-<a href="#about"><i class="fa fa-user"></i> About</a>
-<a href="#skills"><i class="fa fa-flask"></i> Skills</a>
-<a href="#experience"><i class="fa fa-industry"></i> Experience</a>
-<a href="#projects"><i class="fa fa-cogs"></i> Projects</a>
-<a href="#quality"><i class="fa fa-shield"></i> Quality</a>
-<a href="#contact"><i class="fa fa-envelope"></i> Contact</a>
-</div><div class="main"><section id="home">
-<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
-</section><section id="about">
-<div class="profile">Your Photo</div>
-<h1>Nasim Al Masud</h1>
-<div class="glass">
-<p>BSc in Food Science and Engineering</p>
-<p>Diploma in Food Technology</p>
-<a href="resume.pdf" download class="btn">Download Resume</a>
-</div>
-</section><div class="grid"><div>
-<section id="skills">
-<h1>Lab Skills 🧪</h1>
-<div class="glass">
-<p>Food Processing</p><div class="bar"><div style="width:90%"></div></div>
-<p>Quality Control</p><div class="bar"><div style="width:85%"></div></div>
-<p>HACCP</p><div class="bar"><div style="width:80%"></div></div>
-</div>
-</section><section id="quality">
-<h1>Quality & Safety</h1>
-<div class="glass badges">
-<div class="badge">QC Certified</div>
-<div class="badge">HACCP</div>
-<div class="badge">Food Safety</div>
-<div class="badge">Six Sigma</div>
-</div>
-</section></div><div>
-<section id="experience">
-<h1>Experience</h1>
-<div class="glass">
-<p>5 Years in Food Processing Industry</p>
-<p>Production & Quality Expert</p>
-<p>Teaching Experience</p>
-</div>
-</section><section id="projects">
-<h1>Industry Work</h1>
-<div class="glass">
-<p>Factory Work</p>
-<div class="img-box">Factory Image</div>
-<p>Lab Testing</p>
-<div class="img-box">Lab Image</div>
-<p>Production Line</p>
-<div class="img-box">Production Image</div>
-</div>
-</section><section id="contact">
-<h1>Contact</h1>
-<div class="glass">
+<body><div class="container"><div class="header">
+  <h1>Nasim Al Masud</h1>
+  <div class="profile">Your Photo</div>
+  <p class="small">BSc in Food Science and Engineering</p>
+  <p class="small">Diploma in Food Technology</p>
+  <a href="resume.pdf" class="btn" download><i class="fa fa-file-arrow-down"></i> Download CV</a>  <div class="stats">
+    <div class="stat"><div class="num" data-count="5">0</div><div class="small">Years Experience</div></div>
+    <div class="stat"><div class="num" data-count="10">0</div><div class="small">Key Skills</div></div>
+    <div class="stat"><div class="num" data-count="4">0</div><div class="small">Certifications</div></div>
+  </div>
+</div><div class="grid"><!-- LEFT --><div><div class="card">
+<h2><i class="fa fa-id-card"></i> Personal Info</h2>
 <p>📞 01737256030</p>
 <p>📧 mdnamn4@gmail.com</p>
-<p>📍 Rangpur, Lalmonirhat</p>
+<p>📍 Rangpur, Lalmonirhat, Patgram</p>
+</div><div class="card">
+<h2><i class="fa fa-flask"></i> Skills</h2><div class="skill">
+  <div class="skill-head"><span>Food Processing</span><span>90%</span></div>
+  <div class="bar"><div data-width="90%"></div></div>
+</div><div class="skill">
+  <div class="skill-head"><span>Baking</span><span>80%</span></div>
+  <div class="bar"><div data-width="80%"></div></div>
+</div><div class="skill">
+  <div class="skill-head"><span>Food & Beverage</span><span>75%</span></div>
+  <div class="bar"><div data-width="75%"></div></div>
+</div></div><div class="card">
+<h2><i class="fa fa-star"></i> Specialization</h2>
+<div class="badges">
+  <span class="badge">Food Safety</span>
+  <span class="badge">Quality Control (QC)</span>
+  <span class="badge">HACCP</span>
+  <span class="badge">Production Management</span>
 </div>
-</section></div></div></div></body>
+</div><div class="card">
+<h2><i class="fa fa-certificate"></i> Certifications</h2>
+<ul>
+<li>Six Sigma Level 1</li>
+<li>Food Processing Level 2</li>
+<li>Baking Level 3</li>
+<li>Food & Beverage Level 2</li>
+</ul>
+</div></div><!-- RIGHT --><div><div class="card">
+<h2><i class="fa fa-briefcase"></i> Experience</h2>
+<ul>
+<li>Food Industry Expert (Production & Quality)</li>
+<li>5 Years Experience in Food Processing Industry</li>
+<li>Teaching Experience in Food Technology</li>
+</ul>
+</div><div class="card">
+<h2><i class="fa fa-graduation-cap"></i> Training / Workshop</h2>
+<ul>
+<li>Food Safety Training</li>
+<li>Quality Control Workshop</li>
+<li>Industrial Food Processing Training</li>
+</ul>
+</div><div class="card">
+<h2><i class="fa fa-industry"></i> Projects</h2>
+<p>Food Processing Optimization</p>
+<div class="img-box">Image</div>
+<p>Quality Control System</p>
+<div class="img-box">Image</div>
+<p>Bakery Product Development</p>
+<div class="img-box">Image</div>
+</div></div></div></div><script>
+// skill bars animate
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.bar div').forEach(el=>{
+    el.style.width = el.dataset.width;
+  });
+});
+
+// counters
+const nums = document.querySelectorAll('.num');
+nums.forEach(n=>{
+  let target = +n.dataset.count, c=0;
+  function tick(){
+    c += Math.max(1, Math.ceil(target/40));
+    if(c < target){ n.textContent = c; requestAnimationFrame(tick); }
+    else{ n.textContent = target; }
+  }
+  tick();
+});
+</script></body>
 </html>
