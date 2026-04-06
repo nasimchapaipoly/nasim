@@ -57,6 +57,39 @@ li{margin:6px 0}
 .stat .num{font-size:22px;color:var(--accent)}
 
 @media(max-width:768px){.grid{grid-template-columns:1fr}}
+
+
+
+/* gallery */
+.gallery{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:10px 0;
+  scroll-behavior:smooth;
+}
+
+.gallery::-webkit-scrollbar{
+  height:8px;
+}
+.gallery::-webkit-scrollbar-thumb{
+  background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);
+  border-radius:10px;
+}
+
+.gallery img{
+  height:140px;
+  min-width:200px;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid rgba(52,211,153,.3);
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
 </style></head>
 <body><div class="container"><div class="header">
   <h1>Nasim Al Masud</h1>
@@ -121,7 +154,22 @@ li{margin:6px 0}
 <div class="img-box">Image</div>
 <p>Bakery Product Development</p>
 <div class="img-box">Image</div>
-</div></div></div></div><script>
+</div></div></div></div>
+  
+  <div class="card">
+  <h2><i class="fa fa-images"></i> Gallery</h2>
+
+  <div class="gallery">
+    <img src="img1.jpg" alt="Gallery Image">
+    <img src="img2.jpg" alt="Gallery Image">
+    <img src="img3.jpg" alt="Gallery Image">
+    <img src="img4.jpg" alt="Gallery Image">
+    <img src="img5.jpg" alt="Gallery Image">
+  </div>
+</div>
+  
+  
+  <script>
 // skill bars animate
 window.addEventListener('load',()=>{
   document.querySelectorAll('.bar div').forEach(el=>{
