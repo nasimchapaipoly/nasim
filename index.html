@@ -90,6 +90,34 @@ li{margin:6px 0}
   transform:scale(1.05);
 }
 
+
+  /* video gallery */
+.video-gallery{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:10px 0;
+  scroll-behavior:smooth;
+}
+
+.video-gallery video,
+.video-gallery iframe{
+  height:180px;
+  min-width:300px;
+  border-radius:10px;
+  border:1px solid rgba(52,211,153,.3);
+}
+
+/* scrollbar */
+.video-gallery::-webkit-scrollbar{
+  height:8px;
+}
+.video-gallery::-webkit-scrollbar-thumb{
+  background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);
+  border-radius:10px;
+}
+  
+
 </style></head>
 <body><div class="container"><div class="header">
   <h1>Nasim Al Masud</h1>
@@ -168,6 +196,30 @@ li{margin:6px 0}
     <img src="img4.jpg" alt="Gallery Image">
     <img src="img5.jpg" alt="Gallery Image">
   </div>
+
+    <div class="card">
+  <h2><i class="fa fa-video"></i> Video Gallery</h2>
+
+  <div class="video-gallery">
+    <video controls>
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+
+    <video controls>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+
+    <video controls>
+      <source src="video3.mp4" type="video/mp4">
+    </video>
+
+    <!-- YouTube Example -->
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
 </div>
   
   
