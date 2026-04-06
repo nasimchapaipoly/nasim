@@ -1,248 +1,244 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nasim Al Masud - Premium Portfolio</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
-:root{--bg:#0f1f14;--card:#132a1c;--text:#eaf7ee;--muted:#9fb3a6;--accent:#34d399;--gold:#f59e0b}
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(120deg,#0f1f14,#1f3d2b,#0f1f14);
-  background-size:200% 200%;
-  animation:bgMove 10s ease infinite;
-  color:var(--text);
-}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasim Al Masud | Food Industry Expert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #030a05; 
+            --card-bg: #08130a;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f0fdf4;
+            --text-muted: #86efac;
+            --accent: #10b981;
+            --accent-grad: linear-gradient(90deg, #10b981, #fbbf24);
+            --max-width: 850px;
+        }
 
-.container{max-width:1100px;margin:auto;padding:20px}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body {
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+            line-height: 1.7;
+        }
 
-/* headings */
-h1{font-weight:600;background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);-webkit-background-clip:text;color:transparent;letter-spacing:.5px}
-h2{font-weight:600;background:linear-gradient(90deg,#22c55e,#4ade80);-webkit-background-clip:text;color:transparent;display:flex;align-items:center;gap:8px}
-.small{color:var(--muted)}
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+        .gradient-text { background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-.header{text-align:center;margin-bottom:30px}
-.profile{width:130px;height:130px;border-radius:50%;border:2px dashed var(--accent);display:flex;align-items:center;justify-content:center;margin:15px auto;background:linear-gradient(145deg,#132a1c,#0f1f14);box-shadow:0 0 15px rgba(52,211,153,.3)}
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(3, 10, 5, 0.8); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid var(--card-border);
+            display: flex; align-items: center;
+        }
 
-.grid{display:grid;grid-template-columns:1fr 2fr;gap:20px}
+        nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
 
-.card{background:linear-gradient(145deg,#132a1c,#0f1f14);padding:18px;border-radius:14px;margin-bottom:15px;border:1px solid rgba(52,211,153,.2);transition:.3s}
-.card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 12px 28px rgba(34,197,94,.25)}
+        /* HERO */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding-top: 70px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 35px; max-width: 600px; }
 
-/* buttons */
-.btn{display:inline-block;margin-top:12px;padding:10px 16px;background:linear-gradient(90deg,#22c55e,#f59e0b);color:#000;text-decoration:none;border-radius:10px;font-weight:500;box-shadow:0 4px 12px rgba(34,197,94,.3);transition:.2s}
-.btn:hover{transform:scale(1.06)}
+        /* SECTIONS */
+        section { padding: 100px 0; opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+        .section-title { font-size: 2rem; margin-bottom: 50px; font-weight: 800; letter-spacing: -0.5px; }
 
-/* lists */
-ul{padding-left:18px}
-li{margin:6px 0}
+        .card { 
+            background: var(--card-bg); padding: 40px; border-radius: 24px; 
+            border: 1px solid var(--card-border); margin-bottom: 30px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: rgba(16, 185, 129, 0.3); }
 
-/* skill bars */
-.skill{margin:10px 0}
-.skill-head{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
-.bar{height:10px;background:#1e293b;border-radius:10px;overflow:hidden}
-.bar div{height:100%;width:0;background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);border-radius:10px;transition:1.2s ease}
+        /* EXPERIENCE & EDUCATION SPLIT */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 
-/* badges */
-.badges{display:flex;flex-wrap:wrap;gap:10px}
-.badge{padding:6px 10px;border-radius:999px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35);font-size:12px}
+        .item-title { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 5px; }
+        .item-subtitle { color: var(--accent); font-size: 0.95rem; margin-bottom: 15px; font-weight: 400; }
+        .item-list { list-style: none; }
+        .item-list li { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 0.95rem; color: #cbd5e1; }
+        .item-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-/* project img */
-.img-box{height:120px;border:2px dashed #999;display:flex;align-items:center;justify-content:center;margin:10px 0;border-radius:8px}
+        /* SKILLS */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .skill-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 8px; overflow: hidden; }
+        .skill-fill { height: 100%; background: var(--accent-grad); width: 0; transition: 1.5s cubic-bezier(0.1, 0.8, 0.2, 1); }
 
-/* stats */
-.stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
-.stat{flex:1 1 120px;background:rgba(255,255,255,.04);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:12px;text-align:center}
-.stat .num{font-size:22px;color:var(--accent)}
+        /* CONTACT FORM */
+        input, textarea {
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border);
+            border-radius: 12px; color: #fff; margin-bottom: 20px; font-family: inherit;
+        }
+        .btn {
+            background: var(--accent-grad); color: #000; padding: 15px 40px; border: none;
+            border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2); }
 
-@media(max-width:768px){.grid{grid-template-columns:1fr}}
+        /* FOOTER */
+        footer { padding: 80px 0; border-top: 1px solid var(--card-border); text-align: center; }
+        .socials { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
+        .socials a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
 
+        @media (max-width: 768px) {
+            .grid, .skills-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo gradient-text" style="font-weight: 800;">NASIM.</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Expertise</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-/* gallery */
-.gallery{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:10px 0;
-  scroll-behavior:smooth;
-}
+    <div class="hero">
+        <h1 class="gradient-text">Nasim Al Masud</h1>
+        <p>Expert in Food Science, Industrial Production, and Global Quality Standards.</p>
+        <a href="#contact"><button class="btn">Work With Me</button></a>
+    </div>
 
-.gallery::-webkit-scrollbar{
-  height:8px;
-}
-.gallery::-webkit-scrollbar-thumb{
-  background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);
-  border-radius:10px;
-}
+    <main class="container">
+        <section id="about">
+            <h2 class="section-title gradient-text">Professional Summary</h2>
+            <div class="card">
+                <p>I am a seasoned Food Industry Expert with over 5 years of experience in high-stakes production environments. My career is built on the pillars of safety, efficiency, and continuous improvement. I bridge the gap between complex engineering principles and factory-floor realities, ensuring that every product meets both regulatory requirements and consumer expectations.</p>
+            </div>
+        </section>
 
-.gallery img{
-  height:140px;
-  min-width:200px;
-  object-fit:cover;
-  border-radius:10px;
-  border:1px solid rgba(52,211,153,.3);
-  transition:.3s;
-}
+        <section id="experience">
+            <h2 class="section-title gradient-text">Core Expertise</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 class="item-title">Production Specialist</h3>
+                    <p class="item-subtitle">5+ Years Industry Experience</p>
+                    <ul class="item-list">
+                        <li>Optimizing food processing workflows.</li>
+                        <li>Resource and waste management.</li>
+                        <li>Leading multi-disciplinary factory teams.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="item-title">Quality & Compliance</h3>
+                    <p class="item-subtitle">HACCP & Safety Lead</p>
+                    <ul class="item-list">
+                        <li>HACCP Plan design & implementation.</li>
+                        <li>Strict Quality Control (QC) protocols.</li>
+                        <li>Safety auditing and compliance monitoring.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-.gallery img:hover{
-  transform:scale(1.05);
-}
+        <section id="education">
+            <h2 class="section-title gradient-text">Academic Background</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3 class="item-title">BSc in Food Science</h3>
+                    <p class="item-subtitle">Engineering & Technology</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Comprehensive study of food chemistry, microbiology, and process engineering.</p>
+                </div>
+                <div class="card">
+                    <h3 class="item-title">Diploma in Food Tech</h3>
+                    <p class="item-subtitle">Technical Excellence</p>
+                    <p style="font-size: 0.9rem; color: #94a3b8;">Focused on industrial applications, machinery maintenance, and standard operating procedures.</p>
+                </div>
+            </div>
+        </section>
 
+        <section id="skills">
+            <h2 class="section-title gradient-text">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <p>Food Processing <span style="float: right;">90%</span></p>
+                    <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <p>Quality Assurance <span style="float: right;">85%</span></p>
+                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <p>HACCP Implementation <span style="float: right;">80%</span></p>
+                    <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <p>Production Management <span style="float: right;">85%</span></p>
+                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                </div>
+            </div>
+        </section>
 
-  /* video gallery */
-.video-gallery{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:10px 0;
-  scroll-behavior:smooth;
-}
+        <section id="contact">
+            <h2 class="section-title gradient-text">Get In Touch</h2>
+            <div class="grid">
+                <div style="padding-right: 20px;">
+                    <p style="margin-bottom: 20px;">Interested in collaborating? Whether it's a project consultation or a full-time role, feel free to reach out.</p>
+                    <p><strong>Phone:</strong> 01737256030</p>
+                    <p><strong>Email:</strong> mdnamn4@gmail.com</p>
+                    <p><strong>Location:</strong> Rangpur, Bangladesh</p>
+                </div>
+                <form onsubmit="return false;">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea rows="4" placeholder="Your Message"></textarea>
+                    <button class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-.video-gallery video,
-.video-gallery iframe{
-  height:180px;
-  min-width:300px;
-  border-radius:10px;
-  border:1px solid rgba(52,211,153,.3);
-}
+    <footer>
+        <div class="container">
+            <div class="logo gradient-text" style="font-size: 1.5rem; font-weight: 800;">Nasim Al Masud</div>
+            <p style="color: var(--text-muted); margin-top: 10px;">Food Industry Expert | Production & QC Specialist</p>
+            <div class="socials">
+                <a href="#">LinkedIn</a>
+                <a href="#">WhatsApp</a>
+                <a href="mailto:mdnamn4@gmail.com">Email</a>
+            </div>
+            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">© 2026 Designed for Excellence.</p>
+        </div>
+    </footer>
 
-/* scrollbar */
-.video-gallery::-webkit-scrollbar{
-  height:8px;
-}
-.video-gallery::-webkit-scrollbar-thumb{
-  background:linear-gradient(90deg,#34d399,#22c55e,#f59e0b);
-  border-radius:10px;
-}
-  
+    <script>
+        // Reveal sections on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Animate skill bars
+                    const bars = entry.target.querySelectorAll('.skill-fill');
+                    bars.forEach(bar => bar.style.width = bar.dataset.width);
+                }
+            });
+        }, { threshold: 0.1 });
 
-</style></head>
-<body><div class="container"><div class="header">
-  <h1>Nasim Al Masud</h1>
-  <div class="profile">Your Photo</div>
-  <p class="small">BSc in Food Science and Engineering</p>
-  <p class="small">Diploma in Food Technology</p>
-  <a href="resume.pdf" class="btn" download><i class="fa fa-file-arrow-down"></i> Download CV</a>  <div class="stats">
-    <div class="stat"><div class="num" data-count="5">0</div><div class="small">Years Experience</div></div>
-    <div class="stat"><div class="num" data-count="10">0</div><div class="small">Key Skills</div></div>
-    <div class="stat"><div class="num" data-count="4">0</div><div class="small">Certifications</div></div>
-  </div>
-</div><div class="grid"><!-- LEFT --><div><div class="card">
-<h2><i class="fa fa-id-card"></i> Personal Info</h2>
-<p>📞 01737256030</p>
-<p>📧 mdnamn4@gmail.com</p>
-<p>📍 Rangpur, Lalmonirhat, Patgram</p>
-</div><div class="card">
-<h2><i class="fa fa-flask"></i> Skills</h2><div class="skill">
-  <div class="skill-head"><span>Food Processing</span><span>90%</span></div>
-  <div class="bar"><div data-width="90%"></div></div>
-</div><div class="skill">
-  <div class="skill-head"><span>Baking</span><span>80%</span></div>
-  <div class="bar"><div data-width="80%"></div></div>
-</div><div class="skill">
-  <div class="skill-head"><span>Food & Beverage</span><span>75%</span></div>
-  <div class="bar"><div data-width="75%"></div></div>
-</div></div><div class="card">
-<h2><i class="fa fa-star"></i> Specialization</h2>
-<div class="badges">
-  <span class="badge">Food Safety</span>
-  <span class="badge">Quality Control (QC)</span>
-  <span class="badge">HACCP</span>
-  <span class="badge">Production Management</span>
-</div>
-</div><div class="card">
-<h2><i class="fa fa-certificate"></i> Certifications</h2>
-<ul>
-<li>Six Sigma Level 1</li>
-<li>Food Processing Level 2</li>
-<li>Baking Level 3</li>
-<li>Food & Beverage Level 2</li>
-</ul>
-</div></div><!-- RIGHT --><div><div class="card">
-<h2><i class="fa fa-briefcase"></i> Experience</h2>
-<ul>
-<li>Food Industry Expert (Production & Quality)</li>
-<li>5 Years Experience in Food Processing Industry</li>
-<li>Teaching Experience in Food Technology</li>
-</ul>
-</div><div class="card">
-<h2><i class="fa fa-graduation-cap"></i> Training / Workshop</h2>
-<ul>
-<li>Food Safety Training</li>
-<li>Quality Control Workshop</li>
-<li>Industrial Food Processing Training</li>
-</ul>
-</div>
-  
-<div class="card">
-<h2><i class="fa fa-industry"></i> Projects</h2>
-<p>Food Processing Optimization</p>
-<div class="img-box">Image</div>
-<p>Quality Control System</p>
-<div class="img-box">Image</div>
-<p>Bakery Product Development</p>
-<div class="img-box">Image</div>
-</div></div></div></div>
-  
-  <div class="card">
-  <h2><i class="fa fa-images"></i> Gallery</h2>
-
-  <div class="gallery">
-    <img src="img1.jpg" alt="Gallery Image">
-    <img src="img2.jpg" alt="Gallery Image">
-    <img src="img3.jpg" alt="Gallery Image">
-    <img src="img4.jpg" alt="Gallery Image">
-    <img src="img5.jpg" alt="Gallery Image">
-  </div>
-</div>
-</div>
-
-  
-    <div class="card">
-  <h2><i class="fa fa-video"></i> Video Gallery</h2>
-
-  <div class="video-gallery">
-    <video controls>
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-
-    <video controls>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-
-    <video controls>
-      <source src="video3.mp4" type="video/mp4">
-    </video>
-
-    <!-- YouTube Example -->
-    <iframe src="https://youtu.be/xGcMWGXr2HU?si=Y4yjEvfPQkvRad0n"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  
-  
-  <script>
-// skill bars animate
-window.addEventListener('load',()=>{
-  document.querySelectorAll('.bar div').forEach(el=>{
-    el.style.width = el.dataset.width;
-  });
-});
-
-// counters
-const nums = document.querySelectorAll('.num');
-nums.forEach(n=>{
-  let target = +n.dataset.count, c=0;
-  function tick(){
-    c += Math.max(1, Math.ceil(target/40));
-    if(c < target){ n.textContent = c; requestAnimationFrame(tick); }
-    else{ n.textContent = target; }
-  }
-  tick();
-});
-</script></body>
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
+    </script>
+</body>
 </html>
