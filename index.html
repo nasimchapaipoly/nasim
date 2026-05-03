@@ -1,244 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nasim Al Masud | Food Industry Expert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #030a05; 
-            --card-bg: #08130a;
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f0fdf4;
-            --text-muted: #86efac;
-            --accent: #10b981;
-            --accent-grad: linear-gradient(90deg, #10b981, #fbbf24);
-            --max-width: 850px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasim Al Masud | Portfolio</title>
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html, body {
-            overflow-x: hidden;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            scroll-behavior: smooth;
-            line-height: 1.7;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-        .gradient-text { background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+<style>
+:root {
+  --primary: #22c55e;
+  --secondary: #f97316;
+  --bg-dark: rgba(0, 0, 0, 0.4);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+}
 
-        /* HEADER */
-        header {
-            position: fixed; top: 0; width: 100%; height: 70px;
-            background: rgba(3, 10, 5, 0.8); backdrop-filter: blur(15px);
-            z-index: 1000; border-bottom: 1px solid var(--card-border);
-            display: flex; align-items: center;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-        nav { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-decoration: none; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
+html { scroll-behavior: smooth; }
 
-        /* HERO */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding-top: 70px;
-        }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 35px; max-width: 600px; }
+body {
+  background: linear-gradient(135deg, #020617, #064e3b, #431407);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
-        /* SECTIONS */
-        section { padding: 100px 0; opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        section.visible { opacity: 1; transform: translateY(0); }
-        .section-title { font-size: 2rem; margin-bottom: 50px; font-weight: 800; letter-spacing: -0.5px; }
+/* PARTICLES */
+canvas {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: -1;
+}
 
-        .card { 
-            background: var(--card-bg); padding: 40px; border-radius: 24px; 
-            border: 1px solid var(--card-border); margin-bottom: 30px;
-            transition: 0.3s;
-        }
-        .card:hover { border-color: rgba(16, 185, 129, 0.3); }
+/* NAV */
+header {
+  position: fixed;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(15px);
+  background: var(--bg-dark);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
-        /* EXPERIENCE & EDUCATION SPLIT */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-        .item-title { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 5px; }
-        .item-subtitle { color: var(--accent); font-size: 0.95rem; margin-bottom: 15px; font-weight: 400; }
-        .item-list { list-style: none; }
-        .item-list li { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 0.95rem; color: #cbd5e1; }
-        .item-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+nav { display: flex; gap: 20px; }
 
-        /* SKILLS */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .skill-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 8px; overflow: hidden; }
-        .skill-fill { height: 100%; background: var(--accent-grad); width: 0; transition: 1.5s cubic-bezier(0.1, 0.8, 0.2, 1); }
+nav a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
 
-        /* CONTACT FORM */
-        input, textarea {
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border);
-            border-radius: 12px; color: #fff; margin-bottom: 20px; font-family: inherit;
-        }
-        .btn {
-            background: var(--accent-grad); color: #000; padding: 15px 40px; border: none;
-            border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s;
-        }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2); }
+nav a:hover { color: var(--primary); }
 
-        /* FOOTER */
-        footer { padding: 80px 0; border-top: 1px solid var(--card-border); text-align: center; }
-        .socials { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
-        .socials a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 2px;
+  bottom: -4px; left: 0;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
 
-        @media (max-width: 768px) {
-            .grid, .skills-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 3rem; }
-        }
-    </style>
+nav a:hover::after { width: 100%; }
+
+/* MOBILE MENU ICON */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.menu-toggle span {
+  width: 25px; height: 3px;
+  background: var(--text-main);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 50px 0;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-text { flex: 1; min-width: 300px; }
+
+.hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.typing-container {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin-bottom: 15px;
+  font-weight: 500;
+  min-height: 36px;
+}
+.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.hero p { color: var(--text-muted); font-size: 1.1rem; }
+
+/* IMAGE */
+.hero-img {
+  position: relative;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img img {
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  border: 5px solid #0f172a;
+}
+
+.hero-img::before {
+  content: "";
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* SECTIONS */
+section {
+  padding: 100px 50px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  width: 50%; height: 3px;
+  bottom: -5px; left: 0;
+  background: var(--primary);
+  border-radius: 5px;
+}
+
+/* CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+}
+
+.card.show { transform: translateY(0); opacity: 1; }
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.card h3 { color: var(--primary); margin-bottom: 10px; }
+.card p { color: var(--text-muted); margin-bottom: 5px; }
+.card ul { margin-left: 20px; color: var(--text-muted); }
+.card li { margin-bottom: 8px; }
+
+/* SKILLS */
+.skill { margin: 15px 0; }
+.skill-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+  transition: width 1.5s ease-in-out;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 50px 20px;
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width: 768px) {
+  header { padding: 15px 25px; }
+  .menu-toggle { display: flex; z-index: 1001; }
+  
+  nav {
+    position: absolute;
+    top: 100%; left: 0; width: 100%;
+    background: rgba(2, 6, 23, 0.95);
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  nav.active { max-height: 400px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  nav a { margin: 15px 0; }
+
+  .hero { padding-top: 100px; text-align: center; }
+  .hero-container { flex-direction: column-reverse; gap: 40px; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero-img { width: 250px; height: 250px; }
+  .hero-img img { width: 230px; height: 230px; }
+  section { padding: 60px 25px 20px; }
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo gradient-text" style="font-weight: 800;">NASIM.</div>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#experience">Expertise</a>
-                    <a href="#education">Education</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+<canvas id="particles"></canvas>
 
-    <div class="hero">
-        <h1 class="gradient-text">Nasim Al Masud</h1>
-        <p>Expert in Food Science, Industrial Production, and Global Quality Standards.</p>
-        <a href="#contact"><button class="btn">Work With Me</button></a>
+<header>
+  <h3>Nasim</h3>
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span><span></span><span></span>
+  </div>
+  <nav id="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#experience">Experience</a>
+    <a href="#training">Training</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h1>Nasim Al Masud</h1>
+      <div class="typing-container"><span class="typing" id="typing"></span></div>
+      <p>Passionate about technical education and innovation in the food industry.</p>
     </div>
+    <div class="hero-img">
+      <img src="https://nasim.ami.bd/profile.jpg.jpeg" alt="Nasim Al Masud">
+    </div>
+  </div>
+</section>
 
-    <main class="container">
-        <section id="about">
-            <h2 class="section-title gradient-text">Professional Summary</h2>
-            <div class="card">
-                <p>I am a seasoned Food Industry Expert with over 5 years of experience in high-stakes production environments. My career is built on the pillars of safety, efficiency, and continuous improvement. I bridge the gap between complex engineering principles and factory-floor realities, ensuring that every product meets both regulatory requirements and consumer expectations.</p>
-            </div>
-        </section>
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card show">
+    <p>Food Science & Engineering graduate with professional experience in teaching and R&D. Skilled in food product development, quality control, and laboratory analysis.</p>
+  </div>
+</section>
 
-        <section id="experience">
-            <h2 class="section-title gradient-text">Core Expertise</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3 class="item-title">Production Specialist</h3>
-                    <p class="item-subtitle">5+ Years Industry Experience</p>
-                    <ul class="item-list">
-                        <li>Optimizing food processing workflows.</li>
-                        <li>Resource and waste management.</li>
-                        <li>Leading multi-disciplinary factory teams.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 class="item-title">Quality & Compliance</h3>
-                    <p class="item-subtitle">HACCP & Safety Lead</p>
-                    <ul class="item-list">
-                        <li>HACCP Plan design & implementation.</li>
-                        <li>Strict Quality Control (QC) protocols.</li>
-                        <li>Safety auditing and compliance monitoring.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+<!-- EDUCATION -->
+<section id="education">
+  <h2>Education</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>BSc in Food Science & Engineering</h3>
+      <p>German University Bangladesh | 2023</p>
+      <p>CGPA: 2.90 / 4.00</p>
+    </div>
+    <div class="card">
+      <h3>Diploma in Food Technology</h3>
+      <p>Thakurgaon Polytechnic Institute | 2018</p>
+      <p>CGPA: 3.41 / 4.00</p>
+    </div>
+  </div>
+</section>
 
-        <section id="education">
-            <h2 class="section-title gradient-text">Academic Background</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3 class="item-title">BSc in Food Science</h3>
-                    <p class="item-subtitle">Engineering & Technology</p>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Comprehensive study of food chemistry, microbiology, and process engineering.</p>
-                </div>
-                <div class="card">
-                    <h3 class="item-title">Diploma in Food Tech</h3>
-                    <p class="item-subtitle">Technical Excellence</p>
-                    <p style="font-size: 0.9rem; color: #94a3b8;">Focused on industrial applications, machinery maintenance, and standard operating procedures.</p>
-                </div>
-            </div>
-        </section>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Junior Instructor</h3>
+      <p>Chapainawabganj Polytechnic Institute</p>
+      <ul>
+        <li>Conducted practical and theoretical classes</li>
+        <li>Guided lab and student projects</li>
+        <li>Prepared lesson plans</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Junior Executive (R&D)</h3>
+      <p>Pran Food Ltd</p>
+      <ul>
+        <li>Product development & testing</li>
+        <li>Sensory evaluation</li>
+        <li>Quality improvement</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        <section id="skills">
-            <h2 class="section-title gradient-text">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <p>Food Processing <span style="float: right;">90%</span></p>
-                    <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-                </div>
-                <div class="skill-item">
-                    <p>Quality Assurance <span style="float: right;">85%</span></p>
-                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-                </div>
-                <div class="skill-item">
-                    <p>HACCP Implementation <span style="float: right;">80%</span></p>
-                    <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
-                </div>
-                <div class="skill-item">
-                    <p>Production Management <span style="float: right;">85%</span></p>
-                    <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-                </div>
-            </div>
-        </section>
+<!-- TRAINING -->
+<section id="training">
+  <h2>Training</h2>
+  <div class="card">
+    <ul>
+      <li>Baking Level-3 (DTTTI)</li>
+      <li>Food Processing Level-2 (DTTTI)</li>
+      <li>Six Sigma Level-1 (Pran)</li>
+    </ul>
+  </div>
+</section>
 
-        <section id="contact">
-            <h2 class="section-title gradient-text">Get In Touch</h2>
-            <div class="grid">
-                <div style="padding-right: 20px;">
-                    <p style="margin-bottom: 20px;">Interested in collaborating? Whether it's a project consultation or a full-time role, feel free to reach out.</p>
-                    <p><strong>Phone:</strong> 01737256030</p>
-                    <p><strong>Email:</strong> mdnamn4@gmail.com</p>
-                    <p><strong>Location:</strong> Rangpur, Bangladesh</p>
-                </div>
-                <form onsubmit="return false;">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <textarea rows="4" placeholder="Your Message"></textarea>
-                    <button class="btn" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
+<!-- PROJECT -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="card">
+    <h3>Chocolate Milk Research</h3>
+    <p>Sensory evaluation and storage stability analysis to improve shelf life and taste profile.</p>
+  </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="logo gradient-text" style="font-size: 1.5rem; font-weight: 800;">Nasim Al Masud</div>
-            <p style="color: var(--text-muted); margin-top: 10px;">Food Industry Expert | Production & QC Specialist</p>
-            <div class="socials">
-                <a href="#">LinkedIn</a>
-                <a href="#">WhatsApp</a>
-                <a href="mailto:mdnamn4@gmail.com">Email</a>
-            </div>
-            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">© 2026 Designed for Excellence.</p>
-        </div>
-    </footer>
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="card">
+    <div class="skill">
+      <div class="skill-header"><span>Food Processing</span><span>90%</span></div>
+      <div class="bar"><div class="fill" data-width="90%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>R&D</span><span>85%</span></div>
+      <div class="bar"><div class="fill" data-width="85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>Teaching</span><span>88%</span></div>
+      <div class="bar"><div class="fill" data-width="88%"></div></div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Reveal sections on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Animate skill bars
-                    const bars = entry.target.querySelectorAll('.skill-fill');
-                    bars.forEach(bar => bar.style.width = bar.dataset.width);
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Get in Touch</h3>
+      <p>📞 01737256030</p>
+      <p>📧 mdnamn4@gmail.com</p>
+    </div>
+  </div>
+</section>
 
-        document.querySelectorAll('section').forEach(s => observer.observe(s));
-    </script>
+<footer>
+  <p>© 2026 Nasim Al Masud</p>
+  <a href="https://nasim.ami.bd/CV%20of%20Nasim%20Al%20Masud.pdf" target="_blank" class="footer-btn">
+    📄 Download CV
+  </a>
+</footer>
+
+<script>
+// Mobile Menu Toggle
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+const navItems = document.querySelectorAll('#nav-links a');
+
+mobileMenu.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Close menu when a link is clicked
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+
+// Typing Effect
+const texts = ["Food Technologist", "Instructor", "R&D Specialist"];
+let i = 0, j = 0, isDeleting = false;
+function type() {
+  const currentText = texts[i];
+  document.getElementById("typing").textContent = currentText.substring(0, j);
+  
+  if (!isDeleting && j < currentText.length) {
+    j++;
+    setTimeout(type, 100);
+  } else if (isDeleting && j > 0) {
+    j--;
+    setTimeout(type, 50);
+  } else if (!isDeleting && j === currentText.length) {
+    isDeleting = true;
+    setTimeout(type, 2000); // Pause at end of word
+  } else if (isDeleting && j === 0) {
+    isDeleting = false;
+    i = (i + 1) % texts.length;
+    setTimeout(type, 500); // Pause before next word
+  }
+}
+type();
+
+// Scroll Animations
+const cards = document.querySelectorAll('.card');
+const fills = document.querySelectorAll('.fill');
+
+const checkScroll = () => {
+  const triggerBottom = window.innerHeight / 5 * 4;
+  
+  cards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    if (cardTop < triggerBottom) {
+      card.classList.add('show');
+    }
+  });
+
+  fills.forEach(fill => {
+    const fillTop = fill.getBoundingClientRect().top;
+    if (fillTop < window.innerHeight) {
+      fill.style.width = fill.getAttribute('data-width');
+    }
+  });
+};
+
+window.addEventListener('scroll', checkScroll);
+checkScroll(); // Check on initial load
+
+// Particle System
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+let particles = [];
+for (let i = 0; i < 70; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 0.5,
+    dx: (Math.random() - 0.5) * 1.5,
+    dy: (Math.random() - 0.5) * 1.5
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
+  
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    
+    // Bounce off walls instead of disappearing
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
 </body>
 </html>
