@@ -3,178 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nasim Al Masud | Portfolio</title>
+<title>Nasim Al Masud | Premium Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root {
-  --primary: #22c55e;
-  --secondary: #f97316;
-  --bg-dark: rgba(0, 0, 0, 0.4);
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --text-main: #f8fafc;
-  --text-muted: #cbd5e1;
+  --primary: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.35);
+  --secondary: #f59e0b;
+  --bg-dark: #070a12;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-hover-border: rgba(16, 185, 129, 0.5);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: linear-gradient(135deg, #020617, #064e3b, #431407);
+  background-color: var(--bg-dark);
   color: var(--text-main);
   overflow-x: hidden;
-  line-height: 1.6;
+  position: relative;
 }
 
-/* PARTICLES */
-canvas {
+/* Ambient Background Lights */
+.glow-spot {
   position: fixed;
-  top: 0; left: 0;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.glow-1 { top: -10%; left: -10%; background: #065f46; }
+.glow-2 { top: 40%; right: -10%; background: #92400e; }
+.glow-3 { bottom: -10%; left: 30%; background: #1e3a8a; }
+
+#bg {
+  position: fixed;
+  inset: 0;
   z-index: -1;
 }
 
-/* NAV */
+/* Header & Nav */
 header {
   position: fixed;
-  width: 100%;
-  padding: 20px 50px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  padding: 12px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(15px);
-  background: var(--bg-dark);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: 100px;
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-header h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: -0.5px;
 }
 
-nav { display: flex; gap: 20px; }
+nav {
+  display: flex;
+  gap: 20px;
+}
 
 nav a {
+  color: var(--text-muted);
   text-decoration: none;
-  color: var(--text-main);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s ease;
   position: relative;
-  transition: color 0.3s ease;
 }
 
-nav a:hover { color: var(--primary); }
+nav a:hover {
+  color: #fff;
+}
 
 nav a::after {
   content: '';
   position: absolute;
-  width: 0; height: 2px;
-  bottom: -4px; left: 0;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
   background: var(--primary);
   transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
-nav a:hover::after { width: 100%; }
-
-/* MOBILE MENU ICON */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-.menu-toggle span {
-  width: 25px; height: 3px;
-  background: var(--text-main);
-  transition: 0.3s;
-  border-radius: 5px;
-}
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px 50px 0;
-}
-
-.hero-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+nav a:hover::after {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.hero-text { flex: 1; min-width: 300px; }
-
-.hero h1 {
-  font-size: 3.5rem;
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-
-.typing-container {
-  font-size: 1.5rem;
-  color: var(--secondary);
-  margin-bottom: 15px;
-  font-weight: 500;
-  min-height: 36px;
-}
-.typing::after {
-  content: '|';
-  animation: blink 1s infinite;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.hero p { color: var(--text-muted); font-size: 1.1rem; }
-
-/* IMAGE */
-.hero-img {
-  position: relative;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-img img {
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  object-fit: cover;
-  z-index: 2;
-  border: 5px solid #0f172a;
-}
-
-.hero-img::before {
-  content: "";
-  position: absolute;
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  animation: spin 8s linear infinite;
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* SECTIONS */
+/* Section Common */
 section {
-  padding: 100px 50px 40px;
-  max-width: 1200px;
+  padding: 120px 8% 60px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
 h2 {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 35px;
   position: relative;
   display: inline-block;
 }
@@ -182,128 +146,350 @@ h2 {
 h2::after {
   content: '';
   position: absolute;
-  width: 50%; height: 3px;
-  bottom: -5px; left: 0;
-  background: var(--primary);
-  border-radius: 5px;
+  left: 0;
+  bottom: -8px;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  border-radius: 2px;
 }
 
-/* CARDS */
-.card-grid {
+/* Hero Section */
+.hero {
+  min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+  padding-top: 140px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 50px;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-badge .pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--secondary);
+  height: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--primary), #059669);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px var(--primary-glow);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  box-shadow: none;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero img {
+  position: relative;
+  z-index: 1;
+  width: 310px;
+  height: 310px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+}
+
+.hero img:hover {
+  transform: scale(1.03) rotate(2deg);
+  border-color: var(--primary);
+}
+
+/* Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 .card {
   background: var(--card-bg);
+  backdrop-filter: blur(16px);
   padding: 30px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transform: translateY(40px);
-  opacity: 0;
-  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
-}
-
-.card.show { transform: translateY(0); opacity: 1; }
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(34, 197, 94, 0.4);
-}
-
-.card h3 { color: var(--primary); margin-bottom: 10px; }
-.card p { color: var(--text-muted); margin-bottom: 5px; }
-.card ul { margin-left: 20px; color: var(--text-muted); }
-.card li { margin-bottom: 8px; }
-
-/* SKILLS */
-.skill { margin: 15px 0; }
-.skill-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
-.bar {
-  height: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
   overflow: hidden;
 }
-.fill {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border-radius: 10px;
-  transition: width 1.5s ease-in-out;
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.1);
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 50px 20px;
-  margin-top: 50px;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.footer-btn {
-  display: inline-flex;
+.card h3 i {
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Section Specific Styles */
+.card ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.card ul li {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 20px;
-  padding: 12px 30px;
-  border-radius: 30px;
-  background: linear-gradient(45deg, var(--primary), var(--secondary));
-  color: white;
+}
+
+.card ul li::before {
+  content: '▹';
+  color: var(--primary);
+  font-size: 16px;
+}
+
+/* Skills */
+.skill {
+  margin: 20px 0;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.1, 0.42, 0.85, 1);
+}
+
+/* Contact Details */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.contact-item i {
+  font-size: 18px;
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-item a {
+  color: var(--text-main);
   text-decoration: none;
-  font-weight: 500;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.footer-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+.contact-item a:hover {
+  color: var(--primary);
 }
 
-/* MOBILE RESPONSIVE */
-@media(max-width: 768px) {
-  header { padding: 15px 25px; }
-  .menu-toggle { display: flex; z-index: 1001; }
-  
-  nav {
-    position: absolute;
-    top: 100%; left: 0; width: 100%;
-    background: rgba(2, 6, 23, 0.95);
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(5, 8, 15, 0.8);
+  border-top: 1px solid var(--card-border);
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+/* Responsive Design */
+@media(max-width: 900px) {
+  header {
+    width: 95%;
+    padding: 12px 20px;
   }
   
-  nav.active { max-height: 400px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  nav a { margin: 15px 0; }
+  nav {
+    display: none; /* Can be expanded with a mobile menu if desired */
+  }
 
-  .hero { padding-top: 100px; text-align: center; }
-  .hero-container { flex-direction: column-reverse; gap: 40px; }
-  .hero h1 { font-size: 2.5rem; }
-  .hero-img { width: 250px; height: 250px; }
-  .hero-img img { width: 230px; height: 230px; }
-  section { padding: 60px 25px 20px; }
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+    padding-top: 120px;
+  }
+
+  .hero-badge {
+    margin: 0 auto 20px;
+  }
+
+  .hero p {
+    margin: 0 auto;
+  }
+
+  .btn-group {
+    justify-content: center;
+  }
+
+  .hero img {
+    width: 250px;
+    height: 250px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
 }
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
+<!-- Ambient Glow Effects -->
+<div class="glow-spot glow-1"></div>
+<div class="glow-spot glow-2"></div>
+<div class="glow-spot glow-3"></div>
 
+<canvas id="bg"></canvas>
+
+<!-- Header Nav -->
 <header>
-  <h3>Nasim</h3>
-  <div class="menu-toggle" id="mobile-menu">
-    <span></span><span></span><span></span>
-  </div>
-  <nav id="nav-links">
+  <div class="logo">Nasim.</div>
+  <nav>
     <a href="#about">About</a>
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
@@ -314,236 +500,270 @@ footer {
   </nav>
 </header>
 
-<!-- HERO -->
+<!-- Hero Section -->
 <section class="hero">
-  <div class="hero-container">
-    <div class="hero-text">
-      <h1>Nasim Al Masud</h1>
-      <div class="typing-container"><span class="typing" id="typing"></span></div>
-      <p>Passionate about technical education and innovation in the food industry.</p>
+  <div>
+    <div class="hero-badge">
+      <span class="pulse"></span> Open for Research & Technical Education
     </div>
-    <div class="hero-img">
-      <img src="https://nasim.ami.bd/profile.jpg.jpeg" alt="Nasim Al Masud">
+    <h1>Nasim Al Masud</h1>
+    <div class="tag" id="type"></div>
+    <p>Junior Instructor (Food Technology) passionate about Technical Education, Food Innovation, Product R&D, Quality Assurance, and Laboratory Management.</p>
+    <div class="btn-group">
+      <a class="btn" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+      <a class="btn btn-secondary" href="#projects"><i class="fa-solid fa-flask"></i> View Projects</a>
     </div>
+  </div>
+  <div class="hero-img-wrapper">
+    <img src="https://nasim.ami.bd/profile.jpg.jpeg" alt="Nasim Al Masud">
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- About Section -->
 <section id="about">
   <h2>About Me</h2>
-  <div class="card show">
-    <p>Food Science & Engineering graduate with professional experience in teaching and R&D. Skilled in food product development, quality control, and laboratory analysis.</p>
+  <div class="card">
+    <p style="font-size: 16px; line-height: 1.8;">
+      A dedicated Food Technologist driven by innovation, research, and technical education. Expert in food processing, quality control, HACCP standards, and industrial product formulation. Committed to training future engineers and advancing research in sustainable food science.
+    </p>
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- Education Section -->
 <section id="education">
   <h2>Education</h2>
-  <div class="card-grid">
+  <div class="grid">
     <div class="card">
-      <h3>BSc in Food Science & Engineering</h3>
-      <p>German University Bangladesh | 2023</p>
-      <p>CGPA: 2.90 / 4.00</p>
+      <h3><i class="fa-solid fa-graduation-cap"></i> BSc in Food Science & Engineering</h3>
+      <p><strong>German University Bangladesh</strong></p>
+      <p style="color: var(--primary); font-weight: 600; margin-top: 5px;">Graduated 2023</p>
     </div>
     <div class="card">
-      <h3>Diploma in Food Technology</h3>
-      <p>Thakurgaon Polytechnic Institute | 2018</p>
-      <p>CGPA: 3.41 / 4.00</p>
+      <h3><i class="fa-solid fa-certificate"></i> Diploma in Food Technology</h3>
+      <p><strong>Thakurgaon Polytechnic Institute</strong></p>
+      <p style="color: var(--primary); font-weight: 600; margin-top: 5px;">Completed 2018</p>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- Experience Section -->
 <section id="experience">
   <h2>Experience</h2>
-  <div class="card-grid">
+  <div class="grid">
     <div class="card">
-      <h3>Junior Instructor</h3>
-      <p>Chapainawabganj Polytechnic Institute</p>
+      <h3><i class="fa-solid fa-chalkboard-user"></i> Junior Instructor</h3>
+      <p style="color: var(--primary); font-size: 13px; font-weight: 600; margin-bottom: 10px;">Technical Education</p>
       <ul>
-        <li>Conducted practical and theoretical classes</li>
-        <li>Guided lab and student projects</li>
-        <li>Prepared lesson plans</li>
+        <li>Theory & Practical Lecture Delivery</li>
+        <li>Advanced Laboratory Management</li>
+        <li>Guiding Student Innovation Projects</li>
+        <li>Curriculum Support & Exam Evaluation</li>
       </ul>
     </div>
     <div class="card">
-      <h3>Junior Executive (R&D)</h3>
-      <p>Pran Food Ltd</p>
+      <h3><i class="fa-solid fa-vial-circle-check"></i> Junior Executive (R&D)</h3>
+      <p style="color: var(--secondary); font-size: 13px; font-weight: 600; margin-bottom: 10px;">Food Industry</p>
       <ul>
-        <li>Product development & testing</li>
-        <li>Sensory evaluation</li>
-        <li>Quality improvement</li>
+        <li>New Product Development (NPD)</li>
+        <li>Sensory Profiling & Evaluation</li>
+        <li>Shelf-life Testing & Optimization</li>
+        <li>Quality Improvement & Formulation</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- TRAINING -->
+<!-- Training Section -->
 <section id="training">
-  <h2>Training</h2>
-  <div class="card">
-    <ul>
-      <li>Baking Level-3 (DTTTI)</li>
-      <li>Food Processing Level-2 (DTTTI)</li>
-      <li>Six Sigma Level-1 (Pran)</li>
-    </ul>
+  <h2>Training & Certifications</h2>
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fa-solid fa-award"></i> Baking Level-3</h3>
+      <p>Advanced practical expertise in commercial baking tech and processes.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-award"></i> Food Processing Level-2</h3>
+      <p>Industrial food processing standards and handling protocols.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-chart-line"></i> Six Sigma Level-1</h3>
+      <p>Process improvement, quality control, and minimization of errors.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-shield-halved"></i> Food Safety & QC</h3>
+      <p>Comprehensive training on HACCP, hygiene standards, and safety QA.</p>
+    </div>
   </div>
 </section>
 
-<!-- PROJECT -->
+<!-- Projects Section -->
 <section id="projects">
-  <h2>Projects</h2>
+  <h2>Projects & Research</h2>
   <div class="card">
-    <h3>Chocolate Milk Research</h3>
-    <p>Sensory evaluation and storage stability analysis to improve shelf life and taste profile.</p>
+    <h3><i class="fa-solid fa-flask-vial"></i> Chocolate Milk Formulation & Quality Research</h3>
+    <p style="margin-top: 8px;">
+      Focused on sensory profiling, storage stability evaluation, micro-nutrient retention, and physical quality optimization under different storage conditions.
+    </p>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- Skills Section -->
 <section id="skills">
-  <h2>Skills</h2>
+  <h2>Technical Skills</h2>
   <div class="card">
     <div class="skill">
       <div class="skill-header"><span>Food Processing</span><span>90%</span></div>
-      <div class="bar"><div class="fill" data-width="90%"></div></div>
+      <div class="bar"><div class="fill" data-w="90%"></div></div>
     </div>
     <div class="skill">
-      <div class="skill-header"><span>R&D</span><span>85%</span></div>
-      <div class="bar"><div class="fill" data-width="85%"></div></div>
+      <div class="skill-header"><span>Teaching & Technical Instruction</span><span>88%</span></div>
+      <div class="bar"><div class="fill" data-w="88%"></div></div>
     </div>
     <div class="skill">
-      <div class="skill-header"><span>Teaching</span><span>88%</span></div>
-      <div class="bar"><div class="fill" data-width="88%"></div></div>
+      <div class="skill-header"><span>Research & Development (R&D)</span><span>85%</span></div>
+      <div class="bar"><div class="fill" data-w="85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>Quality Control & Safety (HACCP)</span><span>82%</span></div>
+      <div class="bar"><div class="fill" data-w="82%"></div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- Contact Section -->
 <section id="contact">
-  <h2>Contact</h2>
-  <div class="card-grid">
+  <h2>Get In Touch</h2>
+  <div class="grid">
     <div class="card">
-      <h3>Get in Touch</h3>
-      <p>📞 01737256030</p>
-      <p>📧 mdnamn4@gmail.com</p>
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <span style="font-size: 12px; color: var(--text-muted); display: block;">Location</span>
+          <span>Chapainawabganj, Bangladesh</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <span style="font-size: 12px; color: var(--text-muted); display: block;">Phone</span>
+          <a href="tel:+8801737256030">+880 1737-256030</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <span style="font-size: 12px; color: var(--text-muted); display: block;">Email</span>
+          <a href="mailto:mdnamn4@gmail.com">mdnamn4@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-globe"></i>
+        <div>
+          <span style="font-size: 12px; color: var(--text-muted); display: block;">Website</span>
+          <a href="https://nasim.ami.bd" target="_blank">nasim.ami.bd</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  <p>© 2026 Nasim Al Masud</p>
-  <a href="https://nasim.ami.bd/CV%20of%20Nasim%20Al%20Masud.pdf" target="_blank" class="footer-btn">
-    📄 Download CV
-  </a>
+  <p>© 2026 Nasim Al Masud. Crafted with passion & precision.</p>
 </footer>
 
+<!-- Scripts -->
 <script>
-// Mobile Menu Toggle
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.getElementById('nav-links');
-const navItems = document.querySelectorAll('#nav-links a');
+// Typewriter Effect
+const words = ["Junior Instructor", "Food Technologist", "R&D Specialist", "Research Enthusiast"];
+let wi = 0, ci = 0, del = false;
 
-mobileMenu.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
-// Close menu when a link is clicked
-navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-  });
-});
-
-// Typing Effect
-const texts = ["Food Technologist", "Instructor", "R&D Specialist"];
-let i = 0, j = 0, isDeleting = false;
-function type() {
-  const currentText = texts[i];
-  document.getElementById("typing").textContent = currentText.substring(0, j);
-  
-  if (!isDeleting && j < currentText.length) {
-    j++;
-    setTimeout(type, 100);
-  } else if (isDeleting && j > 0) {
-    j--;
-    setTimeout(type, 50);
-  } else if (!isDeleting && j === currentText.length) {
-    isDeleting = true;
-    setTimeout(type, 2000); // Pause at end of word
-  } else if (isDeleting && j === 0) {
-    isDeleting = false;
-    i = (i + 1) % texts.length;
-    setTimeout(type, 500); // Pause before next word
+function typeEffect() {
+  let w = words[wi];
+  document.getElementById('type').textContent = w.slice(0, ci);
+  if (!del && ci < w.length) {
+    ci++;
+    setTimeout(typeEffect, 90);
+  } else if (del && ci > 0) {
+    ci--;
+    setTimeout(typeEffect, 45);
+  } else if (!del) {
+    del = true;
+    setTimeout(typeEffect, 1400);
+  } else {
+    del = false;
+    wi = (wi + 1) % words.length;
+    setTimeout(typeEffect, 300);
   }
 }
-type();
+typeEffect();
 
-// Scroll Animations
-const cards = document.querySelectorAll('.card');
-const fills = document.querySelectorAll('.fill');
-
-const checkScroll = () => {
-  const triggerBottom = window.innerHeight / 5 * 4;
-  
-  cards.forEach(card => {
-    const cardTop = card.getBoundingClientRect().top;
-    if (cardTop < triggerBottom) {
-      card.classList.add('show');
+// Skill Bars Observer
+const skillsSection = document.querySelector('#skills');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.fill').forEach(fill => {
+        fill.style.width = fill.dataset.w;
+      });
     }
   });
+}, { threshold: 0.3 });
 
-  fills.forEach(fill => {
-    const fillTop = fill.getBoundingClientRect().top;
-    if (fillTop < window.innerHeight) {
-      fill.style.width = fill.getAttribute('data-width');
-    }
-  });
-};
+if(skillsSection) observer.observe(skillsSection);
 
-window.addEventListener('scroll', checkScroll);
-checkScroll(); // Check on initial load
-
-// Particle System
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+// Canvas Particle Network
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-let particles = [];
-for (let i = 0; i < 70; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 0.5,
-    dx: (Math.random() - 0.5) * 1.5,
-    dy: (Math.random() - 0.5) * 1.5
-  });
-}
+let particles = Array.from({ length: 55 }, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  vx: (Math.random() - 0.5) * 0.6,
+  vy: (Math.random() - 0.5) * 0.6,
+  r: Math.random() * 2 + 1
+}));
 
-function animate() {
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
   
-  particles.forEach(p => {
+  particles.forEach((p, index) => {
+    p.x += p.vx;
+    p.y += p.vy;
+    
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fill();
-    p.x += p.dx;
-    p.y += p.dy;
-    
-    // Bounce off walls instead of disappearing
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-</script>
 
+    // Connect close particles with subtle lines
+    for (let j = index + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 100) {
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 - dist / 1000})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    }
+  });
+  
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+</script>
 </body>
 </html>
