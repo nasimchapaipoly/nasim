@@ -18,170 +18,218 @@
             --secondary: #022C22;
             --success: #10B981;
             --danger: #EF4444;
-            --warning: #F59E0B;
             --info: #059669;
             --bg: #F0FDF4;
             --surface: #FFFFFF;
             --text-main: #1F2937;
             --text-muted: #6B7280;
             --border: #D1FAE5;
-            --radius-lg: 16px;
+            --radius-lg: 18px;
             --radius-md: 12px;
-            --radius-sm: 8px;
-            --shadow-sm: 0 1px 3px rgba(4, 120, 87, 0.06);
-            --shadow-md: 0 4px 20px rgba(4, 120, 87, 0.08);
-            --shadow-lg: 0 10px 40px rgba(4, 120, 87, 0.12);
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 9px;
+            --shadow-sm: 0 2px 8px rgba(4, 120, 87, 0.06);
+            --shadow-md: 0 8px 28px rgba(4, 120, 87, 0.09);
+            --shadow-lg: 0 16px 48px rgba(4, 120, 87, 0.14);
+            --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Kalpurush', system-ui, -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
 
-        /* Navbar */
+        /* ========== PREMIUM NAVBAR ========== */
         .navbar {
-            background: var(--surface);
-            box-shadow: var(--shadow-sm);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            box-shadow: 0 1px 0 rgba(4, 120, 87, 0.08), 0 4px 20px rgba(4, 120, 87, 0.04);
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
+            z-index: 200;
+            border-bottom: 1px solid rgba(167, 243, 208, 0.6);
         }
 
         .nav-container {
-            max-width: 960px;
+            max-width: 920px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
+            padding: 10px 18px;
+            height: 58px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
         .nav-logo img {
-            height: 42px;
+            height: 38px;
             width: auto;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .nav-logo img:hover {
-            transform: scale(1.05);
+        .nav-logo:hover img {
+            transform: scale(1.06);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 8px;
+            gap: 4px;
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-links > li > a {
             text-decoration: none;
             color: var(--secondary);
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding: 8px 14px;
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
+            border-radius: 9999px;
+            transition: var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: 0.2px;
         }
 
-        .nav-links a:hover {
+        .nav-links > li > a:hover {
             color: var(--primary);
             background: var(--primary-light);
         }
 
-        /* Dropdown */
+        /* Premium Dropdown */
         .dropdown {
             position: relative;
         }
 
+        .dropdown-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            vertical-align: middle;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid currentColor;
+            transition: transform 0.25s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle::after,
+        .dropdown:focus-within .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
         .dropdown-content {
-            visibility: hidden;
-            opacity: 0;
             position: absolute;
-            background: var(--surface);
-            min-width: 240px;
-            box-shadow: var(--shadow-lg);
-            border-radius: var(--radius-md);
-            z-index: 101;
-            top: 100%;
+            top: calc(100% + 10px);
             right: 0;
-            border: 1px solid var(--border);
+            min-width: 260px;
+            background: #FFFFFF;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(2, 44, 34, 0.12), 0 0 0 1px rgba(167, 243, 208, 0.5);
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px) scale(0.97);
+            transform-origin: top right;
+            transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                        visibility 0.28s;
             overflow: hidden;
-            margin-top: 8px;
-            transform: translateY(8px);
-            transition: var(--transition);
-        }
-
-        .dropdown-content a {
-            color: var(--text-main);
-            padding: 12px 16px;
-            display: block;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #F0FDF4;
-            border-radius: 0;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--primary-light);
-            color: var(--primary);
-            padding-left: 20px;
+            padding: 6px;
         }
 
         .dropdown:hover .dropdown-content,
         .dropdown:focus-within .dropdown-content {
-            visibility: visible;
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
 
-        /* Main Layout */
+        .dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.93rem;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .dropdown-content a:hover {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            color: var(--primary);
+            padding-left: 18px;
+        }
+
+        .dropdown-content a::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-border);
+            flex-shrink: 0;
+            transition: var(--transition-fast);
+        }
+
+        .dropdown-content a:hover::before {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        /* ========== MAIN LAYOUT ========== */
         .main-wrapper {
-            padding: 28px 16px 40px;
+            padding: 26px 16px 40px;
         }
 
         .container {
-            max-width: 680px;
+            max-width: 640px;
             margin: 0 auto;
         }
 
-        /* Header */
         .header {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .header h1 {
-            font-size: 1.75rem;
+            font-size: 1.65rem;
             color: var(--secondary);
             font-weight: 700;
-            margin-bottom: 6px;
-            line-height: 1.35;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
         }
 
         .header p {
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .counter-badge {
@@ -190,9 +238,9 @@
             gap: 6px;
             background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
             color: var(--primary);
-            padding: 7px 18px;
+            padding: 6px 16px;
             border-radius: 9999px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             border: 1px solid var(--primary-border);
             box-shadow: var(--shadow-sm);
@@ -202,58 +250,63 @@
         .card {
             background: var(--surface);
             border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
+            padding: 26px 22px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(167, 243, 208, 0.7);
             box-shadow: var(--shadow-md);
         }
 
         /* Form */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
             display: block;
-            font-size: 1rem;
+            font-size: 0.97rem;
             font-weight: 600;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
             color: var(--secondary);
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 14px;
+            padding: 11px 14px;
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
-            font-size: 1.02rem;
+            font-size: 1rem;
             outline: none;
             background: #F8FAFC;
-            transition: var(--transition);
+            transition: var(--transition-fast);
             color: var(--text-main);
             font-family: 'Kalpurush', system-ui, sans-serif;
         }
 
         .form-control:focus {
-            background: var(--surface);
+            background: #fff;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.12);
+            box-shadow: 0 0 0 3.5px rgba(4, 120, 87, 0.12);
         }
 
+        /* Premium Select Dropdown */
         select.form-control {
             appearance: none;
             -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23047857' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23047857' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 14px center;
-            padding-right: 36px;
+            background-position: right 12px center;
+            padding-right: 38px;
             cursor: pointer;
+            background-color: #F8FAFC;
+        }
+
+        select.form-control:focus {
+            background-color: #fff;
         }
 
         input[type="number"].form-control {
             -moz-appearance: textfield;
         }
-
         input[type="number"].form-control::-webkit-outer-spin-button,
         input[type="number"].form-control::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -262,24 +315,39 @@
 
         .btn-submit {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary), #059669);
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 13px;
             border-radius: var(--radius-sm);
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 8px;
-            box-shadow: 0 4px 14px rgba(4, 120, 87, 0.25);
+            margin-top: 6px;
+            box-shadow: 0 4px 16px rgba(4, 120, 87, 0.28);
             font-family: 'Kalpurush', system-ui, sans-serif;
             letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(255,255,255,0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.25s;
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(4, 120, 87, 0.35);
+            box-shadow: 0 8px 24px rgba(4, 120, 87, 0.35);
+        }
+
+        .btn-submit:hover::after {
+            opacity: 1;
         }
 
         .btn-submit:active {
@@ -289,13 +357,13 @@
         /* Footer */
         .footer-top {
             text-align: center;
-            margin-top: 24px;
-            padding-top: 16px;
+            margin-top: 20px;
+            padding-top: 14px;
             border-top: 1px solid var(--border);
         }
 
         .footer-credit {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
         }
 
@@ -303,26 +371,29 @@
             color: var(--primary);
             text-decoration: none;
             font-weight: 700;
+            transition: var(--transition-fast);
         }
 
         .footer-credit a:hover {
             text-decoration: underline;
         }
 
-        /* Modal Base */
+        /* ========== MODALS (NO SCROLL) ========== */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(2, 44, 34, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(2, 44, 34, 0.78);
+            backdrop-filter: blur(8px) saturate(160%);
+            -webkit-backdrop-filter: blur(8px) saturate(160%);
             opacity: 0;
             visibility: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 16px;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 12px;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.4s;
         }
 
         .modal-overlay.active {
@@ -331,23 +402,26 @@
         }
 
         .modal-content {
-            background: white;
+            background: #fff;
             width: 100%;
-            max-width: 460px;
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            transform: scale(0.96) translateY(12px);
+            max-width: 440px;
+            border-radius: 20px;
+            padding: 16px 18px 14px;
+            box-shadow: 0 28px 70px rgba(2, 44, 34, 0.25), 0 0 0 1px rgba(167, 243, 208, 0.4);
+            transform: scale(0.88) translateY(28px) rotateX(4deg);
             opacity: 0;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 2px solid var(--border);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 2px solid var(--primary-border);
             position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-height: none;
+            overflow: visible;
+            transform-style: preserve-3d;
+            perspective: 1200px;
         }
 
         .modal-overlay.active .modal-content {
-            transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0) rotateX(0deg);
             opacity: 1;
         }
 
@@ -357,13 +431,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 65%;
-            height: 65%;
+            width: 60%;
+            height: 60%;
             background-image: url('https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.04;
+            opacity: 0.035;
             z-index: 0;
             pointer-events: none;
         }
@@ -372,46 +446,47 @@
         #slideContent,
         .modal-footer,
         #printModal form,
-        .slide-indicator {
+        .slide-indicator,
+        .indicator-wrapper {
             position: relative;
             z-index: 1;
         }
 
         .modal-header {
-            font-size: 1.15rem;
+            font-size: 1.08rem;
             font-weight: 700;
             color: var(--secondary);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 10px;
+            border-bottom: 1.5px solid var(--border);
+            padding-bottom: 8px;
         }
 
         .close-btn {
             background: none;
             border: none;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--danger);
             cursor: pointer;
-            padding: 4px 8px;
+            padding: 2px 7px;
             border-radius: 6px;
-            transition: var(--transition);
+            transition: var(--transition-fast);
             line-height: 1;
         }
 
         .close-btn:hover {
             background: #FEF2F2;
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
         .modal-footer {
             display: flex;
-            gap: 10px;
-            margin-top: 14px;
-            border-top: 2px solid var(--border);
-            padding-top: 14px;
+            gap: 8px;
+            margin-top: 10px;
+            border-top: 1.5px solid var(--border);
+            padding-top: 10px;
         }
 
         .btn-nav,
@@ -419,14 +494,14 @@
         .btn-cancel,
         .btn-confirm {
             flex: 1;
-            padding: 11px 12px;
+            padding: 9px 10px;
             border-radius: var(--radius-sm);
             border: none;
             cursor: pointer;
             font-family: 'Kalpurush', system-ui, sans-serif;
-            font-size: 0.98rem;
+            font-size: 0.93rem;
             font-weight: 600;
-            transition: var(--transition);
+            transition: var(--transition-fast);
         }
 
         .btn-nav,
@@ -444,7 +519,7 @@
         .btn-confirm {
             background: var(--primary);
             color: white;
-            box-shadow: 0 3px 10px rgba(4, 120, 87, 0.25);
+            box-shadow: 0 3px 10px rgba(4, 120, 87, 0.22);
         }
 
         .btn-primary:hover,
@@ -454,50 +529,52 @@
 
         .btn-group {
             display: flex;
-            gap: 10px;
-            margin-top: 16px;
+            gap: 8px;
+            margin-top: 12px;
         }
 
         .slide-indicator {
-            text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-bottom: 10px;
             font-weight: 600;
             background: var(--primary-light);
             display: inline-block;
-            padding: 3px 12px;
+            padding: 2px 10px;
             border-radius: 20px;
             border: 1px solid var(--primary-border);
         }
 
         .indicator-wrapper {
             text-align: center;
+            margin-bottom: 4px;
         }
 
-        /* Slide Content Styles */
+        #slideContent {
+            transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 180px;
+        }
+
+        /* Compact Slide Content – NO SCROLL */
         .sec-title {
-            font-size: 1.08rem;
+            font-size: 0.98rem;
             font-weight: 700;
             color: var(--secondary);
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 6px;
-            margin: 8px 0 8px;
+            border-bottom: 1.5px solid var(--border);
+            padding-bottom: 4px;
+            margin: 2px 0 5px;
         }
 
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px 0;
-            font-size: 0.95rem;
+            padding: 3px 0;
+            font-size: 0.88rem;
             border-bottom: 1px dashed var(--border);
-            gap: 12px;
+            gap: 8px;
         }
 
-        .item-row:last-child {
-            border-bottom: none;
-        }
+        .item-row:last-child { border-bottom: none; }
 
         .item-row span:last-child {
             font-weight: 600;
@@ -507,15 +584,15 @@
 
         .item-row.sub {
             color: var(--text-muted);
-            font-size: 0.88rem;
+            font-size: 0.82rem;
         }
 
         .item-row.highlight,
         .item-row.deduct {
-            padding: 8px 12px;
-            font-size: 0.92rem;
-            margin: 8px 0;
-            border-radius: var(--radius-sm);
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            margin: 5px 0;
+            border-radius: 7px;
             border: none;
             font-weight: 600;
         }
@@ -531,116 +608,107 @@
         }
 
         #slideContent .desc-box {
-            font-size: 0.88rem;
-            padding: 10px 12px;
-            margin: 8px 0;
+            font-size: 0.8rem;
+            padding: 7px 10px;
+            margin: 5px 0 2px;
             border: 1.5px solid #FDE68A;
-            border-radius: var(--radius-sm);
+            border-radius: 8px;
             background: #FFFBEB;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         #slideContent .stage-box {
-            padding: 12px 14px;
-            margin-bottom: 10px;
-            border-radius: var(--radius-md);
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-radius: 10px;
             border: 1.5px solid var(--border);
             background: #FAFFFE;
         }
 
         #slideContent .stage-header {
-            margin-bottom: 6px;
+            margin-bottom: 3px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 4px;
         }
 
         #slideContent .stage-header strong {
-            font-size: 0.92rem;
+            font-size: 0.84rem;
         }
 
         #slideContent .badge {
-            font-size: 0.72rem;
-            padding: 3px 9px;
-            border-radius: 6px;
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 5px;
             font-weight: 600;
         }
 
         #slideContent p {
-            margin-bottom: 6px;
-            font-size: 0.85rem;
-            line-height: 1.4;
+            margin-bottom: 4px;
+            font-size: 0.78rem;
+            line-height: 1.3;
             color: var(--text-muted);
         }
 
         /* Contact Modal */
-        .contact-profile {
-            margin-bottom: 14px;
-        }
-
         .contact-profile img {
-            width: 96px;
-            height: 96px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: var(--shadow-md);
+            border: 4px solid var(--primary);
+            box-shadow: 0 8px 24px rgba(4, 120, 87, 0.25);
         }
 
         .contact-email {
             display: inline-block;
             background: var(--primary-light);
-            padding: 10px 16px;
-            border-radius: 12px;
+            padding: 8px 14px;
+            border-radius: 10px;
             border: 1.5px solid var(--border);
             font-weight: 600;
             color: var(--primary);
-            font-size: 0.95rem;
-            margin-top: 8px;
+            font-size: 0.88rem;
+            margin-top: 6px;
+            line-height: 1.4;
         }
 
-        /* Print Styles */
-        .print-only {
-            display: none;
-        }
+        /* ========== PRINT – 1 PAGE A4 ========== */
+        .print-only { display: none; }
 
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 12mm;
+                margin: 11mm 12mm;
             }
 
             body {
-                background: white;
-                padding: 0;
-                color: black;
-                font-size: 12pt;
+                background: white !important;
+                padding: 0 !important;
+                color: #111 !important;
+                font-size: 12pt !important;
+                line-height: 1.4 !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
 
-            .no-print {
-                display: none !important;
-            }
-
-            .print-only {
-                display: block !important;
-            }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
 
             .print-watermark {
                 position: fixed;
-                top: 50%;
+                top: 48%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 z-index: -1;
-                opacity: 0.07;
+                opacity: 0.12;
                 pointer-events: none;
             }
 
             .print-watermark img {
-                width: 520px;
+                width: 480px;
                 max-width: 75vw;
                 display: block !important;
             }
@@ -649,14 +717,14 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 16px;
+                margin-bottom: 12px;
                 border-bottom: 2px solid #047857;
-                padding-bottom: 12px;
+                padding-bottom: 10px;
             }
 
             .print-logo-left img,
             .print-logo-right img {
-                height: 65px;
+                height: 58px;
                 width: auto;
                 display: block !important;
             }
@@ -664,29 +732,31 @@
             .print-title {
                 text-align: center;
                 flex-grow: 1;
-                padding: 0 12px;
+                padding: 0 10px;
             }
 
             .print-title h1 {
-                font-size: 17pt;
-                margin-bottom: 4px;
+                font-size: 16pt;
+                margin-bottom: 3px;
                 color: #047857;
+                font-weight: 700;
             }
 
             .print-title p {
                 font-size: 11pt;
                 margin: 0;
+                color: #333;
             }
 
             .info-table,
             .data-table {
                 width: 100%;
                 border-collapse: collapse;
-                margin-bottom: 16px;
+                margin-bottom: 12px;
             }
 
             .info-table td {
-                padding: 5px 6px;
+                padding: 3px 5px;
                 border: none;
                 font-size: 11.5pt;
             }
@@ -694,102 +764,81 @@
             .data-table th,
             .data-table td {
                 border: 1px solid #047857;
-                padding: 8px 10px;
+                padding: 6px 8px;
                 text-align: left;
-                font-size: 11pt;
+                font-size: 10.5pt;
+                vertical-align: top;
             }
 
             .data-table th {
-                background-color: #ECFDF5;
+                background-color: #ECFDF5 !important;
                 font-weight: bold;
                 color: #047857;
             }
 
+            .data-table small {
+                font-size: 9pt;
+                color: #555;
+            }
+
+            h3.print-section {
+                margin: 10px 0 5px;
+                font-size: 12.5pt;
+                color: #022C22;
+            }
+
             .signature-area {
-                margin-top: 40px;
+                margin-top: 28px;
                 display: flex;
                 justify-content: flex-end;
             }
 
             .signature-box {
                 border-top: 1px solid #000;
-                width: 180px;
+                width: 160px;
                 text-align: center;
                 padding-top: 4px;
                 font-size: 11pt;
             }
 
             .print-footer {
-                margin-top: 30px;
+                margin-top: 16px;
                 border-top: 1px solid #047857;
-                padding-top: 12px;
-                font-size: 10pt;
+                padding-top: 8px;
+                font-size: 9.5pt;
                 text-align: center;
-                line-height: 1.45;
+                line-height: 1.4;
                 color: #064E3B;
             }
         }
 
         /* Responsive */
-        @media (max-width: 540px) {
-            .nav-container {
-                padding: 10px 14px;
-            }
-
-            .nav-links {
-                gap: 4px;
-            }
-
-            .nav-links a {
-                font-size: 0.9rem;
-                padding: 6px 10px;
-            }
-
-            .dropdown-content {
-                right: auto;
-                left: 0;
-                min-width: 220px;
-            }
-
-            .card {
-                padding: 20px 16px;
-            }
-
-            .header h1 {
-                font-size: 1.4rem;
-            }
-
-            .header p {
-                font-size: 0.9rem;
-            }
-
-            .modal-content {
-                padding: 16px;
-            }
-
-            #slideContent .stage-box {
-                padding: 10px;
-            }
-
-            .item-row {
-                font-size: 0.9rem;
-            }
+        @media (max-width: 520px) {
+            .nav-container { padding: 8px 12px; height: 52px; }
+            .nav-logo img { height: 34px; }
+            .nav-links > li > a { font-size: 0.88rem; padding: 6px 10px; }
+            .dropdown-content { min-width: 230px; right: -10px; }
+            .card { padding: 18px 14px; }
+            .header h1 { font-size: 1.35rem; }
+            .modal-content { padding: 14px 14px 12px; max-width: 96%; }
+            #slideContent .stage-box { padding: 7px 8px; }
+            .item-row { font-size: 0.84rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="no-print">
-    <!-- Navbar -->
+    <!-- Premium Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="NasimSoft Home">
+            <a href="#" class="nav-logo" aria-label="NasimSoft">
                 <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="#">হোম</a></li>
                 <li class="dropdown">
-                    <a href="#" aria-haspopup="true">পে স্কেলের গেজেট ▾</a>
+                    <a href="#" class="dropdown-toggle" aria-haspopup="true">পে স্কেলের গেজেট</a>
                     <div class="dropdown-content" role="menu">
                         <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank" rel="noopener">পে-স্কেল ১৯৭৫-২০০৯</a>
                         <a href="https://nasim.ceo.bd/payscale/ps2009.pdf" target="_blank" rel="noopener">পে-স্কেল ২০০৯</a>
@@ -868,41 +917,39 @@
 </div>
 
 <!-- Contact Modal -->
-<div class="no-print modal-overlay" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
-    <div class="modal-content" style="text-align: center;">
+<div class="no-print modal-overlay" id="contactModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="text-align: center; max-width: 380px;">
         <div class="modal-header" style="justify-content: center; position: relative;">
-            <span id="contactTitle">যোগাযোগের ঠিকানা</span>
-            <button class="close-btn" onclick="closeContactModal()" aria-label="বন্ধ করুন" style="position: absolute; right: 0; top: -4px;">✖</button>
+            <span>যোগাযোগের ঠিকানা</span>
+            <button class="close-btn" onclick="closeContactModal()" aria-label="বন্ধ" style="position: absolute; right: 0; top: -2px;">✖</button>
         </div>
-        <div style="padding: 8px 0 4px;">
-            <div class="contact-profile">
-                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Developer%20Pic.jpg" alt="নাসিম আল মাসুদ">
+        <div style="padding: 6px 0 2px;">
+            <div style="margin-bottom: 8px;">
+                <img class="contact-profile" src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/developer.png" alt="নাসিম আল মাসুদ" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid var(--primary);box-shadow:0 8px 24px rgba(4,120,87,0.25);">
             </div>
-            <h2 style="color: var(--primary); margin-bottom: 4px; font-size: 1.25rem;">নাসিম আল মাসুদ</h2>
-            <p style="font-weight: 600; color: var(--text-main); font-size: 0.98rem;">সিস্টেম এডমিনিস্ট্রেটর ও চীফ এক্সিকিউটিভ অফিসার</p>
-            <p style="color: var(--text-muted); margin-bottom: 12px; font-size: 0.92rem;">নাসিম সফট কোম্পানি লিমিটেড</p>
+            <h2 style="color: var(--primary); margin-bottom: 2px; font-size: 1.15rem;">নাসিম আল মাসুদ</h2>
+            <p style="font-weight: 600; color: var(--text-main); font-size: 0.9rem;">সিস্টেম এডমিনিস্ট্রেটর ও চীফ এক্সিকিউটিভ অফিসার</p>
+            <p style="color: var(--text-muted); margin-bottom: 8px; font-size: 0.85rem;">নাসিম সফট কোম্পানি লিমিটেড</p>
             <div class="contact-email">
                 📧 admin@nasim.ceo.bd<br>
-                <span style="font-size: 0.88rem; opacity: 0.9;">mdnamn4@gmail.com</span>
+                <span style="font-size: 0.82rem; opacity: 0.9;">mdnamn4@gmail.com</span>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Preview Modal (Slider) -->
-<div class="no-print modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+<!-- Preview Modal -->
+<div class="no-print modal-overlay" id="previewModal" role="dialog" aria-modal="true">
     <div class="modal-content">
         <div class="modal-header">
-            <span id="previewTitle">বেতন প্রাক্কলন ফলাফল</span>
-            <button class="close-btn" onclick="closePreviewModal()" aria-label="বন্ধ করুন">✖</button>
+            <span>বেতন প্রাক্কলন ফলাফল</span>
+            <button class="close-btn" onclick="closePreviewModal()" aria-label="বন্ধ">✖</button>
         </div>
         <div class="indicator-wrapper">
             <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
         </div>
         
-        <div id="slideContent">
-            <!-- Dynamic Content -->
-        </div>
+        <div id="slideContent"></div>
 
         <div class="modal-footer">
             <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">পূর্ববর্তী</button>
@@ -914,23 +961,23 @@
 
 <!-- Print Form Modal -->
 <div class="no-print modal-overlay" id="printModal" role="dialog" aria-modal="true">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 400px;">
         <div class="modal-header">
             <span>প্রিন্ট রিপোর্ট ইনফরমেশন</span>
-            <button class="close-btn" onclick="closePrintModal()" aria-label="বন্ধ করুন">✖</button>
+            <button class="close-btn" onclick="closePrintModal()" aria-label="বন্ধ">✖</button>
         </div>
         <form onsubmit="return executePrint(event)">
-            <div class="form-group" style="margin-bottom: 12px;">
-                <label for="p_name" style="font-size: 0.95rem;">নাম (বাংলায়)</label>
-                <input type="text" id="p_name" class="form-control" style="padding: 10px 12px;" required placeholder="আপনার নাম লিখুন" autocomplete="name">
+            <div class="form-group" style="margin-bottom: 10px;">
+                <label for="p_name" style="font-size: 0.9rem;">নাম (বাংলায়)</label>
+                <input type="text" id="p_name" class="form-control" style="padding: 9px 12px;" required placeholder="আপনার নাম লিখুন" autocomplete="name">
             </div>
-            <div class="form-group" style="margin-bottom: 12px;">
-                <label for="p_desig" style="font-size: 0.95rem;">বর্তমান পদবি (বাংলায়)</label>
-                <input type="text" id="p_desig" class="form-control" style="padding: 10px 12px;" required placeholder="আপনার পদবি লিখুন">
+            <div class="form-group" style="margin-bottom: 10px;">
+                <label for="p_desig" style="font-size: 0.9rem;">বর্তমান পদবি (বাংলায়)</label>
+                <input type="text" id="p_desig" class="form-control" style="padding: 9px 12px;" required placeholder="আপনার পদবি লিখুন">
             </div>
-            <div class="form-group" style="margin-bottom: 4px;">
-                <label for="p_workplace" style="font-size: 0.95rem;">বর্তমান কর্মস্থল (বাংলায়)</label>
-                <input type="text" id="p_workplace" class="form-control" style="padding: 10px 12px;" required placeholder="অফিসের নাম লিখুন">
+            <div class="form-group" style="margin-bottom: 2px;">
+                <label for="p_workplace" style="font-size: 0.9rem;">বর্তমান কর্মস্থল (বাংলায়)</label>
+                <input type="text" id="p_workplace" class="form-control" style="padding: 9px 12px;" required placeholder="অফিসের নাম লিখুন">
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-cancel" onclick="closePrintModal()">বাতিল</button>
@@ -945,11 +992,8 @@
 
 <script>
 const scale2015 = {
-    1: [78000],
-    2: [66000, 68480, 71050, 73720, 76490],
-    3: [56500, 58760, 61120, 63570, 66120, 68770, 71530, 74400],
-    4: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200],
-    5: [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850],
+    1: [78000], 2: [66000, 68480, 71050, 73720, 76490], 3: [56500, 58760, 61120, 63570, 66120, 68770, 71530, 74400],
+    4: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], 5: [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850],
     6: [35500, 37280, 39150, 41110, 43170, 45330, 47600, 49980, 52480, 55110, 57870, 60770, 63810, 67010],
     7: [29000, 30450, 31980, 33580, 35260, 37030, 38890, 40840, 42890, 45040, 47300, 49670, 52160, 54770, 57510, 60390, 63410],
     8: [23000, 24150, 25360, 26630, 27970, 29370, 30840, 32390, 34010, 35720, 37510, 39390, 41360, 43430, 45610, 47900, 50300, 52820, 55470],
@@ -996,7 +1040,6 @@ window.onload = function () {
         option.text = `${bengaliOrdinals[i]} গ্রেড`;
         gradeSelect.add(option);
     }
-
     const count = parseInt(localStorage.getItem('payCalcCount') || '0', 10);
     document.getElementById('calcCount').textContent = toBengaliNum(count);
 };
@@ -1005,7 +1048,6 @@ function populateSteps() {
     const grade = document.getElementById('grade').value;
     const basicSelect = document.getElementById('basic');
     basicSelect.innerHTML = '<option value="" disabled selected>ধাপ নির্বাচন করুন</option>';
-
     if (grade && scale2015[grade]) {
         scale2015[grade].forEach((amount, index) => {
             const option = document.createElement('option');
@@ -1026,9 +1068,7 @@ function nextHigherStep(base, grade) {
     if (Math.abs(base - start) < 1) return start;
     const step = approxStep[grade] || 500;
     let current = start;
-    while (current < base - 0.5) {
-        current += step;
-    }
+    while (current < base - 0.5) current += step;
     return Math.round(current);
 }
 
@@ -1037,13 +1077,11 @@ function getHouseRent(targetBasic, location) {
     if (location === 'DHAKA_City') { rate = 0.55; min = 9600; }
     else if (location === 'OTHER_CITY') { rate = 0.45; min = 8000; }
     else if (location === 'DISTRICT') { rate = 0.40; min = 7000; }
-    else { rate = 0.40; min = 7000; }
     return Math.max(targetBasic * rate, min);
 }
 
 function calculatePay(e) {
     e.preventDefault();
-
     const basic = parseFloat(document.getElementById('basic').value) || 0;
     const grade = parseInt(document.getElementById('grade').value, 10) || 0;
     const location = document.getElementById('location').value;
@@ -1076,7 +1114,6 @@ function calculatePay(e) {
     const education = eduCount * 500;
     const oldHouseRent = getHouseRent(basic, location);
     const newHouseRent = getHouseRent(fixedBasic, location);
-
     const oldAllowances = oldHouseRent + medical + education;
     const newAllowances = newHouseRent + medical + education;
 
@@ -1094,7 +1131,7 @@ function calculatePay(e) {
     appState = {
         grade, basic, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
         oldAllowances, newAllowances, totalDeduction, gpf, tax, oldHouseRent, medical, education,
-        welfare, insurance, stamp, p1Label, p2Label, stage1Pct, stage2Pct,
+        welfare, insurance, stamp, p1Label, p2Label,
         stage1Basic, stage2Basic, stage3Basic, stage4Basic,
         stage1Net, stage2Net, stage3Net, stage4Net, currentNet
     };
@@ -1130,8 +1167,7 @@ function generateSlides() {
         <div class="item-row sub"><span>(+) চিকিৎসা ভাতা:</span><span>${formatMoney(s.medical)}</span></div>
         <div class="item-row sub"><span>(+) শিক্ষা ভাতা:</span><span>${formatMoney(s.education)}</span></div>
         <div class="item-row highlight"><span>মোট বহাল থাকা ভাতা:</span><span>${formatMoney(s.oldAllowances)}</span></div>
-        
-        <div class="item-row sub" style="margin-top: 6px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
+        <div class="item-row sub" style="margin-top:4px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
         <div class="item-row sub"><span>(-) মাসিক আয়কর:</span><span>${formatMoney(s.tax)}</span></div>
         <div class="item-row sub"><span>(-) অন্যান্য তহবিল:</span><span>${formatMoney(s.welfare + s.insurance + s.stamp)}</span></div>
         <div class="item-row deduct"><span>মোট কর্তন:</span><span>${formatMoney(s.totalDeduction)}</span></div>
@@ -1142,16 +1178,16 @@ function generateSlides() {
         <p>* ছক অনুযায়ী অগ্রাধিকার বিবেচনায় ধাপে ধাপে মূল বেতন বৃদ্ধি পাবে।</p>
         <div class="stage-box">
             <div class="stage-header">
-                <strong style="color: var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
-                <span class="badge" style="background:#E0F2FE; color:#0369A1;">বৃদ্ধির ${s.p1Label}</span>
+                <strong style="color:var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
+                <span class="badge" style="background:#E0F2FE;color:#0369A1;">বৃদ্ধির ${s.p1Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage1Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage1Net)}</span></div>
         </div>
         <div class="stage-box">
             <div class="stage-header">
-                <strong style="color: var(--primary);">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
-                <span class="badge" style="background:#E0F2FE; color:#0369A1;">বৃদ্ধির ${s.p2Label}</span>
+                <strong style="color:var(--primary);">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
+                <span class="badge" style="background:#E0F2FE;color:#0369A1;">বৃদ্ধির ${s.p2Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage2Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage2Net)}</span></div>
@@ -1160,25 +1196,24 @@ function generateSlides() {
 
     const slide4 = `
         <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
-        <div class="stage-box" style="border-color: #A7F3D0; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
+        <div class="stage-box" style="border-color:#A7F3D0;background:linear-gradient(to bottom right,#F2FDF7,#FFFFFF);">
             <div class="stage-header">
-                <strong style="color: var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
-                <span class="badge" style="background: #D1FAE5; color: var(--primary);">১০০% স্কেল</span>
+                <strong style="color:var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
+                <span class="badge" style="background:#D1FAE5;color:var(--primary);">১০০% স্কেল</span>
             </div>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage3Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage3Net)}</span></div>
         </div>
-        
         <div class="stage-box">
             <div class="stage-header">
-                <strong style="color: var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
-                <span class="badge" style="background: var(--success); color: white;">নতুন ভাতা</span>
+                <strong style="color:var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
+                <span class="badge" style="background:var(--success);color:white;">নতুন ভাতা</span>
             </div>
-            <p style="color: var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
+            <p style="color:var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
-            <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
+            <div class="item-row sub" style="color:var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
-            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 8px;">
+            <div class="item-row highlight" style="background:var(--primary);color:white;margin-top:4px;">
                 <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
                 <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
             </div>
@@ -1191,7 +1226,6 @@ function generateSlides() {
 function openContactModal() {
     document.getElementById('contactModal').classList.add('active');
 }
-
 function closeContactModal() {
     document.getElementById('contactModal').classList.remove('active');
 }
@@ -1201,7 +1235,6 @@ function openPreviewModal() {
     updateSlideView();
     document.getElementById('previewModal').classList.add('active');
 }
-
 function closePreviewModal() {
     document.getElementById('previewModal').classList.remove('active');
 }
@@ -1214,25 +1247,36 @@ function changeSlide(direction) {
 }
 
 function updateSlideView() {
-    document.getElementById('slideContent').innerHTML = previewSlides[currentSlide];
-    document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
+    const content = document.getElementById('slideContent');
+    // Smooth PPT-like transition
+    content.style.opacity = '0';
+    content.style.transform = 'translateX(18px)';
+    content.style.transition = 'none';
 
-    document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
+    requestAnimationFrame(() => {
+        content.innerHTML = previewSlides[currentSlide];
+        document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
+        document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
+        if (currentSlide === previewSlides.length - 1) {
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('printStartBtn').style.display = 'block';
+        } else {
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('printStartBtn').style.display = 'none';
+        }
 
-    if (currentSlide === previewSlides.length - 1) {
-        document.getElementById('nextBtn').style.display = 'none';
-        document.getElementById('printStartBtn').style.display = 'block';
-    } else {
-        document.getElementById('nextBtn').style.display = 'block';
-        document.getElementById('printStartBtn').style.display = 'none';
-    }
+        requestAnimationFrame(() => {
+            content.style.transition = 'opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)';
+            content.style.opacity = '1';
+            content.style.transform = 'translateX(0)';
+        });
+    });
 }
 
 function openPrintModal() {
     closePreviewModal();
     document.getElementById('printModal').classList.add('active');
 }
-
 function closePrintModal() {
     document.getElementById('printModal').classList.remove('active');
 }
@@ -1248,54 +1292,49 @@ function executePrint(e) {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
     const rawDateStr = new Intl.DateTimeFormat('bn-BD', options).format(new Date());
     const dateStr = toBengaliNum(rawDateStr);
-
     const s = appState;
 
     const printHTML = `
         <div class="print-watermark">
-            <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Watermark">
+            <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="">
         </div>
-
         <div class="print-header">
             <div class="print-logo-left">
-                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png" alt="Govt Logo">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png" alt="Govt">
             </div>
             <div class="print-title">
                 <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
                 <p>বেতন প্রাক্কলন প্রতিবেদন</p>
             </div>
             <div class="print-logo-right">
-                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft">
             </div>
         </div>
 
         <table class="info-table">
             <tr>
-                <td width="15%"><strong>নাম:</strong></td>
-                <td width="45%">${name}</td>
-                <td width="15%"><strong>গ্রেড:</strong></td>
-                <td width="25%">${bengaliOrdinals[s.grade]} গ্রেড</td>
+                <td width="14%"><strong>নাম:</strong></td>
+                <td width="46%">${name}</td>
+                <td width="14%"><strong>গ্রেড:</strong></td>
+                <td width="26%">${bengaliOrdinals[s.grade]} গ্রেড</td>
             </tr>
             <tr>
                 <td><strong>পদবি:</strong></td>
                 <td>${desig}</td>
-                <td><strong>বর্তমান মূল বেতন:</strong></td>
+                <td><strong>মূল বেতন:</strong></td>
                 <td>${formatMoney(s.basic)}</td>
             </tr>
             <tr>
                 <td><strong>কর্মস্থল:</strong></td>
                 <td>${workplace}</td>
-                <td><strong>রিপোর্টের তারিখ:</strong></td>
+                <td><strong>তারিখ:</strong></td>
                 <td>${dateStr}</td>
             </tr>
         </table>
 
-        <h3 style="margin-bottom: 8px; font-size: 13pt;">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</h3>
+        <h3 class="print-section">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</h3>
         <table class="data-table">
-            <tr>
-                <th>বিবরণ</th>
-                <th>টাকার পরিমাণ</th>
-            </tr>
+            <tr><th>বিবরণ</th><th>টাকার পরিমাণ</th></tr>
             <tr><td>২০১৫ স্কেলে গ্রেডের প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2015)}</td></tr>
             <tr><td>বর্তমান মূল বেতন</td><td>${formatMoney(s.basic)}</td></tr>
             <tr><td>অর্জিত বৃদ্ধি</td><td>${formatMoney(s.earned)}</td></tr>
@@ -1304,24 +1343,24 @@ function executePrint(e) {
             <tr><td>মূল বেতনের মোট পার্থক্য</td><td>${formatMoney(s.totalIncrease)}</td></tr>
         </table>
 
-        <h3 style="margin-top: 16px; margin-bottom: 8px; font-size: 13pt;">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</h3>
+        <h3 class="print-section">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</h3>
         <table class="data-table">
             <tr>
                 <th>ধাপ ও সময়কাল</th>
-                <th>কার্যকর মূল বেতন</th>
-                <th>ভাতাসমূহ</th>
-                <th>মোট কর্তন</th>
+                <th>মূল বেতন</th>
+                <th>ভাতা</th>
+                <th>কর্তন</th>
                 <th>নিট বেতন</th>
             </tr>
             <tr>
-                <td><strong>১ম ধাপ</strong> (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)<br><small>মূল বেতনের বৃদ্ধির ${s.p1Label}</small></td>
+                <td><strong>১ম ধাপ</strong> (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)<br><small>বৃদ্ধির ${s.p1Label}</small></td>
                 <td>${formatMoney(s.stage1Basic)}</td>
                 <td>${formatMoney(s.oldAllowances)}</td>
                 <td>${formatMoney(s.totalDeduction)}</td>
                 <td><strong>${formatMoney(s.stage1Net)}</strong></td>
             </tr>
             <tr>
-                <td><strong>২য় ধাপ</strong> (০১ জানু ২০২৭ - ৩০ জুন ২০২৭)<br><small>মূল বেতনের বৃদ্ধির ${s.p2Label}</small></td>
+                <td><strong>২য় ধাপ</strong> (০১ জানু ২০২৭ - ৩০ জুন ২০২৭)<br><small>বৃদ্ধির ${s.p2Label}</small></td>
                 <td>${formatMoney(s.stage2Basic)}</td>
                 <td>${formatMoney(s.oldAllowances)}</td>
                 <td>${formatMoney(s.totalDeduction)}</td>
@@ -1348,8 +1387,8 @@ function executePrint(e) {
         </div>
 
         <div class="print-footer">
-            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
-            <p style="margin-top: 6px; font-weight: bold; font-size: 12pt;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
+            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
+            <p style="margin-top:3px;font-weight:bold;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
         </div>
     `;
 
@@ -1358,18 +1397,39 @@ function executePrint(e) {
 
     const originalTitle = document.title;
     document.title = `${name}, পে স্কেল ২০২৬ - নাসিমসফট`;
+    window.onafterprint = () => { document.title = originalTitle; };
 
-    window.onafterprint = function () {
-        document.title = originalTitle;
+    // Wait until all logos / watermark images are fully loaded before printing
+    const images = printArea.querySelectorAll('img');
+    let loaded = 0;
+    const total = images.length || 1;
+
+    const tryPrint = () => {
+        loaded++;
+        if (loaded >= total) {
+            setTimeout(() => window.print(), 150);
+        }
     };
 
-    setTimeout(() => {
-        window.print();
-    }, 350);
+    if (images.length === 0) {
+        setTimeout(() => window.print(), 200);
+    } else {
+        images.forEach(img => {
+            if (img.complete && img.naturalWidth > 0) {
+                tryPrint();
+            } else {
+                img.onload = tryPrint;
+                img.onerror = tryPrint; // still print even if one fails
+            }
+        });
+        // Safety fallback
+        setTimeout(() => {
+            if (loaded < total) window.print();
+        }, 2500);
+    }
 }
 
-// Close modals on Escape key
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         closeContactModal();
         closePreviewModal();
@@ -1377,12 +1437,9 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// Close modal when clicking outside content
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) {
-            overlay.classList.remove('active');
-        }
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) overlay.classList.remove('active');
     });
 });
 </script>
