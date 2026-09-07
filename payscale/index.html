@@ -10,24 +10,24 @@
     
     <style>
         :root {
-            /* Premium Theme Colors */
-            --primary: #0369A1; /* Deep Ocean Blue */
-            --primary-hover: #0284C7;
-            --secondary: #0F172A;
-            --success: #059669;
-            --danger: #DC2626;
-            --info: #0284C7;
-            --bg: #F1F5F9;
+            /* Premium Green & White Theme */
+            --primary: #047857; /* Emerald 700 */
+            --primary-hover: #065F46; /* Emerald 800 */
+            --secondary: #022C22; /* Emerald 950 */
+            --success: #10B981; /* Emerald 500 */
+            --danger: #EF4444;
+            --info: #059669; /* Emerald 600 */
+            --bg: #F6FDF9; /* Very soft greenish white */
             --surface: #FFFFFF;
-            --text-main: #1E293B;
-            --text-muted: #64748B;
-            --border: #E2E8F0;
+            --text-main: #1F2937;
+            --text-muted: #4B5563;
+            --border: #A7F3D0; /* Emerald 200 */
             
             --radius-lg: 20px;
             --radius-md: 12px;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.15);
+            --shadow-sm: 0 2px 4px rgba(4, 120, 87, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(4, 120, 87, 0.08);
+            --shadow-lg: 0 20px 25px -5px rgba(4, 120, 87, 0.15);
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,6 +48,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border);
         }
         .nav-container {
             max-width: 900px;
@@ -85,7 +86,7 @@
             border-radius: var(--radius-lg); 
             padding: 32px; 
             margin-bottom: 24px; 
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid #D1FAE5;
             box-shadow: var(--shadow-md); 
         }
         
@@ -95,15 +96,15 @@
         
         .counter-badge {
             display: inline-flex; align-items: center; gap: 6px;
-            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%); 
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); 
             color: var(--primary);
             padding: 8px 20px; border-radius: 9999px;
             font-size: 0.95rem; font-weight: 600; margin-top: 16px;
-            box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);
+            border: 1px solid #A7F3D0;
         }
 
         .form-group { margin-bottom: 22px; }
-        .form-group label { display: block; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+        .form-group label { display: block; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--secondary); }
         
         .form-control {
             width: 100%; padding: 14px 18px; border: 1.5px solid var(--border);
@@ -114,28 +115,28 @@
         .form-control:focus { 
             background: var(--surface);
             border-color: var(--primary); 
-            box-shadow: 0 0 0 4px rgba(3, 105, 161, 0.15); 
+            box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.15); 
         }
 
         .btn-submit {
-            width: 100%; background: linear-gradient(135deg, var(--primary) 0%, #0284C7 100%); 
+            width: 100%; background: linear-gradient(135deg, var(--primary) 0%, #059669 100%); 
             color: white; border: none;
             padding: 16px; border-radius: var(--radius-md); font-size: 1.2rem; font-weight: 600;
             cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3);
+            box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
             font-family: 'Kalpurush', Arial, sans-serif;
         }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(3, 105, 161, 0.4); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35); }
 
         .btn-print {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: var(--surface); color: var(--text-main); 
-            border: 1.5px solid var(--border); padding: 12px 24px; 
+            background: var(--surface); color: var(--primary); 
+            border: 1.5px solid var(--primary); padding: 12px 24px; 
             border-radius: var(--radius-md); font-size: 1.1rem; font-weight: 600;
             cursor: pointer; transition: all 0.2s ease; margin-top: 24px; width: 100%;
             font-family: 'Kalpurush', Arial, sans-serif;
         }
-        .btn-print:hover { background: #F8FAFC; border-color: #CBD5E1; }
+        .btn-print:hover { background: #ECFDF5; }
 
         .sec-title {
             font-size: 1.25rem; font-weight: 700; color: var(--secondary);
@@ -154,7 +155,7 @@
         
         .item-row.highlight {
             background: #ECFDF5; padding: 14px 18px; border-radius: var(--radius-md);
-            color: var(--success); font-weight: 600; margin: 12px 0; border: none;
+            color: var(--primary); font-weight: 600; margin: 12px 0; border: none;
         }
 
         .stage-box {
@@ -163,33 +164,34 @@
             box-shadow: var(--shadow-sm); transition: transform 0.2s ease;
         }
         .stage-box:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .stage-box.final { border: 1.5px solid #6EE7B7; background: linear-gradient(to bottom right, #F0FDF4, #FFFFFF); }
-        .stage-box.info { border: 1.5px solid #BAE6FD; background: linear-gradient(to bottom right, #F0F9FF, #FFFFFF); }
+        .stage-box.final { border: 1.5px solid #34D399; background: linear-gradient(to bottom right, #ECFDF5, #FFFFFF); }
+        .stage-box.info { border: 1.5px solid #6EE7B7; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF); }
         
         .stage-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         
         .badge {
-            background: var(--bg); color: var(--text-muted); padding: 6px 12px;
-            border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--border);
+            background: #D1FAE5; color: var(--primary); padding: 6px 12px;
+            border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid #A7F3D0;
         }
 
         /* Modal Styles */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+            background: rgba(2, 44, 34, 0.6); backdrop-filter: blur(4px);
             display: none; align-items: center; justify-content: center; z-index: 1000;
         }
         .modal-content {
             background: white; width: 90%; max-width: 500px;
             border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg);
             animation: modalFadeIn 0.3s ease;
+            border: 2px solid var(--border);
         }
         @keyframes modalFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
         .modal-header { font-size: 1.4rem; font-weight: 700; color: var(--secondary); margin-bottom: 20px; text-align: center; }
         .btn-group { display: flex; gap: 12px; margin-top: 24px; }
-        .btn-cancel { flex: 1; background: #F1F5F9; color: var(--text-main); padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; }
-        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3); }
+        .btn-cancel { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; }
+        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3); }
 
         .footer { text-align: center; margin-top: 40px; padding-top: 20px; font-size: 1rem; color: var(--text-muted); }
         .footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
@@ -205,25 +207,25 @@
             
             .print-header { 
                 display: flex; justify-content: space-between; align-items: center; 
-                margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 15px; 
+                margin-bottom: 20px; border-bottom: 2px solid #047857; padding-bottom: 15px; 
             }
             .print-logo-left img, .print-logo-right img { height: 75px; width: auto; }
             .print-title { text-align: center; flex-grow: 1; padding: 0 15px; }
-            .print-title h1 { font-size: 19pt; margin-bottom: 5px; color: #000; }
+            .print-title h1 { font-size: 19pt; margin-bottom: 5px; color: #047857; }
             .print-title p { font-size: 12pt; margin: 0; }
             
             .info-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
             .info-table td { padding: 6px; border: none; font-size: 13pt; }
             
-            .data-table th, .data-table td { border: 1px solid #000; padding: 10px; text-align: left; }
-            .data-table th { background-color: #f2f2f2; font-weight: bold; }
+            .data-table th, .data-table td { border: 1px solid #047857; padding: 10px; text-align: left; }
+            .data-table th { background-color: #ECFDF5; font-weight: bold; color: #047857; }
             
             .signature-area { margin-top: 50px; display: flex; justify-content: space-between; }
             .signature-box { border-top: 1px solid #000; width: 200px; text-align: center; padding-top: 5px; }
 
             .print-footer {
-                margin-top: 40px; border-top: 1px solid #000; padding-top: 15px;
-                font-size: 11pt; text-align: center; line-height: 1.5;
+                margin-top: 40px; border-top: 1px solid #047857; padding-top: 15px;
+                font-size: 11pt; text-align: center; line-height: 1.5; color: #064E3B;
             }
         }
 
@@ -546,7 +548,7 @@ function calculatePay(e) {
         <div class="stage-box info">
             <div class="stage-header">
                 <strong style="color: var(--info); font-size: 1.1rem;">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসেম্বর ২০২৭)</strong>
-                <span class="badge" style="background: var(--info); color: white; border: none;">১০০% পূর্ণাঙ্গ স্কেল</span>
+                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% পূর্ণাঙ্গ স্কেল</span>
             </div>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(stage3Basic)}</span></div>
             <div class="item-row sub"><span>ভাতা (পুরানো বেসিক অনুযায়ী):</span><span>${formatMoney(oldAllowances)}</span></div>
@@ -561,7 +563,7 @@ function calculatePay(e) {
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(stage4Basic)}</span></div>
             <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(newAllowances)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(stage4Net)}</span></div>
-            <div class="item-row highlight" style="background: var(--success); color: white; margin-top: 16px;">
+            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 16px;">
                 <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
                 <span>+${formatMoney(stage4Net - currentNet)}</span>
             </div>
@@ -697,7 +699,7 @@ function executePrint(e) {
         </div>
 
         <div class="print-footer">
-            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবির্ধাতে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
+            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
             <p style="margin-top: 8px; font-weight: bold; font-size: 13pt;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
         </div>
     `;
