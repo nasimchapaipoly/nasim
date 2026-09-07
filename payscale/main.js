@@ -356,6 +356,7 @@ function executePrint(e) {
         <div class="print-footer">
             <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
             <p style="margin-top: 8px; font-weight: bold; font-size: 13pt;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
+<p style="margin-top: 8px; font-weight: bold; font-size: 13pt;">NasimSoft এর অন্যান্য ওয়েবসাইট সমুহ, https://nasim.ceo.bd,https://nasim.ami.bd,https://dft.pro.bd, https://juioikkoparishad.pro.bd,https://routine.pro.bd,https://নাসিম.পাতা.বাংলা, https://nasim.dev.cv </p>
         </div>
     `;
 
