@@ -7,9 +7,10 @@
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <div class="no-print">
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
@@ -17,7 +18,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#">হোম</a></li>
-                <li class="dropdown">
+                <li class="dropdown" tabindex="0">
                     <a href="#">পে স্কেলের গেজেট ▼</a>
                     <div class="dropdown-content">
                         <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank">পে-স্কেল ১৯৭৫-২০০৯</a>
@@ -36,7 +37,7 @@
             <div class="header">
                 <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
                 <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
-                <div class="counter-badge" id="counter">💪হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
+                <div class="counter-badge" id="counter"> হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
             </div>
 
             <div class="card">
@@ -80,19 +81,20 @@
                         <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
                     </div>
 
-                    <button type="submit" class="btn-submit">বিস্তারিত বেতন হিসাব করুন</button>
+                    <button type="submit" class="btn-submit">📊 বিস্তারিত বেতন হিসাব করুন</button>
                 </form>
             </div>
 
             <div class="footer-top">
                 <div class="footer-credit">
-                    © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ceo.bd" target="_blank">NasimSoft</a>
+                    © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ami.bd" target="_blank">NasimSoft</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Contact Modal -->
 <div class="no-print modal-overlay" id="contactModal">
     <div class="modal-content" style="max-width: 450px; text-align: center;">
         <div class="modal-header" style="justify-content: center; position: relative;">
@@ -110,8 +112,9 @@
     </div>
 </div>
 
+<!-- Preview Modal -->
 <div class="no-print modal-overlay" id="previewModal">
-    <div class="modal-content">
+    <div class="modal-content watermark-bg">
         <div class="modal-header">
             <span>বেতন প্রাক্কলন ফলাফল</span>
             <button class="close-btn" onclick="closePreviewModal()">✖</button>
@@ -125,11 +128,12 @@
         <div class="modal-footer">
             <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">পূর্ববর্তী</button>
             <button class="btn-primary" id="nextBtn" onclick="changeSlide(1)">পরবর্তী</button>
-            <button class="btn-primary" id="printStartBtn" style="display:none;" onclick="openPrintModal()">🖨️ প্রিন্ট করুন</button>
+            <button class="btn-primary" id="printStartBtn" style="display:none;" onclick="openPrintModal()">প্রিন্ট করুন</button>
         </div>
     </div>
 </div>
 
+<!-- Print Form Modal -->
 <div class="no-print modal-overlay" id="printModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -151,7 +155,7 @@
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-cancel" onclick="closePrintModal()">বাতিল</button>
-                <button type="submit" class="btn-confirm">🖨️ চূড়ান্ত প্রিন্ট</button>
+                <button type="submit" class="btn-confirm">চূড়ান্ত প্রিন্ট</button>
             </div>
         </form>
     </div>
