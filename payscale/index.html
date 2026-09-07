@@ -268,7 +268,7 @@
             <div class="card">
                 <form id="payForm" onsubmit="return calculatePay(event)">
                     <div class="form-group">
-                        <label>১. আপনার গ্রেড (১ হতে ২০):</label>
+                        <label>১. আপনার গ্রেড (১ম হতে ২০তম):</label>
                         <select id="grade" class="form-control" required onchange="populateSteps()">
                             <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
                         </select>
@@ -387,6 +387,12 @@ const approxStep = {
     16: 300, 17: 280, 18: 250, 19: 250, 20: 250
 };
 
+// Bengali Ordinals
+const bengaliOrdinals = [
+    "", "১ম", "২য়", "৩য়", "৪র্থ", "৫ম", "৬ষ্ঠ", "৭ম", "৮ম", "৯ম", "১০ম",
+    "১১তম", "১২তম", "১৩তম", "১৪তম", "১৫তম", "১৬তম", "১৭তম", "১৮তম", "১৯তম", "২০তম"
+];
+
 let appState = {};
 
 function toBengaliNum(num) {
@@ -398,7 +404,8 @@ window.onload = function() {
     const gradeSelect = document.getElementById('grade');
     for (let i = 1; i <= 20; i++) {
         let option = document.createElement('option');
-        option.value = i; option.text = `গ্রেড ${toBengaliNum(i)}`;
+        option.value = i; 
+        option.text = `${bengaliOrdinals[i]} গ্রেড`;
         gradeSelect.add(option);
     }
     
@@ -509,7 +516,7 @@ function calculatePay(e) {
 
     const html = `
         <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</div>
-        <div class="item-row sub"><span>২০১৫ স্কেলে গ্রেড ${toBengaliNum(grade)}-এর প্রারম্ভিক ধাপ:</span><span>${formatMoney(start2015)}</span></div>
+        <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(start2015)}</span></div>
         <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(basic)}</span></div>
         <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(earned)}</span></div>
         <div class="item-row sub"><span>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ:</span><span>${formatMoney(start2026)}</span></div>
@@ -624,7 +631,7 @@ function executePrint(e) {
                 <td width="15%"><strong>নাম:</strong></td>
                 <td width="45%">${name}</td>
                 <td width="15%"><strong>গ্রেড:</strong></td>
-                <td width="25%">${toBengaliNum(s.grade)}</td>
+                <td width="25%">${bengaliOrdinals[s.grade]} গ্রেড</td>
             </tr>
             <tr>
                 <td><strong>পদবি:</strong></td>
