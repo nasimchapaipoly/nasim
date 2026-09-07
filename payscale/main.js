@@ -189,7 +189,7 @@ function generateSlides() {
 
     const slide3 = `
         <div class="sec-title">৩. প্রস্তাবিত ধাপে বেতন বৃদ্ধি (২০২৬-২০২৭)</div>
-        <p>* ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।</p>
+        <p>* ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।</p>
         <div class="stage-box">
             <div class="stage-header">
                 <strong style="color: var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
@@ -209,7 +209,7 @@ function generateSlides() {
     `;
 
     const slide4 = `
-        <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
+        <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
         <div class="stage-box" style="background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
             <div class="stage-header">
                 <strong style="color: var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
@@ -224,12 +224,12 @@ function generateSlides() {
                 <strong style="color: var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
                 <span class="badge" style="background: var(--success); color: white; border: none;">নতুন ভাতা</span>
             </div>
-            <p style="color: var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
+            <p style="color: var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
-            <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
+            <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
             <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 10px;">
-                <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
+                <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
                 <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
             </div>
         </div>
@@ -332,7 +332,7 @@ function executePrint(e) {
 
         <h3 style="margin-top: 20px; margin-bottom: 10px;">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</h3>
         <table class="data-table">
-            <tr><th>ধাপ ও সময়কাল</th><th>কার্যকর মূল বেতন</th><th>ভাতাসমূহ</th><th>মোট কর্তন</th><th>নিট বেতন</th></tr>
+            <tr><th>ধাপ ও সময়কাল</th><th>কার্যকর মূল বেতন</th><th>ভাতাসমূহ</th><th>মোট কর্তন</th><th>নিট বেতন</th></tr>
             <tr>
                 <td><strong>১ম ধাপ</strong> (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)<br><small>মূল বেতনের বৃদ্ধির ${s.p1Label}</small></td>
                 <td>${formatMoney(s.stage1Basic)}</td><td>${formatMoney(s.oldAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage1Net)}</strong></td>
@@ -346,7 +346,7 @@ function executePrint(e) {
                 <td>${formatMoney(s.stage3Basic)}</td><td>${formatMoney(s.oldAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage3Net)}</strong></td>
             </tr>
             <tr>
-                <td><strong>৪র্থ ধাপ</strong> (০১ জানুয়ারি ২০২৮ হতে)<br><small>সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</small></td>
+                <td><strong>৪র্থ ধাপ</strong> (০১ জানুয়ারি ২০২৮ হতে)<br><small>সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</small></td>
                 <td>${formatMoney(s.stage4Basic)}</td><td>${formatMoney(s.newAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage4Net)}</strong></td>
             </tr>
         </table>
@@ -354,7 +354,7 @@ function executePrint(e) {
         <div class="signature-area"><div></div><div class="signature-box">স্বাক্ষর</div></div>
 
         <div class="print-footer">
-            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
+            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
             <p style="margin-top: 8px; font-weight: bold; font-size: 13pt;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
         </div>
     `;
