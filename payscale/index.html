@@ -128,19 +128,9 @@
         }
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35); }
 
-        .btn-print {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: var(--surface); color: var(--primary); 
-            border: 1.5px solid var(--primary); padding: 12px 24px; 
-            border-radius: var(--radius-md); font-size: 1.1rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s ease; margin-top: 24px; width: 100%;
-            font-family: 'Kalpurush', Arial, sans-serif;
-        }
-        .btn-print:hover { background: #ECFDF5; }
-
         .sec-title {
             font-size: 1.25rem; font-weight: 700; color: var(--secondary);
-            border-bottom: 2px solid var(--border); padding-bottom: 10px; margin: 32px 0 16px;
+            border-bottom: 2px solid var(--border); padding-bottom: 10px; margin: 16px 0;
         }
         .sec-title:first-child { margin-top: 0; }
 
@@ -157,18 +147,19 @@
             background: #ECFDF5; padding: 14px 18px; border-radius: var(--radius-md);
             color: var(--primary); font-weight: 600; margin: 12px 0; border: none;
         }
+        .item-row.deduct {
+            background: #FEF2F2; padding: 14px 18px; border-radius: var(--radius-md);
+            color: var(--danger); font-weight: 600; margin: 12px 0; border: none;
+        }
 
         .stage-box {
             background: var(--surface); border: 1px solid var(--border);
             border-radius: var(--radius-md); padding: 22px; margin-bottom: 16px;
             box-shadow: var(--shadow-sm); transition: transform 0.2s ease;
         }
-        .stage-box:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .stage-box.final { border: 1.5px solid #34D399; background: linear-gradient(to bottom right, #ECFDF5, #FFFFFF); }
-        .stage-box.info { border: 1.5px solid #6EE7B7; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF); }
         
         .stage-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        
         .badge {
             background: #D1FAE5; color: var(--primary); padding: 6px 12px;
             border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid #A7F3D0;
@@ -177,34 +168,51 @@
         /* Modal Styles */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(2, 44, 34, 0.6); backdrop-filter: blur(4px);
+            background: rgba(2, 44, 34, 0.7); backdrop-filter: blur(5px);
             display: none; align-items: center; justify-content: center; z-index: 1000;
         }
         .modal-content {
-            background: white; width: 90%; max-width: 500px;
-            border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg);
+            background: white; width: 95%; max-width: 550px; max-height: 90vh; overflow-y: auto;
+            border-radius: var(--radius-lg); padding: 24px 32px; box-shadow: var(--shadow-lg);
             animation: modalFadeIn 0.3s ease;
             border: 2px solid var(--border);
         }
         @keyframes modalFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .modal-header { font-size: 1.4rem; font-weight: 700; color: var(--secondary); margin-bottom: 20px; text-align: center; }
-        .btn-group { display: flex; gap: 12px; margin-top: 24px; }
-        .btn-cancel { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; }
-        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3); }
+        .modal-header { font-size: 1.3rem; font-weight: 700; color: var(--secondary); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--danger); cursor: pointer; }
+        
+        .modal-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px; }
+        .btn-nav { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; transition: background 0.2s; }
+        .btn-nav:hover { background: #E5E7EB; }
+        .btn-primary { flex: 1; background: var(--primary); color: white; padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3); transition: transform 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); }
 
+        .slide-indicator { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
+        
         .footer { text-align: center; margin-top: 40px; padding-top: 20px; font-size: 1rem; color: var(--text-muted); }
         .footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
         
-        #result-view, .print-only { display: none; }
+        .print-only { display: none; }
 
-        /* Print Styles */
+        /* Print Styles with Watermark */
         @media print {
             @page { size: A4 portrait; margin: 15mm; }
             body { background: white; padding: 0; color: black; font-size: 13pt; }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             
+            .print-watermark {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+                opacity: 0.08; /* Light pad background */
+                pointer-events: none;
+            }
+            .print-watermark img { width: 600px; max-width: 80vw; }
+
             .print-header { 
                 display: flex; justify-content: space-between; align-items: center; 
                 margin-bottom: 20px; border-bottom: 2px solid #047857; padding-bottom: 15px; 
@@ -234,9 +242,7 @@
             .nav-links a { font-size: 1rem; }
             .card { padding: 24px 16px; }
             .header h1 { font-size: 1.5rem; }
-            .item-row { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 0; }
-            .item-row span:last-child { text-align: left; }
-            .stage-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .modal-content { padding: 20px; width: 98%; }
         }
     </style>
 </head>
@@ -310,8 +316,6 @@
                 </form>
             </div>
 
-            <div class="card" id="result-view"></div>
-
             <div class="footer">
                 © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ami.bd" target="_blank">NasimSoft</a>
             </div>
@@ -319,10 +323,34 @@
     </div>
 </div>
 
-<!-- Modal for Print Details -->
+<!-- Preview Modal (Slider) -->
+<div class="no-print modal-overlay" id="previewModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span>বেতন প্রাক্কলন ফলাফল</span>
+            <button class="close-btn" onclick="closePreviewModal()">✖</button>
+        </div>
+        <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
+        
+        <div id="slideContent">
+            <!-- Dynamic Content Injected Here -->
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">পূর্ববর্তী</button>
+            <button class="btn-primary" id="nextBtn" onclick="changeSlide(1)">পরবর্তী</button>
+            <button class="btn-primary" id="printStartBtn" style="display:none;" onclick="openPrintModal()">🖨️ প্রিন্ট করুন</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Print Form -->
 <div class="no-print modal-overlay" id="printModal">
     <div class="modal-content">
-        <div class="modal-header">প্রিন্ট রিপোর্ট ইনফরমেশন</div>
+        <div class="modal-header">
+            <span>প্রিন্ট রিপোর্ট ইনফরমেশন</span>
+            <button class="close-btn" onclick="closePrintModal()">✖</button>
+        </div>
         <form onsubmit="return executePrint(event)">
             <div class="form-group">
                 <label>নাম (বাংলায়):</label>
@@ -351,11 +379,8 @@
 
 <script>
 const scale2015 = {
-    1: [78000],
-    2: [66000, 68480, 71050, 73720, 76490],
-    3: [56500, 58760, 61120, 63570, 66120, 68770, 71530, 74400],
-    4: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200],
-    5: [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850],
+    1: [78000], 2: [66000, 68480, 71050, 73720, 76490], 3: [56500, 58760, 61120, 63570, 66120, 68770, 71530, 74400],
+    4: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], 5: [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850],
     6: [35500, 37280, 39150, 41110, 43170, 45330, 47600, 49980, 52480, 55110, 57870, 60770, 63810, 67010],
     7: [29000, 30450, 31980, 33580, 35260, 37030, 38890, 40840, 42890, 45040, 47300, 49670, 52160, 54770, 57510, 60390, 63410],
     8: [23000, 24150, 25360, 26630, 27970, 29370, 30840, 32390, 34010, 35720, 37510, 39390, 41360, 43430, 45610, 47900, 50300, 52820, 55470],
@@ -374,26 +399,20 @@ const scale2015 = {
 };
 
 const scale2026Start = {
-    1: 156000, 2: 132000, 3: 113000, 4: 100000, 5: 86000,
-    6: 71000, 7: 58000, 8: 46000, 9: 44000, 10: 32000,
-    11: 25000, 12: 24300, 13: 24000, 14: 23500, 15: 22800,
-    16: 21900, 17: 21400, 18: 21000, 19: 20500, 20: 20000
+    1: 156000, 2: 132000, 3: 113000, 4: 100000, 5: 86000, 6: 71000, 7: 58000, 8: 46000, 9: 44000, 10: 32000,
+    11: 25000, 12: 24300, 13: 24000, 14: 23500, 15: 22800, 16: 21900, 17: 21400, 18: 21000, 19: 20500, 20: 20000
 };
 
 const approxStep = {
-    1: 2000, 2: 1500, 3: 1400, 4: 1200, 5: 1100,
-    6: 1000, 7: 900, 8: 700, 9: 490, 10: 600,
-    11: 500, 12: 400, 13: 400, 14: 350, 15: 300,
-    16: 300, 17: 280, 18: 250, 19: 250, 20: 250
+    1: 2000, 2: 1500, 3: 1400, 4: 1200, 5: 1100, 6: 1000, 7: 900, 8: 700, 9: 490, 10: 600,
+    11: 500, 12: 400, 13: 400, 14: 350, 15: 300, 16: 300, 17: 280, 18: 250, 19: 250, 20: 250
 };
 
-// Bengali Ordinals
-const bengaliOrdinals = [
-    "", "১ম", "২য়", "৩য়", "৪র্থ", "৫ম", "৬ষ্ঠ", "৭ম", "৮ম", "৯ম", "১০ম",
-    "১১তম", "১২তম", "১৩তম", "১৪তম", "১৫তম", "১৬তম", "১৭তম", "১৮তম", "১৯তম", "২০তম"
-];
+const bengaliOrdinals = ["", "১ম", "২য়", "৩য়", "৪র্থ", "৫ম", "৬ষ্ঠ", "৭ম", "৮ম", "৯ম", "১০ম", "১১তম", "১২তম", "১৩তম", "১৪তম", "১৫তম", "১৬তম", "১৭তম", "১৮তম", "১৯তম", "২০তম"];
 
 let appState = {};
+let previewSlides = [];
+let currentSlide = 0;
 
 function toBengaliNum(num) {
     const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
@@ -404,8 +423,7 @@ window.onload = function() {
     const gradeSelect = document.getElementById('grade');
     for (let i = 1; i <= 20; i++) {
         let option = document.createElement('option');
-        option.value = i; 
-        option.text = `${bengaliOrdinals[i]} গ্রেড`;
+        option.value = i; option.text = `${bengaliOrdinals[i]} গ্রেড`;
         gradeSelect.add(option);
     }
     
@@ -504,7 +522,7 @@ function calculatePay(e) {
 
     appState = {
         grade, basic, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
-        oldAllowances, newAllowances, totalDeduction,
+        oldAllowances, newAllowances, totalDeduction, gpf, tax, oldHouseRent, medical, education, welfare, insurance, stamp,
         p1Label, p2Label, stage1Pct, stage2Pct,
         stage1Basic, stage2Basic, stage3Basic, stage4Basic,
         stage1Net, stage2Net, stage3Net, stage4Net, currentNet
@@ -514,83 +532,132 @@ function calculatePay(e) {
     localStorage.setItem('payCalcCount', count);
     document.getElementById('calcCount').textContent = toBengaliNum(count);
 
-    const html = `
-        <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</div>
-        <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(start2015)}</span></div>
-        <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(basic)}</span></div>
-        <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(earned)}</span></div>
-        <div class="item-row sub"><span>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ:</span><span>${formatMoney(start2026)}</span></div>
-        <div class="item-row"><span>২০২৬ স্কেলের ভিত্তি অঙ্ক:</span><span>${formatMoney(baseAmount)}</span></div>
-
-        <div class="desc-box">
-            <strong>নির্ধারিত পূর্ণাঙ্গ মূল বেতন:</strong> ${formatMoney(fixedBasic)}<br>
-            <strong>মূল বেতনের মোট পার্থক্য:</strong> ${formatMoney(totalIncrease)}
-        </div>
-
-        <div class="sec-title">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</div>
-        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-            * ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।
-        </p>
-
-        <div class="stage-box">
-            <div class="stage-header">
-                <strong style="color: var(--primary); font-size: 1.1rem;">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসেম্বর ২০২৬)</strong>
-                <span class="badge">মূল বেতনের বৃদ্ধির ${p1Label}</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(stage1Basic)}</span></div>
-            <div class="item-row sub"><span>ভাতা (পুরানো বেসিক অনুযায়ী):</span><span>${formatMoney(oldAllowances)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(stage1Net)}</span></div>
-        </div>
-
-        <div class="stage-box">
-            <div class="stage-header">
-                <strong style="color: var(--primary); font-size: 1.1rem;">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
-                <span class="badge">মূল বেতনের বৃদ্ধির ${p2Label}</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(stage2Basic)}</span></div>
-            <div class="item-row sub"><span>ভাতা (পুরানো বেসিক অনুযায়ী):</span><span>${formatMoney(oldAllowances)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(stage2Net)}</span></div>
-        </div>
-
-        <div class="stage-box info">
-            <div class="stage-header">
-                <strong style="color: var(--info); font-size: 1.1rem;">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসেম্বর ২০২৭)</strong>
-                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% পূর্ণাঙ্গ স্কেল</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(stage3Basic)}</span></div>
-            <div class="item-row sub"><span>ভাতা (পুরানো বেসিক অনুযায়ী):</span><span>${formatMoney(oldAllowances)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(stage3Net)}</span></div>
-        </div>
-        
-        <div class="stage-box final">
-            <div class="stage-header">
-                <strong style="color: var(--success); font-size: 1.1rem;">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে) - <span style="font-size: 0.95rem; font-weight: normal;">সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</span></strong>
-                <span class="badge" style="background: var(--success); color: white; border: none;">১০০% নতুন ভাতা কার্যকর</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(stage4Basic)}</span></div>
-            <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(newAllowances)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(stage4Net)}</span></div>
-            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 16px;">
-                <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
-                <span>+${formatMoney(stage4Net - currentNet)}</span>
-            </div>
-        </div>
-
-        <button class="btn-print" onclick="openPrintModal()">🖨️ প্রিন্ট করুন</button>
-    `;
-
-    const resultDiv = document.getElementById('result-view');
-    resultDiv.innerHTML = html;
-    resultDiv.style.display = 'block';
-    
-    setTimeout(() => {
-        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    generateSlides();
+    openPreviewModal();
 
     return false;
 }
 
+function generateSlides() {
+    const s = appState;
+    
+    // Slide 1
+    const slide1 = `
+        <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</div>
+        <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[s.grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2015)}</span></div>
+        <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(s.basic)}</span></div>
+        <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(s.earned)}</span></div>
+        <div class="item-row sub"><span>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2026)}</span></div>
+        <div class="item-row"><span>২০২৬ স্কেলের ভিত্তি অঙ্ক:</span><span>${formatMoney(s.baseAmount)}</span></div>
+        <div class="desc-box" style="margin-top: 20px;">
+            <strong>নির্ধারিত পূর্ণাঙ্গ মূল বেতন:</strong> ${formatMoney(s.fixedBasic)}<br>
+            <strong>মূল বেতনের মোট পার্থক্য:</strong> ${formatMoney(s.totalIncrease)}
+        </div>
+    `;
+
+    // Slide 2: Deductions and Allowances (Missing previously in preview)
+    const slide2 = `
+        <div class="sec-title">২. বর্তমান ভাতা ও কর্তনসমূহ</div>
+        <div class="item-row sub"><span>(+) বাড়িভাড়া ভাতা:</span><span>${formatMoney(s.oldHouseRent)}</span></div>
+        <div class="item-row sub"><span>(+) চিকিৎসা ভাতা:</span><span>${formatMoney(s.medical)}</span></div>
+        <div class="item-row sub"><span>(+) শিক্ষা ভাতা:</span><span>${formatMoney(s.education)}</span></div>
+        <div class="item-row highlight"><span>মোট বহাল থাকা ভাতা:</span><span>${formatMoney(s.oldAllowances)}</span></div>
+        
+        <div class="item-row sub" style="margin-top: 15px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
+        <div class="item-row sub"><span>(-) মাসিক আয়কর:</span><span>${formatMoney(s.tax)}</span></div>
+        <div class="item-row sub"><span>(-) কল্যাণ তহবিল ও অন্যান্য:</span><span>${formatMoney(s.welfare + s.insurance + s.stamp)}</span></div>
+        <div class="item-row deduct"><span>মোট কর্তন:</span><span>${formatMoney(s.totalDeduction)}</span></div>
+    `;
+
+    // Slide 3
+    const slide3 = `
+        <div class="sec-title">৩. প্রস্তাবিত ধাপে বেতন বৃদ্ধি (২০২৬-২০২৭)</div>
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
+            * ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।
+        </p>
+        <div class="stage-box">
+            <div class="stage-header">
+                <strong style="color: var(--primary); font-size: 1.1rem;">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
+                <span class="badge">বৃদ্ধির ${s.p1Label}</span>
+            </div>
+            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage1Basic)}</span></div>
+            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage1Net)}</span></div>
+        </div>
+        <div class="stage-box">
+            <div class="stage-header">
+                <strong style="color: var(--primary); font-size: 1.1rem;">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
+                <span class="badge">বৃদ্ধির ${s.p2Label}</span>
+            </div>
+            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage2Basic)}</span></div>
+            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage2Net)}</span></div>
+        </div>
+    `;
+
+    // Slide 4
+    const slide4 = `
+        <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
+        <div class="stage-box" style="border: 1px solid #A7F3D0;">
+            <div class="stage-header">
+                <strong style="color: var(--info); font-size: 1.1rem;">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
+                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% পূর্ণাঙ্গ স্কেল</span>
+            </div>
+            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage3Basic)}</span></div>
+            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage3Net)}</span></div>
+        </div>
+        
+        <div class="stage-box final">
+            <div class="stage-header">
+                <strong style="color: var(--success); font-size: 1.1rem;">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
+                <span class="badge" style="background: var(--success); color: white; border: none;">নতুন ভাতা কার্যকর</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--success); margin-top: -10px; margin-bottom: 10px;">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
+            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
+            <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
+            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
+            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 16px;">
+                <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
+                <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
+            </div>
+        </div>
+    `;
+
+    previewSlides = [slide1, slide2, slide3, slide4];
+}
+
+function openPreviewModal() {
+    currentSlide = 0;
+    updateSlideView();
+    document.getElementById('previewModal').style.display = 'flex';
+}
+
+function closePreviewModal() {
+    document.getElementById('previewModal').style.display = 'none';
+}
+
+function changeSlide(direction) {
+    currentSlide += direction;
+    if (currentSlide < 0) currentSlide = 0;
+    if (currentSlide >= previewSlides.length) currentSlide = previewSlides.length - 1;
+    updateSlideView();
+}
+
+function updateSlideView() {
+    document.getElementById('slideContent').innerHTML = previewSlides[currentSlide];
+    document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
+    
+    document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
+    
+    if (currentSlide === previewSlides.length - 1) {
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('printStartBtn').style.display = 'block';
+    } else {
+        document.getElementById('nextBtn').style.display = 'block';
+        document.getElementById('printStartBtn').style.display = 'none';
+    }
+}
+
 function openPrintModal() {
+    closePreviewModal();
     document.getElementById('printModal').style.display = 'flex';
 }
 
@@ -613,6 +680,10 @@ function executePrint(e) {
     const s = appState;
 
     const printHTML = `
+        <div class="print-watermark">
+            <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Watermark">
+        </div>
+
         <div class="print-header">
             <div class="print-logo-left">
                 <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png" alt="Govt Logo">
@@ -716,7 +787,7 @@ function executePrint(e) {
     
     setTimeout(() => {
         window.print();
-    }, 200);
+    }, 300);
 }
 </script>
 </body>
