@@ -10,8 +10,9 @@
     
     <style>
         :root {
-            --primary: #4338CA;
-            --primary-hover: #3730A3;
+            /* Premium Theme Colors */
+            --primary: #0369A1; /* Deep Ocean Blue */
+            --primary-hover: #0284C7;
             --secondary: #0F172A;
             --success: #059669;
             --danger: #DC2626;
@@ -21,11 +22,12 @@
             --text-main: #1E293B;
             --text-muted: #64748B;
             --border: #E2E8F0;
+            
             --radius-lg: 20px;
             --radius-md: 12px;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
-            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.15);
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,11 +36,48 @@
             font-family: 'Kalpurush', Arial, sans-serif; 
             background: var(--bg); 
             color: var(--text-main); 
-            padding: 30px 16px; 
             line-height: 1.6; 
             -webkit-font-smoothing: antialiased;
         }
+
+        /* Navbar Styles */
+        .navbar {
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo img {
+            height: 45px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .nav-logo img:hover { transform: scale(1.05); }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
         
+        .main-wrapper { padding: 30px 16px; }
         .container { max-width: 700px; margin: 0 auto; }
         
         .card { 
@@ -48,8 +87,6 @@
             margin-bottom: 24px; 
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: var(--shadow-md); 
-            position: relative;
-            overflow: hidden;
         }
         
         .header { text-align: center; margin-bottom: 35px; }
@@ -58,7 +95,7 @@
         
         .counter-badge {
             display: inline-flex; align-items: center; gap: 6px;
-            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%); 
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%); 
             color: var(--primary);
             padding: 8px 20px; border-radius: 9999px;
             font-size: 0.95rem; font-weight: 600; margin-top: 16px;
@@ -77,19 +114,18 @@
         .form-control:focus { 
             background: var(--surface);
             border-color: var(--primary); 
-            box-shadow: 0 0 0 4px rgba(67, 56, 202, 0.15); 
+            box-shadow: 0 0 0 4px rgba(3, 105, 161, 0.15); 
         }
 
         .btn-submit {
-            width: 100%; background: linear-gradient(135deg, var(--primary) 0%, #312E81 100%); 
+            width: 100%; background: linear-gradient(135deg, var(--primary) 0%, #0284C7 100%); 
             color: white; border: none;
             padding: 16px; border-radius: var(--radius-md); font-size: 1.2rem; font-weight: 600;
             cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+            box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3);
             font-family: 'Kalpurush', Arial, sans-serif;
         }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(67, 56, 202, 0.4); }
-        .btn-submit:active { transform: translateY(0); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(3, 105, 161, 0.4); }
 
         .btn-print {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -153,7 +189,7 @@
         .modal-header { font-size: 1.4rem; font-weight: 700; color: var(--secondary); margin-bottom: 20px; text-align: center; }
         .btn-group { display: flex; gap: 12px; margin-top: 24px; }
         .btn-cancel { flex: 1; background: #F1F5F9; color: var(--text-main); padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; }
-        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3); }
+        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 14px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(3, 105, 161, 0.3); }
 
         .footer { text-align: center; margin-top: 40px; padding-top: 20px; font-size: 1rem; color: var(--text-muted); }
         .footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
@@ -167,9 +203,14 @@
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             
-            .print-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
-            .print-header h1 { font-size: 20pt; margin-bottom: 5px; }
-            .print-header p { font-size: 12pt; margin: 0; }
+            .print-header { 
+                display: flex; justify-content: space-between; align-items: center; 
+                margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 15px; 
+            }
+            .print-logo-left img, .print-logo-right img { height: 75px; width: auto; }
+            .print-title { text-align: center; flex-grow: 1; padding: 0 15px; }
+            .print-title h1 { font-size: 19pt; margin-bottom: 5px; color: #000; }
+            .print-title p { font-size: 12pt; margin: 0; }
             
             .info-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
             .info-table td { padding: 6px; border: none; font-size: 13pt; }
@@ -179,9 +220,16 @@
             
             .signature-area { margin-top: 50px; display: flex; justify-content: space-between; }
             .signature-box { border-top: 1px solid #000; width: 200px; text-align: center; padding-top: 5px; }
+
+            .print-footer {
+                margin-top: 40px; border-top: 1px solid #000; padding-top: 15px;
+                font-size: 11pt; text-align: center; line-height: 1.5;
+            }
         }
 
         @media (max-width: 480px) {
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 1rem; }
             .card { padding: 24px 16px; }
             .header h1 { font-size: 1.5rem; }
             .item-row { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 0; }
@@ -193,62 +241,78 @@
 <body>
 
 <div class="no-print">
-    <div class="container">
-        <div class="header">
-            <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
-            <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
-            <div class="counter-badge" id="counter">🔥 হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
+    <!-- Menu Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">হোম</a></li>
+                <li><a href="#">পে স্কেল ২০২৬</a></li>
+                <li><a href="#">যোগাযোগ</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="card">
-            <form id="payForm" onsubmit="return calculatePay(event)">
-                <div class="form-group">
-                    <label>১. আপনার গ্রেড (১ হতে ২০):</label>
-                    <select id="grade" class="form-control" required onchange="populateSteps()">
-                        <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
-                    </select>
-                </div>
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
+                <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
+                <div class="counter-badge" id="counter">🔥 হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
+            </div>
 
-                <div class="form-group">
-                    <label>২. বর্তমান মূল বেতন (ধাপ নির্বাচন করুন):</label>
-                    <select id="basic" class="form-control" required>
-                        <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
-                    </select>
-                </div>
+            <div class="card">
+                <form id="payForm" onsubmit="return calculatePay(event)">
+                    <div class="form-group">
+                        <label>১. আপনার গ্রেড (১ হতে ২০):</label>
+                        <select id="grade" class="form-control" required onchange="populateSteps()">
+                            <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label>৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য):</label>
-                    <select id="location" class="form-control">
-                        <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
-                        <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
-                        <option value="DISTRICT">জেলা সদর পৌর এলাকা</option>
-                        <option value="OTHER">অন্যান্য / উপজেলা / সাধারণ এলাকা</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>২. বর্তমান মূল বেতন (ধাপ নির্বাচন করুন):</label>
+                        <select id="basic" class="form-control" required>
+                            <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label>৪. সন্তানের সংখ্যা (শিক্ষা ভাতার জন্য, সর্বোচ্চ ২ জন):</label>
-                    <input type="number" id="edu" class="form-control" value="0" min="0" max="2">
-                </div>
+                    <div class="form-group">
+                        <label>৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য):</label>
+                        <select id="location" class="form-control">
+                            <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
+                            <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
+                            <option value="DISTRICT">জেলা সদর পৌর এলাকা</option>
+                            <option value="OTHER">অন্যান্য / উপজেলা / সাধারণ এলাকা</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label>৫. মাসিক জিপিএফ (GPF) কর্তন (টাকা):</label>
-                    <input type="number" id="gpf" class="form-control" placeholder="যেমন: ৫০০০" value="0" min="0">
-                </div>
+                    <div class="form-group">
+                        <label>৪. সন্তানের সংখ্যা (শিক্ষা ভাতার জন্য, সর্বোচ্চ ২ জন):</label>
+                        <input type="number" id="edu" class="form-control" value="0" min="0" max="2">
+                    </div>
 
-                <div class="form-group">
-                    <label>৬. মাসিক আয়কর কর্তন (টাকা):</label>
-                    <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
-                </div>
+                    <div class="form-group">
+                        <label>৫. মাসিক জিপিএফ (GPF) কর্তন (টাকা):</label>
+                        <input type="number" id="gpf" class="form-control" placeholder="যেমন: ৫০০০" value="0" min="0">
+                    </div>
 
-                <button type="submit" class="btn-submit">📊 বিস্তারিত বেতন হিসাব করুন</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label>৬. মাসিক আয়কর কর্তন (টাকা):</label>
+                        <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
+                    </div>
 
-        <div class="card" id="result-view"></div>
+                    <button type="submit" class="btn-submit">📊 বিস্তারিত বেতন হিসাব করুন</button>
+                </form>
+            </div>
 
-        <div class="footer">
-            © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ami.bd" target="_blank">NasimSoft</a>
+            <div class="card" id="result-view"></div>
+
+            <div class="footer">
+                © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ami.bd" target="_blank">NasimSoft</a>
+            </div>
         </div>
     </div>
 </div>
@@ -284,7 +348,6 @@
 </div>
 
 <script>
-// Data Configurations
 const scale2015 = {
     1: [78000],
     2: [66000, 68480, 71050, 73720, 76490],
@@ -322,7 +385,6 @@ const approxStep = {
     16: 300, 17: 280, 18: 250, 19: 250, 20: 250
 };
 
-// State Object for Print
 let appState = {};
 
 function toBengaliNum(num) {
@@ -431,7 +493,6 @@ function calculatePay(e) {
     const stage4Net = (stage4Basic + newAllowances) - totalDeduction;
     const currentNet = (basic + oldAllowances) - totalDeduction;
 
-    // Store state for printing
     appState = {
         grade, basic, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
         oldAllowances, newAllowances, totalDeduction,
@@ -459,7 +520,7 @@ function calculatePay(e) {
 
         <div class="sec-title">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</div>
         <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-            * ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ${p1Label} ও ${p2Label} হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ${toBengaliNum(stage1Pct * 100)}% ও ${toBengaliNum(stage2Pct * 100)}% হারে বৃদ্ধি পাবে।
+            * ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।
         </p>
 
         <div class="stage-box">
@@ -520,7 +581,6 @@ function calculatePay(e) {
     return false;
 }
 
-// Print Functions
 function openPrintModal() {
     document.getElementById('printModal').style.display = 'flex';
 }
@@ -545,8 +605,16 @@ function executePrint(e) {
 
     const printHTML = `
         <div class="print-header">
-            <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
-            <p>বেতন প্রাক্কলন প্রতিবেদন</p>
+            <div class="print-logo-left">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png" alt="Govt Logo">
+            </div>
+            <div class="print-title">
+                <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
+                <p>বেতন প্রাক্কলন প্রতিবেদন</p>
+            </div>
+            <div class="print-logo-right">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
+            </div>
         </div>
 
         <table class="info-table">
@@ -626,6 +694,11 @@ function executePrint(e) {
         <div class="signature-area">
             <div></div>
             <div class="signature-box">স্বাক্ষর</div>
+        </div>
+
+        <div class="print-footer">
+            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবির্ধাতে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
+            <p style="margin-top: 8px; font-weight: bold; font-size: 13pt;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
         </div>
     `;
 
