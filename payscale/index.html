@@ -19,7 +19,7 @@
             <ul class="nav-links">
                 <li><a href="#">হোম</a></li>
                 <li class="dropdown">
-                    <a href="#" id="dropdownToggle">পে স্কেলের গেজেট ▼</a>
+                    <a href="#" id="dropdownToggle">পে স্কেলের গেজেট ▾</a>
                     <div class="dropdown-content">
                         <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank">পে-স্কেল ১৯৭৫-২০০৯</a>
                         <a href="https://nasim.ceo.bd/payscale/ps2009.pdf" target="_blank">পে-স্কেল ২০০৯</a>
@@ -36,49 +36,65 @@
         <div class="container">
             <div class="header">
                 <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
-                <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
+                <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
                 <div class="counter-badge" id="counter">🔥 হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
             </div>
 
             <div class="card">
                 <form id="payForm" onsubmit="return calculatePay(event)">
-                    <div class="form-group">
-                        <label>১. আপনার গ্রেড (১ম হতে ২০তম):</label>
-                        <select id="grade" class="form-control" required onchange="populateSteps()">
-                            <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
-                        </select>
+
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <span class="step-dot">১</span>
+                            <span>বেতনক্রম সংক্রান্ত তথ্য</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>আপনার গ্রেড (১ম হতে ২০তম)</label>
+                            <select id="grade" class="form-control" required onchange="populateSteps()">
+                                <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>বর্তমান মূল বেতন (ধাপ নির্বাচন করুন)</label>
+                            <select id="basic" class="form-control" required>
+                                <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-group-last">
+                            <label>কর্মস্থলের এলাকা <span class="hint">(বাড়িভাড়ার হার নির্ধারণে)</span></label>
+                            <select id="location" class="form-control">
+                                <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
+                                <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
+                                <option value="DISTRICT">জেলা সদর পৌর এলাকা</option>
+                                <option value="OTHER">অন্যান্য / উপজেলা / সাধারণ এলাকা</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>২. বর্তমান মূল বেতন (ধাপ নির্বাচন করুন):</label>
-                        <select id="basic" class="form-control" required>
-                            <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
-                        </select>
-                    </div>
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <span class="step-dot">২</span>
+                            <span>ভাতা ও কর্তন সংক্রান্ত তথ্য</span>
+                        </div>
 
-                    <div class="form-group">
-                        <label>৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য):</label>
-                        <select id="location" class="form-control">
-                            <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
-                            <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
-                            <option value="DISTRICT">জেলা সদর পৌর এলাকা</option>
-                            <option value="OTHER">অন্যান্য / উপজেলা / সাধারণ এলাকা</option>
-                        </select>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>সন্তানের সংখ্যা <span class="hint">(সর্বোচ্চ ২ জন)</span></label>
+                                <input type="number" id="edu" class="form-control" value="0" min="0" max="2">
+                            </div>
+                            <div class="form-group">
+                                <label>মাসিক জিপিএফ কর্তন <span class="hint">(টাকা)</span></label>
+                                <input type="number" id="gpf" class="form-control" placeholder="যেমন: ৫০০০" value="0" min="0">
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label>৪. সন্তানের সংখ্যা (শিক্ষা ভাতার জন্য, সর্বোচ্চ ২ জন):</label>
-                        <input type="number" id="edu" class="form-control" value="0" min="0" max="2">
-                    </div>
-
-                    <div class="form-group">
-                        <label>৫. মাসিক জিপিএফ (GPF) কর্তন (টাকা):</label>
-                        <input type="number" id="gpf" class="form-control" placeholder="যেমন: ৫০০০" value="0" min="0">
-                    </div>
-
-                    <div class="form-group">
-                        <label>৬. মাসিক আয়কর কর্তন (টাকা):</label>
-                        <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
+                        <div class="form-group form-group-last">
+                            <label>মাসিক আয়কর কর্তন <span class="hint">(টাকা)</span></label>
+                            <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
+                        </div>
                     </div>
 
                     <button type="submit" class="btn-submit">📊 বিস্তারিত বেতন হিসাব করুন</button>
@@ -122,7 +138,7 @@
         <div class="indicator-wrapper">
             <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
         </div>
-        
+
         <div id="slideContent"></div>
 
         <div class="modal-footer">
@@ -142,20 +158,20 @@
         </div>
         <form onsubmit="return executePrint(event)">
             <div class="form-group" style="margin-bottom:12px;">
-                <label style="font-size: 0.95rem;">নাম (বাংলায়):</label>
+                <label style="font-size: 0.95rem;">নাম (বাংলায়):</label>
                 <input type="text" id="p_name" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার নাম লিখুন">
             </div>
             <div class="form-group" style="margin-bottom:12px;">
-                <label style="font-size: 0.95rem;">বর্তমান পদবি (বাংলায়):</label>
+                <label style="font-size: 0.95rem;">বর্তমান পদবি (বাংলায়):</label>
                 <input type="text" id="p_desig" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার পদবি লিখুন">
             </div>
             <div class="form-group" style="margin-bottom:5px;">
-                <label style="font-size: 0.95rem;">বর্তমান কর্মস্থল (বাংলায়):</label>
+                <label style="font-size: 0.95rem;">বর্তমান কর্মস্থল (বাংলায়):</label>
                 <input type="text" id="p_workplace" class="form-control" style="padding: 10px 14px;" required placeholder="অফিসের নাম লিখুন">
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-cancel" onclick="closePrintModal()">বাতিল</button>
-                <button type="submit" class="btn-confirm">চূড়ান্ত প্রিন্ট</button>
+                <button type="submit" class="btn-confirm">চূড়ান্ত প্রিন্ট</button>
             </div>
         </form>
     </div>
