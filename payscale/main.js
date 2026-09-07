@@ -6,6 +6,18 @@ document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) { e.preventDefault(); return false; } 
 });
 
+// Dropdown click outside closing fix for mobile devices
+document.getElementById('dropdownToggle').addEventListener('click', function(e) {
+    e.preventDefault();
+    this.parentElement.classList.toggle('active');
+});
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+        document.querySelector('.dropdown').classList.remove('active');
+    }
+});
+
 let scale2015, scale2026Start, approxStep, bengaliOrdinals;
 let appState = {};
 let previewSlides = [];
@@ -243,7 +255,14 @@ function changeSlide(direction) {
 }
 
 function updateSlideView() {
-    document.getElementById('slideContent').innerHTML = previewSlides[currentSlide];
+    const slideContent = document.getElementById('slideContent');
+    // Remove class and re-add for animation trigger
+    slideContent.classList.remove('fade-in');
+    void slideContent.offsetWidth; // Force Reflow
+    
+    slideContent.innerHTML = previewSlides[currentSlide];
+    slideContent.classList.add('fade-in');
+
     document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
     
     document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
