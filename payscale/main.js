@@ -1,4 +1,4 @@
-// Code Security (Block Inspect Elements)
+// Disable code inspecting and source viewing
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', function(e) {
     if (e.keyCode === 123) { e.preventDefault(); return false; } 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bengaliOrdinals = data.bengaliOrdinals;
             initApp();
         })
-        .catch(error => console.error("Error loading JSON file:", error));
+        .catch(error => console.error("Error loading JSON data:", error));
 });
 
 function toBengaliNum(num) {
@@ -37,7 +37,6 @@ function initApp() {
         option.text = `${bengaliOrdinals[i]} গ্রেড`;
         gradeSelect.add(option);
     }
-    
     let count = parseInt(localStorage.getItem('payCalcCount') || '0');
     document.getElementById('calcCount').textContent = toBengaliNum(count);
 }
@@ -67,9 +66,7 @@ function nextHigherStep(base, grade) {
     if (Math.abs(base - start) < 1) return start;
     const step = approxStep[grade] || 500;
     let current = start;
-    while (current < base - 0.5) {
-        current += step;
-    }
+    while (current < base - 0.5) { current += step; }
     return Math.round(current);
 }
 
@@ -201,7 +198,7 @@ function generateSlides() {
 
     const slide4 = `
         <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
-        <div class="stage-box" style="border: 3px solid #A7F3D0; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
+        <div class="stage-box" style="background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
             <div class="stage-header">
                 <strong style="color: var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
                 <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% স্কেল</span>
@@ -229,21 +226,14 @@ function generateSlides() {
     previewSlides = [slide1, slide2, slide3, slide4];
 }
 
-function openContactModal() {
-    document.getElementById('contactModal').style.display = 'flex';
-}
-function closeContactModal() {
-    document.getElementById('contactModal').style.display = 'none';
-}
+function openContactModal() { document.getElementById('contactModal').style.display = 'flex'; }
+function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
 
 function openPreviewModal() {
-    currentSlide = 0;
-    updateSlideView();
+    currentSlide = 0; updateSlideView();
     document.getElementById('previewModal').style.display = 'flex';
 }
-function closePreviewModal() {
-    document.getElementById('previewModal').style.display = 'none';
-}
+function closePreviewModal() { document.getElementById('previewModal').style.display = 'none'; }
 
 function changeSlide(direction) {
     currentSlide += direction;
@@ -271,9 +261,7 @@ function openPrintModal() {
     closePreviewModal();
     document.getElementById('printModal').style.display = 'flex';
 }
-function closePrintModal() {
-    document.getElementById('printModal').style.display = 'none';
-}
+function closePrintModal() { document.getElementById('printModal').style.display = 'none'; }
 
 function executePrint(e) {
     e.preventDefault();
@@ -286,7 +274,6 @@ function executePrint(e) {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
     const rawDateStr = new Intl.DateTimeFormat('bn-BD', options).format(new Date());
     const dateStr = toBengaliNum(rawDateStr);
-
     const s = appState;
 
     const printHTML = `
@@ -308,32 +295,14 @@ function executePrint(e) {
         </div>
 
         <table class="info-table">
-            <tr>
-                <td width="15%"><strong>নাম:</strong></td>
-                <td width="45%">${name}</td>
-                <td width="15%"><strong>গ্রেড:</strong></td>
-                <td width="25%">${bengaliOrdinals[s.grade]} গ্রেড</td>
-            </tr>
-            <tr>
-                <td><strong>পদবি:</strong></td>
-                <td>${desig}</td>
-                <td><strong>বর্তমান মূল বেতন:</strong></td>
-                <td>${formatMoney(s.basic)}</td>
-            </tr>
-            <tr>
-                <td><strong>কর্মস্থল:</strong></td>
-                <td>${workplace}</td>
-                <td><strong>রিপোর্টের তারিখ:</strong></td>
-                <td>${dateStr}</td>
-            </tr>
+            <tr><td width="15%"><strong>নাম:</strong></td><td width="45%">${name}</td><td width="15%"><strong>গ্রেড:</strong></td><td width="25%">${bengaliOrdinals[s.grade]} গ্রেড</td></tr>
+            <tr><td><strong>পদবি:</strong></td><td>${desig}</td><td><strong>বর্তমান মূল বেতন:</strong></td><td>${formatMoney(s.basic)}</td></tr>
+            <tr><td><strong>কর্মস্থল:</strong></td><td>${workplace}</td><td><strong>রিপোর্টের তারিখ:</strong></td><td>${dateStr}</td></tr>
         </table>
 
         <h3 style="margin-bottom: 10px;">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</h3>
         <table class="data-table">
-            <tr>
-                <th>বিবরণ</th>
-                <th>টাকার পরিমাণ</th>
-            </tr>
+            <tr><th>বিবরণ</th><th>টাকার পরিমাণ</th></tr>
             <tr><td>২০১৫ স্কেলে গ্রেডের প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2015)}</td></tr>
             <tr><td>বর্তমান মূল বেতন</td><td>${formatMoney(s.basic)}</td></tr>
             <tr><td>অর্জিত বৃদ্ধি</td><td>${formatMoney(s.earned)}</td></tr>
@@ -344,47 +313,26 @@ function executePrint(e) {
 
         <h3 style="margin-top: 20px; margin-bottom: 10px;">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</h3>
         <table class="data-table">
-            <tr>
-                <th>ধাপ ও সময়কাল</th>
-                <th>কার্যকর মূল বেতন</th>
-                <th>ভাতাসমূহ</th>
-                <th>মোট কর্তন</th>
-                <th>নিট বেতন</th>
-            </tr>
+            <tr><th>ধাপ ও সময়কাল</th><th>কার্যকর মূল বেতন</th><th>ভাতাসমূহ</th><th>মোট কর্তন</th><th>নিট বেতন</th></tr>
             <tr>
                 <td><strong>১ম ধাপ</strong> (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)<br><small>মূল বেতনের বৃদ্ধির ${s.p1Label}</small></td>
-                <td>${formatMoney(s.stage1Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage1Net)}</strong></td>
+                <td>${formatMoney(s.stage1Basic)}</td><td>${formatMoney(s.oldAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage1Net)}</strong></td>
             </tr>
             <tr>
                 <td><strong>২য় ধাপ</strong> (০১ জানু ২০২৭ - ৩০ জুন ২০২৭)<br><small>মূল বেতনের বৃদ্ধির ${s.p2Label}</small></td>
-                <td>${formatMoney(s.stage2Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage2Net)}</strong></td>
+                <td>${formatMoney(s.stage2Basic)}</td><td>${formatMoney(s.oldAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage2Net)}</strong></td>
             </tr>
             <tr>
                 <td><strong>৩য় ধাপ</strong> (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)<br><small>১০০% পূর্ণাঙ্গ স্কেল</small></td>
-                <td>${formatMoney(s.stage3Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage3Net)}</strong></td>
+                <td>${formatMoney(s.stage3Basic)}</td><td>${formatMoney(s.oldAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage3Net)}</strong></td>
             </tr>
             <tr>
                 <td><strong>৪র্থ ধাপ</strong> (০১ জানুয়ারি ২০২৮ হতে)<br><small>সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</small></td>
-                <td>${formatMoney(s.stage4Basic)}</td>
-                <td>${formatMoney(s.newAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage4Net)}</strong></td>
+                <td>${formatMoney(s.stage4Basic)}</td><td>${formatMoney(s.newAllowances)}</td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage4Net)}</strong></td>
             </tr>
         </table>
 
-        <div class="signature-area">
-            <div></div>
-            <div class="signature-box">স্বাক্ষর</div>
-        </div>
+        <div class="signature-area"><div></div><div class="signature-box">স্বাক্ষর</div></div>
 
         <div class="print-footer">
             <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। বাংলাদেশের পে স্কেলের গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
@@ -394,8 +342,5 @@ function executePrint(e) {
 
     const printArea = document.getElementById('print-area');
     printArea.innerHTML = printHTML;
-    
-    setTimeout(() => {
-        window.print();
-    }, 300);
+    setTimeout(() => { window.print(); }, 300);
 }
