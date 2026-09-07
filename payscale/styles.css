@@ -58,8 +58,8 @@ input, select { user-select: auto; -webkit-user-select: auto; }
 .main-wrapper { padding: 20px 16px; }
 .container { max-width: 700px; margin: 0 auto; }
 
-/* Reduced Card Size */
-.card { background: var(--surface); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 20px; border: 2px solid #D1FAE5; box-shadow: var(--shadow-md); }
+/* Card */
+.card { background: var(--surface); border-radius: var(--radius-lg); padding: 26px; margin-bottom: 20px; border: 2px solid #D1FAE5; box-shadow: var(--shadow-md); }
 .header { text-align: center; margin-bottom: 25px; }
 .header h1 { font-size: 1.6rem; color: var(--secondary); font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
 .header p { font-size: 0.95rem; color: var(--text-muted); }
@@ -71,8 +71,29 @@ input, select { user-select: auto; -webkit-user-select: auto; }
     font-size: 0.9rem; font-weight: 600; margin-top: 12px; border: 1px solid #A7F3D0;
 }
 
+/* Form sections: group related fields with a clear numbered header */
+.form-section { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px dashed var(--border); }
+.form-section:last-of-type { margin-bottom: 4px; padding-bottom: 0; border-bottom: none; }
+
+.form-section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.05rem; font-weight: 700; color: var(--secondary);
+    margin-bottom: 16px;
+}
+.step-dot {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    background: var(--primary); color: #fff; font-size: 0.85rem; font-weight: 700;
+}
+
+.form-row { display: flex; gap: 14px; }
+.form-row .form-group { flex: 1; min-width: 0; }
+
 .form-group { margin-bottom: 16px; }
+.form-group-last { margin-bottom: 0; }
 .form-group label { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--secondary); }
+.form-group label .hint { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); }
+
 .form-control {
     width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
     border-radius: var(--radius-md); font-size: 1rem; outline: none; 
@@ -90,7 +111,7 @@ input, select { user-select: auto; -webkit-user-select: auto; }
 .sec-title { font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin: 12px 0; }
 .sec-title:first-child { margin-top: 0; }
 
-/* Item Row Setup (Fixed for same line) */
+/* Item Row Setup (kept on same line) */
 .item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 0.95rem; border-bottom: 1px dashed var(--border); gap: 10px; }
 .item-row:last-child { border-bottom: none; }
 .item-row span:first-child { text-align: left; }
@@ -168,6 +189,7 @@ input, select { user-select: auto; -webkit-user-select: auto; }
 @media (max-width: 480px) {
     .card { padding: 20px 14px; }
     .header h1 { font-size: 1.4rem; }
+    .form-row { flex-direction: column; gap: 0; }
     /* Keeping modal items on same line for mobile too */
     .item-row { flex-direction: row; align-items: center; gap: 5px; }
     .item-row span:first-child { font-size: 0.85rem; }
