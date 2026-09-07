@@ -23,8 +23,8 @@
             --text-muted: #4B5563;
             --border: #A7F3D0; /* Emerald 200 */
             
-            --radius-lg: 20px;
-            --radius-md: 12px;
+            --radius-lg: 16px; /* Slightly compacted */
+            --radius-md: 10px;
             --shadow-sm: 0 2px 4px rgba(4, 120, 87, 0.05);
             --shadow-md: 0 10px 25px -5px rgba(4, 120, 87, 0.08);
             --shadow-lg: 0 20px 25px -5px rgba(4, 120, 87, 0.15);
@@ -86,21 +86,22 @@
         }
         .nav-links a:hover { color: var(--primary); }
 
-        /* Dropdown Menu */
+        /* Dropdown Menu - Smooth Transition */
         .dropdown { position: relative; display: inline-block; }
         .dropdown-content {
-            display: none; position: absolute; background-color: var(--surface);
-            min-width: 250px; box-shadow: var(--shadow-md); border-radius: var(--radius-md);
+            visibility: hidden; opacity: 0; position: absolute; background-color: var(--surface);
+            min-width: 250px; box-shadow: var(--shadow-lg); border-radius: var(--radius-md);
             z-index: 101; top: 100%; left: 0; border: 2px solid var(--border); overflow: hidden;
-            margin-top: 10px;
+            margin-top: 15px; transform: translateY(10px); transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .dropdown-content a {
             color: var(--text-main); padding: 12px 16px; text-decoration: none;
             display: block; font-size: 1rem; border-bottom: 1px solid #ECFDF5;
+            transition: background 0.2s, padding-left 0.2s;
         }
         .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: #ECFDF5; color: var(--primary); }
-        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a:hover { background-color: #ECFDF5; color: var(--primary); padding-left: 22px; }
+        .dropdown:hover .dropdown-content { visibility: visible; opacity: 1; transform: translateY(0); margin-top: 10px; }
         
         .main-wrapper { padding: 30px 16px; }
         .container { max-width: 700px; margin: 0 auto; }
@@ -127,139 +128,126 @@
             border: 1px solid #A7F3D0;
         }
 
-        .form-group { margin-bottom: 22px; }
+        .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; color: var(--secondary); }
         
+        /* Styled Dropdown for Inputs */
+        select.form-control {
+            appearance: none; -webkit-appearance: none; -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23047857%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+            padding-right: 40px;
+        }
+
         .form-control {
-            width: 100%; padding: 14px 18px; border: 1.5px solid var(--border);
+            width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
             border-radius: var(--radius-md); font-size: 1.05rem; outline: none; 
             background: #F8FAFC; transition: all 0.3s ease; color: var(--text-main);
             font-family: 'Kalpurush', Arial, sans-serif;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
         }
         .form-control:focus { 
             background: var(--surface);
             border-color: var(--primary); 
-            box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.15); 
+            box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15); 
         }
 
         .btn-submit {
             width: 100%; background: linear-gradient(135deg, var(--primary) 0%, #059669 100%); 
             color: white; border: none;
-            padding: 16px; border-radius: var(--radius-md); font-size: 1.2rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s ease; margin-top: 10px;
+            padding: 14px; border-radius: var(--radius-md); font-size: 1.15rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); margin-top: 10px;
             box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
             font-family: 'Kalpurush', Arial, sans-serif;
         }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35); }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(4, 120, 87, 0.35); }
 
-        .sec-title {
-            font-size: 1.25rem; font-weight: 700; color: var(--secondary);
-            border-bottom: 2px solid var(--border); padding-bottom: 10px; margin: 16px 0;
-        }
-        .sec-title:first-child { margin-top: 0; }
-
-        .item-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 0; font-size: 1.05rem; border-bottom: 1px dashed var(--border);
-            gap: 12px;
-        }
-        .item-row:last-child { border-bottom: none; }
-        .item-row span:last-child { font-weight: 600; text-align: right; }
-        .item-row.sub { color: var(--text-muted); font-size: 1rem; }
-        
-        .item-row.highlight {
-            background: #ECFDF5; padding: 14px 18px; border-radius: var(--radius-md);
-            color: var(--primary); font-weight: 600; margin: 12px 0; border: none;
-        }
-        .item-row.deduct {
-            background: #FEF2F2; padding: 14px 18px; border-radius: var(--radius-md);
-            color: var(--danger); font-weight: 600; margin: 12px 0; border: none;
-        }
-
-        /* 3D Modal Styles & Overlays with Thicker Borders */
+        /* Compact & Smooth Modal Styles */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(2, 44, 34, 0.7); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; z-index: 1000;
+            background: rgba(2, 44, 34, 0.75); backdrop-filter: blur(6px);
+            opacity: 0; visibility: hidden;
+            display: flex; align-items: center; justify-content: center; z-index: 1000;
+            transition: all 0.3s ease;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
         
         .modal-content {
-            background: white; width: 95%; max-width: 520px; 
+            background: white; width: 95%; max-width: 480px; 
             border-radius: var(--radius-lg); 
-            padding: 20px 24px; 
-            box-shadow: 
-                0 15px 35px rgba(0,0,0,0.25), 
-                0 5px 15px rgba(0,0,0,0.1), 
-                inset 0 2px 0 rgba(255,255,255,1), 
-                inset 0 -5px 0 rgba(4, 120, 87, 0.15); 
-            animation: modalPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 4px solid var(--border); /* Thicker border as requested */
+            padding: 16px 20px; /* More compact */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 2px 0 rgba(255,255,255,1); 
+            transform: scale(0.95) translateY(15px); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid var(--border);
             position: relative;
             overflow: hidden; 
         }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); opacity: 1; }
         
-        @keyframes modalPopIn { 
-            from { opacity: 0; transform: scale(0.9) translateY(20px); } 
-            to { opacity: 1; transform: scale(1) translateY(0); } 
-        }
-        
-        /* Modal Watermark */
         .modal-content::before {
             content: ''; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); width: 75%; height: 75%;
+            transform: translate(-50%, -50%); width: 70%; height: 70%;
             background-image: url('https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png');
             background-size: contain; background-position: center; background-repeat: no-repeat;
-            opacity: 0.06; z-index: 0; pointer-events: none;
+            opacity: 0.05; z-index: 0; pointer-events: none;
         }
 
-        .modal-header, #slideContent, .modal-footer, #printModal form, .slide-indicator {
-            position: relative; z-index: 1;
+        .modal-header, #slideContent, .modal-footer, #printModal form, .slide-indicator { position: relative; z-index: 1; }
+        
+        .modal-header { font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+        .close-btn { background: none; border: none; font-size: 1.3rem; color: var(--danger); cursor: pointer; transition: transform 0.2s; padding: 0 5px; }
+        .close-btn:hover { transform: scale(1.2); }
+        
+        .modal-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 12px; border-top: 2px solid var(--border); padding-top: 12px; }
+        .btn-nav, .btn-primary, .btn-cancel, .btn-confirm {
+            flex: 1; padding: 10px; border-radius: var(--radius-md); border: none; cursor: pointer; 
+            font-family: 'Kalpurush'; font-size: 1rem; font-weight: 600; transition: all 0.2s;
         }
-        
-        .modal-header { font-size: 1.25rem; font-weight: 700; color: var(--secondary); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-        .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--danger); cursor: pointer; transition: transform 0.2s; }
-        .close-btn:hover { transform: scale(1.1); }
-        
-        .modal-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; border-top: 2px solid var(--border); padding-top: 16px; }
-        .btn-nav { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 10px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
-        .btn-nav:hover { background: #E5E7EB; }
-        .btn-primary { flex: 1; background: var(--primary); color: white; padding: 10px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3), inset 0 -2px 0 rgba(0,0,0,0.2); }
-        .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(4, 120, 87, 0.3), inset 0 0px 0 rgba(0,0,0,0.2); }
-        
-        .btn-group { display: flex; gap: 12px; margin-top: 20px; }
-        .btn-cancel { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
-        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3), inset 0 -2px 0 rgba(0,0,0,0.2); }
+        .btn-nav, .btn-cancel { background: #F3F4F6; color: var(--text-main); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
+        .btn-nav:hover, .btn-cancel:hover { background: #E5E7EB; }
+        .btn-primary, .btn-confirm { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3), inset 0 -2px 0 rgba(0,0,0,0.2); }
+        .btn-primary:active, .btn-confirm:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(4, 120, 87, 0.3), inset 0 0px 0 rgba(0,0,0,0.2); }
+        .btn-group { display: flex; gap: 10px; margin-top: 16px; }
 
-        .slide-indicator { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; background: #ECFDF5; display: inline-block; padding: 2px 10px; border-radius: 20px; border: 1px solid #A7F3D0; }
+        .slide-indicator { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; background: #ECFDF5; display: inline-block; padding: 2px 10px; border-radius: 20px; border: 1px solid #A7F3D0; }
         .indicator-wrapper { text-align: center; margin-top: -5px; }
 
-        /* Slide Content Boxes with Thicker Borders */
-        #slideContent .sec-title { font-size: 1.05rem; margin: 8px 0 6px; padding-bottom: 5px; }
-        #slideContent .item-row { padding: 5px 0; font-size: 0.9rem; }
-        #slideContent .item-row.sub { font-size: 0.85rem; }
-        #slideContent .desc-box { font-size: 0.85rem; padding: 8px 12px; margin: 8px 0; border: 2px solid #FEF3C7;}
-        #slideContent .stage-box { padding: 12px 16px; margin-bottom: 8px; border-radius: 10px; box-shadow: none; border: 3px solid var(--border); }
-        #slideContent .stage-header { margin-bottom: 6px; }
-        #slideContent .stage-header strong { font-size: 0.95rem !important; }
-        #slideContent .badge { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; }
-        #slideContent p { margin-bottom: 8px !important; font-size: 0.8rem !important; line-height: 1.4; }
-        #slideContent .item-row.highlight, #slideContent .item-row.deduct { padding: 6px 12px; font-size: 0.9rem; margin: 6px 0; border-radius: 8px; }
+        /* Compact Slide Content */
+        .sec-title { font-size: 1.1rem; font-weight: 700; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 6px; margin: 10px 0 6px; }
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 0.95rem; border-bottom: 1px dashed var(--border); gap: 10px; }
+        .item-row:last-child { border-bottom: none; }
+        .item-row span:last-child { font-weight: 600; text-align: right; }
+        .item-row.sub { color: var(--text-muted); font-size: 0.85rem; }
         
-        /* Footer Area */
-        .footer-top { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); }
-        .gov-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .gov-links a { background: #ECFDF5; border: 1px solid var(--border); color: var(--primary); padding: 6px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
-        .gov-links a:hover { background: var(--primary); color: white; }
+        .item-row.highlight, .item-row.deduct { padding: 6px 12px; font-size: 0.9rem; margin: 6px 0; border-radius: 8px; border: none; font-weight: 600; }
+        .item-row.highlight { background: #ECFDF5; color: var(--primary); }
+        .item-row.deduct { background: #FEF2F2; color: var(--danger); }
         
+        #slideContent .desc-box { font-size: 0.85rem; padding: 8px 12px; margin: 6px 0; border: 2px solid #FEF3C7; border-radius: 8px; }
+        #slideContent .stage-box { padding: 10px 14px; margin-bottom: 8px; border-radius: 10px; border: 2px solid var(--border); }
+        #slideContent .stage-header { margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+        #slideContent .stage-header strong { font-size: 0.9rem !important; }
+        #slideContent .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 6px; }
+        #slideContent p { margin-bottom: 6px !important; font-size: 0.8rem !important; line-height: 1.3; }
+        
+        /* Footer Area - Link removed */
+        .footer-top { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 2px solid var(--border); }
         .footer-credit { font-size: 0.95rem; color: var(--text-muted); }
         .footer-credit a { color: var(--primary); text-decoration: none; font-weight: 700; }
         
         .print-only { display: none; }
 
-        /* Print Styles with Watermark */
+        /* Print Styles - Force Logos */
         @media print {
             @page { size: A4 portrait; margin: 15mm; }
-            body { background: white; padding: 0; color: black; font-size: 13pt; -webkit-user-select: auto; user-select: auto; }
+            body { 
+                background: white; padding: 0; color: black; font-size: 13pt; 
+                -webkit-user-select: auto; user-select: auto; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             
@@ -269,13 +257,13 @@
                 z-index: -1; opacity: 0.08;
                 pointer-events: none;
             }
-            .print-watermark img { width: 600px; max-width: 80vw; }
+            .print-watermark img { width: 600px; max-width: 80vw; display: block !important; visibility: visible !important; }
 
             .print-header { 
                 display: flex; justify-content: space-between; align-items: center; 
                 margin-bottom: 20px; border-bottom: 2px solid #047857; padding-bottom: 15px; 
             }
-            .print-logo-left img, .print-logo-right img { height: 75px; width: auto; }
+            .print-logo-left img, .print-logo-right img { height: 75px; width: auto; display: block !important; visibility: visible !important; }
             .print-title { text-align: center; flex-grow: 1; padding: 0 15px; }
             .print-title h1 { font-size: 19pt; margin-bottom: 5px; color: #047857; }
             .print-title p { font-size: 12pt; margin: 0; }
@@ -300,8 +288,8 @@
             .nav-links a { font-size: 0.95rem; }
             .card { padding: 24px 16px; }
             .header h1 { font-size: 1.5rem; }
-            .modal-content { padding: 16px 20px; width: 95%; }
-            #slideContent .stage-box { padding: 10px 12px; }
+            .modal-content { padding: 16px 16px; width: 95%; }
+            #slideContent .stage-box { padding: 8px 10px; }
         }
     </style>
 </head>
@@ -344,7 +332,7 @@
             <div class="header">
                 <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
                 <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
-                <div class="counter-badge" id="counter">🔥 হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
+                <div class="counter-badge" id="counter">হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার</div>
             </div>
 
             <div class="card">
@@ -388,38 +376,36 @@
                         <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0">
                     </div>
 
-                    <button type="submit" class="btn-submit">📊 বিস্তারিত বেতন হিসাব করুন</button>
+                    <button type="submit" class="btn-submit">বিস্তারিত বেতন হিসাব করুন</button>
                 </form>
             </div>
 
+            <!-- Footer links removed as requested -->
             <div class="footer-top">
-                <div class="gov-links">
-                    <a href="https://pmo.gov.bd" target="_blank">প্রধানমন্ত্রীর কার্যালয়</a>
-                    <a href="https://mof.gov.bd" target="_blank">অর্থ মন্ত্রণালয়</a>
-                    <a href="https://mof.gov.bd" target="_blank">পে কমিশন ২০২৫</a>
-                    <a href="https://bangladesh.gov.bd" target="_blank">বাংলাদেশ সচিবালয়</a>
-                </div>
                 <div class="footer-credit">
-                    © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ami.bd" target="_blank">NasimSoft</a>
+                    © National Pay Scale Calculations 2026, Developed and Maintaining by <a href="https://nasim.ceo.bd" target="_blank">NasimSoft</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Contact Modal -->
+<!-- Contact Modal with Round Profile Picture -->
 <div class="no-print modal-overlay" id="contactModal">
-    <div class="modal-content" style="max-width: 450px; text-align: center;">
+    <div class="modal-content" style="text-align: center;">
         <div class="modal-header" style="justify-content: center; position: relative;">
             <span>যোগাযোগের ঠিকানা</span>
             <button class="close-btn" onclick="closeContactModal()" style="position: absolute; right: 0; top: -5px;">✖</button>
         </div>
-        <div style="padding: 15px 0;">
+        <div style="padding: 10px 0;">
+            <div style="margin-bottom: 12px;">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Developer%20Pic.jpg" alt="Nasim Al Masud" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); box-shadow: var(--shadow-md);">
+            </div>
             <h2 style="color: var(--primary); margin-bottom: 5px;">নাসিম আল মাসুদ</h2>
-            <p style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">সিস্টেম এডমিনিস্ট্রেটর ও চীফ এক্সিকিউটিভ অফিসার</p>
-            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1rem;">নাসিম সফট কোম্পানি লিমিটেড।</p>
-            <p style="display: inline-block; background: #ECFDF5; padding: 12px 20px; border-radius: 12px; border: 2px solid var(--border); font-weight: 700; color: var(--primary); font-size: 1.1rem;">
-                📧 ইমেইল: admin@nasim.ceo.bd
+            <p style="font-weight: 700; color: var(--text-main); font-size: 1rem;">সিস্টেম এডমিনিস্ট্রেটর ও চীফ এক্সিকিউটিভ অফিসার</p>
+            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">নাসিম সফট কোম্পানি লিমিটেড।</p>
+            <p style="display: inline-block; background: #ECFDF5; padding: 10px 15px; border-radius: 12px; border: 2px solid var(--border); font-weight: 700; color: var(--primary); font-size: 1rem;">
+                📧 ইমেইল: admin@nasim.ceo.bd, mdnamn4@gmail.com
             </p>
         </div>
     </div>
@@ -456,11 +442,11 @@
             <button class="close-btn" onclick="closePrintModal()">✖</button>
         </div>
         <form onsubmit="return executePrint(event)">
-            <div class="form-group" style="margin-bottom:15px;">
+            <div class="form-group" style="margin-bottom:12px;">
                 <label style="font-size: 0.95rem;">নাম (বাংলায়):</label>
                 <input type="text" id="p_name" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার নাম লিখুন">
             </div>
-            <div class="form-group" style="margin-bottom:15px;">
+            <div class="form-group" style="margin-bottom:12px;">
                 <label style="font-size: 0.95rem;">বর্তমান পদবি (বাংলায়):</label>
                 <input type="text" id="p_desig" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার পদবি লিখুন">
             </div>
@@ -645,9 +631,8 @@ function calculatePay(e) {
 function generateSlides() {
     const s = appState;
     
-    // Slide 1
     const slide1 = `
-        <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</div>
+        <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন</div>
         <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[s.grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2015)}</span></div>
         <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(s.basic)}</span></div>
         <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(s.earned)}</span></div>
@@ -659,7 +644,6 @@ function generateSlides() {
         </div>
     `;
 
-    // Slide 2
     const slide2 = `
         <div class="sec-title">২. বর্তমান ভাতা ও কর্তনসমূহ</div>
         <div class="item-row sub"><span>(+) বাড়িভাড়া ভাতা:</span><span>${formatMoney(s.oldHouseRent)}</span></div>
@@ -673,14 +657,13 @@ function generateSlides() {
         <div class="item-row deduct"><span>মোট কর্তন:</span><span>${formatMoney(s.totalDeduction)}</span></div>
     `;
 
-    // Slide 3
     const slide3 = `
         <div class="sec-title">৩. প্রস্তাবিত ধাপে বেতন বৃদ্ধি (২০২৬-২০২৭)</div>
-        <p>* ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।</p>
+        <p>* ছক অনুযায়ী অগ্রাধিকার বিবেচনায় ধাপে ধাপে মূল বেতন বৃদ্ধি পাবে।</p>
         <div class="stage-box">
             <div class="stage-header">
                 <strong style="color: var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
-                <span class="badge">বৃদ্ধির ${s.p1Label}</span>
+                <span class="badge" style="background:#E0F2FE; color:#0369A1;">বৃদ্ধির ${s.p1Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage1Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage1Net)}</span></div>
@@ -688,35 +671,34 @@ function generateSlides() {
         <div class="stage-box">
             <div class="stage-header">
                 <strong style="color: var(--primary);">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
-                <span class="badge">বৃদ্ধির ${s.p2Label}</span>
+                <span class="badge" style="background:#E0F2FE; color:#0369A1;">বৃদ্ধির ${s.p2Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage2Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage2Net)}</span></div>
         </div>
     `;
 
-    // Slide 4
     const slide4 = `
         <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
-        <div class="stage-box" style="border: 3px solid #A7F3D0; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
+        <div class="stage-box" style="border-color: #A7F3D0; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
             <div class="stage-header">
                 <strong style="color: var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
-                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% স্কেল</span>
+                <span class="badge" style="background: #D1FAE5; color: var(--primary);">১০০% স্কেল</span>
             </div>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage3Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage3Net)}</span></div>
         </div>
         
-        <div class="stage-box final">
+        <div class="stage-box">
             <div class="stage-header">
                 <strong style="color: var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
-                <span class="badge" style="background: var(--success); color: white; border: none;">নতুন ভাতা</span>
+                <span class="badge" style="background: var(--success); color: white;">নতুন ভাতা</span>
             </div>
             <p style="color: var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
             <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
-            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 10px;">
+            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 6px;">
                 <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
                 <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
             </div>
@@ -727,19 +709,19 @@ function generateSlides() {
 }
 
 function openContactModal() {
-    document.getElementById('contactModal').style.display = 'flex';
+    document.getElementById('contactModal').classList.add('active');
 }
 function closeContactModal() {
-    document.getElementById('contactModal').style.display = 'none';
+    document.getElementById('contactModal').classList.remove('active');
 }
 
 function openPreviewModal() {
     currentSlide = 0;
     updateSlideView();
-    document.getElementById('previewModal').style.display = 'flex';
+    document.getElementById('previewModal').classList.add('active');
 }
 function closePreviewModal() {
-    document.getElementById('previewModal').style.display = 'none';
+    document.getElementById('previewModal').classList.remove('active');
 }
 
 function changeSlide(direction) {
@@ -766,10 +748,10 @@ function updateSlideView() {
 
 function openPrintModal() {
     closePreviewModal();
-    document.getElementById('printModal').style.display = 'flex';
+    document.getElementById('printModal').classList.add('active');
 }
 function closePrintModal() {
-    document.getElementById('printModal').style.display = 'none';
+    document.getElementById('printModal').classList.remove('active');
 }
 
 function executePrint(e) {
@@ -892,9 +874,18 @@ function executePrint(e) {
     const printArea = document.getElementById('print-area');
     printArea.innerHTML = printHTML;
     
+    // Set Document Title dynamically for PDF Save
+    const originalTitle = document.title;
+    document.title = `${name}, পে স্কেল ২০২৬ - নাসিমসফট`;
+    
+    // Restore the title after printing dialog closes
+    window.onafterprint = function() {
+        document.title = originalTitle;
+    };
+    
     setTimeout(() => {
         window.print();
-    }, 300);
+    }, 400);
 }
 </script>
 </body>
