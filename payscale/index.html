@@ -38,7 +38,14 @@
             color: var(--text-main); 
             line-height: 1.6; 
             -webkit-font-smoothing: antialiased;
+            /* Text selection disable for extra protection */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
+
+        /* Allow typing in inputs */
+        input, select { user-select: auto; -webkit-user-select: auto; }
 
         /* Navbar Styles */
         .navbar {
@@ -152,43 +159,82 @@
             color: var(--danger); font-weight: 600; margin: 12px 0; border: none;
         }
 
-        .stage-box {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 22px; margin-bottom: 16px;
-            box-shadow: var(--shadow-sm); transition: transform 0.2s ease;
-        }
-        .stage-box.final { border: 1.5px solid #34D399; background: linear-gradient(to bottom right, #ECFDF5, #FFFFFF); }
-        
-        .stage-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .badge {
-            background: #D1FAE5; color: var(--primary); padding: 6px 12px;
-            border-radius: 8px; font-size: 0.9rem; font-weight: 600; border: 1px solid #A7F3D0;
-        }
-
-        /* Modal Styles */
+        /* 3D Modal Styles & Overlays */
         .modal-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(2, 44, 34, 0.7); backdrop-filter: blur(5px);
             display: none; align-items: center; justify-content: center; z-index: 1000;
         }
+        
         .modal-content {
-            background: white; width: 95%; max-width: 550px; max-height: 90vh; overflow-y: auto;
-            border-radius: var(--radius-lg); padding: 24px 32px; box-shadow: var(--shadow-lg);
-            animation: modalFadeIn 0.3s ease;
-            border: 2px solid var(--border);
+            background: white; width: 95%; max-width: 520px; 
+            border-radius: var(--radius-lg); 
+            padding: 20px 24px; /* Reduced Padding for No-Scroll */
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.25), 
+                0 5px 15px rgba(0,0,0,0.1), 
+                inset 0 2px 0 rgba(255,255,255,1), 
+                inset 0 -5px 0 rgba(4, 120, 87, 0.15); /* 3D Depth effect */
+            animation: modalPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden; /* Keeps watermark inside */
         }
-        @keyframes modalFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .modal-header { font-size: 1.3rem; font-weight: 700; color: var(--secondary); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--danger); cursor: pointer; }
+        @keyframes modalPopIn { 
+            from { opacity: 0; transform: scale(0.9) translateY(20px); } 
+            to { opacity: 1; transform: scale(1) translateY(0); } 
+        }
         
-        .modal-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px; }
-        .btn-nav { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; transition: background 0.2s; }
-        .btn-nav:hover { background: #E5E7EB; }
-        .btn-primary { flex: 1; background: var(--primary); color: white; padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.1rem; font-weight: 600; box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3); transition: transform 0.2s; }
-        .btn-primary:hover { transform: translateY(-2px); }
+        /* Modal Watermark */
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%; height: 75%;
+            background-image: url('https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-        .slide-indicator { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
+        /* Ensure content sits above watermark */
+        .modal-header, #slideContent, .modal-footer, #printModal form, .slide-indicator {
+            position: relative; z-index: 1;
+        }
+        
+        .modal-header { font-size: 1.25rem; font-weight: 700; color: var(--secondary); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--danger); cursor: pointer; transition: transform 0.2s; }
+        .close-btn:hover { transform: scale(1.1); }
+        
+        .modal-footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px; }
+        .btn-nav { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 10px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; transition: background 0.2s; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
+        .btn-nav:hover { background: #E5E7EB; }
+        .btn-primary { flex: 1; background: var(--primary); color: white; padding: 10px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3), inset 0 -2px 0 rgba(0,0,0,0.2); transition: transform 0.2s; }
+        .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(4, 120, 87, 0.3), inset 0 0px 0 rgba(0,0,0,0.2); }
+        
+        .btn-group { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-cancel { flex: 1; background: #F3F4F6; color: var(--text-main); padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
+        .btn-confirm { flex: 1; background: var(--primary); color: white; padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer; font-family: 'Kalpurush'; font-size: 1.05rem; font-weight: 600; box-shadow: 0 4px 10px rgba(4, 120, 87, 0.3), inset 0 -2px 0 rgba(0,0,0,0.2); }
+
+        .slide-indicator { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; background: #ECFDF5; display: inline-block; padding: 2px 10px; border-radius: 20px; border: 1px solid #A7F3D0; }
+        .indicator-wrapper { text-align: center; margin-top: -5px; }
+
+        /* Reduced Font Sizes specifically for Slide Content to prevent scroll */
+        #slideContent .sec-title { font-size: 1.05rem; margin: 8px 0 6px; padding-bottom: 5px; }
+        #slideContent .item-row { padding: 5px 0; font-size: 0.9rem; }
+        #slideContent .item-row.sub { font-size: 0.85rem; }
+        #slideContent .desc-box { font-size: 0.85rem; padding: 8px 12px; margin: 8px 0; }
+        #slideContent .stage-box { padding: 12px 16px; margin-bottom: 8px; border-radius: 10px; box-shadow: none; border: 1.5px solid var(--border); }
+        #slideContent .stage-header { margin-bottom: 6px; }
+        #slideContent .stage-header strong { font-size: 0.95rem !important; }
+        #slideContent .badge { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; }
+        #slideContent p { margin-bottom: 8px !important; font-size: 0.8rem !important; line-height: 1.4; }
+        #slideContent .item-row.highlight, #slideContent .item-row.deduct { padding: 6px 12px; font-size: 0.9rem; margin: 6px 0; border-radius: 8px; }
         
         .footer { text-align: center; margin-top: 40px; padding-top: 20px; font-size: 1rem; color: var(--text-muted); }
         .footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
@@ -198,17 +244,14 @@
         /* Print Styles with Watermark */
         @media print {
             @page { size: A4 portrait; margin: 15mm; }
-            body { background: white; padding: 0; color: black; font-size: 13pt; }
+            body { background: white; padding: 0; color: black; font-size: 13pt; -webkit-user-select: auto; user-select: auto; }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
             
             .print-watermark {
-                position: fixed;
-                top: 50%;
-                left: 50%;
+                position: fixed; top: 50%; left: 50%;
                 transform: translate(-50%, -50%);
-                z-index: -1;
-                opacity: 0.08; /* Light pad background */
+                z-index: -1; opacity: 0.08;
                 pointer-events: none;
             }
             .print-watermark img { width: 600px; max-width: 80vw; }
@@ -242,11 +285,24 @@
             .nav-links a { font-size: 1rem; }
             .card { padding: 24px 16px; }
             .header h1 { font-size: 1.5rem; }
-            .modal-content { padding: 20px; width: 98%; }
+            .modal-content { padding: 16px 20px; width: 98%; }
+            #slideContent .stage-box { padding: 10px 12px; }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
+
+<!-- Security Script to block inspecting -->
+<script>
+    document.addEventListener('keydown', function(e) {
+        // Block F12
+        if (e.keyCode == 123) { e.preventDefault(); return false; }
+        // Block Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+        if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) { e.preventDefault(); return false; }
+        // Block Ctrl+U (View Source) & Ctrl+S (Save Page)
+        if (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83)) { e.preventDefault(); return false; }
+    });
+</script>
 
 <div class="no-print">
     <!-- Menu Bar -->
@@ -323,14 +379,16 @@
     </div>
 </div>
 
-<!-- Preview Modal (Slider) -->
+<!-- Preview Modal (Slider) with 3D Depth & Watermark -->
 <div class="no-print modal-overlay" id="previewModal">
     <div class="modal-content">
         <div class="modal-header">
             <span>বেতন প্রাক্কলন ফলাফল</span>
             <button class="close-btn" onclick="closePreviewModal()">✖</button>
         </div>
-        <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
+        <div class="indicator-wrapper">
+            <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
+        </div>
         
         <div id="slideContent">
             <!-- Dynamic Content Injected Here -->
@@ -344,7 +402,7 @@
     </div>
 </div>
 
-<!-- Modal for Print Form -->
+<!-- Modal for Print Form with 3D Depth & Watermark -->
 <div class="no-print modal-overlay" id="printModal">
     <div class="modal-content">
         <div class="modal-header">
@@ -352,21 +410,21 @@
             <button class="close-btn" onclick="closePrintModal()">✖</button>
         </div>
         <form onsubmit="return executePrint(event)">
-            <div class="form-group">
-                <label>নাম (বাংলায়):</label>
-                <input type="text" id="p_name" class="form-control" required placeholder="আপনার নাম লিখুন">
+            <div class="form-group" style="margin-bottom:15px;">
+                <label style="font-size: 0.95rem;">নাম (বাংলায়):</label>
+                <input type="text" id="p_name" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার নাম লিখুন">
             </div>
-            <div class="form-group">
-                <label>বর্তমান পদবি (বাংলায়):</label>
-                <input type="text" id="p_desig" class="form-control" required placeholder="আপনার পদবি লিখুন">
+            <div class="form-group" style="margin-bottom:15px;">
+                <label style="font-size: 0.95rem;">বর্তমান পদবি (বাংলায়):</label>
+                <input type="text" id="p_desig" class="form-control" style="padding: 10px 14px;" required placeholder="আপনার পদবি লিখুন">
             </div>
-            <div class="form-group">
-                <label>বর্তমান কর্মস্থল (বাংলায়):</label>
-                <input type="text" id="p_workplace" class="form-control" required placeholder="অফিসের নাম লিখুন">
+            <div class="form-group" style="margin-bottom:5px;">
+                <label style="font-size: 0.95rem;">বর্তমান কর্মস্থল (বাংলায়):</label>
+                <input type="text" id="p_workplace" class="form-control" style="padding: 10px 14px;" required placeholder="অফিসের নাম লিখুন">
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-cancel" onclick="closePrintModal()">বাতিল</button>
-                <button type="submit" class="btn-confirm">🖨️ প্রিন্ট করুন</button>
+                <button type="submit" class="btn-confirm">🖨️ চূড়ান্ত প্রিন্ট</button>
             </div>
         </form>
     </div>
@@ -549,13 +607,13 @@ function generateSlides() {
         <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(s.earned)}</span></div>
         <div class="item-row sub"><span>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2026)}</span></div>
         <div class="item-row"><span>২০২৬ স্কেলের ভিত্তি অঙ্ক:</span><span>${formatMoney(s.baseAmount)}</span></div>
-        <div class="desc-box" style="margin-top: 20px;">
+        <div class="desc-box">
             <strong>নির্ধারিত পূর্ণাঙ্গ মূল বেতন:</strong> ${formatMoney(s.fixedBasic)}<br>
             <strong>মূল বেতনের মোট পার্থক্য:</strong> ${formatMoney(s.totalIncrease)}
         </div>
     `;
 
-    // Slide 2: Deductions and Allowances (Missing previously in preview)
+    // Slide 2
     const slide2 = `
         <div class="sec-title">২. বর্তমান ভাতা ও কর্তনসমূহ</div>
         <div class="item-row sub"><span>(+) বাড়িভাড়া ভাতা:</span><span>${formatMoney(s.oldHouseRent)}</span></div>
@@ -563,21 +621,19 @@ function generateSlides() {
         <div class="item-row sub"><span>(+) শিক্ষা ভাতা:</span><span>${formatMoney(s.education)}</span></div>
         <div class="item-row highlight"><span>মোট বহাল থাকা ভাতা:</span><span>${formatMoney(s.oldAllowances)}</span></div>
         
-        <div class="item-row sub" style="margin-top: 15px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
+        <div class="item-row sub" style="margin-top: 5px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
         <div class="item-row sub"><span>(-) মাসিক আয়কর:</span><span>${formatMoney(s.tax)}</span></div>
-        <div class="item-row sub"><span>(-) কল্যাণ তহবিল ও অন্যান্য:</span><span>${formatMoney(s.welfare + s.insurance + s.stamp)}</span></div>
+        <div class="item-row sub"><span>(-) অন্যান্য তহবিল:</span><span>${formatMoney(s.welfare + s.insurance + s.stamp)}</span></div>
         <div class="item-row deduct"><span>মোট কর্তন:</span><span>${formatMoney(s.totalDeduction)}</span></div>
     `;
 
     // Slide 3
     const slide3 = `
         <div class="sec-title">৩. প্রস্তাবিত ধাপে বেতন বৃদ্ধি (২০২৬-২০২৭)</div>
-        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-            * ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।
-        </p>
+        <p>* ছক অনুযায়ী গ্রেড ১০-২০ অগ্রাধিকার বিবেচনায় ৫০% ও ৭৫% হারে মূল বেতন বৃদ্ধি পাবে এবং গ্রেড ১-৯ ৪০% ও ৭০% হারে বৃদ্ধি পাবে।</p>
         <div class="stage-box">
             <div class="stage-header">
-                <strong style="color: var(--primary); font-size: 1.1rem;">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
+                <strong style="color: var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
                 <span class="badge">বৃদ্ধির ${s.p1Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage1Basic)}</span></div>
@@ -585,7 +641,7 @@ function generateSlides() {
         </div>
         <div class="stage-box">
             <div class="stage-header">
-                <strong style="color: var(--primary); font-size: 1.1rem;">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
+                <strong style="color: var(--primary);">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
                 <span class="badge">বৃদ্ধির ${s.p2Label}</span>
             </div>
             <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage2Basic)}</span></div>
@@ -596,10 +652,10 @@ function generateSlides() {
     // Slide 4
     const slide4 = `
         <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
-        <div class="stage-box" style="border: 1px solid #A7F3D0;">
+        <div class="stage-box" style="border: 1px solid #A7F3D0; background: linear-gradient(to bottom right, #F2FDF7, #FFFFFF);">
             <div class="stage-header">
-                <strong style="color: var(--info); font-size: 1.1rem;">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
-                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% পূর্ণাঙ্গ স্কেল</span>
+                <strong style="color: var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
+                <span class="badge" style="background: #D1FAE5; color: var(--primary); border: none;">১০০% স্কেল</span>
             </div>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage3Basic)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage3Net)}</span></div>
@@ -607,14 +663,14 @@ function generateSlides() {
         
         <div class="stage-box final">
             <div class="stage-header">
-                <strong style="color: var(--success); font-size: 1.1rem;">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
-                <span class="badge" style="background: var(--success); color: white; border: none;">নতুন ভাতা কার্যকর</span>
+                <strong style="color: var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
+                <span class="badge" style="background: var(--success); color: white; border: none;">নতুন ভাতা</span>
             </div>
-            <p style="font-size: 0.85rem; color: var(--success); margin-top: -10px; margin-bottom: 10px;">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
+            <p style="color: var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
             <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
             <div class="item-row sub" style="color: var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
             <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
-            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 16px;">
+            <div class="item-row highlight" style="background: var(--primary); color: white; margin-top: 10px;">
                 <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
                 <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
             </div>
