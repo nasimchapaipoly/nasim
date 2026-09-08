@@ -24,6 +24,11 @@
             --text-main: #1F2937;
             --text-muted: #6B7280;
             --border: #D1FAE5;
+            --navbar-bg: rgba(255, 255, 255, 0.92);
+            --navbar-border: rgba(167, 243, 208, 0.6);
+            --card-border: rgba(167, 243, 208, 0.7);
+            --input-bg: #F8FAFC;
+            --modal-bg: #FFFFFF;
             --radius-lg: 18px;
             --radius-md: 12px;
             --radius-sm: 9px;
@@ -32,6 +37,30 @@
             --shadow-lg: 0 16px 48px rgba(4, 120, 87, 0.14);
             --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
             --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #34D399;
+            --primary-hover: #10B981;
+            --primary-light: #064E3B;
+            --primary-border: #065F46;
+            --secondary: #ECFDF5;
+            --success: #34D399;
+            --danger: #F87171;
+            --info: #6EE7B7;
+            --bg: #0B1F1A;
+            --surface: #122C25;
+            --text-main: #E5E7EB;
+            --text-muted: #9CA3AF;
+            --border: #1F4A3D;
+            --navbar-bg: rgba(11, 31, 26, 0.92);
+            --navbar-border: rgba(6, 95, 70, 0.5);
+            --card-border: rgba(6, 95, 70, 0.6);
+            --input-bg: #0F2922;
+            --modal-bg: #122C25;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.35);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,18 +74,20 @@
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
+            transition: background 0.35s ease, color 0.35s ease;
         }
 
         /* ========== PREMIUM NAVBAR ========== */
         .navbar {
-            background: rgba(255, 255, 255, 0.92);
+            background: var(--navbar-bg);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            box-shadow: 0 1px 0 rgba(4, 120, 87, 0.08), 0 4px 20px rgba(4, 120, 87, 0.04);
+            box-shadow: 0 1px 0 var(--navbar-border), 0 4px 20px rgba(4, 120, 87, 0.04);
             position: sticky;
             top: 0;
             z-index: 200;
-            border-bottom: 1px solid rgba(167, 243, 208, 0.6);
+            border-bottom: 1px solid var(--navbar-border);
+            transition: background 0.35s ease, border-color 0.35s ease;
         }
 
         .nav-container {
@@ -145,9 +176,9 @@
             top: calc(100% + 10px);
             right: 0;
             min-width: 260px;
-            background: #FFFFFF;
+            background: var(--surface);
             border-radius: 14px;
-            box-shadow: 0 12px 40px rgba(2, 44, 34, 0.12), 0 0 0 1px rgba(167, 243, 208, 0.5);
+            box-shadow: 0 12px 40px rgba(2, 44, 34, 0.12), 0 0 0 1px var(--primary-border);
             z-index: 300;
             opacity: 0;
             visibility: hidden;
@@ -155,7 +186,8 @@
             transform-origin: top right;
             transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
                         transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-                        visibility 0.28s;
+                        visibility 0.28s,
+                        background 0.35s ease;
             overflow: hidden;
             padding: 6px;
         }
@@ -252,8 +284,9 @@
             border-radius: var(--radius-lg);
             padding: 26px 22px;
             margin-bottom: 20px;
-            border: 1px solid rgba(167, 243, 208, 0.7);
+            border: 1px solid var(--card-border);
             box-shadow: var(--shadow-md);
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
         }
 
         /* Form */
@@ -276,14 +309,14 @@
             border-radius: var(--radius-sm);
             font-size: 1rem;
             outline: none;
-            background: #F8FAFC;
+            background: var(--input-bg);
             transition: var(--transition-fast);
             color: var(--text-main);
             font-family: 'Kalpurush', system-ui, sans-serif;
         }
 
         .form-control:focus {
-            background: #fff;
+            background: var(--surface);
             border-color: var(--primary);
             box-shadow: 0 0 0 3.5px rgba(4, 120, 87, 0.12);
         }
@@ -297,11 +330,15 @@
             background-position: right 12px center;
             padding-right: 38px;
             cursor: pointer;
-            background-color: #F8FAFC;
+            background-color: var(--input-bg);
         }
 
         select.form-control:focus {
-            background-color: #fff;
+            background-color: var(--surface);
+        }
+
+        [data-theme="dark"] select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2334D399' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
         }
 
         input[type="number"].form-control {
@@ -402,7 +439,7 @@
         }
 
         .modal-content {
-            background: #fff;
+            background: var(--modal-bg);
             width: 100%;
             max-width: 440px;
             border-radius: 20px;
@@ -411,7 +448,8 @@
             transform: scale(0.88) translateY(28px) rotateX(4deg);
             opacity: 0;
             transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                        background 0.35s ease;
             border: 2px solid var(--primary-border);
             position: relative;
             max-height: none;
@@ -506,13 +544,15 @@
 
         .btn-nav,
         .btn-cancel {
-            background: #F3F4F6;
+            background: var(--input-bg);
             color: var(--text-main);
+            border: 1px solid var(--border);
         }
 
         .btn-nav:hover,
         .btn-cancel:hover {
-            background: #E5E7EB;
+            background: var(--primary-light);
+            color: var(--primary);
         }
 
         .btn-primary,
@@ -611,10 +651,11 @@
             font-size: 0.8rem;
             padding: 7px 10px;
             margin: 5px 0 2px;
-            border: 1.5px solid #FDE68A;
+            border: 1.5px solid var(--primary-border);
             border-radius: 8px;
-            background: #FFFBEB;
+            background: var(--primary-light);
             line-height: 1.4;
+            color: var(--text-main);
         }
 
         #slideContent .stage-box {
@@ -622,7 +663,7 @@
             margin-bottom: 6px;
             border-radius: 10px;
             border: 1.5px solid var(--border);
-            background: #FAFFFE;
+            background: var(--surface);
         }
 
         #slideContent .stage-header {
@@ -673,6 +714,502 @@
             font-size: 0.88rem;
             margin-top: 6px;
             line-height: 1.4;
+        }
+
+        /* ========== Theme Toggle & History Buttons ========== */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-size: 1.05rem;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .icon-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary-border);
+            transform: scale(1.08);
+        }
+
+        /* 3-dot Menu */
+        .menu-3dot {
+            position: relative;
+        }
+
+        .menu-3dot-btn .menu-icon {
+            display: block;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-3dot.open .menu-3dot-btn .menu-icon {
+            transform: rotate(90deg);
+        }
+
+        .menu-3dot-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            min-width: 240px;
+            background: var(--surface);
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(2, 44, 34, 0.14), 0 0 0 1px var(--primary-border);
+            z-index: 400;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px) scale(0.96);
+            transform-origin: top right;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        visibility 0.25s;
+            overflow: hidden;
+            padding: 6px;
+        }
+
+        .menu-3dot.open .menu-3dot-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .menu-3dot.open .menu-3dot-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary-border);
+        }
+
+        .menu-3dot-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 14px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.93rem;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: var(--transition-fast);
+        }
+
+        .menu-3dot-dropdown a:hover {
+            background: linear-gradient(135deg, var(--primary-light) 0%, transparent 100%);
+            color: var(--primary);
+            padding-left: 18px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 8px;
+        }
+
+        .menu-label {
+            padding: 6px 14px 4px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        /* Comparison Card */
+        .compare-card {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 100%);
+            border: 1.5px solid var(--primary-border);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+
+        .compare-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .compare-box {
+            text-align: center;
+            padding: 8px 6px;
+            border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .compare-box .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .compare-box .value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .compare-arrow {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .compare-increase {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--success);
+            background: rgba(16, 185, 129, 0.12);
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .compare-increase {
+            background: rgba(52, 211, 153, 0.15);
+        }
+
+        /* History List */
+        .history-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+            background: var(--surface);
+            transition: var(--transition-fast);
+            cursor: pointer;
+            gap: 10px;
+        }
+
+        .history-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .history-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .history-item .grade {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--primary);
+        }
+
+        .history-item .meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .history-item .net {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .history-item .del-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px 6px;
+            border-radius: 6px;
+            opacity: 0.7;
+            transition: var(--transition-fast);
+        }
+
+        .history-item .del-btn:hover {
+            opacity: 1;
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .history-empty {
+            text-align: center;
+            padding: 24px 12px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .history-actions button {
+            flex: 1;
+        }
+
+        /* Slide Dots */
+        .slide-dots {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            margin: 6px 0 2px;
+        }
+
+        .slide-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .slide-dot.active {
+            background: var(--primary);
+            transform: scale(1.25);
+            box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.2);
+        }
+
+        [data-theme="dark"] .slide-dot.active {
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.25);
+        }
+
+        /* Share row */
+        .share-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .share-btn {
+            flex: 1;
+            padding: 9px 8px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            color: var(--text-main);
+            font-family: 'Kalpurush', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .share-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary-border);
+        }
+
+        .share-btn.whatsapp:hover {
+            background: #DCFCE7;
+            color: #15803D;
+            border-color: #86EFAC;
+        }
+
+        [data-theme="dark"] .share-btn.whatsapp:hover {
+            background: #14532D;
+            color: #86EFAC;
+        }
+
+        /* Tooltip */
+        .label-with-tip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tip-btn {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            line-height: 1;
+            position: relative;
+        }
+
+        .tip-popup {
+            display: none;
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 8px);
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 10px;
+            width: 220px;
+            z-index: 50;
+            line-height: 1.45;
+            box-shadow: var(--shadow-md);
+            text-align: left;
+        }
+
+        [data-theme="dark"] .tip-popup {
+            background: #064E3B;
+            color: #ECFDF5;
+        }
+
+        .tip-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--secondary);
+        }
+
+        [data-theme="dark"] .tip-popup::after {
+            border-top-color: #064E3B;
+        }
+
+        .tip-btn:hover .tip-popup,
+        .tip-btn:focus .tip-popup,
+        .tip-btn.active .tip-popup {
+            display: block;
+        }
+
+        /* Scale table */
+        .scale-table-wrap {
+            margin-top: 10px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .scale-table-wrap.open {
+            display: block;
+        }
+
+        .scale-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .scale-table th,
+        .scale-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .scale-table th {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .scale-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .scale-table tr.scale-highlight td {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 1.5px solid var(--primary-border);
+        }
+
+        .scale-table tr:hover td {
+            background: var(--primary-light);
+        }
+
+        .btn-scale-toggle {
+            width: 100%;
+            margin-top: 8px;
+            padding: 9px;
+            border-radius: var(--radius-sm);
+            border: 1.5px dashed var(--primary-border);
+            background: transparent;
+            color: var(--primary);
+            font-family: 'Kalpurush', system-ui, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-scale-toggle:hover {
+            background: var(--primary-light);
+            border-style: solid;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--secondary);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 2000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        [data-theme="dark"] .toast {
+            background: #064E3B;
+            color: #ECFDF5;
         }
 
         /* ========== PRINT – 1 PAGE A4 ========== */
@@ -835,19 +1372,33 @@
             <a href="#" class="nav-logo" aria-label="NasimSoft">
                 <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
             </a>
-            <ul class="nav-links">
-                <li><a href="#">হোম</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" aria-haspopup="true">পে স্কেলের গেজেট</a>
-                    <div class="dropdown-content" role="menu">
-                        <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank" rel="noopener">পে-স্কেল ১৯৭৫-২০০৯</a>
-                        <a href="https://nasim.ceo.bd/payscale/ps2009.pdf" target="_blank" rel="noopener">পে-স্কেল ২০০৯</a>
-                        <a href="https://nasim.ceo.bd/payscale/ps2015.pdf" target="_blank" rel="noopener">পে-স্কেল ২০১৫</a>
-                        <a href="https://nasim.ceo.bd/payscale/ps2026.pdf" target="_blank" rel="noopener">পে-স্কেল প্রস্তাবিত ২০২৬</a>
+            <div class="nav-actions">
+                <button type="button" class="icon-btn" id="historyBtn" onclick="openHistoryModal()" title="হিসাব হিস্ট্রি" aria-label="হিস্ট্রি">📋</button>
+                <button type="button" class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="ডার্ক/লাইট মোড" aria-label="থিম পরিবর্তন">🌙</button>
+                <div class="menu-3dot" id="menu3dot">
+                    <button type="button" class="icon-btn menu-3dot-btn" id="menu3dotBtn" onclick="toggle3dotMenu(event)" title="মেনু" aria-label="মেনু" aria-expanded="false" aria-haspopup="true">
+                        <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <circle cx="8" cy="5" r="2"/>
+                            <circle cx="16" cy="5" r="2"/>
+                            <circle cx="8" cy="12" r="2"/>
+                            <circle cx="16" cy="12" r="2"/>
+                            <circle cx="8" cy="19" r="2"/>
+                            <circle cx="16" cy="19" r="2"/>
+                        </svg>
+                    </button>
+                    <div class="menu-3dot-dropdown" id="menu3dotDropdown" role="menu">
+                        <a href="#" role="menuitem" onclick="close3dotMenu()">🏠 হোম</a>
+                        <div class="menu-divider"></div>
+                        <div class="menu-label">পে স্কেলের গেজেট</div>
+                        <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ১৯৭৫-২০০৯</a>
+                        <a href="https://nasim.ceo.bd/payscale/ps2009.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ২০০৯</a>
+                        <a href="https://nasim.ceo.bd/payscale/ps2015.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ২০১৫</a>
+                        <a href="https://nasim.ceo.bd/payscale/ps2026.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল প্রস্তাবিত ২০২৬</a>
+                        <div class="menu-divider"></div>
+                        <a href="#" role="menuitem" onclick="close3dotMenu(); openContactModal(); return false;">✉️ যোগাযোগ</a>
                     </div>
-                </li>
-                <li><a href="#" onclick="openContactModal(); return false;">যোগাযোগ</a></li>
-            </ul>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -875,10 +1426,31 @@
                         <select id="basic" class="form-control" required>
                             <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
                         </select>
+                        <button type="button" class="btn-scale-toggle" id="scaleToggleBtn" onclick="toggleScaleTable()" style="display:none;">
+                            📊 এই গ্রেডের পূর্ণ স্কেল দেখুন
+                        </button>
+                        <div class="scale-table-wrap" id="scaleTableWrap">
+                            <table class="scale-table">
+                                <thead>
+                                    <tr><th>ধাপ</th><th>মূল বেতন (২০১৫)</th></tr>
+                                </thead>
+                                <tbody id="scaleTableBody"></tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="location">৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য)</label>
+                        <label for="location" class="label-with-tip">
+                            ৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য)
+                            <span class="tip-btn" tabindex="0" aria-label="রেট তথ্য">?
+                                <span class="tip-popup">
+                                    ঢাকা সিটি: ৫৫% (সর্বনিম্ন ৯,৬০০)<br>
+                                    অন্যান্য সিটি: ৪৫% (সর্বনিম্ন ৮,০০০)<br>
+                                    জেলা সদর: ৪০% (সর্বনিম্ন ৭,০০০)<br>
+                                    অন্যান্য: ৪০% (সর্বনিম্ন ৭,০০০)
+                                </span>
+                            </span>
+                        </label>
                         <select id="location" class="form-control">
                             <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
                             <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
@@ -947,17 +1519,25 @@
         </div>
         <div class="indicator-wrapper">
             <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
+            <div class="slide-dots" id="slideDots"></div>
         </div>
         
         <div id="slideContent"></div>
 
-        <div class="modal-footer">
+        <div class="modal-footer" style="flex-wrap: wrap;">
             <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">পূর্ববর্তী</button>
             <button class="btn-primary" id="nextBtn" onclick="changeSlide(1)">পরবর্তী</button>
             <button class="btn-primary" id="printStartBtn" style="display:none;" onclick="openPrintModal()">🖨️ প্রিন্ট করুন</button>
+            <div class="share-row" id="shareRow" style="display:none;">
+                <button type="button" class="share-btn whatsapp" onclick="shareWhatsApp()">📲 WhatsApp</button>
+                <button type="button" class="share-btn" onclick="copyResult()">📋 কপি</button>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
 <!-- Print Form Modal -->
 <div class="no-print modal-overlay" id="printModal" role="dialog" aria-modal="true">
@@ -984,6 +1564,23 @@
                 <button type="submit" class="btn-confirm">🖨️ চূড়ান্ত প্রিন্ট</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- History Modal -->
+<div class="no-print modal-overlay" id="historyModal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 420px;">
+        <div class="modal-header">
+            <span>হিসাব হিস্ট্রি</span>
+            <button class="close-btn" onclick="closeHistoryModal()" aria-label="বন্ধ">✖</button>
+        </div>
+        <div id="historyList" class="history-list">
+            <!-- Filled by JS -->
+        </div>
+        <div class="history-actions">
+            <button type="button" class="btn-cancel" onclick="clearHistory()">সব মুছুন</button>
+            <button type="button" class="btn-confirm" onclick="closeHistoryModal()">বন্ধ করুন</button>
+        </div>
     </div>
 </div>
 
@@ -1042,12 +1639,35 @@ window.onload = function () {
     }
     const count = parseInt(localStorage.getItem('payCalcCount') || '0', 10);
     document.getElementById('calcCount').textContent = toBengaliNum(count);
+
+    // Restore theme
+    const savedTheme = localStorage.getItem('payTheme') || 'light';
+    applyTheme(savedTheme);
+
+    // Mobile-friendly tip toggle
+    document.querySelectorAll('.tip-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            btn.classList.toggle('active');
+        });
+    });
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.tip-btn.active').forEach(b => b.classList.remove('active'));
+    });
 };
 
 function populateSteps() {
     const grade = document.getElementById('grade').value;
     const basicSelect = document.getElementById('basic');
     basicSelect.innerHTML = '<option value="" disabled selected>ধাপ নির্বাচন করুন</option>';
+
+    const toggleBtn = document.getElementById('scaleToggleBtn');
+    const wrap = document.getElementById('scaleTableWrap');
+    wrap.classList.remove('open');
+    toggleBtn.style.display = 'none';
+    toggleBtn.textContent = '📊 এই গ্রেডের পূর্ণ স্কেল দেখুন';
+
     if (grade && scale2015[grade]) {
         scale2015[grade].forEach((amount, index) => {
             const option = document.createElement('option');
@@ -1055,7 +1675,22 @@ function populateSteps() {
             option.text = `ধাপ ${toBengaliNum(index + 1)}: ${formatMoney(amount)}`;
             basicSelect.add(option);
         });
+        toggleBtn.style.display = 'block';
+        const start2026 = scale2026Start[grade] || 0;
+        const tbody = document.getElementById('scaleTableBody');
+        tbody.innerHTML =
+            `<tr class="scale-highlight"><td colspan="2"><strong>২০২৬ প্রারম্ভিক:</strong> ${formatMoney(start2026)}</td></tr>` +
+            scale2015[grade].map((amount, i) =>
+                `<tr><td>ধাপ ${toBengaliNum(i + 1)}</td><td>${formatMoney(amount)}</td></tr>`
+            ).join('');
     }
+}
+
+function toggleScaleTable() {
+    const wrap = document.getElementById('scaleTableWrap');
+    const btn = document.getElementById('scaleToggleBtn');
+    const isOpen = wrap.classList.toggle('open');
+    btn.textContent = isOpen ? '▲ স্কেল লুকান' : '📊 এই গ্রেডের পূর্ণ স্কেল দেখুন';
 }
 
 function formatMoney(n) {
@@ -1082,6 +1717,14 @@ function getHouseRent(targetBasic, location) {
 
 function calculatePay(e) {
     e.preventDefault();
+    const submitBtn = document.querySelector('.btn-submit');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.originalText = submitBtn.textContent;
+        submitBtn.textContent = 'হিসাব হচ্ছে...';
+        submitBtn.style.opacity = '0.85';
+    }
+
     const basic = parseFloat(document.getElementById('basic').value) || 0;
     const grade = parseInt(document.getElementById('grade').value, 10) || 0;
     const location = document.getElementById('location').value;
@@ -1089,8 +1732,17 @@ function calculatePay(e) {
     const gpf = parseFloat(document.getElementById('gpf').value) || 0;
     const tax = parseFloat(document.getElementById('tax').value) || 0;
 
+    const restoreBtn = () => {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtn.dataset.originalText || 'বিস্তারিত বেতন হিসাব করুন';
+            submitBtn.style.opacity = '1';
+        }
+    };
+
     if (grade < 1 || grade > 20 || basic < 5000) {
         alert('সঠিক গ্রেড (১-২০) ও মূল বেতন দিন।');
+        restoreBtn();
         return false;
     }
 
@@ -1129,7 +1781,7 @@ function calculatePay(e) {
     const currentNet = (basic + oldAllowances) - totalDeduction;
 
     appState = {
-        grade, basic, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
+        grade, basic, location, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
         oldAllowances, newAllowances, totalDeduction, gpf, tax, oldHouseRent, medical, education,
         welfare, insurance, stamp, p1Label, p2Label,
         stage1Basic, stage2Basic, stage3Basic, stage4Basic,
@@ -1140,15 +1792,40 @@ function calculatePay(e) {
     localStorage.setItem('payCalcCount', count);
     document.getElementById('calcCount').textContent = toBengaliNum(count);
 
+    // Save to history
+    saveToHistory(appState);
+
     generateSlides();
     openPreviewModal();
+    restoreBtn();
     return false;
 }
 
 function generateSlides() {
     const s = appState;
+    const increaseAmt = s.stage4Net - s.currentNet;
+    const increasePct = s.currentNet > 0 ? ((increaseAmt / s.currentNet) * 100).toFixed(1) : 0;
+
+    const compareCard = `
+        <div class="compare-card">
+            <div class="compare-title">বর্তমান vs নতুন নিট বেতন</div>
+            <div class="compare-grid">
+                <div class="compare-box">
+                    <div class="label">বর্তমান নিট</div>
+                    <div class="value">${formatMoney(s.currentNet)}</div>
+                </div>
+                <div class="compare-arrow">→</div>
+                <div class="compare-box">
+                    <div class="label">নতুন নিট (পূর্ণ)</div>
+                    <div class="value" style="color:var(--success)">${formatMoney(s.stage4Net)}</div>
+                </div>
+            </div>
+            <div class="compare-increase">+${formatMoney(increaseAmt)}  (${toBengaliNum(increasePct)}% বৃদ্ধি)</div>
+        </div>
+    `;
 
     const slide1 = `
+        ${compareCard}
         <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন</div>
         <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[s.grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2015)}</span></div>
         <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(s.basic)}</span></div>
@@ -1248,7 +1925,6 @@ function changeSlide(direction) {
 
 function updateSlideView() {
     const content = document.getElementById('slideContent');
-    // Smooth PPT-like transition
     content.style.opacity = '0';
     content.style.transform = 'translateX(18px)';
     content.style.transition = 'none';
@@ -1257,13 +1933,17 @@ function updateSlideView() {
         content.innerHTML = previewSlides[currentSlide];
         document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
         document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
-        if (currentSlide === previewSlides.length - 1) {
-            document.getElementById('nextBtn').style.display = 'none';
-            document.getElementById('printStartBtn').style.display = 'block';
-        } else {
-            document.getElementById('nextBtn').style.display = 'block';
-            document.getElementById('printStartBtn').style.display = 'none';
-        }
+
+        const isLast = currentSlide === previewSlides.length - 1;
+        document.getElementById('nextBtn').style.display = isLast ? 'none' : 'block';
+        document.getElementById('printStartBtn').style.display = isLast ? 'block' : 'none';
+        document.getElementById('shareRow').style.display = isLast ? 'flex' : 'none';
+
+        // Update dots
+        const dotsEl = document.getElementById('slideDots');
+        dotsEl.innerHTML = previewSlides.map((_, i) =>
+            `<button type="button" class="slide-dot${i === currentSlide ? ' active' : ''}" onclick="goToSlide(${i})" aria-label="ধাপ ${i + 1}"></button>`
+        ).join('');
 
         requestAnimationFrame(() => {
             content.style.transition = 'opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -1271,6 +1951,12 @@ function updateSlideView() {
             content.style.transform = 'translateX(0)';
         });
     });
+}
+
+function goToSlide(index) {
+    if (index < 0 || index >= previewSlides.length) return;
+    currentSlide = index;
+    updateSlideView();
 }
 
 function openPrintModal() {
@@ -1429,11 +2115,260 @@ function executePrint(e) {
     }
 }
 
+/* ========== Share & Toast ========== */
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function buildShareText() {
+    const s = appState;
+    if (!s || !s.grade) return '';
+    const inc = s.stage4Net - s.currentNet;
+    const incPct = s.currentNet > 0 ? ((inc / s.currentNet) * 100).toFixed(1) : 0;
+    const otherDeduct = (s.welfare || 0) + (s.insurance || 0) + (s.stamp || 0);
+
+    return `📊 *জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত) — পূর্ণাঙ্গ রিপোর্ট*
+
+📌 *মৌলিক তথ্য*
+• গ্রেড: ${bengaliOrdinals[s.grade]}
+• বর্তমান মূল বেতন: ${formatMoney(s.basic)}
+• নির্ধারিত পূর্ণাঙ্গ মূল বেতন: ${formatMoney(s.fixedBasic)}
+• মূল বেতনের বৃদ্ধি: ${formatMoney(s.totalIncrease)}
+
+💰 *বর্তমান ভাতাসমূহ*
+• বাড়িভাড়া ভাতা: ${formatMoney(s.oldHouseRent)}
+• চিকিৎসা ভাতা: ${formatMoney(s.medical)}
+• শিক্ষা ভাতা: ${formatMoney(s.education)}
+• মোট ভাতা: ${formatMoney(s.oldAllowances)}
+
+➖ *কর্তনসমূহ*
+• জিপিএফ (GPF): ${formatMoney(s.gpf)}
+• আয়কর: ${formatMoney(s.tax)}
+• অন্যান্য তহবিল: ${formatMoney(otherDeduct)}
+• মোট কর্তন: ${formatMoney(s.totalDeduction)}
+
+• বর্তমান নিট বেতন: ${formatMoney(s.currentNet)}
+
+━━━━━━━━━━━━━━━━
+📅 *১ম ধাপ* (০১ জুলাই ২০২৬ – ৩১ ডিসেম্বর ২০২৬)
+• বৃদ্ধির ${s.p1Label}
+• কার্যকর মূল বেতন: ${formatMoney(s.stage1Basic)}
+• ভাতা: ${formatMoney(s.oldAllowances)}
+• কর্তন: ${formatMoney(s.totalDeduction)}
+• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage1Net)}
+
+📅 *২য় ধাপ* (০১ জানুয়ারি ২০২৭ – ৩০ জুন ২০২৭)
+• বৃদ্ধির ${s.p2Label}
+• কার্যকর মূল বেতন: ${formatMoney(s.stage2Basic)}
+• ভাতা: ${formatMoney(s.oldAllowances)}
+• কর্তন: ${formatMoney(s.totalDeduction)}
+• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage2Net)}
+
+📅 *৩য় ধাপ* (০১ জুলাই ২০২৭ – ৩১ ডিসেম্বর ২০২৭)
+• ১০০% পূর্ণাঙ্গ স্কেল
+• কার্যকর মূল বেতন: ${formatMoney(s.stage3Basic)}
+• ভাতা: ${formatMoney(s.oldAllowances)}
+• কর্তন: ${formatMoney(s.totalDeduction)}
+• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage3Net)}
+
+📅 *৪র্থ ধাপ* (০১ জানুয়ারি ২০২৮ হতে)
+• নতুন ভাতাসহ (সাম্ভাব্য)
+• কার্যকর মূল বেতন: ${formatMoney(s.stage4Basic)}
+• নতুন ভাতা: ${formatMoney(s.newAllowances)}
+• কর্তন: ${formatMoney(s.totalDeduction)}
+• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage4Net)}
+
+━━━━━━━━━━━━━━━━
+✅ *সর্বমোট নিট বৃদ্ধি:* +${formatMoney(inc)} (${toBengaliNum(incPct)}%)
+
+— NasimSoft Pay Scale Calculator
+https://nasim.ceo.bd`;
+}
+
+function shareWhatsApp() {
+    const text = buildShareText();
+    if (!text) return;
+    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+}
+
+function copyResult() {
+    const text = buildShareText();
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast('পূর্ণাঙ্গ রিপোর্ট কপি হয়েছে ✓')).catch(() => fallbackCopy(text));
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+        document.execCommand('copy');
+        showToast('পূর্ণাঙ্গ রিপোর্ট কপি হয়েছে ✓');
+    } catch {
+        showToast('কপি করা যায়নি');
+    }
+    document.body.removeChild(ta);
+}
+
+/* ========== 3-dot Menu ========== */
+function toggle3dotMenu(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('menu3dot');
+    const btn = document.getElementById('menu3dotBtn');
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+
+function close3dotMenu() {
+    const menu = document.getElementById('menu3dot');
+    const btn = document.getElementById('menu3dotBtn');
+    if (menu) menu.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+}
+
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('menu3dot');
+    if (menu && !menu.contains(e.target)) close3dotMenu();
+});
+
+/* ========== Theme Toggle ========== */
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('payTheme', theme);
+}
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+/* ========== History ========== */
+function getHistory() {
+    try {
+        return JSON.parse(localStorage.getItem('payHistory') || '[]');
+    } catch {
+        return [];
+    }
+}
+
+function saveToHistory(state) {
+    const history = getHistory();
+    const entry = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        grade: state.grade,
+        basic: state.basic,
+        location: state.location,
+        fixedBasic: state.fixedBasic,
+        currentNet: state.currentNet,
+        stage4Net: state.stage4Net,
+        totalIncrease: state.totalIncrease
+    };
+    history.unshift(entry);
+    // Keep last 20
+    if (history.length > 20) history.length = 20;
+    localStorage.setItem('payHistory', JSON.stringify(history));
+}
+
+function openHistoryModal() {
+    renderHistoryList();
+    document.getElementById('historyModal').classList.add('active');
+}
+
+function closeHistoryModal() {
+    document.getElementById('historyModal').classList.remove('active');
+}
+
+function renderHistoryList() {
+    const list = document.getElementById('historyList');
+    const history = getHistory();
+
+    if (!history.length) {
+        list.innerHTML = '<div class="history-empty">কোনো হিসাব হিস্ট্রি নেই।<br>হিসাব করলে এখানে দেখা যাবে।</div>';
+        return;
+    }
+
+    list.innerHTML = history.map(h => {
+        const d = new Date(h.date);
+        const dateStr = toBengaliNum(d.toLocaleDateString('bn-BD', { day: 'numeric', month: 'short', year: 'numeric' }));
+        const timeStr = toBengaliNum(d.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' }));
+        return `
+            <div class="history-item" onclick="loadFromHistory(${h.id})">
+                <div class="info">
+                    <div class="grade">${bengaliOrdinals[h.grade]} গ্রেড · ${formatMoney(h.basic)}</div>
+                    <div class="meta">${dateStr} · ${timeStr}</div>
+                </div>
+                <div class="net">${formatMoney(h.stage4Net)}</div>
+                <button class="del-btn" onclick="event.stopPropagation(); deleteHistoryItem(${h.id})" title="মুছুন">🗑</button>
+            </div>
+        `;
+    }).join('');
+}
+
+function deleteHistoryItem(id) {
+    let history = getHistory().filter(h => h.id !== id);
+    localStorage.setItem('payHistory', JSON.stringify(history));
+    renderHistoryList();
+}
+
+function clearHistory() {
+    if (confirm('সব হিস্ট্রি মুছে ফেলতে চান?')) {
+        localStorage.removeItem('payHistory');
+        renderHistoryList();
+    }
+}
+
+function loadFromHistory(id) {
+    const entry = getHistory().find(h => h.id === id);
+    if (!entry) return;
+
+    // Pre-fill form
+    document.getElementById('grade').value = entry.grade;
+    populateSteps();
+    // Wait a tick for options to populate
+    setTimeout(() => {
+        const basicSelect = document.getElementById('basic');
+        // Find closest matching basic
+        let found = false;
+        for (let opt of basicSelect.options) {
+            if (parseFloat(opt.value) === entry.basic) {
+                basicSelect.value = opt.value;
+                found = true;
+                break;
+            }
+        }
+        if (!found && basicSelect.options.length > 1) {
+            basicSelect.selectedIndex = 1;
+        }
+        if (entry.location) {
+            document.getElementById('location').value = entry.location;
+        }
+        closeHistoryModal();
+        // Optionally auto-calculate
+        // document.getElementById('payForm').requestSubmit();
+    }, 50);
+}
+
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         closeContactModal();
         closePreviewModal();
         closePrintModal();
+        closeHistoryModal();
+        close3dotMenu();
     }
 });
 
