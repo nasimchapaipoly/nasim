@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত) - পূর্ণাঙ্গ হিসাব সিস্টেম by NasimSoft">
+    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত) - পূর্ণাঙ্গ হিসাব সিস্টেম by NasimSoft">
     <title>জাতীয় বেতনস্কেল ২০২৬ | National Pay Scale Calculation</title>
     
     <!-- Kalpurush Font -->
@@ -1349,6 +1349,26 @@
             }
         }
 
+        /* ========== Gazette 2026 status + advanced options ========== */
+        .gazette-status {
+            display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:5px 12px;
+            border-radius:999px; background:var(--primary-light); color:var(--primary);
+            border:1px solid var(--primary-border); font-size:.78rem; font-weight:700;
+        }
+        .advanced-box {
+            margin:14px 0 18px; padding:14px; border:1px solid var(--border); border-radius:14px;
+            background:linear-gradient(135deg,var(--primary-light),transparent);
+        }
+        .advanced-title { font-weight:800; color:var(--secondary); margin-bottom:10px; display:flex; justify-content:space-between; gap:8px; }
+        .advanced-title span { font-size:.72rem; padding:2px 8px; border-radius:999px; background:var(--surface); color:var(--text-muted); border:1px solid var(--border); }
+        .form-group.compact { margin-bottom:10px; }
+        .check-row { display:flex; align-items:flex-start; gap:9px; padding:7px 0; font-size:.86rem; color:var(--text-main); cursor:pointer; }
+        .deduction-auto-box{margin:14px 0;padding:14px 16px;border:1px solid rgba(4,120,87,.22);border-radius:14px;background:linear-gradient(135deg,rgba(4,120,87,.07),rgba(245,158,11,.06));box-shadow:0 8px 24px rgba(15,23,42,.05)}
+        .deduction-auto-title{font-weight:800;color:var(--primary);margin-bottom:10px}.deduction-auto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.deduction-auto-grid>div{padding:9px 10px;border-radius:10px;background:var(--card-bg);display:flex;justify-content:space-between;gap:8px;font-size:13px}.deduction-auto-grid .total{grid-column:1/-1;border:1px solid rgba(4,120,87,.2);font-weight:800}.deduction-auto-box small{display:block;margin-top:9px;opacity:.75}.deduction-auto-box strong{white-space:nowrap}@media(max-width:640px){.deduction-auto-grid{grid-template-columns:1fr}.deduction-auto-grid .total{grid-column:auto}}
+        .check-row input { margin-top:4px; accent-color:var(--primary); }
+        .source-note { font-size:.76rem; color:var(--text-muted); margin-top:8px; line-height:1.45; }
+        @media (max-width:520px) { .gazette-status{font-size:.7rem}.advanced-box{padding:12px}.check-row{font-size:.82rem} }
+
         /* Responsive */
         @media (max-width: 520px) {
             .nav-container { padding: 8px 12px; height: 52px; }
@@ -1361,7 +1381,13 @@
             #slideContent .stage-box { padding: 7px 8px; }
             .item-row { font-size: 0.84rem; }
         }
-    </style>
+    
+.pension-mode-box{margin-bottom:18px;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--surface-2,rgba(0,0,0,.025));}
+.pension-info{margin-top:8px;padding:10px 12px;border-radius:10px;background:rgba(34,197,94,.08);font-size:13px;line-height:1.6;color:var(--text-secondary,#555);}
+#pensionFields{display:none;}
+body.pension-mode .employee-only{display:none!important;}
+body.pension-mode #pensionFields{display:block;}
+</style>
 </head>
 <body>
 
@@ -1393,7 +1419,7 @@
                         <a href="https://nasim.ceo.bd/payscale/ps1975-2009.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ১৯৭৫-২০০৯</a>
                         <a href="https://nasim.ceo.bd/payscale/ps2009.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ২০০৯</a>
                         <a href="https://nasim.ceo.bd/payscale/ps2015.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল ২০১৫</a>
-                        <a href="https://nasim.ceo.bd/payscale/ps2026.pdf" target="_blank" rel="noopener" role="menuitem">📄 পে-স্কেল প্রস্তাবিত ২০২৬</a>
+                        <a href="https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mof/2026/8/650d48d2-18b6-41ad-aef8-19dd39b4e973.pdf" target="_blank" rel="noopener" role="menuitem">📜 সরকারি গেজেট ২০২৬</a>
                         <div class="menu-divider"></div>
                         <a href="#" role="menuitem" onclick="close3dotMenu(); openContactModal(); return false;">✉️ যোগাযোগ</a>
                     </div>
@@ -1405,15 +1431,47 @@
     <div class="main-wrapper">
         <div class="container">
             <div class="header">
-                <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
-                <p>২০২৬-২০২৮ সালের পর্যায়ক্রমিক বাস্তবায়ন পদ্ধতি অনুযায়ী পূর্ণাঙ্গ হিসাব</p>
+                <h1>জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত)</h1>
+                <p>১৭ সেপ্টেম্বর ২০২৬ প্রকাশিত গেজেট অনুযায়ী ১ জুলাই ২০২৬ হইতে পর্যায়ক্রমিক পূর্ণাঙ্গ হিসাব</p>
                 <div class="counter-badge" id="counter">
                     হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার
                 </div>
+                <div class="gazette-status">✓ গেজেট প্রকাশ: ১৭ সেপ্টেম্বর ২০২৬ · কার্যকর: ১ জুলাই ২০২৬</div>
             </div>
 
             <div class="card">
                 <form id="payForm" onsubmit="return calculatePay(event)">
+                    <div class="pension-mode-box">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label for="personType">হিসাবের ধরন</label>
+                            <select id="personType" class="form-control" onchange="togglePersonType()">
+                                <option value="employee" selected>কর্মরত সরকারি কর্মকর্তা/কর্মচারী</option>
+                                <option value="pensioner">পেনশনভোগী</option>
+                            </select>
+                        </div>
+                        <div id="pensionFields">
+                            <div class="form-group compact" style="margin-top:12px;">
+                                <label for="currentPension">৩০ জুন ২০২৬-এর বর্তমান মাসিক নিট পেনশন</label>
+                                <input type="number" id="currentPension" class="form-control" value="0" min="0" step="1" inputmode="numeric" placeholder="যেমন: ১৮,০০০">
+                            </div>
+                            <div class="form-group compact">
+                                <label for="pensionAge">পেনশনভোগীর বয়স</label>
+                                <select id="pensionAge" class="form-control">
+                                    <option value="under65" selected>৬৫ বছরের কম</option>
+                                    <option value="65plus">৬৫ বছর বা তার বেশি</option>
+                                </select>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="pensionType">পেনশনের ধরন</label>
+                                <select id="pensionType" class="form-control">
+                                    <option value="self" selected>নিজের পেনশন</option>
+                                    <option value="family">পারিবারিক পেনশন</option>
+                                </select>
+                            </div>
+                            <div class="pension-info">চিকিৎসা ভাতা, বছরে ২টি উৎসব ভাতা এবং বাংলা নববর্ষ ভাতা আলাদাভাবে হিসাব হবে। ২৬০ টাকা কর্মচারী-সংক্রান্ত কর্তন পেনশনভোগীর ক্ষেত্রে যোগ করা হবে না।</div>
+                        </div>
+                    </div>
+                    <div class="employee-only">
                     <div class="form-group">
                         <label for="grade">১. আপনার গ্রেড (১ম হতে ২০তম)</label>
                         <select id="grade" class="form-control" required onchange="populateSteps()">
@@ -1422,13 +1480,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="basic">২. বর্তমান মূল বেতন (ধাপ নির্বাচন করুন)</label>
+                        <label for="basic">২. বর্তমান মূল বেতন (২০১৫ স্কেলের ধাপ)</label>
                         <select id="basic" class="form-control" required>
                             <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
                         </select>
                         <button type="button" class="btn-scale-toggle" id="scaleToggleBtn" onclick="toggleScaleTable()" style="display:none;">
                             📊 এই গ্রেডের পূর্ণ স্কেল দেখুন
                         </button>
+                        <div class="form-group compact" style="margin-top:12px;">
+                            <label for="basicDate">বর্তমান মূল বেতন কোন তারিখের?</label>
+                            <select id="basicDate" class="form-control">
+                                <option value="july2026" selected>জুলাই ২০২৬-এর বেতন — ১ জুলাইয়ের বার্ষিক ইনক্রিমেন্টসহ</option>
+                                <option value="june2026">৩০ জুন ২০২৬-এর বেতন — ১ জুলাইয়ের ইনক্রিমেন্টের আগে</option>
+                            </select>
+                            <div class="tip-popup" style="position:static;margin-top:6px;max-width:none;">Pay Fixation-এ ১ জুলাই ২০২৬-এর ইনক্রিমেন্ট একবারই গণনা হবে। জুলাই ২০২৬-এর ইনক্রিমেন্টসহ বেতন দিলে দ্বিতীয়বার ইনক্রিমেন্ট যোগ করা হবে না।</div>
+                        </div>
                         <div class="scale-table-wrap" id="scaleTableWrap">
                             <table class="scale-table">
                                 <thead>
@@ -1444,37 +1510,137 @@
                             ৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য)
                             <span class="tip-btn" tabindex="0" aria-label="রেট তথ্য">?
                                 <span class="tip-popup">
-                                    ঢাকা সিটি: ৫৫% (সর্বনিম্ন ৯,৬০০)<br>
-                                    অন্যান্য সিটি: ৪৫% (সর্বনিম্ন ৮,০০০)<br>
-                                    জেলা সদর: ৪০% (সর্বনিম্ন ৭,০০০)<br>
-                                    অন্যান্য: ৪০% (সর্বনিম্ন ৭,০০০)
+                                    ২০২৬ গেজেটের নতুন বাড়িভাড়া হার ১ জানুয়ারি ২০২৮ হইতে কার্যকর হবে। ৩০ জুন ২০২৬-এর প্রচলিত হার ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল।
                                 </span>
                             </span>
                         </label>
                         <select id="location" class="form-control">
-                            <option value="DHAKA_City">ঢাকা সিটি কর্পোরেশন এলাকা</option>
-                            <option value="OTHER_CITY">চট্টগ্রাম ও অন্যান্য সিটি কর্পোরেশন এলাকা</option>
-                            <option value="DISTRICT">জেলা সদর পৌর এলাকা</option>
-                            <option value="OTHER">অন্যান্য / উপজেলা / সাধারণ এলাকা</option>
+                            <option value="DHAKA">ঢাকা উত্তর/দক্ষিণ সিটি কর্পোরেশন</option>
+                            <option value="CITY">চট্টগ্রাম, খুলনা, রাজশাহী, সিলেট, বরিশাল, রংপুর, নারায়ণগঞ্জ, কুমিল্লা ও গাজীপুর সিটি/উল্লিখিত এলাকা</option>
+                            <option value="OTHER">অন্যান্য স্থান</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="edu">৪. সন্তানের সংখ্যা (শিক্ষা ভাতার জন্য, সর্বোচ্চ ২ জন)</label>
-                        <input type="number" id="edu" class="form-control" value="0" min="0" max="2" inputmode="numeric">
+                    <div class="advanced-box">
+                        <div class="advanced-title">⚙️ প্রযোজ্য ভাতা ও বিশেষ অবস্থা <span>ঐচ্ছিক</span></div>
+                        <div class="form-group compact">
+                            <label for="age">বয়স (চিকিৎসা ভাতার জন্য)</label>
+                            <select id="age" class="form-control">
+                                <option value="30" selected>৫০ বছরের কম — ৩,০০০ টাকা</option>
+                                <option value="51">৫০ বছরের বেশি — ৪,০০০ টাকা</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="govtHouse">সরকারি বাসস্থানে বসবাস করেন?</label>
+                            <select id="govtHouse" class="form-control">
+                                <option value="no" selected>না — বাড়িভাড়া প্রযোজ্য</option>
+                                <option value="yes">হ্যাঁ — বাড়িভাড়া প্রযোজ্য নয়</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="cityCommute">সিটি কর্পোরেশন এলাকায় কর্মস্থল?</label>
+                            <select id="cityCommute" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — গ্রেড ১১–২০ হলে ৬০০ টাকা</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="tiffin">টিফিন ভাতা প্রযোজ্য?</label>
+                            <select id="tiffin" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — গ্রেড ১১–২০ হলে ৫০০ টাকা</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="mobileAllowance">মোবাইল ভাতা প্রযোজ্য?</label>
+                            <select id="mobileAllowance" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — প্রযোজ্য গ্রেড অনুযায়ী</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="actingAllowance">চলতি/অতিরিক্ত দায়িত্ব?</label>
+                            <select id="actingAllowance" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — কার্যভার ভাতা ১,৫০০ টাকা</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="trainingAllowance">প্রশিক্ষণ প্রতিষ্ঠানে প্রেষণ?</label>
+                            <select id="trainingAllowance" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — মূল বেতনের ১০%</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="hillAllowance">পার্বত্য ভাতা প্রযোজ্য?</label>
+                            <select id="hillAllowance" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — মূল বেতনের ২০%</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="haorAllowance">হাওড়/দ্বীপ/চর ভাতা প্রযোজ্য?</label>
+                            <select id="haorAllowance" class="form-control">
+                                <option value="no" selected>না</option>
+                                <option value="yes">হ্যাঁ — মূল বেতনের ২০%</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="disabledChildren">বিশেষ চাহিদাসম্পন্ন সন্তান</label>
+                            <select id="disabledChildren" class="form-control">
+                                <option value="0" selected>কেউ নেই — ০ টাকা</option>
+                                <option value="1">১ জন — ৩,০০০ টাকা</option>
+                                <option value="2">২ জন — ৬,০০০ টাকা</option>
+                            </select>
+                        </div>
+                        <div class="form-group compact">
+                            <label for="specialAllowance">অন্যান্য প্রযোজ্য বিশেষ/ঝুঁকি/অন্যান্য ভাতা (মাসিক)</label>
+                            <input type="number" id="specialAllowance" class="form-control" value="0" min="0" inputmode="numeric">
+                        </div>
+                        <div class="form-group compact">
+                            <label for="currentSpecialBenefit">৩০ জুন ২০২৬-এর বিশেষ সুবিধা (বর্তমান হিসাবের জন্য, ঐচ্ছিক)</label>
+                            <input type="number" id="currentSpecialBenefit" class="form-control" value="0" min="0" inputmode="numeric">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="gpf">৫. মাসিক জিপিএফ (GPF) কর্তন (টাকা)</label>
+                        <label for="edu">৪. সন্তানের সংখ্যা (শিক্ষা সহায়ক ভাতার জন্য)</label>
+                        <select id="edu" class="form-control">
+                            <option value="0" selected>কোনো সন্তান নয় — ০ টাকা</option>
+                            <option value="1">১ জন — ৫০০ টাকা</option>
+                            <option value="2">২ জন — ১,০০০ টাকা</option>
+                        </select>
+                    </div>
+
+                    <div class="deduction-auto-box">
+                        <div class="deduction-auto-title">🔒 স্বয়ংক্রিয় নির্ধারিত কর্তন</div>
+                        <div class="deduction-auto-grid">
+                            <div><span>স্ট্যাম্প ডিউটি</span><strong>১০ ৳</strong></div>
+                            <div><span>কর্মচারী কল্যাণ তহবিল</span><strong>১৫০ ৳</strong></div>
+                            <div><span>কর্মচারী গ্রুপ বীমা</span><strong>১০০ ৳</strong></div>
+                            <div class="total"><span>মোট বাধ্যতামূলক কর্তন</span><strong>২৬০ ৳</strong></div>
+                        </div>
+                        <small>এই ২৬০ টাকা সবার জন্য স্বয়ংক্রিয়ভাবে মোট কর্তনের সঙ্গে যোগ হবে।</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gpf">৫. মাসিক জিপিএফ (GPF) কর্তন (ঐচ্ছিক)</label>
                         <input type="number" id="gpf" class="form-control" placeholder="যেমন: ৫০০০" value="0" min="0" inputmode="numeric">
                     </div>
 
                     <div class="form-group">
-                        <label for="tax">৬. মাসিক আয়কর কর্তন (টাকা)</label>
+                        <label for="tax">৬. মাসিক আয়কর কর্তন (ঐচ্ছিক — আয়কর আইন অনুযায়ী)</label>
                         <input type="number" id="tax" class="form-control" placeholder="যেমন: ১০০০" value="0" min="0" inputmode="numeric">
                     </div>
 
-                    <button type="submit" class="btn-submit">বিস্তারিত বেতন হিসাব করুন</button>
+                    <div class="form-group">
+                        <label for="otherDeduction">৭. অন্যান্য মাসিক কর্তন (ঐচ্ছিক)</label>
+                        <input type="number" id="otherDeduction" class="form-control" placeholder="যেমন: ৫০০" value="0" min="0" inputmode="numeric">
+                    </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">বিস্তারিত হিসাব করুন</button>
                 </form>
             </div>
 
@@ -1589,794 +1755,364 @@
 
 <script>
 const scale2015 = {
-    1: [78000], 2: [66000, 68480, 71050, 73720, 76490], 3: [56500, 58760, 61120, 63570, 66120, 68770, 71530, 74400],
-    4: [50000, 52000, 54080, 56250, 58500, 60840, 63280, 65820, 68460, 71200], 5: [43000, 44940, 46970, 49090, 51300, 53610, 56030, 58560, 61200, 63960, 66840, 69850],
-    6: [35500, 37280, 39150, 41110, 43170, 45330, 47600, 49980, 52480, 55110, 57870, 60770, 63810, 67010],
-    7: [29000, 30450, 31980, 33580, 35260, 37030, 38890, 40840, 42890, 45040, 47300, 49670, 52160, 54770, 57510, 60390, 63410],
-    8: [23000, 24150, 25360, 26630, 27970, 29370, 30840, 32390, 34010, 35720, 37510, 39390, 41360, 43430, 45610, 47900, 50300, 52820, 55470],
-    9: [22000, 23100, 24260, 25480, 26760, 28100, 29510, 30990, 32540, 34170, 35880, 37680, 39570, 41550, 43630, 45820, 48120, 50530, 53060],
-    10: [16000, 16800, 17640, 18530, 19460, 20440, 21470, 22550, 23680, 24870, 26120, 27430, 28810, 30260, 31780, 33370, 35040, 36800, 38640],
-    11: [12500, 13130, 13790, 14480, 15210, 15980, 16780, 17620, 18510, 19440, 20420, 21450, 22530, 23660, 24850, 26100, 27410, 28790, 30230],
-    12: [11300, 11870, 12470, 13100, 13760, 14450, 15180, 15940, 16740, 17580, 18460, 19390, 20360, 21380, 22450, 23580, 24760, 26000, 27300],
-    13: [11000, 11550, 12130, 12740, 13380, 14050, 14760, 15500, 16280, 17100, 17960, 18860, 19810, 20810, 21860, 22960, 24110, 25320, 26590],
-    14: [10200, 10710, 11250, 11820, 12420, 13050, 13710, 14400, 15120, 15880, 16680, 17520, 18400, 19320, 20290, 21310, 22380, 23500, 24680],
-    15: [9700, 10190, 10700, 11240, 11810, 12410, 13040, 13700, 14390, 15110, 15870, 16670, 17510, 18390, 19310, 20280, 21300, 22370, 23490],
-    16: [9300, 9770, 10260, 10780, 11320, 11890, 12490, 13120, 13780, 14470, 15200, 15960, 16760, 17600, 18480, 19410, 20390, 21410, 22490],
-    17: [9000, 9450, 9930, 10430, 10960, 11510, 12090, 12700, 13340, 14010, 14720, 15460, 16240, 17060, 17920, 18820, 19770, 20760, 21800],
-    18: [8800, 9240, 9710, 10200, 10710, 11250, 11820, 12420, 13050, 13710, 14400, 15120, 15880, 16680, 17520, 18400, 19320, 20290, 21310],
-    19: [8500, 8930, 9380, 9850, 10350, 10870, 11420, 12000, 12600, 13230, 13900, 14600, 15330, 16100, 16910, 17760, 18650, 19590, 20570],
-    20: [8250, 8670, 9110, 9570, 10050, 10560, 11090, 11650, 12240, 12860, 13510, 14190, 14900, 15650, 16440, 17270, 18140, 19050, 20010]
+    1: [78000], 2: [66000,68480,71050,73720,76490], 3: [56500,58760,61120,63570,66120,68770,71530,74400,78800], 4: [50000,52000,54080,56250,58500,60840,63280,65820,68460,71200],
+    5: [43000,44940,46970,49090,51300,53610,56030,58560,61200,63960,66840,69850],
+    6: [35500,37280,39150,41110,43170,45330,47600,49980,52480,55110,57870,60770,63810,67010],
+    7: [29000,30450,31980,33580,35260,37030,38890,40840,42890,45040,47300,49670,52160,54770,57510,60390,63410],
+    8: [23000,24150,25360,26630,27970,29370,30840,32390,34010,35720,37510,39390,41360,43430,45610,47900,50300,52820,55470],
+    9: [22000,23100,24260,25480,26760,28100,29510,30990,32540,34170,35880,37680,39570,41550,43630,45820,48120,50530,53060],
+    10: [16000,16800,17640,18530,19460,20440,21470,22550,23680,24870,26120,27430,28810,30260,31780,33370,35040,36800,38640],
+    11: [12500,13130,13790,14480,15210,15980,16780,17620,18510,19440,20420,21450,22530,23660,24850,26100,27410,28790,30230],
+    12: [11300,11870,12470,13100,13760,14450,15180,15940,16740,17580,18460,19390,20360,21380,22450,23580,24760,26000,27300],
+    13: [11000,11550,12130,12740,13380,14050,14760,15500,16280,17100,17960,18860,19810,20810,21860,22960,24110,25320,26590],
+    14: [10200,10710,11250,11820,12420,13050,13710,14400,15120,15880,16680,17520,18400,19320,20290,21310,22380,23500,24680],
+    15: [9700,10190,10700,11240,11810,12410,13040,13700,14390,15110,15870,16670,17510,18390,19310,20280,21300,22370,23490],
+    16: [9300,9770,10260,10780,11320,11890,12490,13120,13780,14470,15200,15960,16760,17600,18480,19410,20390,21410,22490],
+    17: [9000,9450,9930,10430,10960,11510,12090,12700,13340,14010,14720,15460,16240,17060,17920,18820,19770,20760,21800],
+    18: [8800,9240,9710,10200,10710,11250,11820,12420,13050,13710,14400,15120,15880,16680,17520,18400,19320,20290,21310],
+    19: [8500,8930,9380,9850,10350,10870,11420,12000,12600,13230,13900,14600,15330,16100,16910,17760,18650,19590,20570],
+    20: [8250,8670,9110,9570,10050,10560,11090,11650,12240,12860,13510,14190,14900,15650,16440,17270,18140,19050,20010]
 };
 
-const scale2026Start = {
-    1: 156000, 2: 132000, 3: 113000, 4: 100000, 5: 86000, 6: 71000, 7: 58000, 8: 46000, 9: 44000, 10: 32000,
-    11: 25000, 12: 24300, 13: 24000, 14: 23500, 15: 22800, 16: 21900, 17: 21400, 18: 21000, 19: 20500, 20: 20000
-};
-
-const approxStep = {
-    1: 2000, 2: 1500, 3: 1400, 4: 1200, 5: 1100, 6: 1000, 7: 900, 8: 700, 9: 490, 10: 600,
-    11: 500, 12: 400, 13: 400, 14: 350, 15: 300, 16: 300, 17: 280, 18: 250, 19: 250, 20: 250
+const scale2026 = {
+    1:[156000],
+    2:[132000,135700,139400,143200,147200,151200,153000],
+    3:[113000,117000,121100,125300,129700,134300,139000,143800,148800],
+    4:[100000,103500,107200,110900,114800,118800,123000,127300,131700,136300,142400],
+    5:[86000,89500,93100,96800,100700,104700,108900,113200,117700,122500,127400,132400,139700],
+    6:[71000,74600,78300,82200,86400,90700,95200,100000,104900,110200,115700,121500,127600,134000],
+    7:[58000,60900,64000,67200,70500,74100,77800,81700,85700,90000,94500,99200,104200,109400,114900,120600,126800],
+    8:[46000,48300,50800,53300,56000,58800,61700,64800,68000,71400,75000,78700,82700,86800,91100,95700,100500,105500,110800],
+    9:[44000,46200,48600,51000,53500,56200,59000,62000,65100,68300,71700,75300,79100,83000,87200,91500,96100,100900,105900],
+    10:[32000,33600,35300,37100,38900,40900,42900,45100,47300,49700,52200,54800,57500,60400,63400,66600,69900,73400,77300],
+    11:[25000,26300,27600,29000,30400,32000,33600,35200,37000,38800,40800,42800,44900,47200,49500,52000,54600,57300,60500],
+    12:[24300,25600,26800,28200,29600,31100,32600,34200,36000,37700,39600,41600,43700,45900,48200,50600,53100,55700,58700],
+    13:[24000,25200,26500,27800,29200,30700,32200,33800,35500,37300,39100,41100,43200,45300,47600,49900,52400,55100,58000],
+    14:[23500,24700,26000,27300,28600,30000,31500,33100,34800,36500,38300,40200,42300,44400,46600,48900,51300,53900,56800],
+    15:[22800,24000,25200,26400,27800,29100,30600,32100,33700,35400,37200,39000,41000,43000,45200,47400,49800,52300,55200],
+    16:[21900,23000,24200,25400,26700,28000,29400,30900,32400,34000,35700,37500,39400,41300,43400,45600,47900,50200,52900],
+    17:[21400,22500,23600,24800,26100,27400,28700,30200,31700,33200,34900,36700,38500,40400,42400,44500,46800,49100,51900],
+    18:[21000,22100,23200,24400,25600,26900,28200,29600,31100,32600,34300,36000,37800,39600,41600,43700,45900,48200,50900],
+    19:[20500,21600,22700,23800,25000,26200,27500,28900,30300,31900,33400,35100,36900,38700,40600,42700,44800,47000,49600],
+    20:[20000,21000,22100,23200,24400,25600,26900,28200,29600,31100,32600,34300,36000,37800,39600,41600,43700,45900,48400]
 };
 
 const bengaliOrdinals = ["", "১ম", "২য়", "৩য়", "৪র্থ", "৫ম", "৬ষ্ঠ", "৭ম", "৮ম", "৯ম", "১০ম", "১১তম", "১২তম", "১৩তম", "১৪তম", "১৫তম", "১৬তম", "১৭তম", "১৮তম", "১৯তম", "২০তম"];
-
 let appState = {};
 let previewSlides = [];
 let currentSlide = 0;
 
 function toBengaliNum(num) {
-    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    return String(num).replace(/[0-9]/g, m => bengaliDigits[m]);
+    const d=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    return String(num).replace(/[0-9]/g,m=>d[m]);
+}
+function formatMoney(n){
+    const v=Number(n)||0;
+    const fractional=Math.abs(v-Math.round(v))>1e-9;
+    return toBengaliNum(v.toLocaleString('en-IN',{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}))+' ৳';
+}
+function nextHigherStep(scale, amount){
+    return scale.find(v=>v>=amount-1e-9) ?? scale[scale.length-1];
+}
+function nextIncrement(scale, basic){
+    const i=scale.findIndex(v=>v===basic);
+    if(i<0 || i===scale.length-1) return basic;
+    return scale[i+1];
+}
+function scaleRangeText(scale){ return scale.map(formatMoney).join(' – '); }
+
+// ২০১৫ সালের সরকারি বাড়িভাড়া বিধান: ৩০ জুন ২০২৬-এর হার ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল থাকবে।
+function getOldHouseRent(basic, location){
+    const b=Number(basic)||0;
+    let rate,min;
+    if(b<=9700){ rate=location==='DHAKA'?0.65:location==='CITY'?0.55:0.50; min=location==='DHAKA'?5600:location==='CITY'?5000:4500; }
+    else if(b<=16000){ rate=location==='DHAKA'?0.60:location==='CITY'?0.50:0.45; min=location==='DHAKA'?6400:location==='CITY'?5400:4800; }
+    else if(b<=35500){ rate=location==='DHAKA'?0.55:location==='CITY'?0.45:0.40; min=location==='DHAKA'?9600:location==='CITY'?8000:7000; }
+    else { rate=location==='DHAKA'?0.50:location==='CITY'?0.40:0.35; min=location==='DHAKA'?19500:location==='CITY'?16000:13000; }
+    return Math.max(b*rate,min);
 }
 
-window.onload = function () {
-    const gradeSelect = document.getElementById('grade');
-    for (let i = 1; i <= 20; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.text = `${bengaliOrdinals[i]} গ্রেড`;
-        gradeSelect.add(option);
-    }
-    const count = parseInt(localStorage.getItem('payCalcCount') || '0', 10);
-    document.getElementById('calcCount').textContent = toBengaliNum(count);
-
-    // Restore theme
-    const savedTheme = localStorage.getItem('payTheme') || 'light';
-    applyTheme(savedTheme);
-
-    // Mobile-friendly tip toggle
-    document.querySelectorAll('.tip-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            btn.classList.toggle('active');
-        });
-    });
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.tip-btn.active').forEach(b => b.classList.remove('active'));
-    });
-};
-
-function populateSteps() {
-    const grade = document.getElementById('grade').value;
-    const basicSelect = document.getElementById('basic');
-    basicSelect.innerHTML = '<option value="" disabled selected>ধাপ নির্বাচন করুন</option>';
-
-    const toggleBtn = document.getElementById('scaleToggleBtn');
-    const wrap = document.getElementById('scaleTableWrap');
-    wrap.classList.remove('open');
-    toggleBtn.style.display = 'none';
-    toggleBtn.textContent = '📊 এই গ্রেডের পূর্ণ স্কেল দেখুন';
-
-    if (grade && scale2015[grade]) {
-        scale2015[grade].forEach((amount, index) => {
-            const option = document.createElement('option');
-            option.value = amount;
-            option.text = `ধাপ ${toBengaliNum(index + 1)}: ${formatMoney(amount)}`;
-            basicSelect.add(option);
-        });
-        toggleBtn.style.display = 'block';
-        const start2026 = scale2026Start[grade] || 0;
-        const tbody = document.getElementById('scaleTableBody');
-        tbody.innerHTML =
-            `<tr class="scale-highlight"><td colspan="2"><strong>২০২৬ প্রারম্ভিক:</strong> ${formatMoney(start2026)}</td></tr>` +
-            scale2015[grade].map((amount, i) =>
-                `<tr><td>ধাপ ${toBengaliNum(i + 1)}</td><td>${formatMoney(amount)}</td></tr>`
-            ).join('');
-    }
+// গেজেটের ১২-২৯ অনুচ্ছেদের নতুন ভাতা ১ জানুয়ারি ২০২৮ হতে কার্যকর।
+function getNewHouseRent(basic,grade,location){
+    if(document.getElementById('govtHouse')?.checked) return 0;
+    const b=Number(basic)||0;
+    let rate;
+    if(grade>=16) rate=location==='DHAKA'?0.60:location==='CITY'?0.50:0.45;
+    else if(grade>=10) rate=location==='DHAKA'?0.50:location==='CITY'?0.40:0.35;
+    else if(grade>=5) rate=location==='DHAKA'?0.45:location==='CITY'?0.35:0.30;
+    else rate=location==='DHAKA'?0.40:location==='CITY'?0.30:0.25;
+    return b*rate;
 }
 
-function toggleScaleTable() {
-    const wrap = document.getElementById('scaleTableWrap');
-    const btn = document.getElementById('scaleToggleBtn');
-    const isOpen = wrap.classList.toggle('open');
-    btn.textContent = isOpen ? '▲ স্কেল লুকান' : '📊 এই গ্রেডের পূর্ণ স্কেল দেখুন';
+function calculateNewAllowances(s, basic){
+    const grade=s.grade, age=s.age;
+    const house=getNewHouseRent(basic,grade,s.location);
+    const medical=age>50?4000:3000;
+    const education=Math.min(2,s.eduCount)*500;
+    const tiffin=s.tiffin && grade>=11 && grade<=20 ? 500:0;
+    const commute=s.cityCommute && grade>=11 && grade<=20 ? 600:0;
+    const mobile=s.mobileAllowance ? (grade<=5?500:150):0;
+    const acting=s.actingAllowance?1500:0;
+    const training=s.trainingAllowance && grade>=9 ? basic*0.10:0;
+    const hill=s.hillAllowance ? Math.min(basic*0.20, s.hillOtherUpazila?5500:5000):0;
+    const haor=s.haorAllowance?Math.min(basic*0.20,5000):0;
+    const disabled=Math.min(2,s.disabledChildren)*3000;
+    const special=s.specialAllowance;
+    return {house,medical,education,tiffin,commute,mobile,acting,training,hill,haor,disabled,special,total:house+medical+education+tiffin+commute+mobile+acting+training+hill+haor+disabled+special};
 }
 
-function formatMoney(n) {
-    const engFormat = Number(n).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    return toBengaliNum(engFormat) + ' ৳';
-}
-
-function nextHigherStep(base, grade) {
-    const start = scale2026Start[grade];
-    if (Math.abs(base - start) < 1) return start;
-    const step = approxStep[grade] || 500;
-    let current = start;
-    while (current < base - 0.5) current += step;
-    return Math.round(current);
-}
-
-function getHouseRent(targetBasic, location) {
-    let rate = 0.40, min = 7000;
-    if (location === 'DHAKA_City') { rate = 0.55; min = 9600; }
-    else if (location === 'OTHER_CITY') { rate = 0.45; min = 8000; }
-    else if (location === 'DISTRICT') { rate = 0.40; min = 7000; }
-    return Math.max(targetBasic * rate, min);
-}
-
-function calculatePay(e) {
-    e.preventDefault();
-    const submitBtn = document.querySelector('.btn-submit');
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.textContent = 'হিসাব হচ্ছে...';
-        submitBtn.style.opacity = '0.85';
-    }
-
-    const basic = parseFloat(document.getElementById('basic').value) || 0;
-    const grade = parseInt(document.getElementById('grade').value, 10) || 0;
-    const location = document.getElementById('location').value;
-    const eduCount = Math.min(2, Math.max(0, parseInt(document.getElementById('edu').value, 10) || 0));
-    const gpf = parseFloat(document.getElementById('gpf').value) || 0;
-    const tax = parseFloat(document.getElementById('tax').value) || 0;
-
-    const restoreBtn = () => {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = submitBtn.dataset.originalText || 'বিস্তারিত বেতন হিসাব করুন';
-            submitBtn.style.opacity = '1';
-        }
+function currentAllowances(s){
+    return {
+        house: s.govtHouse?0:getOldHouseRent(s.basic,s.location),
+        medical:1500,
+        education:Math.min(2,s.eduCount)*500,
+        specialBenefit:s.currentSpecialBenefit,
+        other:s.specialAllowance,
+        total:(s.govtHouse?0:getOldHouseRent(s.basic,s.location))+1500+Math.min(2,s.eduCount)*500+s.currentSpecialBenefit+s.specialAllowance
     };
+}
 
-    if (grade < 1 || grade > 20 || basic < 5000) {
-        alert('সঠিক গ্রেড (১-২০) ও মূল বেতন দিন।');
-        restoreBtn();
+function populateSteps(){
+    const grade=Number(document.getElementById('grade').value);
+    const basicSelect=document.getElementById('basic');
+    basicSelect.innerHTML='<option value="" disabled selected>ধাপ নির্বাচন করুন</option>';
+    const toggle=document.getElementById('scaleToggleBtn'), wrap=document.getElementById('scaleTableWrap');
+    wrap.classList.remove('open'); toggle.style.display='none';
+    if(!grade || !scale2015[grade]) return;
+    scale2015[grade].forEach((amount,i)=>{const o=document.createElement('option');o.value=amount;o.text=`ধাপ ${toBengaliNum(i+1)}: ${formatMoney(amount)}`;basicSelect.add(o);});
+    toggle.style.display='block';
+    document.getElementById('scaleTableBody').innerHTML=`<tr class="scale-highlight"><td colspan="2"><strong>২০২৬ স্কেলের পূর্ণ ধাপ</strong></td></tr>`+scale2026[grade].map((v,i)=>`<tr><td>ধাপ ${toBengaliNum(i+1)}</td><td>${formatMoney(v)}</td></tr>`).join('');
+}
+function toggleScaleTable(){
+    const w=document.getElementById('scaleTableWrap'),b=document.getElementById('scaleToggleBtn');
+    const open=w.classList.toggle('open'); b.textContent=open?'▲ স্কেল লুকান':'📊 ২০১৫ ও ২০২৬ স্কেলের ধাপ দেখুন';
+}
+
+function togglePersonType(){
+    const type=document.getElementById('personType')?.value||'employee';
+    const pensioner=type==='pensioner';
+    document.body.classList.toggle('pension-mode',pensioner);
+
+    // Pension mode-এ employee-এর hidden required field যেন browser validation আটকে না দেয়।
+    document.querySelectorAll('.employee-only [required]').forEach(el=>{
+        el.dataset.wasRequired=el.required?'1':'0';
+        el.required=!pensioner;
+    });
+    const pensionInput=document.getElementById('currentPension');
+    if(pensionInput) pensionInput.required=pensioner;
+
+    const btn=document.querySelector('.btn-submit');
+    if(btn) btn.textContent=pensioner?'পেনশন হিসাব করুন':'বিস্তারিত বেতন হিসাব করুন';
+}
+
+togglePersonType();
+
+function calculatePension(current, ageGroup='under65', pensionType='self'){
+    // ৩০ জুন ২০২৬-এর নিট পেনশনকে ভিত্তি ধরা হয়েছে।
+    // চিকিৎসা ভাতা: ৬৫ বছর পূর্ণ হলে ২,৫০০ টাকা, অন্যথায় ১,৫০০ টাকা।
+    // উৎসব ভাতা: বছরে ২টি; বাংলা নববর্ষ ভাতা: মাসিক নিট পেনশনের ২০% হারে বছরে ১টি।
+    // এগুলো মাসিক পেনশনের সঙ্গে গুলিয়ে না ফেলে আলাদা বার্ষিক/মাসিক উপাদান হিসেবে দেখানো হয়।
+    const p=Math.max(0,Number(current)||0);
+    let finalRate=0.55, band='৪০,০০১ টাকা বা বেশি', phase1Rate=0.40, phase2Rate=0.70;
+    if(p<=9000){
+        finalRate=1.00; band='৯,০০০ টাকা বা কম'; phase1Rate=0.50; phase2Rate=0.75;
+    } else if(p<=20000){
+        finalRate=0.75; band='৯,০০১–২০,০০০ টাকা'; phase1Rate=0.50; phase2Rate=0.75;
+    } else if(p<=30000){
+        finalRate=0.65; band='২০,০০১–৩০,০০০ টাকা'; phase1Rate=0.40; phase2Rate=0.70;
+    } else if(p<=40000){
+        finalRate=0.60; band='৩০,০০১–৪০,০০০ টাকা'; phase1Rate=0.40; phase2Rate=0.70;
+    }
+    const totalIncrease=p*finalRate;
+    const phase1Increase=totalIncrease*phase1Rate;
+    const phase2Increase=totalIncrease*phase2Rate;
+    const phase1Pension=p+phase1Increase;
+    const phase2Pension=p+phase2Increase;
+    const newPension=p+totalIncrease;
+    const medicalAllowance=ageGroup==='65plus'?2500:1500;
+    const phase1Medical=medicalAllowance, phase2Medical=medicalAllowance, newMedical=medicalAllowance;
+    const festival1=phase1Pension, festival2=phase2Pension, festival3=newPension;
+    const pohelaBoishakh1=phase1Pension*0.20, pohelaBoishakh2=phase2Pension*0.20, pohelaBoishakh3=newPension*0.20;
+    const monthlyWithMedical1=phase1Pension+phase1Medical;
+    const monthlyWithMedical2=phase2Pension+phase2Medical;
+    const monthlyWithMedical3=newPension+newMedical;
+    const annualAllowance1=phase1Medical*12+festival1*2+pohelaBoishakh1;
+    const annualAllowance2=phase2Medical*12+festival2*2+pohelaBoishakh2;
+    const annualAllowance3=newMedical*12+festival3*2+pohelaBoishakh3;
+    return {
+        current:p, finalRate, rate:finalRate, band, totalIncrease, increase:totalIncrease,
+        phase1Rate, phase2Rate, phase1Increase, phase2Increase,
+        phase1Pension, phase2Pension, newPension,
+        ageGroup, pensionType, medicalAllowance, phase1Medical, phase2Medical, newMedical,
+        festival1, festival2, festival3,
+        pohelaBoishakh1, pohelaBoishakh2, pohelaBoishakh3,
+        monthlyWithMedical1, monthlyWithMedical2, monthlyWithMedical3,
+        annualAllowance1, annualAllowance2, annualAllowance3,
+        annualTotal1:phase1Pension*12+annualAllowance1,
+        annualTotal2:phase2Pension*12+annualAllowance2,
+        annualTotal3:newPension*12+annualAllowance3
+    };
+}
+
+function calculatePay(e){
+    e.preventDefault();
+    const btn=document.querySelector('.btn-submit'); if(btn){btn.disabled=true;btn.dataset.originalText=btn.textContent;btn.textContent='নির্ভুল হিসাব হচ্ছে...';}
+    try{
+        const personType=document.getElementById('personType')?.value||'employee';
+        if(personType==='pensioner'){
+            const pension=calculatePension(
+                document.getElementById('currentPension').value,
+                document.getElementById('pensionAge')?.value||'under65',
+                document.getElementById('pensionType')?.value||'self'
+            );
+            if(!pension.current){alert('বর্তমান মাসিক নিট পেনশন লিখুন।');return false;}
+            appState={mode:'pensioner',personType:'pensioner',...pension,totalDeduction:0,mandatoryDeduction:0};
+            let count=Number(localStorage.getItem('payCalcCount')||0)+1;localStorage.setItem('payCalcCount',count);document.getElementById('calcCount').textContent=toBengaliNum(count);
+            generatePensionSlides(); openPreviewModal(); return false;
+        }
+        const grade=Number(document.getElementById('grade').value), basic=Number(document.getElementById('basic').value);
+        if(!grade||!scale2015[grade]||!basic){alert('গ্রেড ও বর্তমান মূল বেতন নির্বাচন করুন।');return false;}
+        const location=document.getElementById('location').value;
+        const eduCount=Math.min(2,Math.max(0,Number(document.getElementById('edu').value)||0));
+        const gpf=Math.max(0,Number(document.getElementById('gpf').value)||0);
+        const tax=Math.max(0,Number(document.getElementById('tax').value)||0);
+        const otherDeduction=Math.max(0,Number(document.getElementById('otherDeduction').value)||0);
+        const age=Math.max(0,Number(document.getElementById('age').value)||0);
+        const govtHouse=document.getElementById('govtHouse').value==='yes';
+        const cityCommute=document.getElementById('cityCommute').value==='yes';
+        const tiffin=document.getElementById('tiffin').value==='yes';
+        const mobileAllowance=document.getElementById('mobileAllowance').value==='yes';
+        const actingAllowance=document.getElementById('actingAllowance').value==='yes';
+        const trainingAllowance=document.getElementById('trainingAllowance').value==='yes';
+        const hillAllowance=document.getElementById('hillAllowance').value==='yes';
+        const haorAllowance=document.getElementById('haorAllowance').value==='yes';
+        const disabledChildren=Math.min(2,Math.max(0,Number(document.getElementById('disabledChildren').value)||0));
+        const specialAllowance=Math.max(0,Number(document.getElementById('specialAllowance').value)||0);
+        const currentSpecialBenefit=Math.max(0,Number(document.getElementById('currentSpecialBenefit').value)||0);
+
+        const basicDate=document.getElementById('basicDate').value;
+        const start2015=scale2015[grade][0], start2026=scale2026[grade][0];
+        // গেজেটের Pay Fixation-এর ভিত্তি ৩০ জুন ২০২৬-এর মূল বেতন।
+        // ব্যবহারকারী যদি জুলাই ২০২৬-এর ইনক্রিমেন্টসহ বেতন দেন, সেটি থেকে ২০১৫ স্কেলের এক ধাপ পিছিয়ে ৩০ জুনের ভিত্তি বের করা হয়।
+        const enteredBasic=basic;
+        let fixationBasic=basic;
+        let incrementAlreadyIncluded=false;
+        if(basicDate==='july2026'){
+            const idx=scale2015[grade].findIndex(v=>v===basic);
+            if(idx>0){
+                fixationBasic=scale2015[grade][idx-1];
+                incrementAlreadyIncluded=true;
+            }
+        }
+        const earned=fixationBasic-start2015;
+        const baseAmount=start2026+earned;
+        const fixedBasic=nextHigherStep(scale2026[grade],baseAmount);
+        const annualBasic2026=nextIncrement(scale2026[grade],fixedBasic);
+        // জুলাই ২০২৬-এর ইনক্রিমেন্টসহ বেতন ইনপুট হলে আবার increment যোগ করা যাবে না।
+        const targetBasic=annualBasic2026;
+        const currentBaseForPhasing=enteredBasic;
+        const totalIncrease=targetBasic-currentBaseForPhasing;
+        const pct1=grade<=9?0.40:0.50;
+        const pct2=grade<=9?0.70:0.75;
+        const stage1Basic=currentBaseForPhasing+totalIncrease*pct1;
+        const stage2Basic=currentBaseForPhasing+totalIncrease*pct2;
+        const stage3Basic=targetBasic;
+        const stage4Basic=targetBasic;
+
+        const cur={grade,basic:enteredBasic,enteredBasic,fixationBasic,basicDate,incrementAlreadyIncluded,location,eduCount,age,govtHouse,cityCommute,tiffin,mobileAllowance,actingAllowance,trainingAllowance,hillAllowance,haorAllowance,disabledChildren,specialAllowance,currentSpecialBenefit};
+        const old=currentAllowances(cur);
+        const newA=calculateNewAllowances(cur,targetBasic);
+        // Pay bill অনুযায়ী বাধ্যতামূলক ২৬০ টাকা: ১০ + ১৫০ + ১০০
+        const mandatoryDeduction=260;
+        const totalDeduction=mandatoryDeduction+gpf+tax+otherDeduction;
+        const currentNet=basic+old.total-totalDeduction;
+        const stage1Net=stage1Basic+old.total-totalDeduction;
+        const stage2Net=stage2Basic+old.total-totalDeduction;
+        const stage3Net=stage3Basic+old.total-totalDeduction;
+        const stage4Net=stage4Basic+newA.total-totalDeduction;
+
+        appState={...cur,gpf,tax,otherDeduction,mandatoryDeduction,start2015,start2026,earned,baseAmount,fixedBasic,annualBasic2026,targetBasic,totalIncrease,p1Label:grade<=9?'৪০%':'৫০%',p2Label:grade<=9?'৭০%':'৭৫%',oldHouseRent:old.house,oldAllowances:old.total,currentSpecialBenefit,newAllowances:newA.total,newA,old,medical:old.medical,education:old.education,totalDeduction,currentNet,stage1Basic,stage2Basic,stage3Basic,stage4Basic,stage1Net,stage2Net,stage3Net,stage4Net};
+        let count=Number(localStorage.getItem('payCalcCount')||0)+1;localStorage.setItem('payCalcCount',count);document.getElementById('calcCount').textContent=toBengaliNum(count);
+        saveToHistory(appState); generateSlides(); openPreviewModal();
         return false;
+    } finally { if(btn){btn.disabled=false;btn.textContent=btn.dataset.originalText||'বিস্তারিত বেতন হিসাব করুন';} }
+}
+
+function generatePensionSlides(){
+    const s=appState;
+    const finalPct=(s.finalRate*100).toFixed(0);
+    const p1Pct=(s.phase1Rate*100).toFixed(0);
+    const p2Pct=(s.phase2Rate*100).toFixed(0);
+    const ageLabel=s.ageGroup==='65plus'?'৬৫ বছর বা তার বেশি':'৬৫ বছরের কম';
+    const typeLabel=s.pensionType==='family'?'পারিবারিক পেনশন':'নিজের পেনশন';
+    const compare=`<div class="compare-card"><div class="compare-title">পেনশন ও প্রযোজ্য ভাতার সারসংক্ষেপ</div><div class="compare-grid"><div class="compare-box"><div class="label">৩০ জুন ২০২৬-এর নিট পেনশন</div><div class="value">${formatMoney(s.current)}</div></div><div class="compare-arrow">→</div><div class="compare-box"><div class="label">১ জুলাই ২০২৭-এর নিট পেনশন</div><div class="value" style="color:var(--success)">${formatMoney(s.newPension)}</div></div></div><div class="compare-increase">+${formatMoney(s.totalIncrease)} (${toBengaliNum(finalPct)}%)</div></div>`;
+    const slide1=`${compare}<div class="sec-title">১. পেনশনভোগীর ভিত্তি হিসাব</div><div class="stage-box"><div class="item-row"><span>পেনশনের ধরন</span><span>${typeLabel}</span></div><div class="item-row"><span>বয়সের স্তর</span><span>${ageLabel}</span></div><div class="item-row"><span>৩০ জুন ২০২৬-এর মাসিক নিট পেনশন</span><span>${formatMoney(s.current)}</span></div><div class="item-row"><span>প্রযোজ্য পেনশন স্তর</span><span>${s.band}</span></div><div class="item-row"><span>চূড়ান্ত বৃদ্ধির হার</span><span>${toBengaliNum(finalPct)}%</span></div><div class="item-row highlight"><span>চূড়ান্ত মোট বৃদ্ধি</span><span>+${formatMoney(s.totalIncrease)}</span></div><div class="item-row highlight"><span>১ জুলাই ২০২৭ থেকে মাসিক নিট পেনশন</span><span>${formatMoney(s.newPension)}</span></div></div>`;
+    const slide2=`<div class="sec-title">২. পর্যায়ক্রমিক পেনশন বৃদ্ধি</div><div class="stage-box"><div class="stage-header"><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৬</strong><span class="badge">মোট বৃদ্ধির ${toBengaliNum(p1Pct)}%</span></div><div class="item-row"><span>বৃদ্ধি</span><span>+${formatMoney(s.phase1Increase)}</span></div><div class="item-row highlight"><span>মাসিক নিট পেনশন</span><span>${formatMoney(s.phase1Pension)}</span></div></div><div class="stage-box"><div class="stage-header"><strong>১ জানুয়ারি–৩০ জুন ২০২৭</strong><span class="badge">মোট বৃদ্ধির ${toBengaliNum(p2Pct)}%</span></div><div class="item-row"><span>বৃদ্ধি</span><span>+${formatMoney(s.phase2Increase)}</span></div><div class="item-row highlight"><span>মাসিক নিট পেনশন</span><span>${formatMoney(s.phase2Pension)}</span></div></div><div class="stage-box"><div class="stage-header"><strong>১ জুলাই ২০২৭ থেকে</strong><span class="badge">১০০%</span></div><div class="item-row highlight"><span>মাসিক নিট পেনশন</span><span>${formatMoney(s.newPension)}</span></div></div>`;
+    const slide3=`<div class="sec-title">৩. পেনশনভোগীর চিকিৎসা ও অন্যান্য ভাতা</div><div class="stage-box"><div class="stage-header"><strong>মাসিক চিকিৎসা ভাতা</strong><span class="badge">বয়স: ${ageLabel}</span></div><div class="item-row highlight"><span>চিকিৎসা ভাতা</span><span>+${formatMoney(s.medicalAllowance)} / মাস</span></div><div class="desc-box">সরকারি পেনশন FAQ অনুযায়ী ৬৫ বছর পূর্ণ হলে চিকিৎসা ভাতা ২,৫০০ টাকা; অন্যান্য ক্ষেত্রে ১,৫০০ টাকা।</div></div><div class="stage-box"><div class="stage-header"><strong>বছরে ২টি উৎসব ভাতা</strong><span class="badge">বার্ষিক</span></div><div class="item-row"><span>প্রতি উৎসব ভাতা (পূর্ণ পর্যায়ে)</span><span>${formatMoney(s.festival3)}</span></div><div class="item-row highlight"><span>বছরে ২টি উৎসব ভাতা</span><span>${formatMoney(s.festival3*2)}</span></div></div><div class="stage-box"><div class="stage-header"><strong>বাংলা নববর্ষ ভাতা</strong><span class="badge">২০%</span></div><div class="item-row highlight"><span>পূর্ণ পর্যায়ে বার্ষিক নববর্ষ ভাতা</span><span>${formatMoney(s.pohelaBoishakh3)}</span></div><div class="desc-box">জাতীয় বেতনস্কেল ২০১৫-এ মাসিক নিট পেনশনভোগীদের বাংলা নববর্ষ ভাতা ২০% হারে প্রাপ্যতার কথা বলা আছে।</div></div>`;
+    const slide4=`<div class="sec-title">৪. মাসিক ও বার্ষিক মোট প্রাপ্যতা</div><div class="stage-box"><div class="item-row"><span>১ জুলাই–৩১ ডিসেম্বর ২০২৬: পেনশন + চিকিৎসা</span><span>${formatMoney(s.monthlyWithMedical1)} / মাস</span></div><div class="item-row"><span>১ জানুয়ারি–৩০ জুন ২০২৭: পেনশন + চিকিৎসা</span><span>${formatMoney(s.monthlyWithMedical2)} / মাস</span></div><div class="item-row highlight"><span>১ জুলাই ২০২৭ থেকে: পেনশন + চিকিৎসা</span><span>${formatMoney(s.monthlyWithMedical3)} / মাস</span></div><div class="item-row sub"><span>পূর্ণ পর্যায়ে বছরে ২টি উৎসব ভাতা</span><span>${formatMoney(s.festival3*2)}</span></div><div class="item-row sub"><span>পূর্ণ পর্যায়ে বাংলা নববর্ষ ভাতা</span><span>${formatMoney(s.pohelaBoishakh3)}</span></div><div class="item-row highlight"><span>পূর্ণ পর্যায়ে আনুমানিক বার্ষিক মোট (পেনশন + চিকিৎসা + ২ উৎসব + নববর্ষ)</span><span>${formatMoney(s.annualTotal3)}</span></div></div><div class="desc-box">উৎসব ও বাংলা নববর্ষ ভাতা বার্ষিক; এগুলোকে মাসিক পেনশনের সঙ্গে যোগ করে ১২ দিয়ে গুণ করা হয়নি। ২৬০ টাকা কর্মচারী কর্তন পেনশনভোগীর ক্ষেত্রে প্রযোজ্য নয়।</div>`;
+    previewSlides=[slide1,slide2,slide3,slide4];
+}
+function generateSlides(){
+    const s=appState, inc=s.stage4Net-s.currentNet, incPct=s.currentNet?((inc/s.currentNet)*100).toFixed(1):0;
+    const compare=`<div class="compare-card"><div class="compare-title">বর্তমান বনাম গেজেটভিত্তিক নতুন নিট বেতন</div><div class="compare-grid"><div class="compare-box"><div class="label">বর্তমান নিট</div><div class="value">${formatMoney(s.currentNet)}</div></div><div class="compare-arrow">→</div><div class="compare-box"><div class="label">১ জানুয়ারি ২০২৮-এর নতুন ভাতাসহ</div><div class="value" style="color:var(--success)">${formatMoney(s.stage4Net)}</div></div></div><div class="compare-increase">${inc>=0?'+':''}${formatMoney(inc)} (${toBengaliNum(incPct)}%)</div></div>`;
+    const slide1=`${compare}<div class="sec-title">১. গেজেটভিত্তিক Pay Fixation</div><div class="item-row sub"><span>২০১৫ স্কেলের প্রারম্ভিক ধাপ</span><span>${formatMoney(s.start2015)}</span></div><div class="item-row sub"><span>৩০ জুন ২০২৬-এর Pay Fixation ভিত্তি</span><span>${formatMoney(s.fixationBasic)}</span></div><div class="item-row sub"><span>পার্থক্য</span><span>${formatMoney(s.earned)}</span></div><div class="item-row sub"><span>২০২৬ স্কেলের প্রারম্ভিক ধাপ</span><span>${formatMoney(s.start2026)}</span></div><div class="item-row"><span>প্রাথমিক Pay Fixation</span><span>${formatMoney(s.fixedBasic)}</span></div><div class="item-row highlight"><span>১ জুলাই ২০২৬-এর নির্ধারিত মূল বেতন (increment একবারই)</span><span>${formatMoney(s.targetBasic)}</span></div><div class="desc-box">গুরুত্বপূর্ণ: Pay Fixation-এর ভিত্তি ৩০ জুন ২০২৬-এর মূল বেতন। আপনি যদি জুলাই ২০২৬-এর ইনক্রিমেন্টসহ মূল বেতন দেন, সিস্টেম সেটি থেকে ২০১৫ স্কেলের এক ধাপ পিছিয়ে ৩০ জুনের ভিত্তি বের করে; ফলে ১ জুলাইয়ের ইনক্রিমেন্ট দ্বিতীয়বার যোগ হয় না।</div>`;
+    const slide2=`<div class="sec-title">২. ২০২৬–২০২৭ পর্যায়ক্রমিক বেতন</div><div class="stage-box"><div class="stage-header"><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৬</strong><span class="badge">বৃদ্ধির ${s.p1Label}</span></div><div class="item-row"><span>কার্যকর মূল বেতন</span><span>${formatMoney(s.stage1Basic)}</span></div><div class="item-row"><span>নিট</span><span>${formatMoney(s.stage1Net)}</span></div></div><div class="stage-box"><div class="stage-header"><strong>১ জানুয়ারি–৩০ জুন ২০২৭</strong><span class="badge">বৃদ্ধির ${s.p2Label}</span></div><div class="item-row"><span>কার্যকর মূল বেতন</span><span>${formatMoney(s.stage2Basic)}</span></div><div class="item-row"><span>নিট</span><span>${formatMoney(s.stage2Net)}</span></div></div><div class="desc-box">৯ম ও তদূর্ধ্ব গ্রেডে (গ্রেড ১–৯) ৪০% → ৭০%; ১০ম–২০তম গ্রেডে ৫০% → ৭৫%। ১ জুলাই ২০২৭ থেকে ১০০% প্রাপ্য।</div>`;
+    const slide3=`<div class="sec-title">৩. ১ জুলাই ২০২৭ থেকে পূর্ণ বেতন</div><div class="stage-box"><div class="stage-header"><strong>পূর্ণাঙ্গ জাতীয় বেতনস্কেল</strong><span class="badge">১০০%</span></div><div class="item-row highlight"><span>মূল বেতন</span><span>${formatMoney(s.stage3Basic)}</span></div><div class="item-row"><span>পুরনো হারে বহাল ভাতা</span><span>${formatMoney(s.old.total)}</span></div><div class="item-row deduct"><span>বাধ্যতামূলক কর্তন</span><span>${formatMoney(s.mandatoryDeduction)}</span></div><div class="item-row deduct"><span>GPF + আয়কর + অন্যান্য</span><span>${formatMoney(s.totalDeduction-s.mandatoryDeduction)}</span></div><div class="item-row deduct"><span>মোট কর্তন</span><span>${formatMoney(s.totalDeduction)}</span></div><div class="item-row"><span>নিট</span><span>${formatMoney(s.stage3Net)}</span></div></div><div class="desc-box">গেজেট অনুযায়ী ৩০ জুন ২০২৬-এর বিদ্যমান ভাতাদি ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল থাকবে।</div>`;
+    const a=s.newA; const allowanceRows=[['বাড়িভাড়া',a.house],['চিকিৎসা',a.medical],['শিক্ষা সহায়ক',a.education],['টিফিন',a.tiffin],['যাতায়াত',a.commute],['মোবাইল',a.mobile],['কার্যভার',a.acting],['প্রশিক্ষণ প্রেষণ',a.training],['পাহাড়ি',a.hill],['হাওড়/দ্বীপ/চর',a.haor],['প্রতিবন্ধী সন্তান',a.disabled],['অন্যান্য বিশেষ/ঝুঁকি',a.special]].filter(x=>x[1]>0);
+    const rows=allowanceRows.map(x=>`<div class="item-row sub"><span>(+) ${x[0]}</span><span>${formatMoney(x[1])}</span></div>`).join('');
+    const slide4=`<div class="sec-title">৪. ১ জানুয়ারি ২০২৮ থেকে নতুন ভাতা</div><div class="stage-box"><div class="stage-header"><strong>গেজেটের নতুন হার</strong><span class="badge">কার্যকর ২০২৮</span></div>${rows}<div class="item-row highlight"><span>মোট নতুন ভাতা</span><span>${formatMoney(a.total)}</span></div><div class="item-row deduct"><span>বাধ্যতামূলক কর্তন (স্ট্যাম্প + কল্যাণ + গ্রুপ বীমা)</span><span>${formatMoney(s.mandatoryDeduction)}</span></div><div class="item-row deduct"><span>মোট কর্তন</span><span>${formatMoney(s.totalDeduction)}</span></div><div class="item-row"><span>আনুমানিক মাসিক নিট</span><span>${formatMoney(s.stage4Net)}</span></div></div><div class="desc-box">উৎসব ভাতা ও বাংলা নববর্ষ ভাতা বার্ষিক/বিশেষ ভাতা; মাসিক মোটে এগুলো যোগ করা হয়নি। অন্যান্য প্রযোজ্য ভাতা আপনার নির্বাচিত অবস্থার ভিত্তিতে হিসাব হয়েছে।</div>`;
+    previewSlides=[slide1,slide2,slide3,slide4];
+}
+
+function openContactModal(){document.getElementById('contactModal').classList.add('active')}
+function closeContactModal(){document.getElementById('contactModal').classList.remove('active')}
+function openPreviewModal(){currentSlide=0;updateSlideView();document.getElementById('previewModal').classList.add('active')}
+function closePreviewModal(){document.getElementById('previewModal').classList.remove('active')}
+function changeSlide(d){currentSlide=Math.max(0,Math.min(previewSlides.length-1,currentSlide+d));updateSlideView()}
+function goToSlide(i){if(i>=0&&i<previewSlides.length){currentSlide=i;updateSlideView()}}
+function updateSlideView(){const c=document.getElementById('slideContent');c.style.opacity='0';requestAnimationFrame(()=>{c.innerHTML=previewSlides[currentSlide];document.getElementById('slideCounter').textContent=`ধাপ: ${toBengaliNum(currentSlide+1)}/${toBengaliNum(previewSlides.length)}`;document.getElementById('prevBtn').style.display=currentSlide===0?'none':'block';const last=currentSlide===previewSlides.length-1;document.getElementById('nextBtn').style.display=last?'none':'block';document.getElementById('printStartBtn').style.display=last?'block':'none';document.getElementById('shareRow').style.display=last?'flex':'none';document.getElementById('slideDots').innerHTML=previewSlides.map((_,i)=>`<button type="button" class="slide-dot${i===currentSlide?' active':''}" onclick="goToSlide(${i})"></button>`).join('');c.style.transition='opacity .25s ease';c.style.opacity='1'})}
+function openPrintModal(){closePreviewModal();document.getElementById('printModal').classList.add('active')}
+function closePrintModal(){document.getElementById('printModal').classList.remove('active')}
+
+function executePrint(e){
+    e.preventDefault(); closePrintModal(); const s=appState;
+    if(s.mode==='pensioner'){
+        const name=document.getElementById('p_name').value.trim()||'পেনশনভোগী';
+        const dateStr=toBengaliNum(new Intl.DateTimeFormat('bn-BD',{year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'numeric',hour12:true}).format(new Date()));
+        document.getElementById('print-area').innerHTML=`<div class="print-header"><div class="print-title"><h1>জাতীয় বেতনস্কেল ২০২৬ — পেনশন হিসাব</h1><p>পেনশন, চিকিৎসা ও অন্যান্য প্রাপ্যতার হিসাব</p></div></div><table class="info-table"><tr><td><strong>নাম:</strong></td><td>${name}</td><td><strong>হিসাবের ধরন:</strong></td><td>পেনশনভোগী</td></tr><tr><td><strong>৩০ জুন ২০২৬-এর নিট পেনশন:</strong></td><td>${formatMoney(s.current)}</td><td><strong>বয়সের স্তর:</strong></td><td>${s.ageGroup==='65plus'?'৬৫ বছর বা তার বেশি':'৬৫ বছরের কম'}</td></tr></table><h3 class="print-section">পেনশন ও ভাতা</h3><table class="data-table"><tr><th>বিবরণ</th><th>পরিমাণ</th></tr><tr><td>৩০ জুন ২০২৬-এর মাসিক নিট পেনশন</td><td>${formatMoney(s.current)}</td></tr><tr><td>১ জুলাই–৩১ ডিসেম্বর ২০২৬-এর মাসিক নিট পেনশন</td><td>${formatMoney(s.phase1Pension)}</td></tr><tr><td>১ জানুয়ারি–৩০ জুন ২০২৭-এর মাসিক নিট পেনশন</td><td>${formatMoney(s.phase2Pension)}</td></tr><tr><td>১ জুলাই ২০২৭ থেকে মাসিক নিট পেনশন</td><td><strong>${formatMoney(s.newPension)}</strong></td></tr><tr><td>মাসিক চিকিৎসা ভাতা</td><td>${formatMoney(s.medicalAllowance)}</td></tr><tr><td>পূর্ণ পর্যায়ে মাসিক পেনশন + চিকিৎসা</td><td><strong>${formatMoney(s.monthlyWithMedical3)}</strong></td></tr><tr><td>বছরে ২টি উৎসব ভাতা</td><td>${formatMoney(s.festival3*2)}</td></tr><tr><td>বাংলা নববর্ষ ভাতা (২০%)</td><td>${formatMoney(s.pohelaBoishakh3)}</td></tr><tr><td>পূর্ণ পর্যায়ে আনুমানিক বার্ষিক মোট</td><td><strong>${formatMoney(s.annualTotal3)}</strong></td></tr><tr><td>কর্মচারী ২৬০ টাকা কর্তন</td><td>প্রযোজ্য নয়</td></tr></table><div class="print-footer"><p><strong>নোট:</strong> চিকিৎসা ভাতা ৬৫ বছর পূর্ণ হলে ২,৫০০ টাকা এবং অন্যান্য ক্ষেত্রে ১,৫০০ টাকা। পেনশনভোগীদের বছরে ২টি উৎসব ভাতা এবং বাংলা নববর্ষ ভাতা প্রযোজ্য; বাংলা নববর্ষ ভাতা মাসিক নিট পেনশনের ২০% হারে গণনা করা হয়েছে।</p><p style="margin-top:3px;font-weight:bold;">NasimSoft Pay Scale Calculator</p></div>`;
+        const title=document.title;document.title=`${name}, পেনশন হিসাব ২০২৬`;window.onafterprint=()=>document.title=title;setTimeout(()=>window.print(),250);return;
     }
-
-    const start2015 = scale2015[grade][0];
-    const start2026 = scale2026Start[grade];
-    const earned = Math.max(0, basic - start2015);
-    const baseAmount = start2026 + earned;
-    const fixedBasic = nextHigherStep(baseAmount, grade);
-    const totalIncrease = fixedBasic - basic;
-
-    const welfare = 150, insurance = 100, stamp = 10;
-    const totalDeduction = gpf + tax + welfare + insurance + stamp;
-
-    const isPriority = grade >= 10;
-    const stage1Pct = isPriority ? 0.50 : 0.40;
-    const stage2Pct = isPriority ? 0.75 : 0.70;
-    const p1Label = isPriority ? '৫০%' : '৪০%';
-    const p2Label = isPriority ? '৭৫%' : '৭০%';
-
-    const medical = 1500;
-    const education = eduCount * 500;
-    const oldHouseRent = getHouseRent(basic, location);
-    const newHouseRent = getHouseRent(fixedBasic, location);
-    const oldAllowances = oldHouseRent + medical + education;
-    const newAllowances = newHouseRent + medical + education;
-
-    const stage1Basic = basic + (totalIncrease * stage1Pct);
-    const stage2Basic = basic + (totalIncrease * stage2Pct);
-    const stage3Basic = fixedBasic;
-    const stage4Basic = fixedBasic;
-
-    const stage1Net = (stage1Basic + oldAllowances) - totalDeduction;
-    const stage2Net = (stage2Basic + oldAllowances) - totalDeduction;
-    const stage3Net = (stage3Basic + oldAllowances) - totalDeduction;
-    const stage4Net = (stage4Basic + newAllowances) - totalDeduction;
-    const currentNet = (basic + oldAllowances) - totalDeduction;
-
-    appState = {
-        grade, basic, location, start2015, earned, start2026, baseAmount, fixedBasic, totalIncrease,
-        oldAllowances, newAllowances, totalDeduction, gpf, tax, oldHouseRent, medical, education,
-        welfare, insurance, stamp, p1Label, p2Label,
-        stage1Basic, stage2Basic, stage3Basic, stage4Basic,
-        stage1Net, stage2Net, stage3Net, stage4Net, currentNet
-    };
-
-    let count = parseInt(localStorage.getItem('payCalcCount') || '0', 10) + 1;
-    localStorage.setItem('payCalcCount', count);
-    document.getElementById('calcCount').textContent = toBengaliNum(count);
-
-    // Save to history
-    saveToHistory(appState);
-
-    generateSlides();
-    openPreviewModal();
-    restoreBtn();
-    return false;
+    const name=document.getElementById('p_name').value.trim(),desig=document.getElementById('p_desig').value.trim(),workplace=document.getElementById('p_workplace').value.trim();
+    const dateStr=toBengaliNum(new Intl.DateTimeFormat('bn-BD',{year:'numeric',month:'long',day:'numeric',hour:'numeric',minute:'numeric',hour12:true}).format(new Date()));
+    const rows=(s.newA?Object.entries({"বাড়িভাড়া":s.newA.house,"চিকিৎসা":s.newA.medical,"শিক্ষা সহায়ক":s.newA.education,"টিফিন":s.newA.tiffin,"যাতায়াত":s.newA.commute,"মোবাইল":s.newA.mobile,"কার্যভার":s.newA.acting,"প্রশিক্ষণ প্রেষণ":s.newA.training,"পাহাড়ি":s.newA.hill,"হাওড়/দ্বীপ/চর":s.newA.haor,"প্রতিবন্ধী সন্তান":s.newA.disabled,"অন্যান্য":s.newA.special}).filter(x=>x[1]>0).map(x=>`<tr><td>${x[0]}</td><td>${formatMoney(x[1])}</td></tr>`).join(''):'');
+    document.getElementById('print-area').innerHTML=`<div class="print-watermark"><img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png"></div><div class="print-header"><div class="print-logo-left"><img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png"></div><div class="print-title"><h1>জাতীয় বেতনস্কেল ২০২৬ (গেজেটভিত্তিক)</h1><p>বেতন নির্ধারণ ও পর্যায়ক্রমিক হিসাব প্রতিবেদন</p></div><div class="print-logo-right"><img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png"></div></div><table class="info-table"><tr><td><strong>নাম:</strong></td><td>${name}</td><td><strong>গ্রেড:</strong></td><td>${bengaliOrdinals[s.grade]}</td></tr><tr><td><strong>পদবি:</strong></td><td>${desig}</td><td><strong>বর্তমান মূল:</strong></td><td>${formatMoney(s.basic)}</td></tr><tr><td><strong>কর্মস্থল:</strong></td><td>${workplace}</td><td><strong>তারিখ:</strong></td><td>${dateStr}</td></tr></table><h3 class="print-section">১. Pay Fixation</h3><table class="data-table"><tr><th>বিবরণ</th><th>পরিমাণ</th></tr><tr><td>বর্তমান স্কেলের প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2015)}</td></tr><tr><td>ইনপুট বর্তমান মূল বেতন</td><td>${formatMoney(s.enteredBasic)}</td></tr><tr><td>৩০ জুন ২০২৬-এর Pay Fixation ভিত্তি</td><td>${formatMoney(s.fixationBasic)}</td></tr><tr><td>নতুন স্কেলের প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2026)}</td></tr><tr><td>প্রাথমিক নির্ধারিত বেতন</td><td>${formatMoney(s.fixedBasic)}</td></tr><tr><td>১ জুলাই ২০২৬-এর নির্ধারিত মূল বেতন (increment একবারই)</td><td><strong>${formatMoney(s.targetBasic)}</strong></td></tr><tr><td>বেতন বৃদ্ধির মোট অঙ্ক</td><td>${formatMoney(s.totalIncrease)}</td></tr><tr><td>বাধ্যতামূলক কর্তন (১০+১৫০+১০০)</td><td>${formatMoney(s.mandatoryDeduction)}</td></tr><tr><td>অতিরিক্ত কর্তন (GPF+আয়কর+অন্যান্য)</td><td>${formatMoney(s.totalDeduction-s.mandatoryDeduction)}</td></tr><tr><td>মোট কর্তন</td><td>${formatMoney(s.totalDeduction)}</td></tr></table><h3 class="print-section">২. পর্যায়ক্রমিক বেতন</h3><table class="data-table"><tr><th>সময়কাল</th><th>মূল বেতন</th><th>নিট</th></tr><tr><td>১ জুলাই–৩১ ডিসেম্বর ২০২৬ (${s.p1Label})</td><td>${formatMoney(s.stage1Basic)}</td><td>${formatMoney(s.stage1Net)}</td></tr><tr><td>১ জানুয়ারি–৩০ জুন ২০২৭ (${s.p2Label})</td><td>${formatMoney(s.stage2Basic)}</td><td>${formatMoney(s.stage2Net)}</td></tr><tr><td>১ জুলাই–৩১ ডিসেম্বর ২০২৭ (১০০%)</td><td>${formatMoney(s.stage3Basic)}</td><td>${formatMoney(s.stage3Net)}</td></tr><tr><td>১ জানুয়ারি ২০২৮ হতে</td><td>${formatMoney(s.stage4Basic)}</td><td>${formatMoney(s.stage4Net)}</td></tr></table><h3 class="print-section">৩. ১ জানুয়ারি ২০২৮-এর নতুন ভাতা</h3><table class="data-table"><tr><th>ভাতা</th><th>মাসিক</th></tr>${rows}<tr><td><strong>মোট নতুন ভাতা</strong></td><td><strong>${formatMoney(s.newAllowances)}</strong></td></tr></table><div class="print-footer"><p><strong>গুরুত্বপূর্ণ:</strong> এই হিসাব ১৭ সেপ্টেম্বর ২০২৬ প্রকাশিত গেজেটের অনুচ্ছেদসমূহ অনুযায়ী তৈরি। ৩০ জুন ২০২৬-এর বিদ্যমান ভাতা ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল রাখার বিধান এবং ১ জানুয়ারি ২০২৮ থেকে নতুন ভাতা কার্যকরের বিধান আলাদাভাবে ধরা হয়েছে। বাধ্যতামূলক ২৬০ টাকা কর্তন (স্ট্যাম্প ১০ + কল্যাণ ১৫০ + গ্রুপ বীমা ১০০) স্বয়ংক্রিয়ভাবে যোগ করা হয়েছে; GPF/আয়কর/অন্যান্য অতিরিক্ত কর্তন ব্যবহারকারীর দেওয়া তথ্য অনুযায়ী।</p><p style="margin-top:3px;font-weight:bold;">NasimSoft Pay Scale Calculator</p></div>`;
+    const title=document.title;document.title=`${name}, জাতীয় বেতনস্কেল ২০২৬`;window.onafterprint=()=>document.title=title;setTimeout(()=>window.print(),250);
 }
 
-function generateSlides() {
-    const s = appState;
-    const increaseAmt = s.stage4Net - s.currentNet;
-    const increasePct = s.currentNet > 0 ? ((increaseAmt / s.currentNet) * 100).toFixed(1) : 0;
-
-    const compareCard = `
-        <div class="compare-card">
-            <div class="compare-title">বর্তমান vs নতুন নিট বেতন</div>
-            <div class="compare-grid">
-                <div class="compare-box">
-                    <div class="label">বর্তমান নিট</div>
-                    <div class="value">${formatMoney(s.currentNet)}</div>
-                </div>
-                <div class="compare-arrow">→</div>
-                <div class="compare-box">
-                    <div class="label">নতুন নিট (পূর্ণ)</div>
-                    <div class="value" style="color:var(--success)">${formatMoney(s.stage4Net)}</div>
-                </div>
-            </div>
-            <div class="compare-increase">+${formatMoney(increaseAmt)}  (${toBengaliNum(increasePct)}% বৃদ্ধি)</div>
-        </div>
-    `;
-
-    const slide1 = `
-        ${compareCard}
-        <div class="sec-title">১. পে-ফিক্সেশন ও বর্ধিত বেতন</div>
-        <div class="item-row sub"><span>২০১৫ স্কেলে ${bengaliOrdinals[s.grade]} গ্রেডের প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2015)}</span></div>
-        <div class="item-row sub"><span>বর্তমান মূল বেতন:</span><span>${formatMoney(s.basic)}</span></div>
-        <div class="item-row sub"><span>অর্জিত বৃদ্ধি:</span><span>${formatMoney(s.earned)}</span></div>
-        <div class="item-row sub"><span>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ:</span><span>${formatMoney(s.start2026)}</span></div>
-        <div class="item-row"><span>২০২৬ স্কেলের ভিত্তি অঙ্ক:</span><span>${formatMoney(s.baseAmount)}</span></div>
-        <div class="desc-box">
-            <strong>নির্ধারিত পূর্ণাঙ্গ মূল বেতন:</strong> ${formatMoney(s.fixedBasic)}<br>
-            <strong>মূল বেতনের মোট পার্থক্য:</strong> ${formatMoney(s.totalIncrease)}
-        </div>
-    `;
-
-    const slide2 = `
-        <div class="sec-title">২. বর্তমান ভাতা ও কর্তনসমূহ</div>
-        <div class="item-row sub"><span>(+) বাড়িভাড়া ভাতা:</span><span>${formatMoney(s.oldHouseRent)}</span></div>
-        <div class="item-row sub"><span>(+) চিকিৎসা ভাতা:</span><span>${formatMoney(s.medical)}</span></div>
-        <div class="item-row sub"><span>(+) শিক্ষা ভাতা:</span><span>${formatMoney(s.education)}</span></div>
-        <div class="item-row highlight"><span>মোট বহাল থাকা ভাতা:</span><span>${formatMoney(s.oldAllowances)}</span></div>
-        <div class="item-row sub" style="margin-top:4px;"><span>(-) মাসিক জিপিএফ (GPF):</span><span>${formatMoney(s.gpf)}</span></div>
-        <div class="item-row sub"><span>(-) মাসিক আয়কর:</span><span>${formatMoney(s.tax)}</span></div>
-        <div class="item-row sub"><span>(-) অন্যান্য তহবিল:</span><span>${formatMoney(s.welfare + s.insurance + s.stamp)}</span></div>
-        <div class="item-row deduct"><span>মোট কর্তন:</span><span>${formatMoney(s.totalDeduction)}</span></div>
-    `;
-
-    const slide3 = `
-        <div class="sec-title">৩. প্রস্তাবিত ধাপে বেতন বৃদ্ধি (২০২৬-২০২৭)</div>
-        <p>* ছক অনুযায়ী অগ্রাধিকার বিবেচনায় ধাপে ধাপে মূল বেতন বৃদ্ধি পাবে।</p>
-        <div class="stage-box">
-            <div class="stage-header">
-                <strong style="color:var(--primary);">১ম ধাপ (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)</strong>
-                <span class="badge" style="background:#E0F2FE;color:#0369A1;">বৃদ্ধির ${s.p1Label}</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage1Basic)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage1Net)}</span></div>
-        </div>
-        <div class="stage-box">
-            <div class="stage-header">
-                <strong style="color:var(--primary);">২য় ধাপ (০১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭)</strong>
-                <span class="badge" style="background:#E0F2FE;color:#0369A1;">বৃদ্ধির ${s.p2Label}</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর মূল বেতন:</span><span>${formatMoney(s.stage2Basic)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage2Net)}</span></div>
-        </div>
-    `;
-
-    const slide4 = `
-        <div class="sec-title">৪. পূর্ণাঙ্গ স্কেল ও চূড়ান্ত ধাপ (২০২৭-২০২৮)</div>
-        <div class="stage-box" style="border-color:#A7F3D0;background:linear-gradient(to bottom right,#F2FDF7,#FFFFFF);">
-            <div class="stage-header">
-                <strong style="color:var(--info);">৩য় ধাপ (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)</strong>
-                <span class="badge" style="background:#D1FAE5;color:var(--primary);">১০০% স্কেল</span>
-            </div>
-            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage3Basic)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage3Net)}</span></div>
-        </div>
-        <div class="stage-box">
-            <div class="stage-header">
-                <strong style="color:var(--success);">৪র্থ ধাপ (০১ জানুয়ারি ২০২৮ হতে)</strong>
-                <span class="badge" style="background:var(--success);color:white;">নতুন ভাতা</span>
-            </div>
-            <p style="color:var(--success);">* সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</p>
-            <div class="item-row sub"><span>কার্যকর পূর্ণাঙ্গ মূল বেতন:</span><span>${formatMoney(s.stage4Basic)}</span></div>
-            <div class="item-row sub" style="color:var(--success);"><span>নতুন বেসিক অনুযায়ী ভাতা:</span><span>${formatMoney(s.newAllowances)}</span></div>
-            <div class="item-row"><span>উত্তোলনযোগ্য নিট বেতন:</span><span>${formatMoney(s.stage4Net)}</span></div>
-            <div class="item-row highlight" style="background:var(--primary);color:white;margin-top:4px;">
-                <span>সর্বমোট নিট বৃদ্ধি (বর্তমানের চেয়ে):</span>
-                <span>+${formatMoney(s.stage4Net - s.currentNet)}</span>
-            </div>
-        </div>
-    `;
-
-    previewSlides = [slide1, slide2, slide3, slide4];
-}
-
-function openContactModal() {
-    document.getElementById('contactModal').classList.add('active');
-}
-function closeContactModal() {
-    document.getElementById('contactModal').classList.remove('active');
-}
-
-function openPreviewModal() {
-    currentSlide = 0;
-    updateSlideView();
-    document.getElementById('previewModal').classList.add('active');
-}
-function closePreviewModal() {
-    document.getElementById('previewModal').classList.remove('active');
-}
-
-function changeSlide(direction) {
-    currentSlide += direction;
-    if (currentSlide < 0) currentSlide = 0;
-    if (currentSlide >= previewSlides.length) currentSlide = previewSlides.length - 1;
-    updateSlideView();
-}
-
-function updateSlideView() {
-    const content = document.getElementById('slideContent');
-    content.style.opacity = '0';
-    content.style.transform = 'translateX(18px)';
-    content.style.transition = 'none';
-
-    requestAnimationFrame(() => {
-        content.innerHTML = previewSlides[currentSlide];
-        document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide + 1)}/${toBengaliNum(previewSlides.length)}`;
-        document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
-
-        const isLast = currentSlide === previewSlides.length - 1;
-        document.getElementById('nextBtn').style.display = isLast ? 'none' : 'block';
-        document.getElementById('printStartBtn').style.display = isLast ? 'block' : 'none';
-        document.getElementById('shareRow').style.display = isLast ? 'flex' : 'none';
-
-        // Update dots
-        const dotsEl = document.getElementById('slideDots');
-        dotsEl.innerHTML = previewSlides.map((_, i) =>
-            `<button type="button" class="slide-dot${i === currentSlide ? ' active' : ''}" onclick="goToSlide(${i})" aria-label="ধাপ ${i + 1}"></button>`
-        ).join('');
-
-        requestAnimationFrame(() => {
-            content.style.transition = 'opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)';
-            content.style.opacity = '1';
-            content.style.transform = 'translateX(0)';
-        });
-    });
-}
-
-function goToSlide(index) {
-    if (index < 0 || index >= previewSlides.length) return;
-    currentSlide = index;
-    updateSlideView();
-}
-
-function openPrintModal() {
-    closePreviewModal();
-    document.getElementById('printModal').classList.add('active');
-}
-function closePrintModal() {
-    document.getElementById('printModal').classList.remove('active');
-}
-
-function executePrint(e) {
-    e.preventDefault();
-    closePrintModal();
-
-    const name = document.getElementById('p_name').value.trim();
-    const desig = document.getElementById('p_desig').value.trim();
-    const workplace = document.getElementById('p_workplace').value.trim();
-
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
-    const rawDateStr = new Intl.DateTimeFormat('bn-BD', options).format(new Date());
-    const dateStr = toBengaliNum(rawDateStr);
-    const s = appState;
-
-    const printHTML = `
-        <div class="print-watermark">
-            <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="">
-        </div>
-        <div class="print-header">
-            <div class="print-logo-left">
-                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/Government_Seal_of_Bangladesh.svg.png" alt="Govt">
-            </div>
-            <div class="print-title">
-                <h1>জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত)</h1>
-                <p>বেতন প্রাক্কলন প্রতিবেদন</p>
-            </div>
-            <div class="print-logo-right">
-                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft">
-            </div>
-        </div>
-
-        <table class="info-table">
-            <tr>
-                <td width="14%"><strong>নাম:</strong></td>
-                <td width="46%">${name}</td>
-                <td width="14%"><strong>গ্রেড:</strong></td>
-                <td width="26%">${bengaliOrdinals[s.grade]} গ্রেড</td>
-            </tr>
-            <tr>
-                <td><strong>পদবি:</strong></td>
-                <td>${desig}</td>
-                <td><strong>মূল বেতন:</strong></td>
-                <td>${formatMoney(s.basic)}</td>
-            </tr>
-            <tr>
-                <td><strong>কর্মস্থল:</strong></td>
-                <td>${workplace}</td>
-                <td><strong>তারিখ:</strong></td>
-                <td>${dateStr}</td>
-            </tr>
-        </table>
-
-        <h3 class="print-section">১. পে-ফিক্সেশন ও বর্ধিত বেতন নির্ণয়</h3>
-        <table class="data-table">
-            <tr><th>বিবরণ</th><th>টাকার পরিমাণ</th></tr>
-            <tr><td>২০১৫ স্কেলে গ্রেডের প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2015)}</td></tr>
-            <tr><td>বর্তমান মূল বেতন</td><td>${formatMoney(s.basic)}</td></tr>
-            <tr><td>অর্জিত বৃদ্ধি</td><td>${formatMoney(s.earned)}</td></tr>
-            <tr><td>২০২৬ স্কেলের নতুন প্রারম্ভিক ধাপ</td><td>${formatMoney(s.start2026)}</td></tr>
-            <tr><td><strong>নির্ধারিত পূর্ণাঙ্গ মূল বেতন</strong></td><td><strong>${formatMoney(s.fixedBasic)}</strong></td></tr>
-            <tr><td>মূল বেতনের মোট পার্থক্য</td><td>${formatMoney(s.totalIncrease)}</td></tr>
-        </table>
-
-        <h3 class="print-section">২. প্রস্তাবিত ধাপে বেতন ও নিট বৃদ্ধি (২০২৬-২০২৮)</h3>
-        <table class="data-table">
-            <tr>
-                <th>ধাপ ও সময়কাল</th>
-                <th>মূল বেতন</th>
-                <th>ভাতা</th>
-                <th>কর্তন</th>
-                <th>নিট বেতন</th>
-            </tr>
-            <tr>
-                <td><strong>১ম ধাপ</strong> (০১ জুলাই ২০২৬ - ৩১ ডিসে ২০২৬)<br><small>বৃদ্ধির ${s.p1Label}</small></td>
-                <td>${formatMoney(s.stage1Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage1Net)}</strong></td>
-            </tr>
-            <tr>
-                <td><strong>২য় ধাপ</strong> (০১ জানু ২০২৭ - ৩০ জুন ২০২৭)<br><small>বৃদ্ধির ${s.p2Label}</small></td>
-                <td>${formatMoney(s.stage2Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage2Net)}</strong></td>
-            </tr>
-            <tr>
-                <td><strong>৩য় ধাপ</strong> (০১ জুলাই ২০২৭ - ৩১ ডিসে ২০২৭)<br><small>১০০% পূর্ণাঙ্গ স্কেল</small></td>
-                <td>${formatMoney(s.stage3Basic)}</td>
-                <td>${formatMoney(s.oldAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage3Net)}</strong></td>
-            </tr>
-            <tr>
-                <td><strong>৪র্থ ধাপ</strong> (০১ জানুয়ারি ২০২৮ হতে)<br><small>সাম্ভাব্য (বিদ্যমান % অনুযায়ী)</small></td>
-                <td>${formatMoney(s.stage4Basic)}</td>
-                <td>${formatMoney(s.newAllowances)}</td>
-                <td>${formatMoney(s.totalDeduction)}</td>
-                <td><strong>${formatMoney(s.stage4Net)}</strong></td>
-            </tr>
-        </table>
-
-        <div class="signature-area">
-            <div class="signature-box">স্বাক্ষর</div>
-        </div>
-
-        <div class="print-footer">
-            <p><strong>বি:দ্র:</strong> এই সাইটটি শুধুমাত্র বেতন নির্ধারনি হিসাবের সুবিধার্থে তৈরি করা হয়েছে, অর্থ মন্ত্রণালয়ের সাথে এর কোন আনুষ্ঠানিক সম্পর্ক নেই। গেজেট অনুযায়ী হিসাব করা হয়েছে।</p>
-            <p style="margin-top:3px;font-weight:bold;">NasimSoft ব্যবহারের জন্য আপনাকে ধন্যবাদ।</p>
-        </div>
-    `;
-
-    const printArea = document.getElementById('print-area');
-    printArea.innerHTML = printHTML;
-
-    const originalTitle = document.title;
-    document.title = `${name}, পে স্কেল ২০২৬ - নাসিমসফট`;
-    window.onafterprint = () => { document.title = originalTitle; };
-
-    // Wait until all logos / watermark images are fully loaded before printing
-    const images = printArea.querySelectorAll('img');
-    let loaded = 0;
-    const total = images.length || 1;
-
-    const tryPrint = () => {
-        loaded++;
-        if (loaded >= total) {
-            setTimeout(() => window.print(), 150);
-        }
-    };
-
-    if (images.length === 0) {
-        setTimeout(() => window.print(), 200);
-    } else {
-        images.forEach(img => {
-            if (img.complete && img.naturalWidth > 0) {
-                tryPrint();
-            } else {
-                img.onload = tryPrint;
-                img.onerror = tryPrint; // still print even if one fails
-            }
-        });
-        // Safety fallback
-        setTimeout(() => {
-            if (loaded < total) window.print();
-        }, 2500);
-    }
-}
-
-/* ========== Share & Toast ========== */
-function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-function buildShareText() {
-    const s = appState;
-    if (!s || !s.grade) return '';
-    const inc = s.stage4Net - s.currentNet;
-    const incPct = s.currentNet > 0 ? ((inc / s.currentNet) * 100).toFixed(1) : 0;
-    const otherDeduct = (s.welfare || 0) + (s.insurance || 0) + (s.stamp || 0);
-
-    return `📊 *জাতীয় বেতনস্কেল ২০২৬ (প্রস্তাবিত) — পূর্ণাঙ্গ রিপোর্ট*
-
-📌 *মৌলিক তথ্য*
-• গ্রেড: ${bengaliOrdinals[s.grade]}
-• বর্তমান মূল বেতন: ${formatMoney(s.basic)}
-• নির্ধারিত পূর্ণাঙ্গ মূল বেতন: ${formatMoney(s.fixedBasic)}
-• মূল বেতনের বৃদ্ধি: ${formatMoney(s.totalIncrease)}
-
-💰 *বর্তমান ভাতাসমূহ*
-• বাড়িভাড়া ভাতা: ${formatMoney(s.oldHouseRent)}
-• চিকিৎসা ভাতা: ${formatMoney(s.medical)}
-• শিক্ষা ভাতা: ${formatMoney(s.education)}
-• মোট ভাতা: ${formatMoney(s.oldAllowances)}
-
-➖ *কর্তনসমূহ*
-• জিপিএফ (GPF): ${formatMoney(s.gpf)}
-• আয়কর: ${formatMoney(s.tax)}
-• অন্যান্য তহবিল: ${formatMoney(otherDeduct)}
-• মোট কর্তন: ${formatMoney(s.totalDeduction)}
-
-• বর্তমান নিট বেতন: ${formatMoney(s.currentNet)}
-
-━━━━━━━━━━━━━━━━
-📅 *১ম ধাপ* (০১ জুলাই ২০২৬ – ৩১ ডিসেম্বর ২০২৬)
-• বৃদ্ধির ${s.p1Label}
-• কার্যকর মূল বেতন: ${formatMoney(s.stage1Basic)}
-• ভাতা: ${formatMoney(s.oldAllowances)}
-• কর্তন: ${formatMoney(s.totalDeduction)}
-• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage1Net)}
-
-📅 *২য় ধাপ* (০১ জানুয়ারি ২০২৭ – ৩০ জুন ২০২৭)
-• বৃদ্ধির ${s.p2Label}
-• কার্যকর মূল বেতন: ${formatMoney(s.stage2Basic)}
-• ভাতা: ${formatMoney(s.oldAllowances)}
-• কর্তন: ${formatMoney(s.totalDeduction)}
-• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage2Net)}
-
-📅 *৩য় ধাপ* (০১ জুলাই ২০২৭ – ৩১ ডিসেম্বর ২০২৭)
-• ১০০% পূর্ণাঙ্গ স্কেল
-• কার্যকর মূল বেতন: ${formatMoney(s.stage3Basic)}
-• ভাতা: ${formatMoney(s.oldAllowances)}
-• কর্তন: ${formatMoney(s.totalDeduction)}
-• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage3Net)}
-
-📅 *৪র্থ ধাপ* (০১ জানুয়ারি ২০২৮ হতে)
-• নতুন ভাতাসহ (সাম্ভাব্য)
-• কার্যকর মূল বেতন: ${formatMoney(s.stage4Basic)}
-• নতুন ভাতা: ${formatMoney(s.newAllowances)}
-• কর্তন: ${formatMoney(s.totalDeduction)}
-• উত্তোলনযোগ্য নিট: ${formatMoney(s.stage4Net)}
-
-━━━━━━━━━━━━━━━━
-✅ *সর্বমোট নিট বৃদ্ধি:* +${formatMoney(inc)} (${toBengaliNum(incPct)}%)
-
-— NasimSoft Pay Scale Calculator
-https://nasim.ceo.bd`;
-}
-
-function shareWhatsApp() {
-    const text = buildShareText();
-    if (!text) return;
-    const url = 'https://wa.me/?text=' + encodeURIComponent(text);
-    window.open(url, '_blank');
-}
-
-function copyResult() {
-    const text = buildShareText();
-    if (!text) return;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => showToast('পূর্ণাঙ্গ রিপোর্ট কপি হয়েছে ✓')).catch(() => fallbackCopy(text));
-    } else {
-        fallbackCopy(text);
-    }
-}
-
-function fallbackCopy(text) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try {
-        document.execCommand('copy');
-        showToast('পূর্ণাঙ্গ রিপোর্ট কপি হয়েছে ✓');
-    } catch {
-        showToast('কপি করা যায়নি');
-    }
-    document.body.removeChild(ta);
-}
-
-/* ========== 3-dot Menu ========== */
-function toggle3dotMenu(e) {
-    if (e) e.stopPropagation();
-    const menu = document.getElementById('menu3dot');
-    const btn = document.getElementById('menu3dotBtn');
-    const isOpen = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
-
-function close3dotMenu() {
-    const menu = document.getElementById('menu3dot');
-    const btn = document.getElementById('menu3dotBtn');
-    if (menu) menu.classList.remove('open');
-    if (btn) btn.setAttribute('aria-expanded', 'false');
-}
-
-document.addEventListener('click', (e) => {
-    const menu = document.getElementById('menu3dot');
-    if (menu && !menu.contains(e.target)) close3dotMenu();
-});
-
-/* ========== Theme Toggle ========== */
-function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-    const btn = document.getElementById('themeToggle');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('payTheme', theme);
-}
-
-function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-}
-
-/* ========== History ========== */
-function getHistory() {
-    try {
-        return JSON.parse(localStorage.getItem('payHistory') || '[]');
-    } catch {
-        return [];
-    }
-}
-
-function saveToHistory(state) {
-    const history = getHistory();
-    const entry = {
-        id: Date.now(),
-        date: new Date().toISOString(),
-        grade: state.grade,
-        basic: state.basic,
-        location: state.location,
-        fixedBasic: state.fixedBasic,
-        currentNet: state.currentNet,
-        stage4Net: state.stage4Net,
-        totalIncrease: state.totalIncrease
-    };
-    history.unshift(entry);
-    // Keep last 20
-    if (history.length > 20) history.length = 20;
-    localStorage.setItem('payHistory', JSON.stringify(history));
-}
-
-function openHistoryModal() {
-    renderHistoryList();
-    document.getElementById('historyModal').classList.add('active');
-}
-
-function closeHistoryModal() {
-    document.getElementById('historyModal').classList.remove('active');
-}
-
-function renderHistoryList() {
-    const list = document.getElementById('historyList');
-    const history = getHistory();
-
-    if (!history.length) {
-        list.innerHTML = '<div class="history-empty">কোনো হিসাব হিস্ট্রি নেই।<br>হিসাব করলে এখানে দেখা যাবে।</div>';
-        return;
-    }
-
-    list.innerHTML = history.map(h => {
-        const d = new Date(h.date);
-        const dateStr = toBengaliNum(d.toLocaleDateString('bn-BD', { day: 'numeric', month: 'short', year: 'numeric' }));
-        const timeStr = toBengaliNum(d.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' }));
-        return `
-            <div class="history-item" onclick="loadFromHistory(${h.id})">
-                <div class="info">
-                    <div class="grade">${bengaliOrdinals[h.grade]} গ্রেড · ${formatMoney(h.basic)}</div>
-                    <div class="meta">${dateStr} · ${timeStr}</div>
-                </div>
-                <div class="net">${formatMoney(h.stage4Net)}</div>
-                <button class="del-btn" onclick="event.stopPropagation(); deleteHistoryItem(${h.id})" title="মুছুন">🗑</button>
-            </div>
-        `;
-    }).join('');
-}
-
-function deleteHistoryItem(id) {
-    let history = getHistory().filter(h => h.id !== id);
-    localStorage.setItem('payHistory', JSON.stringify(history));
-    renderHistoryList();
-}
-
-function clearHistory() {
-    if (confirm('সব হিস্ট্রি মুছে ফেলতে চান?')) {
-        localStorage.removeItem('payHistory');
-        renderHistoryList();
-    }
-}
-
-function loadFromHistory(id) {
-    const entry = getHistory().find(h => h.id === id);
-    if (!entry) return;
-
-    // Pre-fill form
-    document.getElementById('grade').value = entry.grade;
-    populateSteps();
-    // Wait a tick for options to populate
-    setTimeout(() => {
-        const basicSelect = document.getElementById('basic');
-        // Find closest matching basic
-        let found = false;
-        for (let opt of basicSelect.options) {
-            if (parseFloat(opt.value) === entry.basic) {
-                basicSelect.value = opt.value;
-                found = true;
-                break;
-            }
-        }
-        if (!found && basicSelect.options.length > 1) {
-            basicSelect.selectedIndex = 1;
-        }
-        if (entry.location) {
-            document.getElementById('location').value = entry.location;
-        }
-        closeHistoryModal();
-        // Optionally auto-calculate
-        // document.getElementById('payForm').requestSubmit();
-    }, 50);
-}
-
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        closeContactModal();
-        closePreviewModal();
-        closePrintModal();
-        closeHistoryModal();
-        close3dotMenu();
-    }
-});
-
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => {
-        if (e.target === overlay) overlay.classList.remove('active');
-    });
-});
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function buildShareText(){const s=appState;if(!s.grade)return '';return `📊 জাতীয় বেতনস্কেল ২০২৬ (গেজেটভিত্তিক)\nগ্রেড: ${bengaliOrdinals[s.grade]}\nবর্তমান মূল: ${formatMoney(s.basic)}\nPay Fixation: ${formatMoney(s.fixedBasic)}\n১টি increment-সহ: ${formatMoney(s.targetBasic)}\n১ম ধাপ: ${formatMoney(s.stage1Net)}\n২য় ধাপ: ${formatMoney(s.stage2Net)}\n১ জুলাই ২০২৭ থেকে: ${formatMoney(s.stage3Net)}\n১ জানুয়ারি ২০২৮ থেকে: ${formatMoney(s.stage4Net)}\n\n— NasimSoft Pay Scale Calculator`}
+function shareWhatsApp(){const t=buildShareText();if(t)window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
+function copyResult(){const t=buildShareText();if(!t)return;if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>showToast('রিপোর্ট কপি হয়েছে ✓'));else fallbackCopy(t)}
+function fallbackCopy(t){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast('রিপোর্ট কপি হয়েছে ✓')}finally{ta.remove()}}
+
+function toggle3dotMenu(e){if(e)e.stopPropagation();const m=document.getElementById('menu3dot'),b=document.getElementById('menu3dotBtn'),open=m.classList.toggle('open');b.setAttribute('aria-expanded',open?'true':'false')}
+function close3dotMenu(){document.getElementById('menu3dot')?.classList.remove('open');document.getElementById('menu3dotBtn')?.setAttribute('aria-expanded','false')}
+document.addEventListener('click',e=>{const m=document.getElementById('menu3dot');if(m&&!m.contains(e.target))close3dotMenu()});
+function applyTheme(theme){document.documentElement.setAttribute('data-theme',theme==='dark'?'dark':'light');const b=document.getElementById('themeToggle');if(b)b.textContent=theme==='dark'?'☀️':'🌙';localStorage.setItem('payTheme',theme)}
+function toggleTheme(){applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')}
+
+function getHistory(){try{return JSON.parse(localStorage.getItem('payHistory')||'[]')}catch{return []}}
+function saveToHistory(s){const h=getHistory();h.unshift({id:Date.now(),date:new Date().toISOString(),grade:s.grade,basic:s.basic,location:s.location,fixedBasic:s.fixedBasic,targetBasic:s.targetBasic,stage4Net:s.stage4Net,totalIncrease:s.totalIncrease});localStorage.setItem('payHistory',JSON.stringify(h.slice(0,20)))}
+function openHistoryModal(){renderHistoryList();document.getElementById('historyModal').classList.add('active')}
+function closeHistoryModal(){document.getElementById('historyModal').classList.remove('active')}
+function renderHistoryList(){const list=document.getElementById('historyList'),h=getHistory();if(!h.length){list.innerHTML='<div class="history-empty">কোনো হিসাব হিস্ট্রি নেই।</div>';return}list.innerHTML=h.map(x=>{const d=new Date(x.date);return `<div class="history-item" onclick="loadFromHistory(${x.id})"><div class="info"><div class="grade">${bengaliOrdinals[x.grade]} গ্রেড · ${formatMoney(x.basic)}</div><div class="meta">${toBengaliNum(d.toLocaleDateString('bn-BD'))}</div></div><div class="net">${formatMoney(x.stage4Net)}</div><button class="del-btn" onclick="event.stopPropagation();deleteHistoryItem(${x.id})">🗑</button></div>`}).join('')}
+function deleteHistoryItem(id){localStorage.setItem('payHistory',JSON.stringify(getHistory().filter(x=>x.id!==id)));renderHistoryList()}
+function clearHistory(){if(confirm('সব হিস্ট্রি মুছে ফেলতে চান?')){localStorage.removeItem('payHistory');renderHistoryList()}}
+function loadFromHistory(id){const x=getHistory().find(v=>v.id===id);if(!x)return;document.getElementById('grade').value=x.grade;populateSteps();setTimeout(()=>{document.getElementById('basic').value=x.basic;if(x.location)document.getElementById('location').value=x.location;closeHistoryModal()},20)}
+
+window.onload=function(){togglePersonType();const g=document.getElementById('grade');for(let i=1;i<=20;i++){const o=document.createElement('option');o.value=i;o.text=`${bengaliOrdinals[i]} গ্রেড`;g.add(o)}document.getElementById('calcCount').textContent=toBengaliNum(Number(localStorage.getItem('payCalcCount')||0));applyTheme(localStorage.getItem('payTheme')||'light');document.querySelectorAll('.tip-btn').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();b.classList.toggle('active')}));document.addEventListener('click',()=>document.querySelectorAll('.tip-btn.active').forEach(b=>b.classList.remove('active')))};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeContactModal();closePreviewModal();closePrintModal();closeHistoryModal();close3dotMenu()}});
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('active')}));
 </script>
 </body>
 </html>
