@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a0f">
+<title>Nasim Player — Chapter 1–2</title>
+<style>
+:root{color-scheme:dark;--bg:#080a0f;--panel:#11151d;--muted:#9ca7b8;--text:#f5f7fb;--accent:#22c55e;--line:#293140}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#17202b 0,#080a0f 55%);font-family:Arial,Helvetica,sans-serif;color:var(--text);min-height:100vh}
+.topbar{height:68px;display:flex;align-items:center;gap:12px;padding:0 clamp(16px,4vw,44px);border-bottom:1px solid #ffffff12;background:#080a0fbb}
+.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#22c55e,#0f766e);font-weight:900;color:#04120a;font-size:20px}
+.brand{font-size:17px;font-weight:800;letter-spacing:.2px}.subbrand{font-size:11px;color:var(--muted);margin-top:3px}
+main{width:min(1120px,100%);margin:28px auto;padding:0 18px 36px}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}.heading h1{font-size:clamp(19px,3vw,27px);margin:0 0 6px}.heading p{margin:0;color:var(--muted);font-size:13px}
+.pill{border:1px solid #ffffff1b;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#c9d2df;font-size:12px;white-space:nowrap}
+.player-shell{background:#000;border:1px solid #ffffff1a;border-radius:18px;overflow:hidden;box-shadow:0 24px 70px #0008}
+.video-stage{position:relative;aspect-ratio:16/9;background:#000;display:grid;place-items:center;overflow:hidden}
+video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,#000b,transparent 38%,#0004);opacity:1;transition:opacity .25s;pointer-events:none}
+.overlay.hidden{opacity:0}.big-play{pointer-events:auto;width:68px;height:68px;border-radius:50%;border:1px solid #ffffff70;background:#ffffff20;backdrop-filter:blur(12px);color:white;font-size:27px;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 30px #0007}
+.controls{position:absolute;bottom:0;left:0;right:0;padding:38px 16px 13px;background:linear-gradient(transparent,#000e 35%);transition:opacity .25s}
+.controls.hidden{opacity:0;pointer-events:none}
+.seek-row{display:flex;align-items:center;margin-bottom:12px}
+input[type=range]{accent-color:var(--accent);cursor:pointer}
+#seek{width:100%;height:4px;margin:0;appearance:none;background:linear-gradient(to right,var(--accent) 0%,var(--accent) 0%,#ffffff55 0%,#ffffff55 100%);border-radius:9px}
+#seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #22c55e22}
+.control-row{display:flex;align-items:center;gap:12px;min-height:32px}
+.icon-btn{border:0;background:transparent;color:#f5f7fb;cursor:pointer;padding:5px;display:grid;place-items:center;border-radius:8px;font-size:19px;min-width:30px}
+.icon-btn:hover{background:#ffffff1c}.time{font-size:12px;color:#e5e7eb;font-variant-numeric:tabular-nums;white-space:nowrap}.slash{color:#8791a0}
+.volume-wrap{display:flex;align-items:center;gap:5px}.volume{width:76px;height:4px}
+.spacer{flex:1}
+select{background:#161b24;color:#fff;border:1px solid #ffffff26;border-radius:8px;padding:7px 9px;font-size:12px;outline:none}
+.info{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:20px 4px 0}
+.info h2{margin:0 0 7px;font-size:18px}.info p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.status{display:inline-flex;align-items:center;gap:7px;color:#a7f3d0;font-size:12px;margin-top:10px}.dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.tip{margin-top:20px;padding:14px 16px;background:#ffffff07;border:1px solid #ffffff12;border-radius:12px;color:#aeb8c8;font-size:12px;line-height:1.6}
+.toast{position:absolute;top:16px;left:50%;transform:translateX(-50%);background:#10151ddd;border:1px solid #ffffff22;padding:8px 13px;border-radius:99px;font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none}.toast.show{opacity:1}
+@media(max-width:600px){main{margin:18px auto;padding:0 10px 26px}.topbar{height:60px}.heading{align-items:flex-start}.pill{display:none}.player-shell{border-radius:12px}.controls{padding:28px 9px 8px}.control-row{gap:5px}.volume{width:48px}.time{font-size:10px}.icon-btn{min-width:27px;font-size:17px}.info{padding:16px 3px}.info h2{font-size:16px}.big-play{width:54px;height:54px}}
+.video-stage:fullscreen{width:100vw;height:100vh;aspect-ratio:auto}.video-stage:fullscreen video{object-fit:contain}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">N</div>
+  <div><div class="brand">NASIM PLAYER</div><div class="subbrand">Online learning video</div></div>
+</header>
+<main>
+  <div class="heading">
+    <div><h1>Chapter 1–2: Video Lesson</h1><p>Watch your lesson with a custom player experience.</p></div>
+    <div class="pill">● HTML5 Player</div>
+  </div>
+  <section class="player-shell" aria-label="Video player">
+    <div class="video-stage" id="stage">
+      <video id="video" playsinline preload="metadata" crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/main/lesson/Chapter1-2_video_with_audio.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+      <div class="overlay" id="overlay"><button class="big-play" id="bigPlay" aria-label="Play video">▶</button></div>
+      <div class="toast" id="toast"></div>
+      <div class="controls" id="controls">
+        <div class="seek-row"><input id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek video"></div>
+        <div class="control-row">
+          <button class="icon-btn" id="play" aria-label="Play or pause">▶</button>
+          <button class="icon-btn" id="back" aria-label="Back 10 seconds" title="Back 10 seconds">↶</button>
+          <button class="icon-btn" id="forward" aria-label="Forward 10 seconds" title="Forward 10 seconds">↷</button>
+          <div class="time"><span id="current">0:00</span> <span class="slash">/</span> <span id="duration">0:00</span></div>
+          <div class="spacer"></div>
+          <div class="volume-wrap"><button class="icon-btn" id="mute" aria-label="Mute">🔊</button><input class="volume" id="volume" type="range" min="0" max="1" value="1" step="0.05" aria-label="Volume"></div>
+          <select id="speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          <button class="icon-btn" id="fullscreen" aria-label="Fullscreen" title="Fullscreen">⛶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="info">
+    <div><h2>Chapter 1–2 Video with Audio</h2><p>Source: NASIM repository on GitHub</p><div class="status"><span class="dot"></span><span id="status">Ready to play</span></div></div>
+  </div>
+  <div class="tip"><strong>Keyboard shortcuts:</strong> Space = play/pause · ← / → = seek 5 seconds · ↑ / ↓ = volume · F = fullscreen · M = mute<br>If the video does not load, check that the GitHub file is public and that the raw MP4 URL is accessible.</div>
+</main>
+<script>
+const video=document.getElementById('video'),stage=document.getElementById('stage'),controls=document.getElementById('controls'),overlay=document.getElementById('overlay');
+const playBtn=document.getElementById('play'),bigPlay=document.getElementById('bigPlay'),seek=document.getElementById('seek'),current=document.getElementById('current'),duration=document.getElementById('duration'),volume=document.getElementById('volume'),mute=document.getElementById('mute'),speed=document.getElementById('speed'),statusText=document.getElementById('status'),toast=document.getElementById('toast');
+let hideTimer,toastTimer;
+function fmt(s){if(!Number.isFinite(s))return'0:00';s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function notify(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),900)}
+function updatePlay(){const paused=video.paused;playBtn.textContent=paused?'▶':'Ⅱ';bigPlay.textContent=paused?'▶':'Ⅱ';overlay.classList.toggle('hidden',!paused);statusText.textContent=paused?'Paused':'Playing'}
+function togglePlay(){if(video.paused)video.play().catch(()=>{statusText.textContent='Could not play — check the video URL'});else video.pause()}
+playBtn.addEventListener('click',togglePlay);bigPlay.addEventListener('click',togglePlay);video.addEventListener('click',togglePlay);
+video.addEventListener('play',updatePlay);video.addEventListener('pause',updatePlay);video.addEventListener('ended',()=>{updatePlay();statusText.textContent='Video ended'});
+video.addEventListener('loadedmetadata',()=>{duration.textContent=fmt(video.duration);statusText.textContent='Ready to play'});
+video.addEventListener('timeupdate',()=>{current.textContent=fmt(video.currentTime);if(Number.isFinite(video.duration)&&video.duration>0){const p=video.currentTime/video.duration*100;seek.value=Math.round(p*10);seek.style.background=`linear-gradient(to right,var(--accent) 0%,var(--accent) ${p}%,#ffffff55 ${p}%,#ffffff55 100%)`}});
+seek.addEventListener('input',()=>{if(Number.isFinite(video.duration))video.currentTime=(seek.value/1000)*video.duration});
+document.getElementById('back').addEventListener('click',()=>{video.currentTime=Math.max(0,video.currentTime-10);notify('−10 seconds')});
+document.getElementById('forward').addEventListener('click',()=>{video.currentTime=Math.min(video.duration||Infinity,video.currentTime+10);notify('+10 seconds')});
+volume.addEventListener('input',()=>{video.volume=Number(volume.value);video.muted=video.volume===0;mute.textContent=video.muted?'🔇':'🔊'});
+mute.addEventListener('click',()=>{video.muted=!video.muted;mute.textContent=video.muted?'🔇':'🔊';notify(video.muted?'Muted':'Sound on')});
+speed.addEventListener('change',()=>{video.playbackRate=Number(speed.value);notify(speed.value+'× speed')});
+async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(stage.requestFullscreen)await stage.requestFullscreen();else if(video.webkitEnterFullscreen)video.webkitEnterFullscreen()}catch(e){notify('Fullscreen unavailable')}}
+document.getElementById('fullscreen').addEventListener('click',fullscreen);
+function showControls(){controls.classList.remove('hidden');clearTimeout(hideTimer);if(!video.paused)hideTimer=setTimeout(()=>controls.classList.add('hidden'),2800)}
+stage.addEventListener('mousemove',showControls);stage.addEventListener('touchstart',showControls,{passive:true});stage.addEventListener('mouseleave',()=>{if(!video.paused)controls.classList.add('hidden')});stage.addEventListener('mouseenter',()=>controls.classList.remove('hidden'));
+document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName))return;switch(e.key.toLowerCase()){case' ':e.preventDefault();togglePlay();break;case'arrowleft':video.currentTime=Math.max(0,video.currentTime-5);notify('−5 seconds');break;case'arrowright':video.currentTime=Math.min(video.duration||Infinity,video.currentTime+5);notify('+5 seconds');break;case'arrowup':e.preventDefault();video.volume=Math.min(1,video.volume+.05);volume.value=video.volume;video.muted=false;mute.textContent='🔊';notify('Volume '+Math.round(video.volume*100)+'%');break;case'arrowdown':e.preventDefault();video.volume=Math.max(0,video.volume-.05);volume.value=video.volume;mute.textContent=video.volume===0?'🔇':'🔊';notify('Volume '+Math.round(video.volume*100)+'%');break;case'f':fullscreen();break;case'm':mute.click();break}});
+video.addEventListener('error',()=>{statusText.textContent='Video failed to load. Check the raw GitHub URL or network.'});
+</script>
+</body>
+</html>
