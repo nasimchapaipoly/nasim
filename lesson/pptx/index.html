@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827"><title>Nasim Slides — PowerPoint Viewer</title>
+<style>
+:root{--bg:#0b1020;--panel:#111827;--panel2:#182235;--line:#2a3549;--text:#f3f6fb;--muted:#9aa8bd;--accent:#38bdf8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+header{height:64px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid var(--line);background:#0e1525}
+.logo{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,#38bdf8,#6366f1);color:#07111e;font-weight:900;font-size:19px}
+.brand{font-weight:800;letter-spacing:.3px}.tagline{font-size:11px;color:var(--muted);margin-top:3px}
+.actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+button,.file-label{background:var(--panel2);border:1px solid var(--line);border-radius:9px;color:var(--text);padding:9px 12px;cursor:pointer;font-size:13px}
+button:hover,.file-label:hover{border-color:#64748b;background:#223047}button:disabled{opacity:.35;cursor:not-allowed}
+input[type=file]{display:none}
+main{max-width:1500px;margin:auto;padding:18px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;height:calc(100vh - 64px)}
+.sidebar,.workspace{min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.side-head{padding:14px 14px 10px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+#thumbs{height:calc(100% - 42px);overflow:auto;padding:8px;display:flex;flex-direction:column;gap:10px}
+.thumb{border:2px solid transparent;border-radius:8px;padding:4px;background:#0b1020;cursor:pointer}
+.thumb.active{border-color:var(--accent)}.thumb img{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#fff}.thumb-num{text-align:center;color:var(--muted);font-size:11px;padding-top:5px}
+.workspace{display:flex;flex-direction:column}
+.toolbar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.counter{font-size:12px;color:var(--muted);min-width:72px;text-align:center}
+#slideInput{width:54px;background:#0b1020;color:#fff;border:1px solid var(--line);border-radius:7px;padding:8px;text-align:center}
+#zoomLabel{font-size:12px;color:var(--muted);min-width:42px;text-align:center}
+#stage{position:relative;flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at center,#1a2537,#0a0f1a)}
+#slideFrame{position:relative;width:min(100%,1100px);aspect-ratio:16/9;background:white;box-shadow:0 20px 60px #0009;flex:none;overflow:hidden}
+#slideFrame iframe{width:100%;height:100%;border:0;background:white}
+#placeholder{max-width:520px;text-align:center;color:var(--muted);line-height:1.7;padding:30px}
+#placeholder h1{color:#eaf2ff;font-size:24px}
+.bottom{padding:10px 14px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px}
+#progress{height:3px;background:#253148;flex:1;border-radius:9px;overflow:hidden}#progress div{height:100%;width:0;background:var(--accent);transition:width .2s}
+.notice{font-size:12px;color:var(--muted);line-height:1.5;padding:0 4px}
+@media(max-width:800px){main{grid-template-columns:1fr;height:calc(100vh - 64px);padding:8px;gap:8px}.sidebar{display:none}.workspace{min-height:0}.toolbar{gap:5px;padding:8px}.toolbar button{padding:8px}.hide-mobile{display:none}#stage{padding:8px}.actions .file-label{padding:8px}.brand{font-size:14px}}
+</style>
+</head>
+<body>
+<header><div class="logo">N</div><div><div class="brand">NASIM SLIDES</div><div class="tagline">Online PowerPoint viewer</div></div>
+<div class="actions"><label class="file-label" for="file">＋ Open PPTX</label><input id="file" type="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation"><button id="openUrl">Open URL</button></div></header>
+<main>
+<aside class="sidebar"><div class="side-head"><span>SLIDE THUMBNAILS</span><span id="sideCount">0</span></div><div id="thumbs"></div></aside>
+<section class="workspace">
+<div class="toolbar">
+<button id="prev" disabled title="Previous slide">◀</button><button id="next" disabled title="Next slide">▶</button>
+<span class="counter"><input id="slideInput" type="number" min="1" value="1" disabled> / <span id="total">0</span></span>
+<div style="flex:1"></div>
+<button id="zoomOut" disabled>−</button><span id="zoomLabel">100%</span><button id="zoomIn" disabled>＋</button><button id="fit" disabled>Fit</button><button id="full" disabled title="Fullscreen">⛶</button>
+</div>
+<div id="stage"><div id="placeholder"><h1>Present your slides beautifully</h1>Open your PowerPoint file, or load the online PPTX from the URL button.<br><br><span>Supports slide navigation, thumbnails, zoom and fullscreen.</span></div></div>
+<div class="bottom"><span id="status">Waiting for a presentation</span><div id="progress"><div id="progressBar"></div></div><span id="progressText"></span></div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxjs@1.21.1/dist/pptxjs.min.js"></script>
+<script>
+/* This lightweight shell uses Office Web Viewer for remote files. For local files,
+   it uses Microsoft Office's hosted viewer only if the file is first hosted publicly.
+   Local files are not uploaded automatically. */
+const pptxUrl='https://raw.githubusercontent.com/nasimchapaipoly/nasim/main/lesson%2FFood_Engineering_Fundamentals_Bangla_Chapterwise.pptx';
+const stage=document.getElementById('stage'),status=document.getElementById('status');
+let current=1,total=0,zoom=100,viewerFrame=null;
+function setStatus(s){status.textContent=s}
+function update(){document.getElementById('prev').disabled=current<=1;document.getElementById('next').disabled=current>=total;document.getElementById('slideInput').value=current;document.getElementById('total').textContent=total;document.getElementById('sideCount').textContent=total;document.getElementById('slideInput').disabled=!total}
+function loadOnline(url){
+ if(!/^https?:\/\//i.test(url)){setStatus('Please use a public HTTPS/HTTP URL.');return}
+ stage.innerHTML='';const wrap=document.createElement('div');wrap.id='slideFrame';wrap.style.width='100%';wrap.style.height='100%';wrap.style.aspectRatio='auto';
+ const iframe=document.createElement('iframe');iframe.title='PowerPoint presentation';iframe.allowFullscreen=true;
+ iframe.src='https://view.officeapps.live.com/op/embed.aspx?src='+encodeURIComponent(url);
+ wrap.appendChild(iframe);stage.appendChild(wrap);viewerFrame=iframe;
+ document.getElementById('thumbs').innerHTML='<div class="notice">Microsoft Office Web Viewer controls slide navigation inside the presentation. Use its own controls to move between slides.</div>';
+ total=0;current=1;update();['prev','next','zoomOut','zoomIn','fit','full'].forEach(id=>document.getElementById(id).disabled=id!=='full');
+ document.getElementById('zoomLabel').textContent='Office';setStatus('Loading presentation from Microsoft Office Web Viewer…');
+ iframe.addEventListener('load',()=>setStatus('Viewer loaded. If an error appears, check public access to the PPTX URL.'));
+}
+document.getElementById('openUrl').addEventListener('click',()=>{const u=prompt('Paste a direct public PPTX file URL:',pptxUrl);if(u)loadOnline(u.trim())});
+document.getElementById('file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;setStatus('Local file selected: '+f.name+'. This hosted Office viewer requires a public URL. Upload the file to public hosting, then choose Open URL.');alert('For privacy, this demo does not upload your local file. To view it online here, host the PPTX at a public direct URL and use Open URL.');e.target.value=''});
+document.getElementById('full').addEventListener('click',()=>{if(viewerFrame?.requestFullscreen)viewerFrame.requestFullscreen();else stage.requestFullscreen?.()});
+document.getElementById('prev').addEventListener('click',()=>{if(current>1){current--;update()}});
+document.getElementById('next').addEventListener('click',()=>{if(current<total){current++;update()}});
+document.getElementById('slideInput').addEventListener('change',e=>{current=Math.max(1,Math.min(total,Number(e.target.value)||1));update()});
+document.getElementById('zoomIn').addEventListener('click',()=>{zoom=Math.min(200,zoom+10);document.getElementById('zoomLabel').textContent=zoom+'%'});
+document.getElementById('zoomOut').addEventListener('click',()=>{zoom=Math.max(50,zoom-10);document.getElementById('zoomLabel').textContent=zoom+'%'});
+document.getElementById('fit').addEventListener('click',()=>{zoom=100;document.getElementById('zoomLabel').textContent='100%'});
+document.addEventListener('keydown',e=>{if(e.target.matches('input'))return;if(e.key==='f'||e.key==='F')document.getElementById('full').click()});
+/* Load the requested public GitHub file on startup. */
+loadOnline(pptxUrl);
+</script>
+</body></html>
