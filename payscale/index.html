@@ -1,64 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ - পূর্ণাঙ্গ হিসাব ও বকেয়া বিল সিস্টেম by NasimSoft">
-    <title>জাতীয় বেতনস্কেল ২০২৬ | ফিক্সেশন ও বকেয়া বিল সিস্টেম</title>
+    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত) - iBAS SAFE Style পূর্ণাঙ্গ ফিক্সেশন ও বকেয়া বিল সিস্টেম by NasimSoft">
+    <title>জাতীয় বেতনস্কেল ২০২৬ | iBAS SAFE Edition - NasimSoft</title>
     
-    <!-- Kalpurush Font -->
+    <!-- Kalpurush Font & FontAwesome 6 -->
     <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary: #047857;
-            --primary-hover: #065F46;
-            --primary-light: #ECFDF5;
-            --primary-border: #A7F3D0;
-            --secondary: #022C22;
-            --success: #10B981;
+            --ibas-bg: #0B6A6C;
+            --ibas-bg-dark: #074F51;
+            --ibas-sidebar: #08585A;
+            --ibas-btn: #289698;
+            --ibas-btn-hover: #32ABB0;
+            --ibas-accent: #8CE0E2;
+            --ibas-card: #FFFFFF;
+            --ibas-input-bg: #FFFFFF;
+            --ibas-text: #1E293B;
+            --ibas-muted: #64748B;
+            --ibas-border: #CBD5E1;
             --danger: #EF4444;
-            --info: #059669;
-            --bg: #F0FDF4;
-            --surface: #FFFFFF;
-            --text-main: #1F2937;
-            --text-muted: #6B7280;
-            --border: #D1FAE5;
-            --navbar-bg: rgba(255, 255, 255, 0.92);
-            --navbar-border: rgba(167, 243, 208, 0.6);
-            --card-border: rgba(167, 243, 208, 0.7);
-            --input-bg: #F8FAFC;
-            --modal-bg: #FFFFFF;
-            --radius-lg: 18px;
-            --radius-md: 12px;
-            --radius-sm: 9px;
-            --shadow-sm: 0 2px 8px rgba(4, 120, 87, 0.06);
-            --shadow-md: 0 8px 28px rgba(4, 120, 87, 0.09);
-            --shadow-lg: 0 16px 48px rgba(4, 120, 87, 0.14);
-            --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        [data-theme="dark"] {
-            --primary: #34D399;
-            --primary-hover: #10B981;
-            --primary-light: #064E3B;
-            --primary-border: #065F46;
-            --secondary: #ECFDF5;
-            --success: #34D399;
-            --danger: #F87171;
-            --info: #6EE7B7;
-            --bg: #0B1F1A;
-            --surface: #122C25;
-            --text-main: #E5E7EB;
-            --text-muted: #9CA3AF;
-            --border: #1F4A3D;
-            --navbar-bg: rgba(11, 31, 26, 0.92);
-            --navbar-border: rgba(6, 95, 70, 0.5);
-            --card-border: rgba(6, 95, 70, 0.6);
-            --input-bg: #0F2922;
-            --modal-bg: #122C25;
+            --success: #10B981;
+            --radius-lg: 14px;
+            --radius-md: 8px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,107 +35,392 @@
 
         body {
             font-family: 'Kalpurush', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
+            background: var(--ibas-bg);
+            color: #FFFFFF;
             line-height: 1.55;
             min-height: 100vh;
-            transition: background 0.35s ease, color 0.35s ease;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            background: var(--navbar-bg);
-            backdrop-filter: blur(16px);
-            box-shadow: 0 1px 0 var(--navbar-border), 0 4px 20px rgba(4, 120, 87, 0.04);
+        /* ========== APP SHELL (SIDEBAR FOR WEB, BOTTOM NAV FOR MOBILE) ========== */
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Desktop Sidebar (Web View) */
+        .sidebar {
+            width: 270px;
+            background: var(--ibas-sidebar);
+            border-right: 1px solid rgba(255, 255, 255, 0.14);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 300;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .brand-box {
+            text-align: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 18px;
+        }
+
+        .brand-box img {
+            width: 78px;
+            height: 78px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            margin-bottom: 8px;
+        }
+
+        .brand-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+        }
+
+        .brand-sub {
+            display: inline-block;
+            background: #FFFFFF;
+            color: var(--ibas-bg-dark);
+            font-weight: 800;
+            font-size: 0.72rem;
+            padding: 2px 10px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            margin-top: 3px;
+        }
+
+        .side-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .side-nav li button, .side-nav li a {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: var(--radius-md);
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.88);
+            font-family: 'Kalpurush', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.22s ease;
+        }
+
+        .side-nav li button i, .side-nav li a i {
+            width: 22px;
+            text-align: center;
+            font-size: 1.08rem;
+            color: var(--ibas-accent);
+        }
+
+        .side-nav li button:hover, .side-nav li a:hover, .side-nav li button.active {
+            background: var(--ibas-btn);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .side-nav li button.active i { color: #FFFFFF; }
+
+        .sidebar-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: 270px;
+            padding: 28px 20px 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+        }
+
+        /* Mobile Top Header */
+        .mobile-top-bar {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--ibas-sidebar);
+            padding: 10px 16px;
             position: sticky;
             top: 0;
-            z-index: 200;
-            border-bottom: 1px solid var(--navbar-border);
+            z-index: 250;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
         }
 
-        .nav-container {
-            max-width: 920px;
-            margin: 0 auto;
+        .mobile-top-brand {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 18px;
-            height: 58px;
+            gap: 10px;
         }
 
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { height: 38px; width: auto; }
+        .mobile-top-brand img {
+            width: 38px;
+            height: 38px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 9px;
+        }
 
-        .main-wrapper { padding: 26px 16px 40px; }
-        .container { max-width: 660px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 24px; }
-        .header h1 { font-size: 1.65rem; color: var(--secondary); font-weight: 700; margin-bottom: 5px; }
-        .header p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; }
+        /* Hero Banner */
+        .ibas-hero {
+            text-align: center;
+            margin-bottom: 22px;
+        }
 
-        .counter-badge {
+        .ibas-hero h1 {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+
+        .ibas-hero p {
+            font-size: 0.93rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 10px;
+        }
+
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ibas-badge {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: #FFFFFF;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
-            color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            border: 1px solid var(--primary-border);
         }
 
-        .card {
-            background: var(--surface);
+        /* iBAS Style Form Container */
+        .ibas-panel {
+            background: rgba(7, 79, 81, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: var(--radius-lg);
-            padding: 26px 22px;
-            margin-bottom: 20px;
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-md);
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
         }
 
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 0.96rem; font-weight: 600; margin-bottom: 6px; color: var(--secondary); }
+        .section-tag {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--ibas-accent);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 6px;
+        }
+
+        .form-group { margin-bottom: 14px; }
+        .form-group label {
+            display: block;
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #F1F5F9;
+        }
+        .form-group label span.req { color: #FCA5A5; margin-left: 2px; }
+
+        /* iBAS SAFE White Input Box with Left Icon */
+        .input-icon-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--ibas-input-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-icon-wrap:focus-within {
+            border-color: var(--ibas-accent);
+        }
+
+        .input-icon-wrap i.left-ico {
+            width: 42px;
+            text-align: center;
+            color: var(--ibas-bg);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
         .form-control {
             width: 100%;
-            padding: 11px 14px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 1rem;
+            padding: 11px 12px 11px 0;
+            border: none;
             outline: none;
-            background: var(--input-bg);
-            color: var(--text-main);
-            font-family: 'Kalpurush', system-ui, sans-serif;
+            background: transparent;
+            color: var(--ibas-text);
+            font-size: 0.98rem;
+            font-family: 'Kalpurush', sans-serif;
+            font-weight: 500;
         }
-        .form-control:focus { background: var(--surface); border-color: var(--primary); }
+
+        .form-control::placeholder {
+            color: #94A3B8;
+            font-weight: 400;
+        }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
+        @media (max-width: 560px) { .grid-2 { grid-template-columns: 1fr; } }
 
-        .btn-submit {
+        /* iBAS Login Style Button */
+        .btn-ibas {
             width: 100%;
-            background: linear-gradient(135deg, #047857 0%, #059669 100%);
-            color: white;
-            border: none;
-            padding: 13px;
-            border-radius: var(--radius-sm);
-            font-size: 1.08rem;
-            font-weight: 600;
+            background: var(--ibas-btn);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 13px 16px;
+            border-radius: var(--radius-md);
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 6px;
-            box-shadow: 0 4px 16px rgba(4, 120, 87, 0.28);
-            font-family: 'Kalpurush', system-ui, sans-serif;
+            transition: all 0.25s ease;
+            font-family: 'Kalpurush', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-top: 8px;
         }
 
-        .footer-top { text-align: center; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); }
-        .footer-credit { font-size: 0.88rem; color: var(--text-muted); }
-        .footer-credit a { color: var(--primary); text-decoration: none; font-weight: 700; }
+        .btn-ibas:hover {
+            background: var(--ibas-btn-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-ibas.secondary {
+            background: rgba(255, 255, 255, 0.12);
+            margin-top: 8px;
+            font-size: 0.92rem;
+            padding: 9px;
+        }
+
+        .advanced-box {
+            margin: 14px 0;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.14);
+        }
+
+        .info-alert {
+            background: rgba(255, 255, 255, 0.12);
+            border-left: 4px solid var(--ibas-accent);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: #E2E8F0;
+        }
+
+        .scale-table-wrap { margin-top: 10px; border-radius: 8px; overflow: hidden; display: none; background: #fff; color: #1e293b; }
+        .scale-table-wrap.open { display: block; }
+        .scale-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+        .scale-table th, .scale-table td { padding: 6px 10px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+        .scale-table th { background: #0B6A6C; color: #fff; }
+
+        /* Mobile Bottom App Navbar */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--ibas-bg-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            z-index: 400;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.28);
+        }
+
+        .mobile-bottom-nav button {
+            flex: 1;
+            height: 100%;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Kalpurush', sans-serif;
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .mobile-bottom-nav button i { font-size: 1.15rem; }
+        .mobile-bottom-nav button.active, .mobile-bottom-nav button:hover {
+            color: #FFFFFF;
+            background: rgba(40, 150, 152, 0.35);
+            font-weight: 700;
+        }
+
+        @media (max-width: 860px) {
+            .sidebar { display: none; }
+            .mobile-top-bar { display: flex; }
+            .main-content { margin-left: 0; padding: 18px 12px 84px; }
+            .mobile-bottom-nav { display: flex; }
+        }
 
         /* Modals */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(2, 44, 34, 0.78);
-            backdrop-filter: blur(8px);
+            background: rgba(4, 38, 40, 0.85);
+            backdrop-filter: blur(6px);
             opacity: 0;
             visibility: hidden;
             display: flex;
@@ -174,287 +428,308 @@
             justify-content: center;
             z-index: 1000;
             padding: 12px;
-            transition: opacity 0.3s ease, visibility 0.3s;
+            transition: 0.25s ease;
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal-content {
-            background: var(--modal-bg);
+            background: #FFFFFF;
+            color: #1E293B;
             width: 100%;
-            max-width: 520px;
-            border-radius: 20px;
-            padding: 16px 18px 14px;
-            box-shadow: 0 28px 70px rgba(2, 44, 34, 0.25);
-            border: 2px solid var(--primary-border);
-            position: relative;
-            max-height: 92vh;
+            max-width: 540px;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            max-height: 90vh;
             overflow-y: auto;
         }
 
         .modal-header {
             font-size: 1.08rem;
             font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 6px;
+            color: var(--ibas-bg-dark);
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1.5px solid var(--border);
+            border-bottom: 2px solid #E2E8F0;
             padding-bottom: 8px;
         }
 
-        .close-btn { background: none; border: none; font-size: 1.15rem; color: var(--danger); cursor: pointer; padding: 2px 7px; }
-        .modal-footer { display: flex; gap: 8px; margin-top: 10px; border-top: 1.5px solid var(--border); padding-top: 10px; }
-
-        .btn-nav, .btn-primary, .btn-cancel, .btn-confirm {
-            flex: 1;
-            padding: 9px 10px;
-            border-radius: var(--radius-sm);
-            border: none;
-            cursor: pointer;
-            font-family: 'Kalpurush', system-ui, sans-serif;
-            font-size: 0.93rem;
-            font-weight: 600;
-        }
-        .btn-nav, .btn-cancel { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--border); }
-        .btn-primary, .btn-confirm { background: var(--primary); color: white; }
-        .btn-group { display: flex; gap: 8px; margin-top: 12px; }
-
-        .slide-indicator {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            background: var(--primary-light);
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--primary-border);
-        }
-        .indicator-wrapper { text-align: center; margin-bottom: 4px; }
-        #slideContent { min-height: 180px; }
-
-        .sec-title { font-size: 0.96rem; font-weight: 700; color: var(--secondary); border-bottom: 1.5px solid var(--border); padding-bottom: 4px; margin: 4px 0 6px; }
-        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 3.5px 0; font-size: 0.84rem; border-bottom: 1px dashed var(--border); gap: 8px; }
+        .close-btn { background: none; border: none; font-size: 1.2rem; color: var(--danger); cursor: pointer; }
+        .sec-title { font-size: 0.95rem; font-weight: 700; color: var(--ibas-bg-dark); border-bottom: 1.5px solid #E2E8F0; padding-bottom: 4px; margin: 6px 0; }
+        .stage-box { padding: 10px; margin-bottom: 8px; border-radius: 10px; border: 1px solid #CBD5E1; background: #F8FAFC; }
+        .item-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.85rem; border-bottom: 1px dashed #CBD5E1; gap: 8px; }
         .item-row:last-child { border-bottom: none; }
-        .item-row span:last-child { font-weight: 600; text-align: right; white-space: nowrap; }
-        .item-row.sub { color: var(--text-muted); font-size: 0.8rem; }
-        .item-row.highlight, .item-row.deduct { padding: 5px 10px; font-size: 0.84rem; margin: 3px 0; border-radius: 7px; border: none; font-weight: 600; }
-        .item-row.highlight { background: var(--primary-light); color: var(--primary); }
-        .item-row.deduct { background: #FEF2F2; color: var(--danger); }
+        .item-row span:last-child { font-weight: 700; }
+        .item-row.highlight { background: #E6F4F4; color: var(--ibas-bg-dark); padding: 6px 8px; border-radius: 6px; border: none; margin: 3px 0; }
+        .modal-footer { display: flex; gap: 8px; margin-top: 12px; border-top: 1px solid #E2E8F0; padding-top: 10px; flex-wrap: wrap; }
+        .btn-modal { flex: 1; padding: 10px; border-radius: 8px; border: none; font-family: 'Kalpurush', sans-serif; font-weight: 700; cursor: pointer; font-size: 0.92rem; }
+        .btn-modal.primary { background: var(--ibas-bg); color: #fff; }
+        .btn-modal.outline { background: #F1F5F9; color: #334155; border: 1px solid #CBD5E1; }
 
-        #slideContent .desc-box { font-size: 0.78rem; padding: 7px 10px; margin: 5px 0 2px; border: 1.5px solid var(--primary-border); border-radius: 8px; background: var(--primary-light); line-height: 1.4; }
-        #slideContent .stage-box { padding: 8px 10px; margin-bottom: 6px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface); }
-        #slideContent .stage-header { margin-bottom: 3px; display: flex; justify-content: space-between; align-items: center; }
-        #slideContent .badge { font-size: 0.68rem; padding: 2px 7px; border-radius: 5px; font-weight: 600; background: var(--primary-light); color: var(--primary); }
+        #pensionFields, #arrearFields { display: none; }
+        body.pension-mode .employee-only, body.pension-mode .arrear-only { display: none !important; }
+        body.pension-mode #pensionFields { display: block; }
+        body.arrear-mode .employee-extra { display: none !important; }
+        body.arrear-mode #arrearFields { display: block; }
 
-        .nav-actions { display: flex; align-items: center; gap: 6px; }
-        .icon-btn { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); color: var(--text-main); display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        .menu-3dot { position: relative; }
-        .menu-3dot-dropdown { position: absolute; top: calc(100% + 10px); right: 0; min-width: 240px; background: var(--surface); border-radius: 14px; box-shadow: 0 12px 40px rgba(2, 44, 34, 0.14); z-index: 400; opacity: 0; visibility: hidden; padding: 6px; }
-        .menu-3dot.open .menu-3dot-dropdown { opacity: 1; visibility: visible; }
-        .menu-3dot-dropdown a { display: flex; align-items: center; gap: 8px; padding: 10px 14px; color: var(--text-main); text-decoration: none; font-size: 0.92rem; border-radius: 10px; }
-        .menu-divider { height: 1px; background: var(--border); margin: 4px 8px; }
-        .menu-label { padding: 6px 14px 4px; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); }
+        .toast { position: fixed; bottom: 75px; left: 50%; transform: translateX(-50%); background: #022c22; color: #fff; padding: 10px 20px; border-radius: 999px; font-size: 0.9rem; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000; }
+        .toast.show { opacity: 1; }
 
-        .compare-card { background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 100%); border: 1.5px solid var(--primary-border); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; }
-        .compare-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; text-align: center; }
-        .compare-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
-        .compare-box { text-align: center; padding: 6px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); }
-        .compare-box .label { font-size: 0.72rem; color: var(--text-muted); }
-        .compare-box .value { font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
-        .compare-increase { margin-top: 6px; text-align: center; font-size: 0.84rem; font-weight: 700; color: var(--success); background: rgba(16, 185, 129, 0.12); padding: 4px 8px; border-radius: 8px; }
-
-        .slide-dots { display: flex; justify-content: center; gap: 7px; margin: 6px 0 2px; }
-        .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; }
-        .slide-dot.active { background: var(--primary); transform: scale(1.25); }
-
-        .share-row { display: flex; gap: 8px; margin-top: 8px; width: 100%; }
-        .share-btn { flex: 1; padding: 9px 8px; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: var(--surface); color: var(--text-main); font-family: 'Kalpurush', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; }
-
-        .scale-table-wrap { margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: none; }
-        .scale-table-wrap.open { display: block; }
-        .scale-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-        .scale-table th, .scale-table td { padding: 5px 8px; border-bottom: 1px solid var(--border); text-align: left; }
-        .scale-table th { background: var(--primary-light); color: var(--primary); }
-
-        .btn-scale-toggle { width: 100%; margin-top: 8px; padding: 9px; border-radius: var(--radius-sm); border: 1.5px dashed var(--primary-border); background: transparent; color: var(--primary); font-family: 'Kalpurush', sans-serif; font-weight: 600; cursor: pointer; }
-
-        .gazette-status { display:inline-flex; align-items:center; gap:6px; margin-top:8px; padding:5px 12px; border-radius:999px; background:var(--primary-light); color:var(--primary); border:1px solid var(--primary-border); font-size:.78rem; font-weight:700; }
-        .advanced-box { margin:14px 0 18px; padding:14px; border:1px solid var(--border); border-radius:14px; background:linear-gradient(135deg,var(--primary-light),transparent); }
-        .advanced-title { font-weight:800; color:var(--secondary); margin-bottom:10px; display:flex; justify-content:space-between; }
-        .form-group.compact { margin-bottom:10px; }
-        .deduction-auto-box { margin:14px 0; padding:14px 16px; border:1px solid rgba(4,120,87,.22); border-radius:14px; background:linear-gradient(135deg,rgba(4,120,87,.07),rgba(245,158,11,.06)); }
-        .deduction-auto-title { font-weight:800; color:var(--primary); margin-bottom:10px; }
-        .deduction-auto-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-        .deduction-auto-grid>div { padding:9px 10px; border-radius:10px; background:var(--surface); display:flex; justify-content:space-between; font-size:13px; }
-        .deduction-auto-grid .total { grid-column:1/-1; border:1px solid rgba(4,120,87,.2); font-weight:800; }
-        .pension-mode-box { margin-bottom:18px; padding:14px 16px; border:1px solid var(--border); border-radius:14px; }
-        .pension-info { margin-top:8px; padding:10px 12px; border-radius:10px; background:rgba(34,197,94,.08); font-size:13px; }
-
-        #pensionFields, #arrearFields { display:none; }
-        body.pension-mode .employee-only, body.pension-mode .arrear-only { display:none!important; }
-        body.pension-mode #pensionFields { display:block; }
-        body.arrear-mode .employee-extra { display:none!important; }
-        body.arrear-mode #arrearFields { display:block; }
-
-        .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--secondary); color: #fff; padding: 10px 18px; border-radius: 9999px; font-size: 0.9rem; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 2000; }
-        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-        /* ========== PRINT STYLES (TR Form 13 + Arrear Statement Sheet + Fixation Sheet) ========== */
+        /* ========== PRINT STYLES: 2 PAGES PORTRAIT (TR 13 / TR 15) + 1 PAGE LANDSCAPE (ARREAR SHEET) ========== */
         .print-only { display: none; }
         @media print {
-            @page { size: A4 portrait; margin: 8mm 10mm; }
-            body { background: white !important; color: #000 !important; font-size: 9.5pt !important; line-height: 1.3 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            @page { size: A4 portrait; margin: 7mm 9mm; }
+            @page portrait_page { size: A4 portrait; margin: 7mm 9mm; }
+            @page landscape_page { size: A4 landscape; margin: 8mm 10mm; }
+
+            body { background: #FFFFFF !important; color: #000000 !important; font-size: 9pt !important; line-height: 1.28 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
 
-            .page-break { page-break-before: always; break-before: page; }
+            .print-portrait-page { page: portrait_page; page-break-after: always; break-after: page; }
+            .print-landscape-page { page: landscape_page; page-break-before: always; break-before: page; }
+
+            /* TR Form Common Styles */
+            .tr-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3px; font-size: 9pt; }
+            .tr-title { text-align: center; flex: 1; }
+            .tr-title h2 { font-size: 12.5pt; font-weight: bold; }
+            .tr-meta-line { margin: 2.5px 0; font-size: 9pt; display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+            .tr-code-boxes { display: inline-flex; border: 1px solid #000; vertical-align: middle; margin-left: 4px; }
+            .tr-code-boxes span { width: 16px; height: 16px; border-right: 1px solid #000; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 9pt; }
+            .tr-code-boxes span:last-child { border-right: none; }
+
+            .tr-table { width: 100%; border-collapse: collapse; margin-top: 3px; font-size: 8.4pt; }
+            .tr-table th, .tr-table td { border: 1px solid #000; padding: 1.5px 4px; }
+            .tr-table th { text-align: center; font-weight: bold; background: #f3f4f6 !important; }
+            .tr-table td.chk-col { width: 20px; text-align: center; }
+            .tr-table td.code-col { width: 72px; text-align: center; }
+            .tr-table td.amt-taka { width: 80px; text-align: right; font-weight: bold; font-size: 9pt; }
+            .tr-table td.amt-poisha { width: 34px; text-align: center; font-weight: bold; }
+            .tr-sec-row td { font-weight: bold; background: #eaeaea !important; }
+            .chk-box { display: inline-block; width: 8px; height: 8px; border: 1px solid #000; }
+
+            /* TR-15 Left Instructions Layout */
+            .tr15-split { display: grid; grid-template-columns: 32% 68%; gap: 8px; margin-top: 4px; }
+            .tr15-instructions { font-size: 8pt; line-height: 1.35; text-align: justify; border-right: 1px dashed #000; padding-right: 6px; }
+            .tr15-instructions ol { padding-left: 14px; }
+            .tr15-instructions li { margin-bottom: 4px; }
+
+            /* Page 2 Backside Styles */
+            .tr-back-box { border: 1px solid #000; padding: 8px 10px; margin-bottom: 8px; font-size: 8.8pt; }
+            .sig-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; text-align: center; }
+            .sig-line { border-top: 1px solid #000; padding-top: 3px; font-size: 8.8pt; }
+
+            /* Page 3 Landscape Arrear Table */
+            .arrear-sheet-header { text-align: center; margin-bottom: 8px; line-height: 1.4; }
+            .arrear-sheet-header h2 { font-size: 13pt; font-weight: bold; }
+            .arrear-stmt-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 6px; }
+            .arrear-stmt-table th, .arrear-stmt-table td { border: 1px solid #000; padding: 4px 5px; text-align: center; }
+            .arrear-stmt-table th { font-weight: bold; background: #f1f5f9 !important; }
+            .arrear-stmt-table tr.total-row td { font-weight: bold; background: #e2e8f0 !important; font-size: 10pt; }
 
             /* Fixation Sheet Print */
-            .print-header { text-align: center; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 6px; }
-            .print-header h1 { font-size: 13pt; margin-bottom: 2px; }
-            .fixation-sheet-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-            .fixation-sheet-table td { padding: 2.5px 4px; font-size: 9.8pt; vertical-align: top; }
+            .fixation-sheet-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+            .fixation-sheet-table td { padding: 2.5px 4px; font-size: 9.6pt; vertical-align: top; }
             .fixation-sheet-table td.num-col { width: 34px; font-weight: bold; }
             .fixation-sheet-table td.colon-col { width: 14px; text-align: center; }
             .fixation-sheet-table td.val-col { font-weight: 600; width: 38%; }
-            .audit-box { margin-top: 10px; border-top: 1.5px solid #000; padding-top: 8px; font-size: 9.5pt; text-align: justify; line-height: 1.45; }
-            .sig-row { display: flex; justify-content: space-between; margin: 26px 20px 10px; }
-            .sig-col { border-top: 1px solid #000; width: 180px; text-align: center; padding-top: 3px; font-size: 9.5pt; }
-
-            /* Page 1: TR Form No 13 (বেতন বিল) */
-            .tr13-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; font-size: 9.5pt; }
-            .tr13-title { text-align: center; flex: 1; }
-            .tr13-title h2 { font-size: 13pt; font-weight: bold; margin-bottom: 2px; }
-            .tr13-meta-line { margin: 3px 0; font-size: 9.5pt; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-            .tr13-code-boxes { display: inline-flex; border: 1px solid #000; vertical-align: middle; margin-left: 6px; }
-            .tr13-code-boxes span { width: 18px; height: 18px; border-right: 1px solid #000; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 9.5pt; }
-            .tr13-code-boxes span:last-child { border-right: none; }
-
-            .tr13-table { width: 100%; border-collapse: collapse; margin-top: 4px; font-size: 8.8pt; }
-            .tr13-table th, .tr13-table td { border: 1px solid #000; padding: 1.8px 5px; }
-            .tr13-table th { text-align: center; font-weight: bold; background: #f8f8f8 !important; }
-            .tr13-table td.chk-col { width: 24px; text-align: center; }
-            .tr13-table td.code-col { width: 78px; text-align: center; }
-            .tr13-table td.rate-taka { width: 65px; text-align: right; }
-            .tr13-table td.rate-poisha { width: 38px; text-align: center; }
-            .tr13-table td.amt-taka { width: 85px; text-align: right; font-weight: bold; font-size: 9.5pt; }
-            .tr13-table td.amt-poisha { width: 40px; text-align: center; font-weight: bold; }
-            .tr13-sec-row td { font-weight: bold; background: #efefef !important; padding: 2px 6px; }
-            .chk-box { display: inline-block; width: 9px; height: 9px; border: 1px solid #000; }
-
-            .tr13-bottom { margin-top: 8px; font-size: 9.2pt; }
-            .tr13-sig-area { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px; }
-            .stamp-box { width: 75px; height: 65px; border: 1px solid #000; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 8.5pt; }
-
-            /* Page 2: Arrear Calculation Statement (বকেয়া বেতনের বিবরণী ছক) */
-            .arrear-sheet-header { text-align: center; margin-bottom: 10px; line-height: 1.45; }
-            .arrear-sheet-header h2 { font-size: 12pt; font-weight: bold; }
-            .arrear-sheet-header p { font-size: 10.5pt; font-weight: bold; }
-            .arrear-stmt-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 6px; }
-            .arrear-stmt-table th, .arrear-stmt-table td { border: 1px solid #000; padding: 3.5px 4px; text-align: center; }
-            .arrear-stmt-table th { font-weight: bold; background: #f3f4f6 !important; }
-            .arrear-stmt-table tr.total-row td { font-weight: bold; background: #f9fafb !important; font-size: 9.5pt; }
         }
     </style>
 </head>
 <body>
 
-<div class="no-print">
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="NasimSoft">
+<div class="no-print app-layout">
+    <!-- WEB VIEW SIDEBAR (Hidden on Mobile) -->
+    <aside class="sidebar">
+        <div>
+            <div class="brand-box">
                 <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft Logo">
-            </a>
-            <div class="nav-actions">
-                <button type="button" class="icon-btn" onclick="openHistoryModal()" title="হিসাব হিস্ট্রি">📋</button>
-                <button type="button" class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="ডার্ক/লাইট মোড">🌙</button>
-                <div class="menu-3dot" id="menu3dot">
-                    <button type="button" class="icon-btn menu-3dot-btn" id="menu3dotBtn" onclick="toggle3dotMenu(event)">⋮</button>
-                    <div class="menu-3dot-dropdown" id="menu3dotDropdown">
-                        <a href="#" onclick="close3dotMenu()">🏠 হোম</a>
-                        <div class="menu-divider"></div>
-                        <div class="menu-label">পে স্কেলের গেজেট</div>
-                        <a href="https://nasim.ceo.bd/payscale/ps2015.pdf" target="_blank" rel="noopener">📄 পে-স্কেল ২০১৫</a>
-                        <a href="https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mof/2026/8/650d48d2-18b6-41ad-aef8-19dd39b4e973.pdf" target="_blank" rel="noopener">📜 সরকারি গেজেট ২০২৬</a>
-                        <div class="menu-divider"></div>
-                        <a href="#" onclick="close3dotMenu(); openContactModal(); return false;">✉️ যোগাযোগ</a>
+                <div class="brand-title">iBAS PayScale</div>
+                <div class="brand-sub">SAFE 2026</div>
+            </div>
+            <ul class="side-nav">
+                <li>
+                    <button type="button" id="sideTab_employee" class="active" onclick="switchMode('employee')">
+                        <i class="fa-solid fa-calculator"></i> বেতন ফিক্সেশন হিসাব
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="sideTab_arrear" onclick="switchMode('arrear')">
+                        <i class="fa-solid fa-file-invoice-dollar"></i> বকেয়া বেতন বিল (TR 13/15)
+                    </button>
+                </li>
+                <li>
+                    <button type="button" id="sideTab_pensioner" onclick="switchMode('pensioner')">
+                        <i class="fa-solid fa-person-cane"></i> পেনশন ফিক্সেশন হিসাব
+                    </button>
+                </li>
+                <li>
+                    <button type="button" onclick="openHistoryModal()">
+                        <i class="fa-solid fa-clock-rotate-left"></i> হিসাব হিস্ট্রি
+                    </button>
+                </li>
+                <li>
+                    <a href="https://nasim.ceo.bd/payscale/ps2015.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-file-pdf"></i> পে-স্কেল গেজেট ২০১৫
+                    </a>
+                </li>
+                <li>
+                    <a href="https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-mof/2026/8/650d48d2-18b6-41ad-aef8-19dd39b4e973.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-scroll"></i> সরকারি গেজেট ২০২৬
+                    </a>
+                </li>
+                <li>
+                    <button type="button" onclick="openContactModal()">
+                        <i class="fa-solid fa-circle-info"></i> ডেভেলপার তথ্য
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div><i class="fa-solid fa-shield-halved"></i> iBAS SAFE UI Edition</div>
+            <div style="margin-top:4px;">Developed by <strong>NasimSoft</strong> · v2.6</div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div style="flex:1; width:100%;">
+        <!-- Mobile Header -->
+        <header class="mobile-top-bar">
+            <div class="mobile-top-brand">
+                <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft">
+                <div>
+                    <div style="font-weight:800;font-size:1.05rem;line-height:1.1;">iBAS PayScale</div>
+                    <div style="font-size:0.7rem;color:var(--ibas-accent);letter-spacing:1px;">SAFE EDITION 2026</div>
+                </div>
+            </div>
+            <button type="button" onclick="openContactModal()" style="background:none;border:none;color:#fff;font-size:1.25rem;cursor:pointer;">
+                <i class="fa-solid fa-circle-info"></i>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <div class="container">
+                <div class="ibas-hero">
+                    <h1>জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত)</h1>
+                    <p>সরকারি বেতন নির্ধারণী বিবরণী (Fixation) ও বকেয়া বিল (টি.আর. ফরম ১৩ ও ১৫) অটোমেটিক সিস্টেম</p>
+                    <div class="badge-row">
+                        <span class="ibas-badge"><i class="fa-solid fa-check-Double"></i> গেজেট: ১৭ সেপ্টেম্বর ২০২৬</span>
+                        <span class="ibas-badge"><i class="fa-solid fa-chart-line"></i> হিসাব সম্পন্ন: <span id="calcCount">০</span> বার</span>
                     </div>
                 </div>
-            </div>
-        </div>
-    </nav>
 
-    <div class="main-wrapper">
-        <div class="container">
-            <div class="header">
-                <h1>জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত)</h1>
-                <p>বেতন নির্ধারণী বিবরণী (Fixation) ও বকেয়া বেতন বিল (টি.আর. ফরম-১৩ সহ) অটোমেটিক সিস্টেম</p>
-                <div class="counter-badge">
-                    হিসাব সম্পন্ন হয়েছে: <span id="calcCount">০</span> বার
-                </div>
-                <br>
-                <div class="gazette-status">✓ গেজেট প্রকাশ: ১৭ সেপ্টেম্বর ২০২৬ · কার্যকর: ১ জুলাই ২০২৬</div>
-            </div>
+                <div class="ibas-panel">
+                    <form id="payForm" onsubmit="return calculatePay(event)">
+                        
+                        <!-- ১. কর্মকর্তা/কর্মচারীর বাধ্যতামূলক পরিচিতি তথ্য (ডামি হিন্টস সহ) -->
+                        <div class="section-tag">
+                            <i class="fa-solid fa-id-card"></i> কর্মকর্তা / কর্মচারীর সাধারণ তথ্য (বাধ্যতামূলক)
+                        </div>
 
-            <div class="card">
-                <form id="payForm" onsubmit="return calculatePay(event)">
-                    <div class="pension-mode-box">
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label for="personType">হিসাবের ধরন নির্বাচন করুন</label>
-                            <select id="personType" class="form-control" onchange="togglePersonType()">
-                                <option value="employee" selected>১. কর্মরত কর্মকর্তা/কর্মচারী (বেতন ফিক্সেশন হিসাব)</option>
-                                <option value="arrear">২. বকেয়া বেতন বিল হিসাব (টি.আর. ফরম নং ১৩ ও বকেয়া বিবরণী)</option>
-                                <option value="pensioner">৩. পেনশনভোগী (পেনশন ফিক্সেশন হিসাব)</option>
-                            </select>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="emp_name">নাম (বাংলায়) <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <i class="fa-solid fa-user left-ico"></i>
+                                    <input type="text" id="emp_name" class="form-control" required placeholder="যেমন: নাসিম আল মাসুদ">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_desig">পদবি (বাংলায়) <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <i class="fa-solid fa-user-tie left-ico"></i>
+                                    <input type="text" id="emp_desig" class="form-control" required placeholder="যেমন: জুনিয়র ইনস্ট্রাক্টর (টেক/ফুড)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="emp_workplace">প্রতিষ্ঠানের / দপ্তরের নাম <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <i class="fa-solid fa-building-columns left-ico"></i>
+                                    <input type="text" id="emp_workplace" class="form-control" required placeholder="যেমন: চাঁপাইনবাবগঞ্জ সরকারি পলিটেকনিক ইনস্টিটিউট">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_nid">জাতীয় পরিচয়পত্র (NID) নম্বর <span class="req">*</span></label>
+                                <div class="input-icon-wrap">
+                                    <i class="fa-solid fa-fingerprint left-ico"></i>
+                                    <input type="text" id="emp_nid" class="form-control" required placeholder="যেমন: ৭৮০৬৫২৪৭৮৬">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ২. হিসাবের ধরন -->
+                        <div class="section-tag" style="margin-top:10px;">
+                            <i class="fa-solid fa-sliders"></i> হিসাবের ধরন ও বেতন স্কেল তথ্য
+                        </div>
+
+                        <div class="form-group">
+                            <label for="personType">হিসাবের ধরন নির্বাচন করুন <span class="req">*</span></label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-layer-group left-ico"></i>
+                                <select id="personType" class="form-control" onchange="togglePersonType()">
+                                    <option value="employee" selected>১. কর্মরত কর্মকর্তা/কর্মচারী (বেতন ফিক্সেশন শিট)</option>
+                                    <option value="arrear">২. বকেয়া বেতন বিল হিসাব (টি.আর. ফরম ১৩/১৫ + বকেয়া বিবরণী)</option>
+                                    <option value="pensioner">৩. পেনশনভোগী (পেনশন ফিক্সেশন হিসাব)</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Pension Fields -->
                         <div id="pensionFields">
-                            <div class="form-group compact" style="margin-top:12px;">
-                                <label for="currentPension">৩০ জুন ২০২৬-এর বর্তমান মাসিক নিট পেনশন</label>
-                                <input type="number" id="currentPension" class="form-control" value="0" min="0" step="1" placeholder="যেমন: ১৮,০০০">
-                            </div>
-                            <div class="form-group compact">
-                                <label for="pensionAge">পেনশনভোগীর বয়স</label>
-                                <select id="pensionAge" class="form-control">
-                                    <option value="under65" selected>৬৫ বছরের কম</option>
-                                    <option value="65plus">৬৫ বছর বা তার বেশি</option>
-                                </select>
-                            </div>
-                            <div class="form-group compact">
-                                <label for="pensionType">পেনশনের ধরন</label>
-                                <select id="pensionType" class="form-control">
-                                    <option value="self" selected>নিজের পেনশন</option>
-                                    <option value="family">পারিবারিক পেনশন</option>
-                                </select>
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="currentPension">৩০ জুন ২০২৬-এর মাসিক নিট পেনশন <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-coins left-ico"></i>
+                                        <input type="number" id="currentPension" class="form-control" value="0" min="0" placeholder="যেমন: ১৮,০০০">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pensionAge">পেনশনভোগীর বয়স</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-calendar-check left-ico"></i>
+                                        <select id="pensionAge" class="form-control">
+                                            <option value="under65" selected>৬৫ বছরের কম</option>
+                                            <option value="65plus">৬৫ বছর বা তার বেশি</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Arrear Bill Specific Info Box -->
-                        <div id="arrearFields">
-                            <div class="pension-info" style="margin-top:10px;">
-                                💡 <strong>২০২৬ গেজেট অনুযায়ী বকেয়া বেতন হিসাবের নিয়ম:</strong><br>
-                                ১৭ সেপ্টেম্বর ২০২৬ গেজেট প্রকাশ হওয়ায় জুলাই–সেপ্টেম্বর ২০২৬ সময়ে কর্মচারীরা ২০১৫ স্কেলে ১টি ইনক্রিমেন্টসহ মূল বেতন, বাড়িভাড়া এবং পূর্বের ১০%/১৫% বিশেষ সুবিধা উত্তোলন করেছেন। নতুন স্কেলে ১ জুলাই ২০২৬ হতে মূল বেতন বৃদ্ধি পেয়েছে, কিন্তু পূর্বের ১০%/১৫% বিশেষ সুবিধা বিলুপ্ত হয়েছে এবং ৩০ জুন ২০২৬-এর বাড়িভাড়া বহাল রাখা হয়েছে। নিচের অপশনগুলো পূরণ করলে স্বয়ংক্রিয়ভাবে মাসওয়ারী বকেয়া বিবরণী ও টি.আর. ফরম-১৩ পিডিএফ তৈরি হবে।
+                        <!-- Employee & Arrear Common Fields -->
+                        <div class="employee-only">
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="grade">বর্তমান গ্রেড (১ম হতে ২০তম) <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-ranking-star left-ico"></i>
+                                        <select id="grade" class="form-control" required onchange="populateSteps()">
+                                            <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="basic">৩০-০৬-২০২৬ তারিখে গৃহীত মূল বেতন <span class="req">*</span></label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-bangladeshi-taka-sign left-ico"></i>
+                                        <select id="basic" class="form-control" required onchange="onBasicChange()">
+                                            <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="employee-only">
-                        <div class="form-group">
-                            <label for="grade">১. আপনার বর্তমান গ্রেড (১ম হতে ২০তম)</label>
-                            <select id="grade" class="form-control" required onchange="populateSteps()">
-                                <option value="" disabled selected>গ্রেড নির্বাচন করুন</option>
-                            </select>
-                        </div>
+                            <div id="trFormBadge" class="info-alert" style="display:none; margin-bottom:12px;"></div>
 
-                        <div class="form-group">
-                            <label for="basic">২. ৩০-০৬-২০২৬ তারিখে গৃহীত মূল বেতন (২০১৫ স্কেলের ধাপ)</label>
-                            <select id="basic" class="form-control" required onchange="onBasicChange()">
-                                <option value="" disabled selected>প্রথমে গ্রেড নির্বাচন করুন</option>
-                            </select>
-                            <button type="button" class="btn-scale-toggle" id="scaleToggleBtn" onclick="toggleScaleTable()" style="display:none;">
-                                📊 ২০১৫ ও ২০২৬ স্কেলের তুলনামূলক ধাপ দেখুন
+                            <button type="button" class="btn-ibas secondary" id="scaleToggleBtn" onclick="toggleScaleTable()" style="display:none;">
+                                <i class="fa-solid fa-table"></i> ২০১৫ ও ২০২৬ স্কেলের তুলনামূলক ধাপ দেখুন
                             </button>
                             <div class="scale-table-wrap" id="scaleTableWrap">
                                 <table class="scale-table">
@@ -464,226 +739,224 @@
                                     <tbody id="scaleTableBody"></tbody>
                                 </table>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="location">৩. কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য)</label>
-                            <select id="location" class="form-control" onchange="onBasicChange()">
-                                <option value="DHAKA">ঢাকা উত্তর/দক্ষিণ সিটি কর্পোরেশন</option>
-                                <option value="CITY">চট্টগ্রাম, খুলনা, রাজশাহী, সিলেট, বরিশাল, রংপুর, নারায়ণগঞ্জ, কুমিল্লা ও গাজীপুর সিটি এলাকা</option>
-                                <option value="OTHER" selected>অন্যান্য স্থান (জেলা/উপজেলা)</option>
-                            </select>
-                        </div>
-
-                        <!-- Arrear Configuration Box (Shown only in Arrear Mode) -->
-                        <div class="advanced-box arrear-only" id="arrearConfigBox" style="display:none;">
-                            <div class="advanced-title">📑 বকেয়া বেতন বিল ও সমন্বয় প্যারামিটার <span>অটোমেটিক + কাস্টমাইজযোগ্য</span></div>
-                            
-                            <div class="grid-2">
-                                <div class="form-group compact">
-                                    <label for="arrearStartMonth">বকেয়া শুরুর মাস</label>
-                                    <select id="arrearStartMonth" class="form-control">
-                                        <option value="0" selected>জুলাই/২০২৬</option>
-                                        <option value="1">আগস্ট/২০২৬</option>
-                                        <option value="2">সেপ্টেম্বর/২০২৬</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="arrearEndMonth">বকেয়া শেষের মাস</label>
-                                    <select id="arrearEndMonth" class="form-control">
-                                        <option value="0">জুলাই/২০২৬ (১ মাস)</option>
-                                        <option value="1">আগস্ট/২০২৬ (২ মাস)</option>
-                                        <option value="2" selected>সেপ্টেম্বর/২০২৬ (৩ মাস)</option>
-                                        <option value="3">অক্টোবর/২০২৬ (৪ মাস)</option>
-                                        <option value="4">নভেম্বর/২০২৬ (৫ মাস)</option>
-                                        <option value="5">ডিসেম্বর/২০২৬ (৬ মাস)</option>
+                            <div class="form-group" style="margin-top:12px;">
+                                <label for="location">কর্মস্থলের এলাকা (বাড়িভাড়ার জন্য)</label>
+                                <div class="input-icon-wrap">
+                                    <i class="fa-solid fa-location-dot left-ico"></i>
+                                    <select id="location" class="form-control" onchange="onBasicChange()">
+                                        <option value="DHAKA">ঢাকা উত্তর/দক্ষিণ সিটি কর্পোরেশন</option>
+                                        <option value="CITY">চট্টগ্রাম, খুলনা, রাজশাহী, সিলেট, বরিশাল, রংপুর, নারায়ণগঞ্জ, কুমিল্লা ও গাজীপুর সিটি এলাকা</option>
+                                        <option value="OTHER" selected>অন্যান্য স্থান (জেলা/উপজেলা)</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="grid-2">
-                                <div class="form-group compact">
-                                    <label for="drawnIncMode">জুলাই–সেপ্টেম্বর ২০২৬-এ গৃহীত মূল বেতন</label>
-                                    <select id="drawnIncMode" class="form-control" onchange="onBasicChange()">
-                                        <option value="withInc" selected>২০১৫ স্কেলে ১টি ইনক্রিমেন্টসহ উত্তোলিত</option>
-                                        <option value="withoutInc">৩০ জুনের মূল বেতনের সমান উত্তোলিত</option>
-                                    </select>
+                            <!-- Arrear Configuration Box -->
+                            <div class="advanced-box arrear-only" id="arrearConfigBox" style="display:none;">
+                                <div class="section-tag" style="margin-bottom:10px;">
+                                    <i class="fa-solid fa-file-Export"></i> বকেয়া বেতন বিল ও টি.আর. ফরম প্যারামিটার
                                 </div>
-                                <div class="form-group compact">
-                                    <label for="specialBenefitRule">বিশেষ সুবিধা (১০%/১৫%) সমন্বয় নিয়ম</label>
-                                    <select id="specialBenefitRule" class="form-control" onchange="onBasicChange()">
-                                        <option value="abolished" selected>নতুন স্কেলে বিলুপ্ত (প্রাপ্য ০ ৳, গৃহীত ১০%/১৫% কর্তন)</option>
-                                        <option value="custom">কাস্টম প্রাপ্য ও গৃহীত মান বসান</option>
-                                    </select>
+                                <div class="info-alert" style="margin-bottom:12px;">
+                                    <i class="fa-solid fa-print"></i> <strong>৩ পৃষ্ঠার অটোমেটিক প্রিন্ট লেআউট:</strong><br>
+                                    • <strong>১ম ও ২য় পৃষ্ঠা (Portrait):</strong> গ্রেড ১–১০ হলে <strong>টি.আর. ফরম নং ১৩ (গেজেটেড কর্মকর্তা)</strong> এবং গ্রেড ১১–২০ হলে <strong>টি.আর. ফরম নং ১৫ (নন-গেজেটেড কর্মচারী)</strong>।<br>
+                                    • <strong>৩য় পৃষ্ঠা (Landscape):</strong> মাসওয়ারী বকেয়া বেতনের বিবরণী ছক (কলাম ১–১৬)।
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="arrearStartMonth">বকেয়া শুরুর মাস</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-regular fa-calendar left-ico"></i>
+                                            <select id="arrearStartMonth" class="form-control">
+                                                <option value="0" selected>জুলাই/২০২৬</option>
+                                                <option value="1">আগস্ট/২০২৬</option>
+                                                <option value="2">সেপ্টেম্বর/২০২৬</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="arrearEndMonth">বকেয়া শেষের মাস</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-regular fa-calendar-check left-ico"></i>
+                                            <select id="arrearEndMonth" class="form-control">
+                                                <option value="0">জুলাই/২০২৬ (১ মাস)</option>
+                                                <option value="1">আগস্ট/২০২৬ (২ মাস)</option>
+                                                <option value="2" selected>সেপ্টেম্বর/২০২৬ (৩ মাস)</option>
+                                                <option value="3">অক্টোবর/২০২৬ (৪ মাস)</option>
+                                                <option value="4">নভেম্বর/২০২৬ (৫ মাস)</option>
+                                                <option value="5">ডিসেম্বর/২০২৬ (৬ মাস)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="emp_opcode">প্রাতিষ্ঠানিক/অপারেশন কোড (৭ ডিজিট)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-hashtag left-ico"></i>
+                                            <input type="text" id="emp_opcode" class="form-control" placeholder="যেমন: ১২৫০২০১" value="১২৫০২০১">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="drawnIncMode">জুলাই–সেপ্টেম্বর ২০২৬-এ গৃহীত বেতন</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-money-check-dollar left-ico"></i>
+                                            <select id="drawnIncMode" class="form-control" onchange="onBasicChange()">
+                                                <option value="withInc" selected>২০১৫ স্কেলে ১টি ইনক্রিমেন্টসহ উত্তোলিত</option>
+                                                <option value="withoutInc">৩০ জুনের মূল বেতনের সমান উত্তোলিত</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="dueBasicOverride">মাসিক প্রাপ্য মূল বেতন (কলাম ৪)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-check left-ico"></i>
+                                            <input type="number" id="dueBasicOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="drawnBasicOverride">মাসিক গৃহীত মূল বেতন (কলাম ৫)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-hand-holding-dollar left-ico"></i>
+                                            <input type="number" id="drawnBasicOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="dueHouseOverride">মাসিক প্রাপ্য বাড়িভাড়া (কলাম ৭)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-house left-ico"></i>
+                                            <input type="number" id="dueHouseOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="drawnHouseOverride">মাসিক গৃহীত বাড়িভাড়া (কলাম ৮)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-house-chimney-user left-ico"></i>
+                                            <input type="number" id="drawnHouseOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="dueSpecOverride">মাসিক প্রাপ্য বিশেষ ভাতা (কলাম ১৩)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-star left-ico"></i>
+                                            <input type="number" id="dueSpecOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="drawnSpecOverride">মাসিক গৃহীত বিশেষ ভাতা (কলাম ১৪ — ১০%/১৫%)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-minus-circle left-ico"></i>
+                                            <input type="number" id="drawnSpecOverride" class="form-control" value="0">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="grid-2">
-                                <div class="form-group compact">
-                                    <label for="dueBasicOverride">মাসিক প্রাপ্য মূল বেতন (কলাম ৪)</label>
-                                    <input type="number" id="dueBasicOverride" class="form-control" value="0">
+                            <!-- Employee Extra Options -->
+                            <div class="employee-extra">
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="pp">ব্যক্তিগত বেতন / পিপি (যদি থাকে)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-plus left-ico"></i>
+                                            <input type="number" id="pp" class="form-control" value="0" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edu">সন্তানের সংখ্যা (শিক্ষা ভাতা)</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-graduation-cap left-ico"></i>
+                                            <select id="edu" class="form-control">
+                                                <option value="0" selected>কোনো সন্তান নয় — ০ টাকা</option>
+                                                <option value="1">১ জন — ৫০০ টাকা</option>
+                                                <option value="2">২ জন — ১,০০০ টাকা</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group compact">
-                                    <label for="drawnBasicOverride">মাসিক গৃহীত মূল বেতন (কলাম ৫)</label>
-                                    <input type="number" id="drawnBasicOverride" class="form-control" value="0">
-                                </div>
-                            </div>
 
-                            <div class="grid-2">
-                                <div class="form-group compact">
-                                    <label for="dueHouseOverride">মাসিক প্রাপ্য বাড়িভাড়া (কলাম ৭ — জুন অনুযায়ী)</label>
-                                    <input type="number" id="dueHouseOverride" class="form-control" value="0">
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label for="gpf">মাসিক জিপিএফ (GPF) কর্তন</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-piggy-bank left-ico"></i>
+                                            <input type="number" id="gpf" class="form-control" value="0" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tax">মাসিক আয়কর কর্তন</label>
+                                        <div class="input-icon-wrap">
+                                            <i class="fa-solid fa-file-Signature left-ico"></i>
+                                            <input type="number" id="tax" class="form-control" value="0" min="0">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group compact">
-                                    <label for="drawnHouseOverride">মাসিক গৃহীত বাড়িভাড়া (কলাম ৮ — ইনক্রিমেন্টসহ)</label>
-                                    <input type="number" id="drawnHouseOverride" class="form-control" value="0">
-                                </div>
-                            </div>
-
-                            <div class="grid-2">
-                                <div class="form-group compact">
-                                    <label for="dueSpecOverride">মাসিক প্রাপ্য বিশেষ ভাতা (কলাম ১৩)</label>
-                                    <input type="number" id="dueSpecOverride" class="form-control" value="0">
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="drawnSpecOverride">মাসিক গৃহীত বিশেষ ভাতা (কলাম ১৪ — ১০%/১৫%)</label>
-                                    <input type="number" id="drawnSpecOverride" class="form-control" value="0">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Employee Extra Options (Hidden in Arrear Mode) -->
-                        <div class="employee-extra">
-                            <div class="form-group compact">
-                                <label for="pp">ব্যক্তিগত বেতন / পিপি (যদি থাকে)</label>
-                                <input type="number" id="pp" class="form-control" value="0" min="0">
-                            </div>
-
-                            <div class="advanced-box">
-                                <div class="advanced-title">⚙️ প্রযোজ্য ভাতা ও বিশেষ অবস্থা <span>ঐচ্ছিক</span></div>
-                                <div class="form-group compact">
-                                    <label for="age">বয়স (নতুন চিকিৎসা ভাতার জন্য)</label>
-                                    <select id="age" class="form-control">
-                                        <option value="30" selected>৫০ বছরের কম — ৩,০০০ টাকা</option>
-                                        <option value="51">৫০ বছর বা তার বেশি — ৪,০০০ টাকা</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="govtHouse">সরকারি বাসস্থানে বসবাস করেন?</label>
-                                    <select id="govtHouse" class="form-control">
-                                        <option value="no" selected>না — বাড়িভাড়া প্রাপ্য</option>
-                                        <option value="yes">হ্যাঁ — বাড়িভাড়া প্রাপ্য নয় (০ টাকা)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="cityCommute">সিটি কর্পোরেশন যাতায়াত ভাতা প্রযোজ্য?</label>
-                                    <select id="cityCommute" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — গ্রেড ১১–২০ হলে ৬০০ টাকা</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="tiffin">টিফিন ভাতা প্রযোজ্য?</label>
-                                    <select id="tiffin" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — গ্রেড ১১–২০ হলে ৫০০ টাকা</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="mobileAllowance">মোবাইল ভাতা প্রযোজ্য?</label>
-                                    <select id="mobileAllowance" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — প্রযোজ্য গ্রেড অনুযায়ী</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="actingAllowance">চলতি/অতিরিক্ত দায়িত্ব?</label>
-                                    <select id="actingAllowance" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — কার্যভার ভাতা ১,৫০০ টাকা</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="trainingAllowance">প্রশিক্ষণ প্রতিষ্ঠানে প্রেষণ?</label>
-                                    <select id="trainingAllowance" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — মূল বেতনের ১০%</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="hillAllowance">পার্বত্য ভাতা প্রযোজ্য?</label>
-                                    <select id="hillAllowance" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — মূল বেতনের ২০%</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="haorAllowance">হাওড়/দ্বীপ/চর ভাতা প্রযোজ্য?</label>
-                                    <select id="haorAllowance" class="form-control">
-                                        <option value="no" selected>না</option>
-                                        <option value="yes">হ্যাঁ — মূল বেতনের ২০%</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="disabledChildren">বিশেষ চাহিদাসম্পন্ন সন্তান</label>
-                                    <select id="disabledChildren" class="form-control">
-                                        <option value="0" selected>কেউ নেই — ০ টাকা</option>
-                                        <option value="1">১ জন — ৩,০০০ টাকা</option>
-                                        <option value="2">২ জন — ৬,০০০ টাকা</option>
-                                    </select>
-                                </div>
-                                <div class="form-group compact">
-                                    <label for="specialAllowance">অন্যান্য প্রযোজ্য বিশেষ/ঝুঁকি ভাতা (মাসিক)</label>
-                                    <input type="number" id="specialAllowance" class="form-control" value="0" min="0">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="edu">৪. সন্তানের সংখ্যা (শিক্ষা সহায়ক ভাতার জন্য)</label>
-                                <select id="edu" class="form-control">
-                                    <option value="0" selected>কোনো সন্তান নয় — ০ টাকা</option>
-                                    <option value="1">১ জন — ৫০০ টাকা</option>
-                                    <option value="2">২ জন — ১,০০০ টাকা</option>
-                                </select>
-                            </div>
-
-                            <div class="deduction-auto-box">
-                                <div class="deduction-auto-title">🔒 স্বয়ংক্রিয় নির্ধারিত কর্তন (পে-বিলের জন্য)</div>
-                                <div class="deduction-auto-grid">
-                                    <div><span>স্ট্যাম্প ডিউটি</span><strong>১০ ৳</strong></div>
-                                    <div><span>কল্যাণ তহবিল</span><strong>১৫০ ৳</strong></div>
-                                    <div><span>গ্রুপ বীমা</span><strong>১০০ ৳</strong></div>
-                                    <div class="total"><span>মোট বাধ্যতামূলক কর্তন</span><strong>২৬০ ৳</strong></div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="gpf">৫. মাসিক জিপিএফ (GPF) কর্তন (ঐচ্ছিক)</label>
-                                <input type="number" id="gpf" class="form-control" value="0" min="0">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tax">৬. মাসিক আয়কর কর্তন (ঐচ্ছিক)</label>
-                                <input type="number" id="tax" class="form-control" value="0" min="0">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="otherDeduction">৭. অন্যান্য মাসিক কর্তন (ঐচ্ছিক)</label>
-                                <input type="number" id="otherDeduction" class="form-control" value="0" min="0">
                             </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn-submit">বিস্তারিত হিসাব করুন</button>
-                </form>
-            </div>
-
-            <div class="footer-top">
-                <div class="footer-credit">
-                    © National Pay Scale Calculations 2026 · Developed by 
-                    <a href="https://nasim.ceo.bd" target="_blank" rel="noopener">NasimSoft</a>
+                        <button type="submit" class="btn-ibas" id="submitBtn">
+                            <i class="fa-solid fa-bolt"></i> বিস্তারিত হিসাব ও বিবরণী তৈরি করুন
+                        </button>
+                    </form>
                 </div>
             </div>
+        </main>
+    </div>
+
+    <!-- MOBILE VIEW FOOTER NAVBAR (Mobile App Bar) -->
+    <nav class="mobile-bottom-nav">
+        <button type="button" id="mobTab_employee" class="active" onclick="switchMode('employee')">
+            <i class="fa-solid fa-calculator"></i>
+            <span>ফিক্সেশন</span>
+        </button>
+        <button type="button" id="mobTab_arrear" onclick="switchMode('arrear')">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>বকেয়া বিল</span>
+        </button>
+        <button type="button" id="mobTab_pensioner" onclick="switchMode('pensioner')">
+            <i class="fa-solid fa-person-cane"></i>
+            <span>পেনশন</span>
+        </button>
+        <button type="button" onclick="openHistoryModal()">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>হিস্ট্রি</span>
+        </button>
+    </nav>
+</div>
+
+<!-- Preview Modal -->
+<div class="no-print modal-overlay" id="previewModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span id="previewModalTitle"><i class="fa-solid fa-file-lines"></i> ফলাফল বিবরণী</span>
+            <button class="close-btn" onclick="closePreviewModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div style="text-align:center;margin-bottom:6px;">
+            <span id="slideCounter" style="font-size:0.78rem;background:#E6F4F4;color:#074F51;padding:3px 12px;border-radius:99px;font-weight:700;">ধাপ: ১/২</span>
+        </div>
+        
+        <div id="slideContent"></div>
+
+        <div class="modal-footer">
+            <button class="btn-modal outline" id="prevBtn" onclick="changeSlide(-1)"><i class="fa-solid fa-arrow-left"></i> পূর্ববর্তী</button>
+            <button class="btn-modal primary" id="nextBtn" onclick="changeSlide(1)">পরবর্তী <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-modal primary" id="printStartBtn" style="display:none;" onclick="executeDirectPrint()">
+                <i class="fa-solid fa-print"></i> পিডিএফ / প্রিন্ট করুন
+            </button>
+            <button class="btn-modal outline" id="copyBtn" style="display:none;" onclick="copyResult()">
+                <i class="fa-regular fa-copy"></i> কপি
+            </button>
         </div>
     </div>
 </div>
@@ -692,85 +965,18 @@
 <div class="no-print modal-overlay" id="contactModal">
     <div class="modal-content" style="text-align: center; max-width: 380px;">
         <div class="modal-header">
-            <span>যোগাযোগের ঠিকানা</span>
-            <button class="close-btn" onclick="closeContactModal()">✖</button>
+            <span><i class="fa-solid fa-code"></i> ডেভেলপার পরিচিতি</span>
+            <button class="close-btn" onclick="closeContactModal()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div style="padding: 10px 0;">
-            <h2 style="color: var(--primary); font-size: 1.15rem;">নাসিম আল মাসুদ</h2>
-            <p style="font-weight: 600; font-size: 0.9rem;">সিস্টেম এডমিনিস্ট্রেটর ও চীফ এক্সিকিউটিভ অফিসার</p>
-            <p style="color: var(--text-muted); margin-bottom: 8px; font-size: 0.85rem;">নাসিম সফট কোম্পানি লিমিটেড</p>
-            <div style="background:var(--primary-light);padding:8px;border-radius:8px;color:var(--primary);font-weight:600;">
-                📧 admin@nasim.ceo.bd
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Preview Modal -->
-<div class="no-print modal-overlay" id="previewModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span id="previewModalTitle">বেতন নির্ধারণী বিবরণী (Fixation ফলাফল)</span>
-            <button class="close-btn" onclick="closePreviewModal()">✖</button>
-        </div>
-        <div class="indicator-wrapper">
-            <div class="slide-indicator" id="slideCounter">ধাপ: ১/২</div>
-            <div class="slide-dots" id="slideDots"></div>
-        </div>
-        
-        <div id="slideContent"></div>
-
-        <div class="modal-footer" style="flex-wrap: wrap;">
-            <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)">পূর্ববর্তী</button>
-            <button class="btn-primary" id="nextBtn" onclick="changeSlide(1)">পরবর্তী</button>
-            <button class="btn-primary" id="printStartBtn" style="display:none;" onclick="openPrintModal()">🖨️ পিডিএফ / প্রিন্ট করুন</button>
-            <div class="share-row" id="shareRow" style="display:none;">
-                <button type="button" class="share-btn whatsapp" onclick="shareWhatsApp()">📲 WhatsApp</button>
-                <button type="button" class="share-btn" onclick="copyResult()">📋 কপি</button>
+        <div style="padding: 12px 0;">
+            <img src="https://raw.githubusercontent.com/nasimchapaipoly/nasim/refs/heads/main/payscale/file_00000000b7fc820888f08e0e1a23aca3.png" alt="NasimSoft" style="width:72px;height:72px;object-fit:contain;margin-bottom:8px;">
+            <h2 style="color: var(--ibas-bg-dark); font-size: 1.2rem;">নাসিম আল মাসুদ</h2>
+            <p style="font-weight: 600; font-size: 0.9rem; color:#334155;">জুনিয়র ইনস্ট্রাক্টর (টেক/ফুড) ও সিইও, নাসিম সফট</p>
+            <p style="color: #64748B; margin-bottom: 10px; font-size: 0.84rem;">চাঁপাইনবাবগঞ্জ সরকারি পলিটেকনিক ইনস্টিটিউট</p>
+            <div style="background:#E6F4F4;padding:8px;border-radius:8px;color:#074F51;font-weight:700;">
+                <i class="fa-solid fa-envelope"></i> admin@nasim.ceo.bd
             </div>
         </div>
-    </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<!-- Print Form Modal -->
-<div class="no-print modal-overlay" id="printModal">
-    <div class="modal-content" style="max-width: 440px;">
-        <div class="modal-header">
-            <span id="printModalTitle">প্রিন্ট / পিডিএফ তথ্য</span>
-            <button class="close-btn" onclick="closePrintModal()">✖</button>
-        </div>
-        <form onsubmit="return executePrint(event)">
-            <div class="form-group compact">
-                <label for="p_name">কর্মচারীর নাম (বাংলায়)</label>
-                <input type="text" id="p_name" class="form-control" required value="নাসিম আল মাসুদ">
-            </div>
-            <div class="form-group compact">
-                <label for="p_desig">পদবি (বাংলায়)</label>
-                <input type="text" id="p_desig" class="form-control" required value="জুনিয়র ইনস্ট্রাক্টর (টেক/ফুড)">
-            </div>
-            <div class="form-group compact">
-                <label for="p_workplace">দপ্তর / প্রতিষ্ঠানের নাম (বাংলায়)</label>
-                <input type="text" id="p_workplace" class="form-control" required value="চাঁপাইনবাবগঞ্জ সরকারি পলিটেকনিক ইনস্টিটিউট">
-            </div>
-            <div id="arrearPrintExtra" style="display:none;">
-                <div class="grid-2">
-                    <div class="form-group compact">
-                        <label for="p_nid">এনআইডি (NID) নং</label>
-                        <input type="text" id="p_nid" class="form-control" value="৭৮০৬৫২৪৭৮৬">
-                    </div>
-                    <div class="form-group compact">
-                        <label for="p_opcode">প্রাতিষ্ঠানিক কোড (৭ ডিজিট)</label>
-                        <input type="text" id="p_opcode" class="form-control" value="১২৫০২০১">
-                    </div>
-                </div>
-            </div>
-            <div class="btn-group">
-                <button type="button" class="btn-cancel" onclick="closePrintModal()">বাতিল</button>
-                <button type="submit" class="btn-confirm">🖨️ পিডিএফ / প্রিন্ট জেনারেট করুন</button>
-            </div>
-        </form>
     </div>
 </div>
 
@@ -778,16 +984,18 @@
 <div class="no-print modal-overlay" id="historyModal">
     <div class="modal-content" style="max-width: 420px;">
         <div class="modal-header">
-            <span>হিসাব হিস্ট্রি</span>
-            <button class="close-btn" onclick="closeHistoryModal()">✖</button>
+            <span><i class="fa-solid fa-clock-rotate-left"></i> হিসাব হিস্ট্রি</span>
+            <button class="close-btn" onclick="closeHistoryModal()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div id="historyList" class="history-list"></div>
-        <div class="btn-group">
-            <button type="button" class="btn-cancel" onclick="clearHistory()">সব মুছুন</button>
-            <button type="button" class="btn-confirm" onclick="closeHistoryModal()">বন্ধ করুন</button>
+        <div id="historyList" style="max-height:300px;overflow-y:auto;"></div>
+        <div class="modal-footer">
+            <button type="button" class="btn-modal outline" onclick="clearHistory()">সব মুছুন</button>
+            <button type="button" class="btn-modal primary" onclick="closeHistoryModal()">বন্ধ করুন</button>
         </div>
     </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <!-- Printable Output Area -->
 <div class="print-only" id="print-area"></div>
@@ -858,8 +1066,7 @@ function formatMoney(n){
 }
 
 function formatNumPlain(n){
-    const v=Math.round(Number(n)||0);
-    return toBengaliNum(v);
+    return toBengaliNum(Math.round(Number(n)||0));
 }
 
 function formatTakaPlain(n){
@@ -910,17 +1117,6 @@ function getOldHouseRent(basic, location){
     return Math.round(Math.max(b * rate, min));
 }
 
-function getNewHouseRent(basic, grade, location, govtHouse){
-    if(govtHouse) return 0;
-    const b = Number(basic) || 0;
-    let rate;
-    if(grade >= 16) rate = location==='DHAKA' ? 0.60 : location==='CITY' ? 0.50 : 0.45;
-    else if(grade >= 10) rate = location==='DHAKA' ? 0.50 : location==='CITY' ? 0.40 : 0.35;
-    else if(grade >= 5) rate = location==='DHAKA' ? 0.45 : location==='CITY' ? 0.35 : 0.30;
-    else rate = location==='DHAKA' ? 0.40 : location==='CITY' ? 0.30 : 0.25;
-    return Math.round(b * rate);
-}
-
 function get2015SpecialBenefit(basic, grade){
     const b = Number(basic) || 0;
     const rate = grade <= 9 ? 0.10 : 0.15;
@@ -928,14 +1124,59 @@ function get2015SpecialBenefit(basic, grade){
     return Math.round(Math.max(b * rate, min));
 }
 
+function switchMode(mode){
+    document.getElementById('personType').value = mode;
+    togglePersonType();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function togglePersonType(){
+    const type = document.getElementById('personType')?.value || 'employee';
+    const pensioner = type === 'pensioner';
+    const arrear = type === 'arrear';
+
+    document.body.classList.toggle('pension-mode', pensioner);
+    document.body.classList.toggle('arrear-mode', arrear);
+
+    ['employee', 'arrear', 'pensioner'].forEach(m => {
+        document.getElementById('sideTab_' + m)?.classList.toggle('active', m === type);
+        document.getElementById('mobTab_' + m)?.classList.toggle('active', m === type);
+    });
+
+    document.getElementById('arrearConfigBox').style.display = arrear ? 'block' : 'none';
+
+    document.querySelectorAll('.employee-only [required]').forEach(el => {
+        el.required = !pensioner;
+    });
+    const pensionInput = document.getElementById('currentPension');
+    if(pensionInput) pensionInput.required = pensioner;
+
+    const btn = document.getElementById('submitBtn');
+    if(btn) {
+        btn.innerHTML = pensioner ? '<i class="fa-solid fa-bolt"></i> পেনশন হিসাব করুন' 
+                      : arrear ? '<i class="fa-solid fa-file-pdf"></i> বকেয়া বিল (TR 13/15) ও বিবরণী তৈরি করুন' 
+                      : '<i class="fa-solid fa-bolt"></i> বেতন ফিক্সেশন বিবরণী তৈরি করুন';
+    }
+    onBasicChange();
+}
+
 function populateSteps(){
     const grade = Number(document.getElementById('grade').value);
     const basicSelect = document.getElementById('basic');
     basicSelect.innerHTML = '<option value="" disabled selected>ধাপ নির্বাচন করুন</option>';
     const toggle = document.getElementById('scaleToggleBtn'), wrap = document.getElementById('scaleTableWrap');
+    const trBadge = document.getElementById('trFormBadge');
     wrap.classList.remove('open');
     toggle.style.display = 'none';
     if(!grade || !scale2015[grade]) return;
+
+    // গেজেটেড (১-১০: টি.আর. ১৩) বনাম নন-গেজেটেড (১১-২০: টি.আর. ১৫) ব্যাজ প্রদর্শন
+    trBadge.style.display = 'block';
+    if(grade <= 10){
+        trBadge.innerHTML = `<i class="fa-solid fa-user-check"></i> <strong>${bengaliOrdinals[grade]} গ্রেড (১ম–১০ম গ্রেড):</strong> গেজেটেড সরকারি কর্মকর্তা — বকেয়া ও বেতন বিলের জন্য <strong>টি.আর. ফরম নং ১৩</strong> (অর্থনৈতিক কোড: ৩১১১১০১) স্বয়ংক্রিয়ভাবে প্রযোজ্য হবে।`;
+    } else {
+        trBadge.innerHTML = `<i class="fa-solid fa-users-gear"></i> <strong>${bengaliOrdinals[grade]} গ্রেড (১১তম–২০তম গ্রেড):</strong> নন-গেজেটেড সরকারি কর্মচারী — বকেয়া ও বেতন বিলের জন্য <strong>টি.আর. ফরম নং ১৫</strong> (অর্থনৈতিক কোড: ৩১১১২০১) স্বয়ংক্রিয়ভাবে প্রযোজ্য হবে।`;
+    }
 
     scale2015[grade].forEach((amount, i) => {
         const o = document.createElement('option');
@@ -944,7 +1185,7 @@ function populateSteps(){
         basicSelect.add(o);
     });
 
-    toggle.style.display = 'block';
+    toggle.style.display = 'flex';
     const maxLen = Math.max(scale2015[grade].length, scale2026[grade].length);
     let rows = '';
     for(let i=0; i<maxLen; i++){
@@ -962,7 +1203,6 @@ function onBasicChange(){
 
     const location = document.getElementById('location').value;
     const drawnIncMode = document.getElementById('drawnIncMode').value;
-    const specialBenefitRule = document.getElementById('specialBenefitRule').value;
 
     const start2015 = scale2015[grade][0];
     const start2026 = scale2026[grade][0];
@@ -978,7 +1218,7 @@ function onBasicChange(){
     const drawnBasic = drawnIncMode === 'withInc' ? nextIncrement(scale2015[grade], oldBasic) : oldBasic;
     const dueHouse = getOldHouseRent(oldBasic, location);
     const drawnHouse = getOldHouseRent(drawnBasic, location);
-    const dueSpec = specialBenefitRule === 'abolished' ? 0 : get2015SpecialBenefit(oldBasic, grade);
+    const dueSpec = 0; // নতুন স্কেলে বিশেষ সুবিধা বিলুপ্ত
     const drawnSpec = get2015SpecialBenefit(drawnBasic, grade);
 
     document.getElementById('dueBasicOverride').value = stage1Basic;
@@ -992,123 +1232,43 @@ function onBasicChange(){
 function toggleScaleTable(){
     const w = document.getElementById('scaleTableWrap'), b = document.getElementById('scaleToggleBtn');
     const open = w.classList.toggle('open');
-    b.textContent = open ? '▲ স্কেল লুকান' : '📊 ২০১৫ ও ২০২৬ স্কেলের তুলনামূলক ধাপ দেখুন';
+    b.innerHTML = open ? '<i class="fa-solid fa-chevron-up"></i> স্কেল লুকান' : '<i class="fa-solid fa-table"></i> ২০১৫ ও ২০২৬ স্কেলের তুলনামূলক ধাপ দেখুন';
 }
 
-function togglePersonType(){
-    const type = document.getElementById('personType')?.value || 'employee';
-    const pensioner = type === 'pensioner';
-    const arrear = type === 'arrear';
-
-    document.body.classList.toggle('pension-mode', pensioner);
-    document.body.classList.toggle('arrear-mode', arrear);
-
-    document.getElementById('arrearConfigBox').style.display = arrear ? 'block' : 'none';
-    document.getElementById('arrearPrintExtra').style.display = arrear ? 'block' : 'none';
-
-    document.querySelectorAll('.employee-only [required]').forEach(el => {
-        el.required = !pensioner;
-    });
-    const pensionInput = document.getElementById('currentPension');
-    if(pensionInput) pensionInput.required = pensioner;
-
-    const btn = document.querySelector('.btn-submit');
-    if(btn) {
-        btn.textContent = pensioner ? 'পেনশন হিসাব করুন' 
-                        : arrear ? 'বকেয়া বেতন বিল ও বিবরণী তৈরি করুন' 
-                        : 'বিস্তারিত বেতন হিসাব করুন';
-    }
-    onBasicChange();
-}
-
-function calculateOldAllowances(s, baseBasic){
-    const grade = s.grade;
-    const house = s.govtHouse ? 0 : getOldHouseRent(baseBasic, s.location);
-    const medical = 1500;
-    const education = Math.min(2, s.eduCount) * 500;
-    const tiffin = (s.tiffin && grade >= 11 && grade <= 20) ? 200 : 0;
-    const commute = (s.cityCommute && grade >= 11 && grade <= 20) ? 300 : 0;
-    const acting = s.actingAllowance ? Math.min(baseBasic * 0.10, 1500) : 0;
-    const training = (s.trainingAllowance && grade >= 9) ? baseBasic * 0.10 : 0;
-    const hill = s.hillAllowance ? Math.min(baseBasic * 0.20, 5000) : 0;
-    const haor = s.haorAllowance ? Math.min(baseBasic * 0.20, 5000) : 0;
-    const special = s.specialAllowance;
-
-    const total = house + medical + education + tiffin + commute + acting + training + hill + haor + special;
-    return { house, medical, education, tiffin, commute, acting, training, hill, haor, special, total };
-}
-
-function calculateNewAllowances(s, basicForAllowance){
-    const grade = s.grade;
-    const house = getNewHouseRent(basicForAllowance, grade, s.location, s.govtHouse);
-    const medical = s.age > 50 ? 4000 : 3000;
-    const education = Math.min(2, s.eduCount) * 500;
-    const tiffin = (s.tiffin && grade >= 11 && grade <= 20) ? 500 : 0;
-    const commute = (s.cityCommute && grade >= 11 && grade <= 20) ? 600 : 0;
-    const mobile = s.mobileAllowance ? (grade <= 5 ? 500 : 150) : 0;
-    const acting = s.actingAllowance ? 1500 : 0;
-    const training = (s.trainingAllowance && grade >= 9) ? basicForAllowance * 0.10 : 0;
-    const hill = s.hillAllowance ? Math.min(basicForAllowance * 0.20, 5000) : 0;
-    const haor = s.haorAllowance ? Math.min(basicForAllowance * 0.20, 5000) : 0;
-    const disabled = Math.min(2, s.disabledChildren) * 3000;
-    const special = s.specialAllowance;
-
-    const total = house + medical + education + tiffin + commute + mobile + acting + training + hill + haor + disabled + special;
-    return { house, medical, education, tiffin, commute, mobile, acting, training, hill, haor, disabled, special, total };
-}
-
-function calculatePension(current, ageGroup='under65', pensionType='self'){
+function calculatePension(current, ageGroup='under65'){
     const p = Math.max(0, Number(current) || 0);
     let finalRate = 0.55, band = '৪০,০০১ টাকা বা বেশি', phase1Rate = 0.40, phase2Rate = 0.70;
-    if(p <= 9000){
-        finalRate = 1.00; band = '৯,০০০ টাকা বা কম'; phase1Rate = 0.50; phase2Rate = 0.75;
-    } else if(p <= 20000){
-        finalRate = 0.75; band = '৯,০০১–২০,০০০ টাকা'; phase1Rate = 0.50; phase2Rate = 0.75;
-    } else if(p <= 30000){
-        finalRate = 0.65; band = '২০,০০১–৩০,০০০ টাকা'; phase1Rate = 0.40; phase2Rate = 0.70;
-    } else if(p <= 40000){
-        finalRate = 0.60; band = '৩০,০০১–৪০,০০০ টাকা'; phase1Rate = 0.40; phase2Rate = 0.70;
-    }
+    if(p <= 9000){ finalRate = 1.00; band = '৯,০০০ টাকা বা কম'; phase1Rate = 0.50; phase2Rate = 0.75; }
+    else if(p <= 20000){ finalRate = 0.75; band = '৯,০০১–২০,০০০ টাকা'; phase1Rate = 0.50; phase2Rate = 0.75; }
+    else if(p <= 30000){ finalRate = 0.65; band = '২০,০০১–৩০,০০০ টাকা'; phase1Rate = 0.40; phase2Rate = 0.70; }
+    else if(p <= 40000){ finalRate = 0.60; band = '৩০,০০১–৪০,০০০ টাকা'; phase1Rate = 0.40; phase2Rate = 0.70; }
     const totalIncrease = p * finalRate;
-    const phase1Increase = totalIncrease * phase1Rate;
-    const phase2Increase = totalIncrease * phase2Rate;
-    const phase1Pension = p + phase1Increase;
-    const phase2Pension = p + phase2Increase;
+    const phase1Pension = p + totalIncrease * phase1Rate;
+    const phase2Pension = p + totalIncrease * phase2Rate;
     const newPension = p + totalIncrease;
     const medicalAllowance = ageGroup === '65plus' ? 2500 : 1500;
-    const festival3 = newPension;
-    const pohelaBoishakh3 = newPension * 0.20;
-    const monthlyWithMedical1 = phase1Pension + medicalAllowance;
-    const monthlyWithMedical2 = phase2Pension + medicalAllowance;
-    const monthlyWithMedical3 = newPension + medicalAllowance;
-    const annualAllowance3 = medicalAllowance * 12 + festival3 * 2 + pohelaBoishakh3;
-    return {
-        current: p, finalRate, band, totalIncrease,
-        phase1Rate, phase2Rate, phase1Increase, phase2Increase,
-        phase1Pension, phase2Pension, newPension,
-        ageGroup, pensionType, medicalAllowance,
-        festival3, pohelaBoishakh3,
-        monthlyWithMedical1, monthlyWithMedical2, monthlyWithMedical3,
-        annualTotal3: newPension * 12 + annualAllowance3
-    };
+    return { current: p, finalRate, band, totalIncrease, phase1Rate, phase2Rate, phase1Pension, phase2Pension, newPension, medicalAllowance };
 }
 
 function calculatePay(e){
     e.preventDefault();
-    const personType = document.getElementById('personType')?.value || 'employee';
+    const empName = document.getElementById('emp_name').value.trim();
+    const empDesig = document.getElementById('emp_desig').value.trim();
+    const empWorkplace = document.getElementById('emp_workplace').value.trim();
+    const empNid = document.getElementById('emp_nid').value.trim();
+
+    if(!empName || !empDesig || !empWorkplace || !empNid){
+        alert('অনুগ্রহ করে নাম, পদবি, প্রতিষ্ঠানের নাম এবং জাতীয় পরিচয়পত্র (NID) নম্বর পূরণ করুন।');
+        return false;
+    }
+
+    const personType = document.getElementById('personType').value;
 
     if(personType === 'pensioner'){
-        const pension = calculatePension(
-            document.getElementById('currentPension').value,
-            document.getElementById('pensionAge')?.value || 'under65',
-            document.getElementById('pensionType')?.value || 'self'
-        );
-        if(!pension.current){ alert('বর্তমান মাসিক নিট পেনশন লিখুন।'); return false; }
-        appState = { mode:'pensioner', personType:'pensioner', ...pension };
-        document.getElementById('previewModalTitle').textContent = 'পেনশন নির্ধারণী ফলাফল';
-        let count = Number(localStorage.getItem('payCalcCount')||0) + 1;
-        localStorage.setItem('payCalcCount', count);
-        document.getElementById('calcCount').textContent = toBengaliNum(count);
+        const pension = calculatePension(document.getElementById('currentPension').value, document.getElementById('pensionAge').value);
+        if(!pension.current){ alert('৩০ জুন ২০২৬-এর মাসিক নিট পেনশন লিখুন।'); return false; }
+        appState = { mode:'pensioner', empName, empDesig, empWorkplace, empNid, ...pension };
+        incrementCounter();
         generatePensionSlides();
         openPreviewModal();
         return false;
@@ -1116,14 +1276,17 @@ function calculatePay(e){
 
     const grade = Number(document.getElementById('grade').value);
     const oldBasic = Number(document.getElementById('basic').value);
-    if(!grade || !scale2015[grade] || !oldBasic){
-        alert('গ্রেড ও ৩০-০৬-২০২৬ তারিখের মূল বেতন নির্বাচন করুন।');
-        return false;
-    }
+    if(!grade || !oldBasic){ alert('গ্রেড ও ৩০-০৬-২০২৬ তারিখের মূল বেতন নির্বাচন করুন।'); return false; }
+
+    const isGazetted = grade <= 10;
+    const trFormNo = isGazetted ? '১৩' : '১৫';
+    const basicEconCode = isGazetted ? '৩১১১১০১' : '৩১১১২০১';
+    const basicEconTitle = isGazetted ? 'মূল বেতন (অফিসার)' : 'মূল বেতন (কর্মচারী)';
 
     if(personType === 'arrear'){
         const startIdx = Number(document.getElementById('arrearStartMonth').value) || 0;
         const endIdx = Math.max(startIdx, Number(document.getElementById('arrearEndMonth').value) || 2);
+        const opcode = document.getElementById('emp_opcode').value.trim() || '১২৫০২০১';
 
         const dueBasic = Math.round(Number(document.getElementById('dueBasicOverride').value) || 0);
         const drawnBasic = Math.round(Number(document.getElementById('drawnBasicOverride').value) || 0);
@@ -1160,8 +1323,8 @@ function calculatePay(e){
         }
 
         appState = {
-            mode: 'arrear', personType: 'arrear',
-            grade, oldBasic,
+            mode: 'arrear', empName, empDesig, empWorkplace, empNid, opcode,
+            grade, oldBasic, isGazetted, trFormNo, basicEconCode, basicEconTitle,
             months,
             dueBasic, drawnBasic, basicArrearPerMonth,
             dueHouse, drawnHouse, houseArrearPerMonth,
@@ -1174,32 +1337,19 @@ function calculatePay(e){
             words: numberToBanglaWords(sumTotalArrear) + ' টাকা মাত্র'
         };
 
-        document.getElementById('previewModalTitle').textContent = 'বকেয়া বেতন বিল ও বিবরণী ফলাফল';
-        let count = Number(localStorage.getItem('payCalcCount')||0) + 1;
-        localStorage.setItem('payCalcCount', count);
-        document.getElementById('calcCount').textContent = toBengaliNum(count);
+        incrementCounter();
+        saveToHistory(appState);
         generateArrearSlides();
         openPreviewModal();
         return false;
     }
 
+    // Employee Fixation Calculation (Serial 07 to 21)
     const pp = Math.max(0, Number(document.getElementById('pp').value) || 0);
     const location = document.getElementById('location').value;
-    const eduCount = Math.min(2, Math.max(0, Number(document.getElementById('edu').value) || 0));
+    const eduCount = Number(document.getElementById('edu').value) || 0;
     const gpf = Math.max(0, Number(document.getElementById('gpf').value) || 0);
     const tax = Math.max(0, Number(document.getElementById('tax').value) || 0);
-    const otherDeduction = Math.max(0, Number(document.getElementById('otherDeduction').value) || 0);
-    const age = Math.max(0, Number(document.getElementById('age').value) || 0);
-    const govtHouse = document.getElementById('govtHouse').value === 'yes';
-    const cityCommute = document.getElementById('cityCommute').value === 'yes';
-    const tiffin = document.getElementById('tiffin').value === 'yes';
-    const mobileAllowance = document.getElementById('mobileAllowance').value === 'yes';
-    const actingAllowance = document.getElementById('actingAllowance').value === 'yes';
-    const trainingAllowance = document.getElementById('trainingAllowance').value === 'yes';
-    const hillAllowance = document.getElementById('hillAllowance').value === 'yes';
-    const haorAllowance = document.getElementById('haorAllowance').value === 'yes';
-    const disabledChildren = Math.min(2, Math.max(0, Number(document.getElementById('disabledChildren').value) || 0));
-    const specialAllowance = Math.max(0, Number(document.getElementById('specialAllowance').value) || 0);
 
     const start2015 = scale2015[grade][0];
     const end2015 = scale2015[grade][scale2015[grade].length - 1];
@@ -1226,78 +1376,81 @@ function calculatePay(e){
     const diffShare3 = basicDiff * pct2Add;
     const stage3Basic100 = stage2Basic + diffShare3;
     const stage3BasicWith2027Inc = nextIncrement(scale2026[grade], stage3Basic100);
-    const stage4Basic = stage3BasicWith2027Inc;
 
-    const cur = {
-        mode: 'employee', personType: 'employee',
-        grade, basic: oldBasic, oldBasic, pp, totalOldPay,
+    const oldAllowances = getOldHouseRent(oldBasic, location) + 1500 + (eduCount * 500);
+    const totalDeduction = 260 + gpf + tax;
+
+    appState = {
+        mode: 'employee', empName, empDesig, empWorkplace, empNid,
+        grade, isGazetted, trFormNo, oldBasic, pp, totalOldPay,
         start2015, end2015, start2026, end2026,
         earned, baseAmount, fixedBasic, incBasic2026, july2026Increment,
         basicDiff, diffShare1, july2026PayWithoutInc, stage1Basic,
-        diffShare2, stage2Basic, diffShare3, stage3Basic100,
-        stage3BasicWith2027Inc, stage4Basic,
+        diffShare2, stage2Basic, diffShare3, stage3Basic100, stage3BasicWith2027Inc,
         p1Label: grade <= 9 ? '৪০%' : '৫০%',
         p2TotalLabel: grade <= 9 ? '৭০%' : '৭৫%',
         p2AddLabel: grade <= 9 ? '৩০%' : '২৫%',
-        location, eduCount, age, govtHouse, cityCommute, tiffin,
-        mobileAllowance, actingAllowance, trainingAllowance, hillAllowance, haorAllowance,
-        disabledChildren, specialAllowance
+        oldAllowances, totalDeduction,
+        stage1Net: stage1Basic + oldAllowances - totalDeduction,
+        stage2Net: stage2Basic + oldAllowances - totalDeduction,
+        stage3Net: stage3BasicWith2027Inc + oldAllowances - totalDeduction
     };
 
-    const oldA = calculateOldAllowances(cur, oldBasic);
-    const newA = calculateNewAllowances(cur, stage4Basic);
-
-    const mandatoryDeduction = 260;
-    const totalDeduction = mandatoryDeduction + gpf + tax + otherDeduction;
-
-    const currentNet = oldBasic + oldA.total - totalDeduction;
-    const stage1Net = stage1Basic + oldA.total - totalDeduction;
-    const stage2Net = stage2Basic + oldA.total - totalDeduction;
-    const stage3Net = stage3BasicWith2027Inc + oldA.total - totalDeduction;
-    const stage4Net = stage4Basic + newA.total - totalDeduction;
-
-    appState = {
-        ...cur, gpf, tax, otherDeduction, mandatoryDeduction,
-        old: oldA, newA, totalDeduction,
-        currentNet, stage1Net, stage2Net, stage3Net, stage4Net
-    };
-
-    document.getElementById('previewModalTitle').textContent = 'বেতন নির্ধারণী বিবরণী (Fixation ফলাফল)';
-    let count = Number(localStorage.getItem('payCalcCount')||0) + 1;
-    localStorage.setItem('payCalcCount', count);
-    document.getElementById('calcCount').textContent = toBengaliNum(count);
-
+    incrementCounter();
     saveToHistory(appState);
-    generateSlides();
+    generateFixationSlides();
     openPreviewModal();
     return false;
 }
 
-function generateArrearSlides(){
+function incrementCounter(){
+    let count = Number(localStorage.getItem('payCalcCount')||0) + 1;
+    localStorage.setItem('payCalcCount', count);
+    document.getElementById('calcCount').textContent = toBengaliNum(count);
+}
+
+function generateFixationSlides(){
     const s = appState;
-    const summaryCard = `<div class="compare-card">
-        <div class="compare-title">বকেয়া বেতন বিল সারসংক্ষেপ (${toBengaliNum(s.months.length)} মাস)</div>
-        <div class="compare-grid">
-            <div class="compare-box"><div class="label">মূল বেতন বকেয়া</div><div class="value" style="color:var(--primary)">${formatMoney(s.sumBasicArrear)}</div></div>
-            <div class="compare-arrow">+</div>
-            <div class="compare-box"><div class="label">বাড়িভাড়া ও বিশেষ ভাতা সমন্বয়</div><div class="value" style="color:var(--danger)">${formatMoney(s.sumHouseArrear + s.sumSpecArrear)}</div></div>
-        </div>
-        <div class="compare-increase">প্রদেয় নিট বকেয়া বিল (ক-খ): ${formatMoney(s.sumTotalArrear)}</div>
+    const slide1 = `
+    <div class="sec-title">১. বেতন নির্ধারণী বিবরণী (ক্রমিক ০৭ হতে ১৩)</div>
+    <div class="stage-box">
+        <div class="item-row"><span>নাম ও পদবি</span><span>${s.empName}, ${s.empDesig}</span></div>
+        <div class="item-row"><span>গ্রেড ও স্ট্যাটাস</span><span>গ্রেড-${toBengaliNum(s.grade)} (${s.isGazetted ? 'গেজেটেড কর্মকর্তা' : 'নন-গেজেটেড কর্মচারী'})</span></div>
+        <div class="item-row"><span>০৭। ৩০-০৬-২০২৬ তারিখে গৃহীত মূল বেতন</span><span>${formatMoney(s.oldBasic)}</span></div>
+        <div class="item-row"><span>০৮। ২০১৫ স্কেলের প্রারম্ভিক ধাপ ও পার্থক্য</span><span>${formatMoney(s.start2015)} | পার্থক্য: ${formatMoney(s.earned)}</span></div>
+        <div class="item-row"><span>০৯। ২০২৬ স্কেলের প্রারম্ভিক ধাপ ও মোট</span><span>${formatMoney(s.start2026)} | মোট: ${formatMoney(s.baseAmount)}</span></div>
+        <div class="item-row highlight"><span>১০ ও ১১। ০১-০৭-২০২৬ তারিখে নির্ধারিত বেতন</span><span>${formatMoney(s.fixedBasic)}</span></div>
+        <div class="item-row highlight"><span>১২। ০১-০৭-২০২৬ ইনক্রিমেন্টসহ নির্ধারিত বেতন</span><span>${formatMoney(s.incBasic2026)}</span></div>
+        <div class="item-row"><span>১৩। বেতন বৃদ্ধির পরিমাণ</span><span>${formatMoney(s.basicDiff)}</span></div>
     </div>`;
 
-    const slide1 = `${summaryCard}
-    <div class="sec-title">১. প্রতি মাসের প্রাপ্য বনাম গৃহীত তুলনা</div>
+    const slide2 = `
+    <div class="sec-title">২. পর্যায়ক্রমিক প্রাপ্য বেতন (ক্রমিক ১৪ হতে ২১)</div>
     <div class="stage-box">
-        <div class="stage-header"><strong>মূল বেতন (অর্থনৈতিক কোড: ৩১১১১০১)</strong><span class="badge">মাসিক</span></div>
-        <div class="item-row"><span>প্রাপ্য মূল বেতন (২০২৬ স্কেলের ১ম ধাপ)</span><span>${formatMoney(s.dueBasic)}</span></div>
-        <div class="item-row"><span>গৃহীত মূল বেতন (২০১৫ স্কেলে ইনক্রিমেন্টসহ)</span><span>${formatMoney(s.drawnBasic)}</span></div>
-        <div class="item-row highlight"><span>মাসিক মূল বেতন বকেয়া</span><span>${formatMoney(s.basicArrearPerMonth)}</span></div>
-    </div>
+        <div class="item-row"><span>১৪। বৃদ্ধিপ্রাপ্ত বেতনের ${s.p1Label}</span><span>${formatMoney(s.diffShare1)}</span></div>
+        <div class="item-row"><span>১৫। ০১-০৭-২০২৬ প্রাপ্য বেতন (${s.p1Label} বৃদ্ধি অনুযায়ী)</span><span>${formatMoney(s.july2026PayWithoutInc)}</span></div>
+        <div class="item-row highlight"><span>১৬। ০১-০৭-২০২৬ বার্ষিক ইনক্রিমেন্টসহ প্রাপ্য বেতন</span><span>${formatMoney(s.stage1Basic)}</span></div>
+        <div class="item-row"><span>১৭। ০১-০১-২০২৭ তারিখে বেতন বৃদ্ধির ${s.p2AddLabel}</span><span>${formatMoney(s.diffShare2)}</span></div>
+        <div class="item-row highlight"><span>১৮। ০১-০১-২০২৭ তারিখে নির্ধারিত প্রাপ্য বেতন (${s.p2TotalLabel})</span><span>${formatMoney(s.stage2Basic)}</span></div>
+        <div class="item-row"><span>১৯। ০১-০৭-২০২৭ তারিখে বেতন বৃদ্ধির অবশিষ্ট ${s.p2AddLabel}</span><span>${formatMoney(s.diffShare3)}</span></div>
+        <div class="item-row highlight"><span>২০। ০১-০৭-২০২৭ তারিখে নির্ধারিত প্রাপ্য বেতন ১০০%</span><span>${formatMoney(s.stage3Basic100)}</span></div>
+        <div class="item-row highlight"><span>২১। ০১-০৭-২০২৭ বার্ষিক ইনক্রিমেন্টসহ প্রাপ্য বেতন</span><span>${formatMoney(s.stage3BasicWith2027Inc)}</span></div>
+    </div>`;
+    previewSlides = [slide1, slide2];
+}
+
+function generateArrearSlides(){
+    const s = appState;
+    const slide1 = `
+    <div class="sec-title">১. বকেয়া বিল সারসংক্ষেপ (টি.আর. ফরম নং ${s.trFormNo})</div>
     <div class="stage-box">
-        <div class="stage-header"><strong>বাড়িভাড়া (৩১১১৩১০) ও বিশেষ সুবিধা (৩১১১৩৫২)</strong><span class="badge">সমন্বয়</span></div>
-        <div class="item-row"><span>প্রাপ্য বাড়িভাড়া (${formatMoney(s.dueHouse)}) − গৃহীত (${formatMoney(s.drawnHouse)})</span><span>${formatMoney(s.houseArrearPerMonth)}</span></div>
-        <div class="item-row"><span>প্রাপ্য বিশেষ ভাতা (${formatMoney(s.dueSpec)}) − গৃহীত (${formatMoney(s.drawnSpec)})</span><span>${formatMoney(s.specArrearPerMonth)}</span></div>
-        <div class="item-row highlight"><span>প্রতি মাসের নিট বকেয়া</span><span>${formatMoney(s.netArrearPerMonth)}</span></div>
+        <div class="item-row"><span>কর্মকর্তা/কর্মচারীর নাম</span><span>${s.empName} (${s.empDesig})</span></div>
+        <div class="item-row"><span>প্রযোজ্য টি.আর. ফরম</span><span>টি.আর. ফরম নং ${s.trFormNo} (${s.isGazetted ? 'গেজেটেড কর্মকর্তা' : 'নন-গেজেটেড কর্মচারী'})</span></div>
+        <div class="item-row"><span>অর্থনৈতিক কোড</span><span>${s.basicEconCode} - ${s.basicEconTitle}</span></div>
+        <div class="item-row"><span>মাসিক মূল বেতন বকেয়া (${formatMoney(s.dueBasic)} − ${formatMoney(s.drawnBasic)})</span><span>${formatMoney(s.basicArrearPerMonth)}</span></div>
+        <div class="item-row"><span>মাসিক বাড়িভাড়া বকেয়া (${formatMoney(s.dueHouse)} − ${formatMoney(s.drawnHouse)})</span><span>${formatMoney(s.houseArrearPerMonth)}</span></div>
+        <div class="item-row"><span>মাসিক বিশেষ ভাতা সমন্বয় (${formatMoney(s.dueSpec)} − ${formatMoney(s.drawnSpec)})</span><span>${formatMoney(s.specArrearPerMonth)}</span></div>
+        <div class="item-row highlight"><span>${toBengaliNum(s.months.length)} মাসের সর্বমোট নিট বকেয়া বিল (ক-খ)</span><span>${formatMoney(s.sumTotalArrear)}</span></div>
     </div>`;
 
     const rowsHtml = s.months.map(m => `
@@ -1311,22 +1464,16 @@ function generateArrearSlides(){
         </tr>
     `).join('');
 
-    const slide2 = `<div class="sec-title">২. মাসওয়ারী বকেয়া বেতনের বিবরণী ছক ও টি.আর. ফরম-১৩</div>
+    const slide2 = `
+    <div class="sec-title">২. মাসওয়ারী বকেয়া বিবরণী ও ৩ পৃষ্ঠার পিডিএফ</div>
     <div style="overflow-x:auto;">
-        <table class="scale-table" style="border:1px solid var(--border);">
+        <table class="scale-table" style="border:1px solid #cbd5e1;">
             <thead>
-                <tr>
-                    <th>ক্রমিক</th>
-                    <th>মাসের নাম</th>
-                    <th>মূল বেতন বকেয়া</th>
-                    <th>বাড়িভাড়া বকেয়া</th>
-                    <th>বিশেষ ভাতা বকেয়া</th>
-                    <th>মোট বকেয়া</th>
-                </tr>
+                <tr><th>ক্রমিক</th><th>মাস</th><th>মূল বেতন বকেয়া</th><th>বাড়িভাড়া</th><th>বিশেষ ভাতা</th><th>মোট বকেয়া</th></tr>
             </thead>
             <tbody>
                 ${rowsHtml}
-                <tr style="background:var(--primary-light);font-weight:bold;">
+                <tr style="background:#e6f4f4;font-weight:bold;">
                     <td colspan="2">মোট =</td>
                     <td>${formatNumPlain(s.sumBasicArrear)}</td>
                     <td>${formatNumPlain(s.sumHouseArrear)}</td>
@@ -1336,102 +1483,58 @@ function generateArrearSlides(){
             </tbody>
         </table>
     </div>
-    <div class="desc-box" style="margin-top:8px;">
-        <strong>মোট বকেয়া (কথায়):</strong> ${s.words}।<br>
-        🖨️ নিচের <strong>"পিডিএফ / প্রিন্ট করুন"</strong> বাটনে ক্লিক করলে ১ম পৃষ্ঠায় <strong>টি.আর. ফরম নং ১৩ (বেতন বিল)</strong> এবং ২য় পৃষ্ঠায় <strong>বকেয়া বেতনের বিবরণী ছক (কলাম ১–১৬)</strong> একসাথে জেনারেট হবে।
+    <div style="margin-top:8px;font-size:0.82rem;background:#E6F4F4;padding:8px;border-radius:8px;color:#074F51;">
+        <strong>কথায়:</strong> ${s.words}।<br>
+        🖨️ <strong>"পিডিএফ / প্রিন্ট করুন"</strong> বাটনে ক্লিক করলে মোট <strong>৩ পৃষ্ঠা</strong> প্রিন্ট হবে:<br>
+        • পৃষ্ঠা ১ ও ২ (Portrait): <strong>টি.আর. ফরম নং ${s.trFormNo}</strong> (১ম ও ২য় পাতা)<br>
+        • পৃষ্ঠা ৩ (Landscape): <strong>বকেয়া বেতনের বিবরণী ছক</strong>
     </div>`;
-
     previewSlides = [slide1, slide2];
 }
 
 function generatePensionSlides(){
     const s = appState;
-    const finalPct = (s.finalRate*100).toFixed(0);
-    const p1Pct = (s.phase1Rate*100).toFixed(0);
-    const p2Pct = (s.phase2Rate*100).toFixed(0);
-    const ageLabel = s.ageGroup==='65plus' ? '৬৫ বছর বা তার বেশি' : '৬৫ বছরের কম';
-    const typeLabel = s.pensionType==='family' ? 'পারিবারিক পেনশন' : 'নিজের পেনশন';
-
-    const slide1 = `<div class="sec-title">১. পেনশনভোগীর ভিত্তি হিসাব</div><div class="stage-box"><div class="item-row"><span>পেনশনের ধরন</span><span>${typeLabel}</span></div><div class="item-row"><span>বয়সের স্তর</span><span>${ageLabel}</span></div><div class="item-row"><span>৩০ জুন ২০২৬-এর মাসিক নিট পেনশন</span><span>${formatMoney(s.current)}</span></div><div class="item-row"><span>চূড়ান্ত বৃদ্ধির হার</span><span>${toBengaliNum(finalPct)}%</span></div><div class="item-row highlight"><span>১ জুলাই ২০২৭ থেকে মাসিক নিট পেনশন</span><span>${formatMoney(s.newPension)}</span></div></div>`;
-    const slide2 = `<div class="sec-title">২. পর্যায়ক্রমিক পেনশন বাস্তবায়ন</div><div class="stage-box"><div class="item-row"><span>০১-০৭-২০২৬ (${toBengaliNum(p1Pct)}% বৃদ্ধি)</span><span>${formatMoney(s.phase1Pension)}</span></div><div class="item-row"><span>০১-০১-২০২৭ (${toBengaliNum(p2Pct)}% বৃদ্ধি)</span><span>${formatMoney(s.phase2Pension)}</span></div><div class="item-row highlight"><span>০১-০৭-২০২৭ (১০০% পূর্ণ পেনশন)</span><span>${formatMoney(s.newPension)}</span></div></div>`;
-    previewSlides = [slide1, slide2];
+    const slide1 = `
+    <div class="sec-title">পেনশন ফিক্সেশন ফলাফল</div>
+    <div class="stage-box">
+        <div class="item-row"><span>পেনশনভোগীর নাম</span><span>${s.empName}</span></div>
+        <div class="item-row"><span>৩০ জুন ২০২৬-এর নিট পেনশন</span><span>${formatMoney(s.current)}</span></div>
+        <div class="item-row highlight"><span>০১-০৭-২০২৬ প্রাপ্য পেনশন</span><span>${formatMoney(s.phase1Pension)}</span></div>
+        <div class="item-row highlight"><span>০১-০১-২০২৭ প্রাপ্য পেনশন</span><span>${formatMoney(s.phase2Pension)}</span></div>
+        <div class="item-row highlight"><span>০১-০৭-২০২৭ পূর্ণ পেনশন (১০০%)</span><span>${formatMoney(s.newPension)}</span></div>
+        <div class="item-row"><span>মাসিক চিকিৎসা ভাতা</span><span>${formatMoney(s.medicalAllowance)}</span></div>
+    </div>`;
+    previewSlides = [slide1];
 }
 
-function generateSlides(){
-    const s = appState;
-    const compare = `<div class="compare-card">
-        <div class="compare-title">সরকারি ফিক্সেশন শিট অনুযায়ী মূল বেতন সারসংক্ষেপ</div>
-        <div class="compare-grid">
-            <div class="compare-box"><div class="label">০১-০৭-২০২৬ প্রাপ্য মূল বেতন</div><div class="value" style="color:var(--primary)">${formatMoney(s.stage1Basic)}</div></div>
-            <div class="compare-arrow">→</div>
-            <div class="compare-box"><div class="label">০১-০১-২০২৭ প্রাপ্য মূল বেতন</div><div class="value" style="color:var(--success)">${formatMoney(s.stage2Basic)}</div></div>
-        </div>
-        <div class="compare-increase">০১-০৭-২০২৭ প্রাপ্য (১০০%): ${formatMoney(s.stage3Basic100)} · ইনক্রিমেন্টসহ: ${formatMoney(s.stage3BasicWith2027Inc)}</div>
-    </div>`;
-
-    const slide1 = `${compare}
-    <div class="sec-title">১. বেতন নির্ধারণী বিবরণী (ক্রমিক ০৭ হতে ১৩)</div>
-    <div class="stage-box">
-        <div class="item-row"><span>০৭। ৩০-০৬-২০২৬ তারিখে গৃহীত মূল বেতন</span><span>${formatMoney(s.oldBasic)}</span></div>
-        <div class="item-row sub"><span>০৮। খ) ২০১৫ স্কেলের প্রারম্ভিক ধাপ (গ্রেড-${toBengaliNum(s.grade)})</span><span>${formatMoney(s.start2015)}</span></div>
-        <div class="item-row"><span>০৮। গ) পার্থক্য (${formatMoney(s.oldBasic)} − ${formatMoney(s.start2015)})</span><span>${formatMoney(s.earned)}</span></div>
-        <div class="item-row sub"><span>০৯। খ) ২০২৬ স্কেলের প্রারম্ভিক ধাপ (গ্রেড-${toBengaliNum(s.grade)})</span><span>${formatMoney(s.start2026)}</span></div>
-        <div class="item-row"><span>০৯। গ) মোট বেতন (${formatMoney(s.start2026)} + ${formatMoney(s.earned)})</span><span>${formatMoney(s.baseAmount)}</span></div>
-        <div class="item-row highlight"><span>১০ ও ১১। সম/উচ্চধাপে ০১-০৭-২০২৬ তারিখে নির্ধারিত বেতন</span><span>${formatMoney(s.fixedBasic)}</span></div>
-        <div class="item-row highlight"><span>১২। ০১-০৭-২০২৬ তারিখে বার্ষিক ইনক্রিমেন্টসহ নির্ধারিত বেতন</span><span>${formatMoney(s.incBasic2026)}</span></div>
-        <div class="item-row"><span>১৩। বেতন বৃদ্ধির পরিমাণ (${formatMoney(s.fixedBasic)} − ${formatMoney(s.oldBasic)})</span><span>${formatMoney(s.basicDiff)}</span></div>
-    </div>`;
-
-    const slide2 = `<div class="sec-title">২. পর্যায়ক্রমিক প্রাপ্য মূল বেতন (ক্রমিক ১৪ হতে ২১)</div>
-    <div class="stage-box">
-        <div class="item-row"><span>১৪। বৃদ্ধিপ্রাপ্ত বেতনের ${s.p1Label}</span><span>${formatMoney(s.diffShare1)}</span></div>
-        <div class="item-row"><span>১৫। ০১-০৭-২০২৬ তারিখে প্রাপ্য বেতন (${s.p1Label} বৃদ্ধি অনুযায়ী)</span><span>${formatMoney(s.july2026PayWithoutInc)}</span></div>
-        <div class="item-row highlight"><span>১৬। ০১-০৭-২০২৬ তারিখে বার্ষিক ইনক্রিমেন্টসহ প্রাপ্য বেতন</span><span>${formatMoney(s.stage1Basic)}</span></div>
-        <div class="item-row"><span>১৭। ০১-০১-২০২৭ তারিখে বেতন বৃদ্ধির ${s.p2AddLabel}</span><span>${formatMoney(s.diffShare2)}</span></div>
-        <div class="item-row highlight"><span>১৮। ০১-০১-২০২৭ তারিখে নির্ধারিত প্রাপ্য বেতন (${s.p2TotalLabel} সুবিধাসহ)</span><span>${formatMoney(s.stage2Basic)}</span></div>
-        <div class="item-row"><span>১৯। ০১-০৭-২০২৭ তারিখে বেতন বৃদ্ধির অবশিষ্ট ${s.p2AddLabel}</span><span>${formatMoney(s.diffShare3)}</span></div>
-        <div class="item-row highlight"><span>২০। ০১-০৭-২০২৭ তারিখে নির্ধারিত প্রাপ্য বেতন ১০০%</span><span>${formatMoney(s.stage3Basic100)}</span></div>
-        <div class="item-row highlight"><span>২১। ০১-০৭-২০২৭ তারিখে বার্ষিক ইনক্রিমেন্টসহ প্রাপ্য বেতন</span><span>${formatMoney(s.stage3BasicWith2027Inc)}</span></div>
-    </div>`;
-
-    previewSlides = [slide1, slide2];
-}
-
-function openContactModal(){ document.getElementById('contactModal').classList.add('active'); }
-function closeContactModal(){ document.getElementById('contactModal').classList.remove('active'); }
 function openPreviewModal(){ currentSlide = 0; updateSlideView(); document.getElementById('previewModal').classList.add('active'); }
 function closePreviewModal(){ document.getElementById('previewModal').classList.remove('active'); }
+function openContactModal(){ document.getElementById('contactModal').classList.add('active'); }
+function closeContactModal(){ document.getElementById('contactModal').classList.remove('active'); }
 function changeSlide(d){ currentSlide = Math.max(0, Math.min(previewSlides.length - 1, currentSlide + d)); updateSlideView(); }
-function goToSlide(i){ if(i >= 0 && i < previewSlides.length){ currentSlide = i; updateSlideView(); } }
 
 function updateSlideView(){
-    const c = document.getElementById('slideContent');
-    c.innerHTML = previewSlides[currentSlide];
+    document.getElementById('slideContent').innerHTML = previewSlides[currentSlide];
     document.getElementById('slideCounter').textContent = `ধাপ: ${toBengaliNum(currentSlide+1)}/${toBengaliNum(previewSlides.length)}`;
-    document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'block';
+    document.getElementById('prevBtn').style.display = currentSlide === 0 ? 'none' : 'inline-block';
     const last = currentSlide === previewSlides.length - 1;
-    document.getElementById('nextBtn').style.display = last ? 'none' : 'block';
-    document.getElementById('printStartBtn').style.display = last ? 'block' : 'none';
-    document.getElementById('shareRow').style.display = last ? 'flex' : 'none';
-    document.getElementById('slideDots').innerHTML = previewSlides.map((_, i) => `<button type="button" class="slide-dot${i===currentSlide?' active':''}" onclick="goToSlide(${i})"></button>`).join('');
+    document.getElementById('nextBtn').style.display = last ? 'none' : 'inline-block';
+    document.getElementById('printStartBtn').style.display = last ? 'inline-block' : 'none';
+    document.getElementById('copyBtn').style.display = last ? 'inline-block' : 'none';
 }
 
-function openPrintModal(){ closePreviewModal(); document.getElementById('printModal').classList.add('active'); }
-function closePrintModal(){ document.getElementById('printModal').classList.remove('active'); }
-
-function executePrint(e){
-    e.preventDefault();
-    closePrintModal();
+// ============================================================================
+// ৩ পৃষ্ঠার প্রিন্ট ইঞ্জিন: TR-13 (গ্রেড ১-১০) বা TR-15 (গ্রেড ১১-২০) [২ পেজ পোর্ট্রেট] + বকেয়া ছক [১ পেজ ল্যান্ডস্কেপ]
+// ============================================================================
+function executeDirectPrint(){
+    closePreviewModal();
     const s = appState;
-    const name = document.getElementById('p_name').value.trim() || 'নাসিম আল মাসুদ';
-    const desig = document.getElementById('p_desig').value.trim() || 'জুনিয়র ইনস্ট্রাক্টর';
-    const workplace = document.getElementById('p_workplace').value.trim() || 'চাঁপাইনবাবগঞ্জ সরকারি পলিটেকনিক ইনস্টিটিউট';
-    const nid = document.getElementById('p_nid')?.value.trim() || '৭৮০৬৫২৪৭৮৬';
-    const opcode = (document.getElementById('p_opcode')?.value.trim() || '১২৫০২০১').padEnd(7, ' ').split('');
     const todayFormatted = toBengaliNum(new Intl.DateTimeFormat('bn-BD',{day:'2-digit',month:'2-digit',year:'2-digit'}).format(new Date()));
 
     if(s.mode === 'arrear'){
-        const codeBoxesHtml = opcode.map(ch => `<span>${ch}</span>`).join('');
+        const opcodeArr = (s.opcode || '১২৫০২০১').padEnd(7, ' ').split('');
+        const codeBoxesHtml = opcodeArr.map(ch => `<span>${ch}</span>`).join('');
+
         const stmtRowsHtml = s.months.map(m => `
             <tr>
                 <td>${toBengaliNum(m.sl)}</td>
@@ -1446,115 +1549,283 @@ function executePrint(e){
                 <td>${formatNumPlain(m.dueSpec)}</td>
                 <td>${formatNumPlain(m.drawnSpec)}</td>
                 <td>${formatNumPlain(m.specArrear)}</td>
-                <td>${formatNumPlain(m.totalArrear)}</td>
+                <td><strong>${formatNumPlain(m.totalArrear)}</strong></td>
             </tr>
         `).join('');
 
-        document.getElementById('print-area').innerHTML = `
-        <!-- পৃষ্ঠা ১: টি.আর. ফরম নং ১৩ -->
-        <div class="tr13-page">
-            <div class="tr13-top">
-                <div>টি, আর, ফরম নং ১৩<br>[এস, আর, ১৩৯ (১) দ্রষ্টব্য]</div>
-                <div class="tr13-title">
-                    <h2>গেজেটেড সরকারি কর্মকর্তার বেতন বিল</h2>
-                    <p>......................... মাস .................... বৎসর</p>
-                </div>
-                <div style="width:110px;"></div>
-            </div>
+        let trPagesHtml = '';
 
-            <div class="tr13-meta-line">
-                <div>দপ্তর: <strong>${workplace}</strong></div>
-                <div>প্রাতিষ্ঠানিক/ অপারেশন কোড * <div class="tr13-code-boxes">${codeBoxesHtml}</div></div>
-            </div>
-            <div class="tr13-meta-line">
-                <div>নাম: <strong>${name}</strong></div>
-                <div>পদবি: <strong>${desig}</strong></div>
-                <div>এনআইডি নং: <strong>${nid}</strong></div>
-            </div>
-            <div class="tr13-meta-line">
-                <div>ভবিষ্য তহবিল হিসাব নং: ............................</div>
-                <div>ডাক জীবনবিমা নং: ............................</div>
-                <div>টি আই এন/ই টি আই এন: ............................</div>
-            </div>
-            <div class="tr13-meta-line">
-                <div>টোকেন নং: ........................ তারিখ: ........................</div>
-                <div>ভাউচার নং: ........................ তারিখ: ........................</div>
-            </div>
-
-            <table class="tr13-table">
-                <thead>
-                    <tr>
-                        <th colspan="2" rowspan="2">অর্থনৈতিক কোড</th>
-                        <th rowspan="2">বিবরণ</th>
-                        <th colspan="2">হার</th>
-                        <th colspan="2">টাকার অঙ্ক</th>
-                    </tr>
-                    <tr>
-                        <th>টাকা</th>
-                        <th>পয়সা</th>
-                        <th>টাকা</th>
-                        <th>পয়সা</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="tr13-sec-row"><td colspan="7">বেতন ও ভাতা</td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১১০১</td><td>মূল বেতন (অফিসার)</td><td class="rate-taka"></td><td class="rate-poisha"></td><td class="amt-taka">${formatNumPlain(s.sumBasicArrear)}</td><td class="amt-poisha">০০</td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০১</td><td>দায়িত্ব ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০৬</td><td>শিক্ষা ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১০</td><td>বাড়িভাড়া ভাতা</td><td></td><td></td><td class="amt-taka">${s.sumHouseArrear !== 0 ? formatNumPlain(s.sumHouseArrear) : ''}</td><td class="amt-poisha">${s.sumHouseArrear !== 0 ? '০০' : ''}</td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১১</td><td>চিকিৎসা ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১২</td><td>মোবাইল/সেলফোন ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩২৫</td><td>উৎসব ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩৩৫</td><td>বাংলা নববর্ষ ভাতা</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩২৫৮১৪০</td><td>মোটরযান রক্ষণাবেক্ষণ ব্যয়</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩৫২</td><td>বিশেষ সুবিধা</td><td></td><td></td><td class="amt-taka">${s.sumSpecArrear !== 0 ? formatNumPlain(s.sumSpecArrear) : ''}</td><td class="amt-poisha">${s.sumSpecArrear !== 0 ? '০০' : ''}</td></tr>
-                    <tr><td colspan="3" style="text-align:right;font-weight:bold;">সর্বমোট বেতন ও ভাতা (ক)</td><td></td><td></td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
-
-                    <tr class="tr13-sec-row"><td colspan="7">কর্তন ও পরিশোধ</td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১১৬২১০১</td><td>স্ট্যাম্প ডিউটি</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪১১২০২</td><td>সরকারি কর্মচারীকে প্রদত্ত ঋণের সুদ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪২২৪০৪</td><td>পানি ও পয়ঃনিষ্কাশন ব্যবস্থা চার্জ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪৪১২০৪</td><td>পৌরকর</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০১</td><td>গৃহনির্মাণ ঋণ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৪</td><td>মোটরগাড়ি ঋণ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৩</td><td>সুদমুক্ত ঋণ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৫</td><td>মোটর সাইকেল ঋণ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০২</td><td>কম্পিউটার ঋণ</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১১২২০১</td><td>সাধারণ ভবিষ্য তহবিল (সিভিল)</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০১</td><td>তিতাস গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০২</td><td>বাখরাবাদ গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০৩</td><td>জালালাবাদ গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০৪</td><td>কর্ণফুলী গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৩</td><td>কর্মচারী কল্যাণ তহবিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৪</td><td>কর্মচারী যৌথবিমা তহবিল</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td colspan="3" style="text-align:right;font-weight:bold;">কর্তন ও পরিশোধ বাবদ মোট আদায় (খ)</td><td></td><td></td><td class="amt-taka">০</td><td class="amt-poisha">০০</td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২১০৮</td><td style="font-weight:bold;">প্রদেয় বিল (ক-খ)</td><td></td><td></td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
-                    <tr><td colspan="7" style="font-weight:bold;padding:4px 6px;">টাকা (কথায়): ${s.words}</td></tr>
-                </tbody>
-            </table>
-
-            <div class="tr13-bottom">
-                <div>বাহক/ ব্যাংক/ এজেন্টের নাম: ..........................................................................................................</div>
-                <div class="tr13-sig-area">
-                    <div>তারিখ: ${todayFormatted}</div>
-                    <div style="text-align:center;">
-                        <div>কর্মকর্তার স্বাক্ষর ........................</div>
-                        <div style="margin-top:4px;font-weight:bold;">${name}</div>
-                        <div>${desig}</div>
-                        <div style="font-size:8.5pt;">${workplace}</div>
+        if(s.isGazetted){
+            // ১ম থেকে ১০ম গ্রেড: টি.আর. ফরম নং ১৩ (পৃষ্ঠা ১ ও পৃষ্ঠা ২ - Portrait)
+            trPagesHtml = `
+            <!-- পৃষ্ঠা ১: টি.আর. ফরম নং ১৩ (১ম পাতা) -->
+            <div class="print-portrait-page">
+                <div class="tr-top">
+                    <div>টি, আর, ফরম নং ১৩<br>[এস, আর, ১৩৯ (১) দ্রষ্টব্য]</div>
+                    <div class="tr-title">
+                        <h2>গেজেটেড সরকারি কর্মকর্তার বেতন বিল</h2>
+                        <p> বকেয়া বিল ......................... মাস .................... বৎসর ২০২৬</p>
                     </div>
-                    <div class="stamp-box">রাজস্ব<br>স্ট্যাম্প</div>
+                    <div style="width:90px;text-align:right;font-size:8.5pt;">গ্রেড-${toBengaliNum(s.grade)}</div>
+                </div>
+
+                <div class="tr-meta-line">
+                    <div>দপ্তর: <strong>${s.empWorkplace}</strong></div>
+                    <div>প্রাতিষ্ঠানিক/ অপারেশন কোড * <div class="tr-code-boxes">${codeBoxesHtml}</div></div>
+                </div>
+                <div class="tr-meta-line">
+                    <div>নাম: <strong>${s.empName}</strong></div>
+                    <div>পদবি: <strong>${s.empDesig}</strong></div>
+                    <div>এনআইডি নং: <strong>${s.empNid}</strong></div>
+                </div>
+                <div class="tr-meta-line">
+                    <div>ভবিষ্য তহবিল হিসাব নং: ............................</div>
+                    <div>ডাক জীবনবিমা নং: ............................</div>
+                    <div>টি আই এন/ই টি আই এন: ............................</div>
+                </div>
+                <div class="tr-meta-line">
+                    <div>টোকেন নং: ........................ তারিখ: ........................</div>
+                    <div>ভাউচার নং: ........................ তারিখ: ........................</div>
+                </div>
+
+                <table class="tr-table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" rowspan="2">অর্থনৈতিক কোড</th>
+                            <th rowspan="2">বিবরণ</th>
+                            <th colspan="2">হার</th>
+                            <th colspan="2">টাকার অঙ্ক</th>
+                        </tr>
+                        <tr><th>টাকা</th><th>পয়সা</th><th>টাকা</th><th>পয়সা</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tr-sec-row"><td colspan="7">বেতন ও ভাতা</td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১১০১</td><td>মূল বেতন (অফিসার)</td><td></td><td></td><td class="amt-taka">${formatNumPlain(s.sumBasicArrear)}</td><td class="amt-poisha">০০</td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০১</td><td>দায়িত্ব ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০৬</td><td>শিক্ষা ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১০</td><td>বাড়িভাড়া ভাতা</td><td></td><td></td><td class="amt-taka">${s.sumHouseArrear !== 0 ? formatNumPlain(s.sumHouseArrear) : ''}</td><td class="amt-poisha">${s.sumHouseArrear !== 0 ? '০০' : ''}</td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১১</td><td>চিকিৎসা ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১২</td><td>মোবাইল/সেলফোন ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩২৫</td><td>উৎসব ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩৩৫</td><td>বাংলা নববর্ষ ভাতা</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩২৫৮১৪০</td><td>মোটরযান রক্ষণাবেক্ষণ ব্যয়</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩৫২</td><td>বিশেষ সুবিধা</td><td></td><td></td><td class="amt-taka">${s.sumSpecArrear !== 0 ? formatNumPlain(s.sumSpecArrear) : ''}</td><td class="amt-poisha">${s.sumSpecArrear !== 0 ? '০০' : ''}</td></tr>
+                        <tr><td colspan="3" style="text-align:right;font-weight:bold;">সর্বমোট বেতন ও ভাতা (ক)</td><td></td><td></td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
+
+                        <tr class="tr-sec-row"><td colspan="7">কর্তন ও পরিশোধ</td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১১৬২১০১</td><td>স্ট্যাম্প ডিউটি</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪১১২০২</td><td>সরকারি কর্মচারীকে প্রদত্ত ঋণের সুদ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪২২৪০৪</td><td>পানি ও পয়ঃনিষ্কাশন ব্যবস্থা চার্জ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪৪১২০৪</td><td>পৌরকর</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০১</td><td>গৃহনির্মাণ ঋণ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৪</td><td>মোটরগাড়ি ঋণ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৩</td><td>সুদমুক্ত ঋণ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৫</td><td>মোটর সাইকেল ঋণ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০২</td><td>কম্পিউটার ঋণ</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১১২২০১</td><td>সাধারণ ভবিষ্য তহবিল (সিভিল)</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০১</td><td>তিতাস গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০২</td><td>বাখরাবাদ গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০৩</td><td>জালালাবাদ গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৪০৪</td><td>কর্ণফুলী গ্যাস বিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৩</td><td>কর্মচারী কল্যাণ তহবিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৪</td><td>কর্মচারী যৌথবিমা তহবিল</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td colspan="3" style="text-align:right;font-weight:bold;">কর্তন ও পরিশোধ বাবদ মোট আদায় (খ)</td><td></td><td></td><td class="amt-taka">০</td><td class="amt-poisha">০০</td></tr>
+                        <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২১০৮</td><td style="font-weight:bold;">প্রদেয় বিল (ক-খ)</td><td></td><td></td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
+                        <tr><td colspan="7" style="font-weight:bold;padding:3px 5px;">টাকা (কথায়): ${s.words}</td></tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top:6px;font-size:8.8pt;">
+                    <div>বাহক/ ব্যাংক/ এজেন্টের নাম: ..........................................................................................................</div>
+                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:12px;">
+                        <div>তারিখ: ${todayFormatted}</div>
+                        <div style="text-align:center;">
+                            <div>কর্মকর্তার স্বাক্ষর ........................</div>
+                            <div style="font-weight:bold;margin-top:2px;">${s.empName}</div>
+                            <div>${s.empDesig}</div>
+                            <div style="font-size:8pt;">${s.empWorkplace}</div>
+                        </div>
+                        <div style="width:70px;height:58px;border:1px solid #000;display:flex;align-items:center;justify-content:center;text-align:center;font-size:8pt;">রাজস্ব<br>স্ট্যাম্প</div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:8pt;">
+                        <span>* প্রতিষ্ঠানের ক্ষেত্রে ০৬ ডিজিট এবং বিশেষ কার্যক্রম/প্রজেক্ট/স্কিম-এর ক্ষেত্রে ০৭ ডিজিটের কোড ব্যবহার করতে হবে।</span>
+                        <span>[অপর পৃষ্ঠা দ্রষ্টব্য]</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- পৃষ্ঠা ২: মাসওয়ারী বকেয়া বেতনের বিবরণী ছক -->
-        <div class="page-break">
+            <!-- পৃষ্ঠা ২: টি.আর. ফরম নং ১৩ (২য় পাতা - অপর পৃষ্ঠা) -->
+            <div class="print-portrait-page">
+                <div style="text-align:center;font-weight:bold;margin-bottom:8px;">২</div>
+                <div class="tr-back-box">
+                    <div style="text-align:center;font-weight:bold;font-size:10.5pt;margin-bottom:8px;text-decoration:underline;">হিসাবরক্ষণ অফিসে ব্যবহারের জন্য</div>
+                    <p style="margin-bottom:6px;">প্রদানের জন্য পাস করা হল, টাকা <strong>${formatNumPlain(s.sumTotalArrear)}/-</strong></p>
+                    <p style="margin-bottom:16px;">কথায়: <strong>${s.words}</strong></p>
+                    <div class="sig-grid-3">
+                        <div>
+                            <div class="sig-line">অডিটর (স্বাক্ষর)</div>
+                            <div style="margin-top:4px;text-align:left;font-size:8.5pt;">নাম: ........................<br>তাং: ........................<br>সিল</div>
+                        </div>
+                        <div>
+                            <div class="sig-line">সুপার (স্বাক্ষর)</div>
+                            <div style="margin-top:4px;text-align:left;font-size:8.5pt;">নাম: ........................<br>তাং: ........................<br>সিল</div>
+                        </div>
+                        <div>
+                            <div class="sig-line">নিরীক্ষা ও হিসাবরক্ষণ অফিসার (স্বাক্ষর)</div>
+                            <div style="margin-top:4px;text-align:left;font-size:8.5pt;">নাম: ........................<br>তাং: ........................<br>সিল</div>
+                        </div>
+                    </div>
+                    <hr style="margin:18px 0;border:none;border-top:1px dashed #000;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:18px;">
+                        <span>চেক নং: ..............................................</span>
+                        <span>তাং: ..............................................</span>
+                    </div>
+                    <div style="width:220px;margin-left:auto;text-align:center;">
+                        <div class="sig-line">চেক প্রদানকারীর স্বাক্ষর</div>
+                        <div style="margin-top:4px;text-align:left;font-size:8.5pt;">নাম: ........................<br>তাং: ........................<br>সিল</div>
+                    </div>
+                </div>
+
+                <div class="tr-back-box" style="margin-top:14px;line-height:1.5;">
+                    <div style="text-align:center;font-weight:bold;font-size:10pt;margin-bottom:6px;text-decoration:underline;">নির্দেশাবলি</div>
+                    <p>১. যে মাসের কাজের বিনিময়ে বেতন অর্জন করা হয়েছে মাসের শেষ কার্যদিবসের ৫ (পাঁচ) দিন পূর্বে হিসাবরক্ষণ অফিসে বিল পেশ করতে হবে।</p>
+                    <p>২. পেশকৃত প্রতিটি বিলের জন্য একটি করে টোকেন নাম্বার দেওয়া হবে। আপত্তিসহ ফেরত বিল গ্রহণের প্রাক্কালে উক্ত টোকেন নাম্বার বাতিল করতে হবে। এতদ্ব্যতীত চেক গ্রহণকালে স্ট্যাম্পসহ একটি লিখিত রসিদ (প্রযোজ্য ক্ষেত্রে) প্রদান করতে হবে।</p>
+                    <p>৩. ব্যাংক অ্যাকাউন্টে টাকা প্রদানের জন্য ইচ্ছানুসারে বেতন বিলে নির্দেশ করা যাবে। এরূপ ক্ষেত্রে নিজ ব্যাংক অ্যাকাউন্টে ইএফটি-এর মাধ্যমে টাকা সংগ্রহের জন্য বেতন বিল পেশ করা যাবে। ইএফটি-এর মাধ্যমে বিল গ্রহণের জন্য ইএফটি ফরম পূরণ করে সংশ্লিষ্ট হিসাবরক্ষণ অফিসে প্রেরণ করতে হবে। ইএফটি-এর মাধ্যমে ব্যাংক অ্যাকাউন্টে সরাসরি টাকা প্রদান করা হবে।</p>
+                    <p style="margin-top:8px;"><strong>নোট-১:</strong> বাহকের নিকট প্রদত্ত টাকা, চেক অথবা বিলের জালিয়াতি বা আত্মসাৎ সংক্রান্ত কোনরূপ দায়-দায়িত্ব সরকার গ্রাহ্য করবে না।</p>
+                </div>
+            </div>`;
+        } else {
+            // ১১তম থেকে ২০তম গ্রেড: টি.আর. ফরম নং ১৫ (পৃষ্ঠা ১ ও পৃষ্ঠা ২ - Portrait)
+            trPagesHtml = `
+            <!-- পৃষ্ঠা ১: টি.আর. ফরম নং ১৫ (১ম পাতা) -->
+            <div class="print-portrait-page">
+                <div class="tr-top">
+                    <div>টি, আর, ফরম নং ১৫<br>[এস. আর. ১৫০ (১) দ্রষ্টব্য]</div>
+                    <div class="tr-title">
+                        <h2>সংস্থাপন কর্মচারীগণের বেতনের বিল</h2>
+                        <p>বকেয়া বিল ........................ মাসের ২০২৬</p>
+                    </div>
+                    <div style="width:90px;text-align:right;font-size:8.5pt;">গ্রেড-${toBengaliNum(s.grade)}</div>
+                </div>
+
+                <div class="tr-meta-line">
+                    <div>দপ্তরের নাম: <strong>${s.empWorkplace}</strong></div>
+                    <div>প্রাতিষ্ঠানিক/ অপারেশন কোড * <div class="tr-code-boxes">${codeBoxesHtml}</div></div>
+                </div>
+                <div class="tr-meta-line">
+                    <div>কর্মচারীর নাম: <strong>${s.empName}</strong></div>
+                    <div>পদবি: <strong>${s.empDesig}</strong></div>
+                    <div>এনআইডি নং: <strong>${s.empNid}</strong></div>
+                </div>
+                <div class="tr-meta-line">
+                    <div>টোকেন নং: ........................ তারিখ: ........................</div>
+                    <div>ভাউচার নং: ........................ তারিখ: ........................</div>
+                </div>
+
+                <div class="tr15-split">
+                    <div class="tr15-instructions">
+                        <div style="font-weight:bold;text-align:center;margin-bottom:4px;text-decoration:underline;">নির্দেশাবলি</div>
+                        <ol>
+                            <li>অবিলিকৃত/স্থগিত টাকা যথাযথ কলামে লাল কালিতে লিখতে হবে এবং যোগ করার সময় তা বাদ রাখতে হবে।</li>
+                            <li>অনুপস্থিত কর্মচারীগণের তালিকায় স্থান পায়নি এমন ঘটনাসমূহ যথা-মৃত্যু, অবসরগ্রহণ, স্থায়ী বদলি ও প্রথম নিয়োগ 'মন্তব্য' কলামে লিখতে হবে।</li>
+                            <li>অধস্তন সরকারি কর্মচারী এবং এস. আর. ১৫২ তে উল্লেখিত সরকারি কর্মচারীদের নাম বেতনের বিলে বাদ দেওয়া যেতে পারে।</li>
+                            <li>সেরেস্তার প্রত্যেক শাখার পর পাতায় আড়াআড়ি লাল রেখা টানতে হবে এবং তার নিচে বেতন ও ভাতার সমষ্টি বেতন ও ভাতার কলামে লাল কালিতে প্রদর্শন করতে হবে।</li>
+                            <li>স্থায়ী পদে নিযুক্ত ব্যক্তিদের নাম স্থায়ী পদের বেতন গ্রহণের মাপকাঠিতে জ্যেষ্ঠত্বের ক্রমঅনুসারে লিখতে হবে এবং খালি পদসমূহ স্থানাপন্ন লোকদেরকে দেখাতে হবে।</li>
+                            <li>বেতন বিলে কর্তন ও আদায়ের পৃথক পৃথক শিডিউল বেতনের বিলে সংযুক্ত করতে হবে।</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <table class="tr-table">
+                            <thead>
+                                <tr><th colspan="2">অর্থনৈতিক কোড</th><th>বিবরণ</th><th>টাকা</th><th>পয়সা</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-sec-row"><td colspan="5">বেতন ও ভাতা</td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১২০১</td><td>মূল বেতন (কর্মচারী)</td><td class="amt-taka">${formatNumPlain(s.sumBasicArrear)}</td><td class="amt-poisha">০০</td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০৬</td><td>শিক্ষা ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১০</td><td>বাড়িভাড়া ভাতা</td><td class="amt-taka">${s.sumHouseArrear !== 0 ? formatNumPlain(s.sumHouseArrear) : ''}</td><td class="amt-poisha">${s.sumHouseArrear !== 0 ? '০০' : ''}</td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১১</td><td>চিকিৎসা ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০২</td><td>যাতায়াত ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১৪</td><td>টিফিন ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩০৮</td><td>ঝুঁকি ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১৫</td><td>পোশাক ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩১৬</td><td>ধোলাই ভাতা</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৩১১১৩৫২</td><td>বিশেষ সুবিধা</td><td class="amt-taka">${s.sumSpecArrear !== 0 ? formatNumPlain(s.sumSpecArrear) : ''}</td><td class="amt-poisha">${s.sumSpecArrear !== 0 ? '০০' : ''}</td></tr>
+                                <tr><td colspan="3" style="text-align:right;font-weight:bold;">মোট বেতন ও ভাতা (ক)</td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
+
+                                <tr class="tr-sec-row"><td colspan="5">কর্তন ও পরিশোধ</td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১১৬২১০১</td><td>স্ট্যাম্প ডিউটি</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪১১২০২</td><td>সরকারি কর্মচারীকে প্রদত্ত ঋণের সুদ</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪২২৪০৪</td><td>পানি ও পয়ঃনিষ্কাশন ব্যবস্থা চার্জ</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪৪১২০৪</td><td>পৌরকর</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০১</td><td>গৃহনির্মাণ ঋণ</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০৫</td><td>মোটর সাইকেল ঋণ</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০২</td><td>কম্পিউটার ঋণ</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১১২২০১</td><td>সাধারণ ভবিষ্য তহবিল (সিভিল)</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৩</td><td>কর্মচারী কল্যাণ তহবিল</td><td></td><td></td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২৫০৪</td><td>কর্মচারী যৌথবিমা তহবিল</td><td></td><td></td></tr>
+
+                                <tr><td colspan="3" style="text-align:right;font-weight:bold;">কর্তন ও পরিশোধ বাবদ মোট আদায় (খ)</td><td class="amt-taka">০</td><td class="amt-poisha">০০</td></tr>
+                                <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৮১৭২১০৮</td><td style="font-weight:bold;">প্রদেয় বিল (ক-খ)</td><td class="amt-taka">${formatNumPlain(s.sumTotalArrear)}</td><td class="amt-poisha">০০</td></tr>
+                                <tr><td colspan="5" style="font-weight:bold;padding:3px 5px;">টাকা (কথায়): ${s.words}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:8pt;">
+                    <span>* প্রতিষ্ঠানের ক্ষেত্রে ০৬ ডিজিট এবং বিশেষ কার্যক্রম/প্রজেক্ট/স্কিম-এর ক্ষেত্রে ০৭ ডিজিটের কোড ব্যবহার করতে হবে।</span>
+                    <span>[অপর পৃষ্ঠা দ্রষ্টব্য]</span>
+                </div>
+            </div>
+
+            <!-- পৃষ্ঠা ২: টি.আর. ফরম নং ১৫ (২য় পাতা - প্রত্যয়ন ও হিসাবরক্ষণ অফিস) -->
+            <div class="print-portrait-page">
+                <div style="text-align:center;font-weight:bold;margin-bottom:4px;">২</div>
+                <div class="tr-back-box" style="font-size:8.2pt;line-height:1.38;">
+                    <p>১. (ক) বিলের টাকা বুঝে পেলাম।</p>
+                    <p>(খ) প্রত্যয়ন করছি যে, নিম্নে বিশদভাবে বর্ণিত টাকা ব্যতীত এই তারিখের ১মাস/২মাস/৩মাস পূর্বে উত্তোলিত বিলের অন্তর্ভুক্ত টাকা যথার্থ ব্যক্তিদের প্রদান করা হয়েছে।</p>
+                    <p>(গ) প্রত্যয়ন করছি যে, কর্মচারীদের নিকট হতে স্ট্যাম্প ডিউটি বেতন বিল হতে কর্তন/অর্থ প্রাপ্তির স্ট্যাম্পসহ রশিদ গ্রহণ করে বেতন বইতে সংরক্ষণ করা হয়েছে।</p>
+                    <p>২. বিলের সাথে একটি অনুপস্থিতির তালিকা প্রদান করা হলো।</p>
+                    <p>৩. প্রত্যয়ন করা যাচ্ছে যে, এই কার্যালয়ের সকল নিয়োগ, স্থায়ী ও অস্থায়ী পদোন্নতি সংক্রান্ত তথ্যাদি সংশ্লিষ্ট কর্মচারীগণের নিজ নিজ চাকুরি বইতে আমার সত্যায়নে লিপিবদ্ধ হয়েছে।</p>
+                    <p>৪. প্রত্যয়ন করা যাচ্ছে যে, চাকুরি বইতে রক্ষিত ছুটির হিসাব এবং প্রযোজ্য ছুটির বিধি অনুযায়ী প্রাপ্য ছুটি ছাড়া কাউকেও কোন ছুটি মঞ্জুর করা হয়নি।</p>
+                    <p>৫. প্রত্যয়ন করা যাচ্ছে যে, যে সকল সরকারি কর্মচারীর নাম উল্লেখ করে এই বিলে বেতন দাবি করা হয়েছে, সংশ্লিষ্ট সময়ে তারা যথার্থই সরকারি চাকুরিতে নিয়োজিত ছিলেন।</p>
+                    <p>৬. প্রত্যয়ন করা যাচ্ছে যে, যে সকল সরকারি কর্মচারীর বাড়িভাড়া ভাতা এই বিলে দাবি করা হয়েছে, তারা সরকারি কোন বাসস্থানে বসবাস করেন নি।</p>
+                    <p>৯. প্রত্যয়ন করা যাচ্ছে যে, অবসর গ্রহণ করেছেন এমন কোন কর্মচারীর নাম এই বিলে অন্তর্ভুক্ত করা হয়নি।</p>
+
+                    <div style="text-align:center;font-weight:bold;margin:8px 0 4px;">অনুপস্থিত ব্যক্তিদের ফেরত দেওয়া বেতনের বিবরণ</div>
+                    <table class="tr-table">
+                        <thead><tr><th>সেকশন</th><th>নাম</th><th>সময়</th><th>টাকা</th><th>পয়সা</th></tr></thead>
+                        <tbody><tr><td style="height:22px;"></td><td></td><td></td><td></td><td></td></tr></tbody>
+                    </table>
+
+                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;">
+                        <div>স্থান: ${s.empWorkplace}<br>তারিখ: ${todayFormatted}</div>
+                        <div style="text-align:center;width:210px;">
+                            <div class="sig-line">আয়ন কর্মকর্তার স্বাক্ষর</div>
+                            <div>নাম: ....................................<br>পদবি: ....................................<br>সিল</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tr-back-box">
+                    <div style="text-align:center;font-weight:bold;font-size:10pt;margin-bottom:6px;text-decoration:underline;">হিসাবরক্ষণ অফিসে ব্যবহারের জন্য</div>
+                    <p>প্রদানের জন্য পাস করা হল, টাকা <strong>${formatNumPlain(s.sumTotalArrear)}/-</strong> (কথায়: <strong>${s.words}</strong>)</p>
+                    <div class="sig-grid-3">
+                        <div><div class="sig-line">অডিটর (স্বাক্ষর)</div><div style="font-size:8pt;text-align:left;margin-top:3px;">নাম:<br>তাং:<br>সিল</div></div>
+                        <div><div class="sig-line">সুপার (স্বাক্ষর)</div><div style="font-size:8pt;text-align:left;margin-top:3px;">নাম:<br>তাং:<br>সিল</div></div>
+                        <div><div class="sig-line">নিরীক্ষা ও হিসাবরক্ষণ অফিসার (স্বাক্ষর)</div><div style="font-size:8pt;text-align:left;margin-top:3px;">নাম:<br>তাং:<br>সিল</div></div>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        // ৩য় পৃষ্ঠা (Landscape): মাসওয়ারী বকেয়া বেতনের বিবরণী ছক
+        const page3LandscapeHtml = `
+        <div class="print-landscape-page">
             <div class="arrear-sheet-header">
-                <h2>অফিস: ${workplace}</h2>
-                <p>কর্মকর্তার নাম: ${name}</p>
-                <p>পদবী: ${desig}</p>
-                <p style="margin-top:3px;text-decoration:underline;">বকেয়া বেতনের বিবরণঃ</p>
+                <h2>অফিস: ${s.empWorkplace}</h2>
+                <p>কর্মকর্তা/কর্মচারীর নাম: ${s.empName} &nbsp;|&nbsp; পদবী: ${s.empDesig} (গ্রেড-${toBengaliNum(s.grade)})</p>
+                <p style="margin-top:3px;text-decoration:underline;">বকেয়া বেতনের বিবরণী ছক (প্রাপ্য ও গৃহীত তুলনামূলক বিবরণ)</p>
             </div>
 
             <table class="arrear-stmt-table">
@@ -1563,18 +1834,19 @@ function executePrint(e){
                         <th rowspan="2">ক্রমিক<br>নং</th>
                         <th rowspan="2">মাসের নাম</th>
                         <th rowspan="2">সময়কাল</th>
-                        <th colspan="2">প্রাপ্য &nbsp;|&nbsp; গৃহীত</th>
-                        <th rowspan="2">বকেয়া</th>
+                        <th colspan="2">মূল বেতন (${s.basicEconCode})</th>
+                        <th rowspan="2">মূল বেতন<br>বকেয়া</th>
                         <th>প্রাপ্য</th>
                         <th>গৃহীত</th>
-                        <th rowspan="2">বকেয়া</th>
+                        <th rowspan="2">বাড়ী ভাড়া<br>বকেয়া</th>
                         <th>প্রাপ্য</th>
                         <th>গৃহীত</th>
-                        <th rowspan="2">বকেয়া</th>
-                        <th rowspan="2">মোট বকেয়া</th>
+                        <th rowspan="2">বিশেষ ভাতা<br>বকেয়া</th>
+                        <th rowspan="2">মোট নিট<br>বকেয়া</th>
                     </tr>
                     <tr>
-                        <th colspan="2">মূল বেতন</th>
+                        <th>প্রাপ্য</th>
+                        <th>গৃহীত</th>
                         <th>বাড়ী ভাড়া</th>
                         <th>বাড়ী ভাড়া</th>
                         <th>বিশেষ ভাতা</th>
@@ -1602,44 +1874,48 @@ function executePrint(e){
                 </tbody>
             </table>
 
-            <div style="margin-top:14px;font-size:11pt;font-weight:bold;">
+            <div style="margin-top:12px;font-size:10.5pt;font-weight:bold;">
                 মোট বকেয়া (কথায়) : ${s.words}।
             </div>
 
-            <div style="display:flex;justify-content:flex-end;margin-top:45px;">
+            <div style="display:flex;justify-content:space-between;margin-top:38px;padding:0 20px;">
                 <div style="text-align:center;border-top:1px solid #000;padding-top:4px;width:220px;">
-                    <strong>${name}</strong><br>
-                    ${desig}<br>
-                    <span style="font-size:8.5pt;">${workplace}</span>
+                    <strong>${s.empName}</strong><br>${s.empDesig}<br><span style="font-size:8.5pt;">${s.empWorkplace}</span>
+                </div>
+                <div style="text-align:center;border-top:1px solid #000;padding-top:4px;width:220px;">
+                    <strong>আয়ন-ব্যয়ন কর্মকর্তা (DDO)</strong><br><span style="font-size:8.5pt;">${s.empWorkplace}</span>
                 </div>
             </div>
         </div>`;
 
+        document.getElementById('print-area').innerHTML = trPagesHtml + page3LandscapeHtml;
         setTimeout(() => window.print(), 250);
-        return false;
+        return;
     }
 
     if(s.mode === 'pensioner'){
         document.getElementById('print-area').innerHTML = `
         <div class="print-header"><h1>জাতীয় বেতনস্কেল-২০২৬ অনুযায়ী পেনশন নির্ধারণী বিবরণী</h1></div>
         <table class="fixation-sheet-table">
-            <tr><td class="num-col">০১।</td><td>পেনশনভোগীর নাম</td><td class="colon-col">:</td><td class="val-col">${name}</td></tr>
+            <tr><td class="num-col">০১।</td><td>পেনশনভোগীর নাম ও এনআইডি</td><td class="colon-col">:</td><td class="val-col">${s.empName} (NID: ${s.empNid})</td></tr>
             <tr><td class="num-col">০২।</td><td>৩০-০৬-২০২৬ তারিখে মাসিক নিট পেনশন</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.current)}</td></tr>
             <tr><td class="num-col">০৩।</td><td>০১-০৭-২০২৬ তারিখে প্রাপ্য নিট পেনশন</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.phase1Pension)}</td></tr>
             <tr><td class="num-col">০৪।</td><td>০১-০১-২০২৭ তারিখে প্রাপ্য নিট পেনশন</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.phase2Pension)}</td></tr>
             <tr><td class="num-col">০৫।</td><td>০১-০৭-২০২৭ তারিখে প্রাপ্য নিট পেনশন (১০০%)</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.newPension)}</td></tr>
         </table>`;
         setTimeout(() => window.print(), 250);
-        return false;
+        return;
     }
 
+    // Standard Fixation Sheet Print
     document.getElementById('print-area').innerHTML = `
     <div class="print-header">
         <h1>জাতীয় বেতনস্কেল-২০২৬ অনুযায়ী ০১-০৭-২০২৬ তারিখে বেতন নির্ধারণী বিবরণী</h1>
     </div>
     <table class="fixation-sheet-table">
-        <tr><td class="num-col">০২।</td><td>কর্মচারীর নাম ও পদবি</td><td class="colon-col">:</td><td class="val-col">${name}, ${desig}</td></tr>
-        <tr><td class="num-col">০৩।</td><td>অফিস, অধিদপ্তর/পরিদপ্তর, মন্ত্রণালয়/বিভাগ</td><td class="colon-col">:</td><td class="val-col">${workplace}</td></tr>
+        <tr><td class="num-col">০১।</td><td>জাতীয় পরিচয়পত্র নম্বর</td><td class="colon-col">:</td><td class="val-col">${s.empNid}</td></tr>
+        <tr><td class="num-col">০২।</td><td>কর্মচারীর নাম ও পদবি</td><td class="colon-col">:</td><td class="val-col">${s.empName}, ${s.empDesig}</td></tr>
+        <tr><td class="num-col">০৩।</td><td>অফিস, অধিদপ্তর/পরিদপ্তর, মন্ত্রণালয়/বিভাগ</td><td class="colon-col">:</td><td class="val-col">${s.empWorkplace}</td></tr>
         <tr><td class="num-col">০৭।</td><td colspan="3">৩০-০৬-২০২৬ তারিখে -</td></tr>
         <tr><td></td><td style="padding-left:18px;">ক) গৃহীত মূল বেতন</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.oldBasic)}</td></tr>
         <tr><td></td><td style="padding-left:18px;">খ) পিপি (যদি থাকে)</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.pp)}</td></tr>
@@ -1666,15 +1942,14 @@ function executePrint(e){
         <tr><td class="num-col">২১।</td><td>০১-০৭-২০২৭ তারিখে বার্ষিক বেতন বৃদ্ধি (ইনক্রিমেন্ট) সহ প্রাপ্য</td><td class="colon-col">:</td><td class="val-col">${formatTakaPlain(s.stage3BasicWith2027Inc)}</td></tr>
     </table>
     <div class="sig-row">
-        <div class="sig-col">${name}<br>দাখিলকারী কর্মচারী</div>
+        <div class="sig-col">${s.empName}<br>দাখিলকারী কর্মচারী</div>
         <div class="sig-col">আয়ন-ব্যয়ন কর্মকর্তা</div>
     </div>
     <div class="audit-box">
-        জনাব ${name}, ${desig} এর বর্তমান পদের বেতন নির্ধারণী বিবরণী পরীক্ষা করা হলো। জাতীয় বেতনস্কেল-২০২৬ অনুযায়ী গ্রেড - ${toBengaliNum(s.grade)} : (${toBengaliNum(s.start2026)}-${toBengaliNum(s.end2026)}) টাকা স্কেলে ০১-০৭-২০২৬ তারিখে মূল বেতন নির্ধারণ <strong>${toBengaliNum(s.fixedBasic)}</strong> টাকা অনুমোদন করা হলো। ০১-০৭-২০২৬ তারিখ হতে বৃদ্ধিপ্রাপ্ত বেতনের ${s.p1Label} ও বার্ষিক ইনক্রিমেন্টসহ বেতন <strong>${toBengaliNum(s.stage1Basic)}</strong> টাকা প্রাপ্য। ০১-০১-২০২৭ তারিখ হতে বেতন নির্ধারণের ${s.p2TotalLabel} সুবিধাসহ <strong>${toBengaliNum(s.stage2Basic)}</strong> টাকা এবং ০১-০৭-২০২৭ তারিখ হতে বেতন নির্ধারণের ১০০% সুবিধাসহ <strong>${toBengaliNum(s.stage3Basic100)}</strong> টাকা (এবং ০১-০৭-২০২৭ তারিখের বার্ষিক ইনক্রিমেন্টসহ <strong>${toBengaliNum(s.stage3BasicWith2027Inc)}</strong> টাকা) প্রাপ্য। পরবর্তী বার্ষিক বেতন বৃদ্ধির তারিখ ০১-০৭-২০২৭ খ্রি.।
+        জনাব ${s.empName}, ${s.empDesig} এর বর্তমান পদের বেতন নির্ধারণী বিবরণী পরীক্ষা করা হলো। জাতীয় বেতনস্কেল-২০২৬ অনুযায়ী গ্রেড - ${toBengaliNum(s.grade)} : (${toBengaliNum(s.start2026)}-${toBengaliNum(s.end2026)}) টাকা স্কেলে ০১-০৭-২০২৬ তারিখে মূল বেতন নির্ধারণ <strong>${toBengaliNum(s.fixedBasic)}</strong> টাকা অনুমোদন করা হলো। ০১-০৭-২০২৬ তারিখ হতে বৃদ্ধিপ্রাপ্ত বেতনের ${s.p1Label} ও বার্ষিক ইনক্রিমেন্টসহ বেতন <strong>${toBengaliNum(s.stage1Basic)}</strong> টাকা প্রাপ্য। ০১-০১-২০২৭ তারিখ হতে বেতন নির্ধারণের ${s.p2TotalLabel} সুবিধাসহ <strong>${toBengaliNum(s.stage2Basic)}</strong> টাকা এবং ০১-০৭-২০২৭ তারিখ হতে বেতন নির্ধারণের ১০০% সুবিধাসহ <strong>${toBengaliNum(s.stage3Basic100)}</strong> টাকা (এবং ০১-০৭-২০২৭ তারিখের বার্ষিক ইনক্রিমেন্টসহ <strong>${toBengaliNum(s.stage3BasicWith2027Inc)}</strong> টাকা) প্রাপ্য। পরবর্তী বার্ষিক বেতন বৃদ্ধির তারিখ ০১-০৭-২০২৭ খ্রি.।
     </div>`;
 
     setTimeout(() => window.print(), 250);
-    return false;
 }
 
 function showToast(msg){
@@ -1684,76 +1959,44 @@ function showToast(msg){
     setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-function buildShareText(){
-    const s = appState;
-    if(s.mode === 'arrear'){
-        return `📊 জাতীয় বেতনস্কেল ২০২৬ (বকেয়া বেতন বিল)\nমোট মাস: ${toBengaliNum(s.months.length)}টি\nমূল বেতন বকেয়া: ${formatMoney(s.sumBasicArrear)}\nবাড়িভাড়া সমন্বয়: ${formatMoney(s.sumHouseArrear)}\nবিশেষ ভাতা সমন্বয়: ${formatMoney(s.sumSpecArrear)}\nপ্রদেয় নিট বকেয়া বিল: ${formatMoney(s.sumTotalArrear)} (${s.words})`;
-    }
-    if(s.mode === 'pensioner'){
-        return `📊 জাতীয় বেতনস্কেল ২০২৬ (পেনশন হিসাব)\n৩০ জুনের পেনশন: ${formatMoney(s.current)}\n০১-০৭-২০২৬ পেনশন: ${formatMoney(s.phase1Pension)}\n০১-০৭-২০২৭ পূর্ণ পেনশন: ${formatMoney(s.newPension)}`;
-    }
-    if(!s.grade) return '';
-    return `📊 জাতীয় বেতনস্কেল-২০২৬ বেতন নির্ধারণী বিবরণী (গ্রেড-${toBengaliNum(s.grade)})\n• ৩০-০৬-২০২৬ মূল বেতন: ${formatMoney(s.oldBasic)}\n• ১০ ও ১১। ০১-০৭-২০২৬ নির্ধারিত বেতন: ${formatMoney(s.fixedBasic)}\n• ১৬। ০১-০৭-২০২৬ ইনক্রিমেন্টসহ প্রাপ্য: ${formatMoney(s.stage1Basic)}\n• ১৮। ০১-০১-২০২৭ প্রাপ্য: ${formatMoney(s.stage2Basic)}\n• ২০। ০১-০৭-২০২৭ প্রাপ্য ১০০%: ${formatMoney(s.stage3Basic100)}\n• ২১। ০১-০৭-২০২৭ ইনক্রিমেন্টসহ প্রাপ্য: ${formatMoney(s.stage3BasicWith2027Inc)}`;
-}
-
-function shareWhatsApp(){ const t = buildShareText(); if(t) window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }
 function copyResult(){
-    const t = buildShareText();
-    if(!t) return;
-    navigator.clipboard?.writeText(t).then(() => showToast('রিপোর্ট কপি হয়েছে ✓'));
+    const s = appState;
+    const text = s.mode === 'arrear'
+        ? `নাম: ${s.empName} (${s.empDesig})\nটি.আর. ফরম নং: ${s.trFormNo}\nমোট নিট বকেয়া বিল: ${formatMoney(s.sumTotalArrear)} (${s.words})`
+        : `নাম: ${s.empName}\nগ্রেড-${toBengaliNum(s.grade)}\n০১-০৭-২০২৬ প্রাপ্য বেতন: ${formatMoney(s.stage1Basic)}\n০১-০১-২০২৭ প্রাপ্য বেতন: ${formatMoney(s.stage2Basic)}\n০১-০৭-২০২৭ ইনক্রিমেন্টসহ প্রাপ্য: ${formatMoney(s.stage3BasicWith2027Inc)}`;
+    navigator.clipboard?.writeText(text).then(() => showToast('ফলাফল কপি হয়েছে ✓'));
 }
-
-function toggle3dotMenu(e){ if(e) e.stopPropagation(); document.getElementById('menu3dot').classList.toggle('open'); }
-function close3dotMenu(){ document.getElementById('menu3dot')?.classList.remove('open'); }
-document.addEventListener('click', e => { const m = document.getElementById('menu3dot'); if(m && !m.contains(e.target)) close3dotMenu(); });
-
-function applyTheme(theme){
-    document.documentElement.setAttribute('data-theme', theme==='dark'?'dark':'light');
-    const b = document.getElementById('themeToggle');
-    if(b) b.textContent = theme==='dark' ? '☀️' : '🌙';
-    localStorage.setItem('payTheme', theme);
-}
-function toggleTheme(){ applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); }
 
 function getHistory(){ try{ return JSON.parse(localStorage.getItem('payHistory')||'[]'); }catch{ return []; } }
 function saveToHistory(s){
     const h = getHistory();
-    h.unshift({ id:Date.now(), date:new Date().toISOString(), grade:s.grade, basic:s.oldBasic, location:s.location, stage1Basic:s.stage1Basic });
+    h.unshift({ id:Date.now(), empName:s.empName, grade:s.grade, basic:s.oldBasic, mode:s.mode });
     localStorage.setItem('payHistory', JSON.stringify(h.slice(0,20)));
 }
-function openHistoryModal(){ renderHistoryList(); document.getElementById('historyModal').classList.add('active'); }
-function closeHistoryModal(){ document.getElementById('historyModal').classList.remove('active'); }
-function renderHistoryList(){
+function openHistoryModal(){
     const list = document.getElementById('historyList'), h = getHistory();
-    if(!h.length){ list.innerHTML = '<div style="text-align:center;padding:20px;">কোনো হিস্ট্রি নেই।</div>'; return; }
-    list.innerHTML = h.map(x => `<div class="history-item" onclick="loadFromHistory(${x.id})"><div><strong>${bengaliOrdinals[x.grade]} গ্রেড · ${formatMoney(x.basic)}</strong></div><div>${formatMoney(x.stage1Basic)}</div></div>`).join('');
+    if(!h.length){ list.innerHTML = '<div style="text-align:center;padding:20px;color:#64748b;">কোনো হিস্ট্রি নেই।</div>'; }
+    else {
+        list.innerHTML = h.map(x => `<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #e2e8f0;"><span><strong>${x.empName}</strong> (${bengaliOrdinals[x.grade]} গ্রেড)</span><span>${formatMoney(x.basic)}</span></div>`).join('');
+    }
+    document.getElementById('historyModal').classList.add('active');
 }
-function clearHistory(){ localStorage.removeItem('payHistory'); renderHistoryList(); }
-function loadFromHistory(id){
-    const x = getHistory().find(v => v.id === id);
-    if(!x) return;
-    document.getElementById('grade').value = x.grade;
-    populateSteps();
-    setTimeout(() => {
-        document.getElementById('basic').value = x.basic;
-        onBasicChange();
-        closeHistoryModal();
-    }, 20);
-}
+function closeHistoryModal(){ document.getElementById('historyModal').classList.remove('active'); }
+function clearHistory(){ localStorage.removeItem('payHistory'); openHistoryModal(); }
 
 window.onload = function(){
     const g = document.getElementById('grade');
     for(let i=1; i<=20; i++){
         const o = document.createElement('option');
         o.value = i;
-        o.text = `${bengaliOrdinals[i]} গ্রেড`;
+        o.text = `${bengaliOrdinals[i]} গ্রেড (${i<=10 ? 'গেজেটেড - TR 13' : 'নন-গেজেটেড - TR 15'})`;
         g.add(o);
     }
     document.getElementById('calcCount').textContent = toBengaliNum(Number(localStorage.getItem('payCalcCount')||0));
-    applyTheme(localStorage.getItem('payTheme')||'light');
     togglePersonType();
 };
 </script>
 </body>
 </html>
 
+                                
