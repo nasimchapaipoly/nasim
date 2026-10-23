@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ (গেজেটভুক্ত) - পূর্ণাঙ্গ হিসাব ও বকেয়া বিল সিস্টেম by NasimSoft">
+    <meta name="description" content="জাতীয় বেতনস্কেল ২০২৬ - পূর্ণাঙ্গ হিসাব ও বকেয়া বিল সিস্টেম by NasimSoft">
     <title>জাতীয় বেতনস্কেল ২০২৬ | ফিক্সেশন ও বকেয়া বিল সিস্টেম</title>
     
     <!-- Kalpurush Font -->
@@ -299,7 +300,7 @@
         .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--secondary); color: #fff; padding: 10px 18px; border-radius: 9999px; font-size: 0.9rem; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 2000; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* ========== PRINT STYLES (TR Form 13 + Arrear Statement Sheet) ========== */
+        /* ========== PRINT STYLES (TR Form 13 + Arrear Statement Sheet + Fixation Sheet) ========== */
         .print-only { display: none; }
         @media print {
             @page { size: A4 portrait; margin: 8mm 10mm; }
@@ -713,7 +714,7 @@
             <button class="close-btn" onclick="closePreviewModal()">✖</button>
         </div>
         <div class="indicator-wrapper">
-            <div class="slide-indicator" id="slideCounter">ধাপ: ১/৪</div>
+            <div class="slide-indicator" id="slideCounter">ধাপ: ১/২</div>
             <div class="slide-dots" id="slideDots"></div>
         </div>
         
@@ -867,7 +868,6 @@ function formatTakaPlain(n){
     return 'টাকা ' + toBengaliNum(v.toFixed(fractional?2:0));
 }
 
-// সংখ্যা হতে বাংলা কথায় রূপান্তর (বকেয়া বিলের জন্য)
 function numberToBanglaWords(num) {
     let n = Math.round(Math.abs(Number(num) || 0));
     if (n === 0) return "শূন্য";
@@ -921,7 +921,6 @@ function getNewHouseRent(basic, grade, location, govtHouse){
     return Math.round(b * rate);
 }
 
-// ২০১৫ স্কেলে প্রচলিত ১০% (গ্রেড ১-৯) এবং ১৫% (গ্রেড ১০-২০) বিশেষ সুবিধা হিসাব
 function get2015SpecialBenefit(basic, grade){
     const b = Number(basic) || 0;
     const rate = grade <= 9 ? 0.10 : 0.15;
@@ -965,7 +964,6 @@ function onBasicChange(){
     const drawnIncMode = document.getElementById('drawnIncMode').value;
     const specialBenefitRule = document.getElementById('specialBenefitRule').value;
 
-    // ২০২৬ ফিক্সেশন অনুযায়ী ১ জুলাই ২০২৬-এর প্রাপ্য মূল বেতন (ক্রমিক ১৬)
     const start2015 = scale2015[grade][0];
     const start2026 = scale2026[grade][0];
     const earned = oldBasic - start2015;
@@ -977,14 +975,9 @@ function onBasicChange(){
     const pct1 = grade <= 9 ? 0.40 : 0.50;
     const stage1Basic = Math.round(oldBasic + (basicDiff * pct1) + july2026Increment);
 
-    // জুলাই ২০২৬ হতে সেপ্টেম্বর ২০২৬ পর্যন্ত ২০১৫ স্কেলে গৃহীত মূল বেতন (১টি ইনক্রিমেন্টসহ)
     const drawnBasic = drawnIncMode === 'withInc' ? nextIncrement(scale2015[grade], oldBasic) : oldBasic;
-
-    // বাড়িভাড়া: প্রাপ্য (৩০ জুনের বেসিক অনুযায়ী) বনাম গৃহীত (জুলাইয়ে ইনক্রিমেন্টসহ বেসিক অনুযায়ী)
     const dueHouse = getOldHouseRent(oldBasic, location);
     const drawnHouse = getOldHouseRent(drawnBasic, location);
-
-    // বিশেষ ভাতা (১০% / ১৫%): নতুন স্কেলে বিলুপ্ত হলে প্রাপ্য ০, গৃহীত ১০%/১৫%
     const dueSpec = specialBenefitRule === 'abolished' ? 0 : get2015SpecialBenefit(oldBasic, grade);
     const drawnSpec = get2015SpecialBenefit(drawnBasic, grade);
 
@@ -1128,7 +1121,6 @@ function calculatePay(e){
         return false;
     }
 
-    // Arrear Bill Mode
     if(personType === 'arrear'){
         const startIdx = Number(document.getElementById('arrearStartMonth').value) || 0;
         const endIdx = Math.max(startIdx, Number(document.getElementById('arrearEndMonth').value) || 2);
@@ -1170,7 +1162,6 @@ function calculatePay(e){
         appState = {
             mode: 'arrear', personType: 'arrear',
             grade, oldBasic,
-            periodText: `০১/০৭/২০২৬ তারিখ হতে ৩০/০৯/২০২৬ তারিখ পর্যন্ত`,
             months,
             dueBasic, drawnBasic, basicArrearPerMonth,
             dueHouse, drawnHouse, houseArrearPerMonth,
@@ -1192,7 +1183,6 @@ function calculatePay(e){
         return false;
     }
 
-    // Standard Employee Fixation Mode
     const pp = Math.max(0, Number(document.getElementById('pp').value) || 0);
     const location = document.getElementById('location').value;
     const eduCount = Math.min(2, Math.max(0, Number(document.getElementById('edu').value) || 0));
@@ -1298,7 +1288,7 @@ function generateArrearSlides(){
     const slide1 = `${summaryCard}
     <div class="sec-title">১. প্রতি মাসের প্রাপ্য বনাম গৃহীত তুলনা</div>
     <div class="stage-box">
-        <div class="stage-header"><strong>মূল বেতন (অর্থনৈতিক কোড: ৩১১১১০১/৩১১১২০১)</strong><span class="badge">মাসিক</span></div>
+        <div class="stage-header"><strong>মূল বেতন (অর্থনৈতিক কোড: ৩১১১১০১)</strong><span class="badge">মাসিক</span></div>
         <div class="item-row"><span>প্রাপ্য মূল বেতন (২০২৬ স্কেলের ১ম ধাপ)</span><span>${formatMoney(s.dueBasic)}</span></div>
         <div class="item-row"><span>গৃহীত মূল বেতন (২০১৫ স্কেলে ইনক্রিমেন্টসহ)</span><span>${formatMoney(s.drawnBasic)}</span></div>
         <div class="item-row highlight"><span>মাসিক মূল বেতন বকেয়া</span><span>${formatMoney(s.basicArrearPerMonth)}</span></div>
@@ -1348,7 +1338,7 @@ function generateArrearSlides(){
     </div>
     <div class="desc-box" style="margin-top:8px;">
         <strong>মোট বকেয়া (কথায়):</strong> ${s.words}।<br>
-        🖨️ <strong>"পিডিএফ / প্রিন্ট করুন"</strong> বাটনে ক্লিক করলে সংযুক্ত ছবির মতো ১ম পৃষ্ঠায় <strong>টি.আর. ফরম নং ১৩ (বেতন বিল)</strong> এবং ২য় পৃষ্ঠায় <strong>বকেয়া বেতনের বিবরণী ছক (কলাম ১–১৬)</strong> একসাথে জেনারেট হবে।
+        🖨️ নিচের <strong>"পিডিএফ / প্রিন্ট করুন"</strong> বাটনে ক্লিক করলে ১ম পৃষ্ঠায় <strong>টি.আর. ফরম নং ১৩ (বেতন বিল)</strong> এবং ২য় পৃষ্ঠায় <strong>বকেয়া বেতনের বিবরণী ছক (কলাম ১–১৬)</strong> একসাথে জেনারেট হবে।
     </div>`;
 
     previewSlides = [slide1, slide2];
@@ -1440,9 +1430,6 @@ function executePrint(e){
     const opcode = (document.getElementById('p_opcode')?.value.trim() || '১২৫০২০১').padEnd(7, ' ').split('');
     const todayFormatted = toBengaliNum(new Intl.DateTimeFormat('bn-BD',{day:'2-digit',month:'2-digit',year:'2-digit'}).format(new Date()));
 
-    // =================================================================================
-    // বকেয়া বেতন বিল প্রিন্ট: ১ম পৃষ্ঠা টি.আর. ফরম নং ১৩ + ২য় পৃষ্ঠা বকেয়া বেতনের বিবরণী ছক
-    // =================================================================================
     if(s.mode === 'arrear'){
         const codeBoxesHtml = opcode.map(ch => `<span>${ch}</span>`).join('');
         const stmtRowsHtml = s.months.map(m => `
@@ -1464,7 +1451,7 @@ function executePrint(e){
         `).join('');
 
         document.getElementById('print-area').innerHTML = `
-        <!-- পৃষ্ঠা ১: টি.আর. ফরম নং ১৩ (গেজেটেড সরকারি কর্মকর্তার বেতন বিল) -->
+        <!-- পৃষ্ঠা ১: টি.আর. ফরম নং ১৩ -->
         <div class="tr13-page">
             <div class="tr13-top">
                 <div>টি, আর, ফরম নং ১৩<br>[এস, আর, ১৩৯ (১) দ্রষ্টব্য]</div>
@@ -1525,7 +1512,7 @@ function executePrint(e){
 
                     <tr class="tr13-sec-row"><td colspan="7">কর্তন ও পরিশোধ</td></tr>
                     <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১১৬২১০১</td><td>স্ট্যাম্প ডিউটি</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪১১২0২</td><td>সরকারি কর্মচারীকে প্রদত্ত ঋণের সুদ</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪১১২০২</td><td>সরকারি কর্মচারীকে প্রদত্ত ঋণের সুদ</td><td></td><td></td><td></td><td></td></tr>
                     <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪২২৪০৪</td><td>পানি ও পয়ঃনিষ্কাশন ব্যবস্থা চার্জ</td><td></td><td></td><td></td><td></td></tr>
                     <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">১৪৪১২০৪</td><td>পৌরকর</td><td></td><td></td><td></td><td></td></tr>
                     <tr><td class="chk-col"><span class="chk-box"></span></td><td class="code-col">৭২১৫১০১</td><td>গৃহনির্মাণ ঋণ</td><td></td><td></td><td></td><td></td></tr>
@@ -1646,7 +1633,6 @@ function executePrint(e){
         return false;
     }
 
-    // Standard Fixation Sheet Print
     document.getElementById('print-area').innerHTML = `
     <div class="print-header">
         <h1>জাতীয় বেতনস্কেল-২০২৬ অনুযায়ী ০১-০৭-২০২৬ তারিখে বেতন নির্ধারণী বিবরণী</h1>
@@ -1770,3 +1756,4 @@ window.onload = function(){
 </script>
 </body>
 </html>
+
