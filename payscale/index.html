@@ -247,7 +247,7 @@
         .modal-content {
             background: var(--modal-bg);
             width: 100%;
-            max-width: 450px;
+            max-width: 460px;
             border-radius: 20px;
             padding: 16px 18px 14px;
             box-shadow: 0 28px 70px rgba(2, 44, 34, 0.25);
@@ -337,19 +337,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 3.5px 0;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             border-bottom: 1px dashed var(--border);
             gap: 8px;
         }
 
         .item-row:last-child { border-bottom: none; }
         .item-row span:last-child { font-weight: 600; text-align: right; white-space: nowrap; }
-        .item-row.sub { color: var(--text-muted); font-size: 0.82rem; }
+        .item-row.sub { color: var(--text-muted); font-size: 0.81rem; }
 
         .item-row.highlight, .item-row.deduct {
             padding: 5px 10px;
             font-size: 0.85rem;
-            margin: 5px 0;
+            margin: 4px 0;
             border-radius: 7px;
             border: none;
             font-weight: 600;
@@ -359,7 +359,7 @@
         .item-row.deduct { background: #FEF2F2; color: var(--danger); }
 
         #slideContent .desc-box {
-            font-size: 0.8rem;
+            font-size: 0.79rem;
             padding: 7px 10px;
             margin: 5px 0 2px;
             border: 1.5px solid var(--primary-border);
@@ -442,16 +442,16 @@
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--surface) 100%);
             border: 1.5px solid var(--primary-border);
             border-radius: 14px;
-            padding: 12px 14px;
-            margin-bottom: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
         }
 
-        .compare-title { font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; text-align: center; }
+        .compare-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; text-align: center; }
         .compare-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
-        .compare-box { text-align: center; padding: 8px 6px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); }
-        .compare-box .label { font-size: 0.75rem; color: var(--text-muted); }
-        .compare-box .value { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
-        .compare-increase { margin-top: 8px; text-align: center; font-size: 0.9rem; font-weight: 700; color: var(--success); background: rgba(16, 185, 129, 0.12); padding: 5px 10px; border-radius: 8px; }
+        .compare-box { text-align: center; padding: 6px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); }
+        .compare-box .label { font-size: 0.73rem; color: var(--text-muted); }
+        .compare-box .value { font-size: 0.92rem; font-weight: 700; color: var(--text-main); }
+        .compare-increase { margin-top: 6px; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--success); background: rgba(16, 185, 129, 0.12); padding: 4px 8px; border-radius: 8px; }
 
         .history-list { max-height: 320px; overflow-y: auto; }
         .history-item {
@@ -544,19 +544,19 @@
 
         .print-only { display: none; }
         @media print {
-            @page { size: A4 portrait; margin: 11mm 12mm; }
-            body { background: white !important; color: #111 !important; font-size: 11pt !important; }
+            @page { size: A4 portrait; margin: 10mm 12mm; }
+            body { background: white !important; color: #111 !important; font-size: 10.5pt !important; }
             .no-print { display: none !important; }
             .print-only { display: block !important; }
-            .print-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 2px solid #047857; padding-bottom: 10px; }
+            .print-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 2px solid #047857; padding-bottom: 8px; }
             .print-title { text-align: center; flex-grow: 1; }
             .print-title h1 { font-size: 15pt; color: #047857; }
             .info-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-            .info-table td { padding: 3px 5px; font-size: 10.5pt; }
-            .data-table th, .data-table td { border: 1px solid #047857; padding: 5px 8px; text-align: left; font-size: 10pt; }
+            .info-table td { padding: 3px 5px; font-size: 10pt; }
+            .data-table th, .data-table td { border: 1px solid #047857; padding: 5px 8px; text-align: left; font-size: 9.5pt; }
             .data-table th { background-color: #ECFDF5 !important; font-weight: bold; color: #047857; }
-            h3.print-section { margin: 8px 0 4px; font-size: 11.5pt; color: #022C22; }
-            .print-footer { margin-top: 14px; border-top: 1px solid #047857; padding-top: 6px; font-size: 9pt; text-align: center; }
+            h3.print-section { margin: 8px 0 4px; font-size: 11pt; color: #022C22; }
+            .print-footer { margin-top: 12px; border-top: 1px solid #047857; padding-top: 6px; font-size: 8.5pt; text-align: center; }
         }
     </style>
 </head>
@@ -664,7 +664,10 @@
                                     <option value="july2026">জুলাই ২০২৬-এর মূল বেতন (১ জুলাই ২০২৬-এর ইনক্রিমেন্টসহ)</option>
                                 </select>
                                 <div class="info-note">
-                                    💡 <strong>গেজেট নিয়ম:</strong> ৩০ জুন ২০২৬-এর মূল বেতনের ভিত্তিতে প্রথমে নতুন স্কেলে বেতন নির্ধারণ (Fixation) হবে এবং এরপর নতুন স্কেলে ১ জুলাই ২০২৬-এর বার্ষিক ইনক্রিমেন্ট (১ ধাপ) যুক্ত হবে। আপনি "জুলাই ২০২৬ (ইনক্রিমেন্টসহ)" সিলেক্ট করলে সিস্টেম স্বয়ংক্রিয়ভাবে ১ ধাপ পিছিয়ে ৩০ জুনের মূল বেতন ধরে হিসাব করবে।
+                                    💡 <strong>সঠিক ফিক্সেশন সূত্র:</strong><br>
+                                    • <strong>জুলাই ২০২৬ বেসিক</strong> = পুরাতন বেসিক + (নতুন নির্ধারিত বেসিক − পুরাতন বেসিক)-এর ৪০%/৫০% + জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট।<br>
+                                    • <strong>জানুয়ারি ২০২৭ বেসিক</strong> = পুরাতন বেসিক + (নতুন নির্ধারিত বেসিক − পুরাতন বেসিক)-এর ৭০%/৭৫% + জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট।<br>
+                                    • <strong>জুলাই ২০২৭ বেসিক</strong> = পুরাতন বেসিক + (নতুন নির্ধারিত বেসিক − পুরাতন বেসিক)-এর ১০০% + জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট।
                                 </div>
                             </div>
                         </div>
@@ -726,7 +729,7 @@
                                 <label for="actingAllowance">চলতি/অতিরিক্ত দায়িত্ব (কার্যভার ভাতা)?</label>
                                 <select id="actingAllowance" class="form-control">
                                     <option value="no" selected>না</option>
-                                    <option value="yes">হ্যাঁ — মূল বেতনের ১০% (সর্বোচ্চ ১,৫০০ টাকা)</option>
+                                    <option value="yes">হ্যাঁ — ১,৫০০ টাকা</option>
                                 </select>
                             </div>
                             <div class="form-group compact">
@@ -764,7 +767,7 @@
                                 <input type="number" id="specialAllowance" class="form-control" value="0" min="0">
                             </div>
                             <div class="form-group compact">
-                                <label for="currentSpecialBenefit">৩০ জুন ২০২৬-এর বিশেষ সুবিধা (৫% বা ন্যূনতম ১০০০ ৳, যদি প্রচলিত বিলে থাকে)</label>
+                                <label for="currentSpecialBenefit">৩০ জুন ২০২৬-এর বিশেষ সুবিধা (ঐচ্ছিক)</label>
                                 <input type="number" id="currentSpecialBenefit" class="form-control" value="0" min="0">
                             </div>
                         </div>
@@ -773,8 +776,8 @@
                             <label for="edu">৪. সন্তানের সংখ্যা (শিক্ষা সহায়ক ভাতার জন্য)</label>
                             <select id="edu" class="form-control">
                                 <option value="0" selected>কোনো সন্তান নয় — ০ টাকা</option>
-                                <option value="1">১ জন — ৫০০ টাকা (নতুন স্কেলে ১,০০০ ৳)</option>
-                                <option value="2">২ জন — ১,০০০ টাকা (নতুন স্কেলে ২,০০০ ৳)</option>
+                                <option value="1">১ জন — ৫০০ টাকা</option>
+                                <option value="2">২ জন — ১,০০০ টাকা</option>
                             </select>
                         </div>
 
@@ -910,7 +913,6 @@
 <div class="print-only" id="print-area"></div>
 
 <script>
-// ২০১৫ সালের গেজেটভুক্ত বেতন স্কেল (গ্রেড ৩-এর শেষ ধাপ ৭৭,৪০০ টাকা সংশোধিত)
 const scale2015 = {
     1: [78000],
     2: [66000,68480,71050,73720,76490],
@@ -934,7 +936,6 @@ const scale2015 = {
     20: [8250,8670,9110,9570,10050,10560,11090,11650,12240,12860,13510,14190,14900,15650,16440,17270,18140,19050,20010]
 };
 
-// ২০২৬ সালের বেতন স্কেল
 const scale2026 = {
     1:[156000],
     2:[132000,135700,139400,143200,147200,151200,153000],
@@ -974,19 +975,17 @@ function formatMoney(n){
     return toBengaliNum(v.toLocaleString('en-IN',{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}))+' ৳';
 }
 
-// পে-ফিক্সেশন নিয়ম: সমাপতিত ধাপ থাকলে সেটি, না থাকলে অব্যবহিত উচ্চতর ধাপ
 function nextHigherStep(scale, amount){
     return scale.find(v => v >= amount - 1e-9) ?? scale[scale.length - 1];
 }
 
-// বার্ষিক ইনক্রিমেন্ট: নির্ধারিত ধাপের পরবর্তী ১ ধাপ (সর্বোচ্চ ধাপে থাকলে অপরিবর্তিত)
 function nextIncrement(scale, basic){
     const i = scale.findIndex(v => v === basic);
     if(i < 0 || i === scale.length - 1) return basic;
     return scale[i + 1];
 }
 
-// ২০১৫ স্কেলের বাড়িভাড়া (৩০ জুন ২০২৬-এর মূল বেতনের ওপর ভিত্তি করে ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল)
+// ২০১৫ স্কেলের বাড়িভাড়া (৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল)
 function getOldHouseRent(basic, location){
     const b = Number(basic) || 0;
     let rate, min;
@@ -1008,26 +1007,16 @@ function getOldHouseRent(basic, location){
 
 // ২০২৬ স্কেলের নতুন বাড়িভাড়া (১ জানুয়ারি ২০২৮ হতে কার্যকর)
 function getNewHouseRent(basic, grade, location, govtHouse){
-    if(govtHouse) return 0; // সরকারি বাসায় থাকলে বাড়িভাড়া ০
+    if(govtHouse) return 0;
     const b = Number(basic) || 0;
-    let rate, min;
-    if(grade >= 16){
-        rate = location==='DHAKA' ? 0.60 : location==='CITY' ? 0.50 : 0.45;
-        min  = location==='DHAKA' ? 12000 : location==='CITY' ? 10000 : 9000;
-    } else if(grade >= 10){
-        rate = location==='DHAKA' ? 0.50 : location==='CITY' ? 0.40 : 0.35;
-        min  = location==='DHAKA' ? 14000 : location==='CITY' ? 11500 : 10000;
-    } else if(grade >= 5){
-        rate = location==='DHAKA' ? 0.45 : location==='CITY' ? 0.35 : 0.30;
-        min  = location==='DHAKA' ? 22000 : location==='CITY' ? 17500 : 15000;
-    } else {
-        rate = location==='DHAKA' ? 0.40 : location==='CITY' ? 0.30 : 0.25;
-        min  = location==='DHAKA' ? 38000 : location==='CITY' ? 28500 : 24000;
-    }
-    return Math.max(b * rate, min);
+    let rate;
+    if(grade >= 16) rate = location==='DHAKA' ? 0.60 : location==='CITY' ? 0.50 : 0.45;
+    else if(grade >= 10) rate = location==='DHAKA' ? 0.50 : location==='CITY' ? 0.40 : 0.35;
+    else if(grade >= 5) rate = location==='DHAKA' ? 0.45 : location==='CITY' ? 0.35 : 0.30;
+    else rate = location==='DHAKA' ? 0.40 : location==='CITY' ? 0.30 : 0.25;
+    return b * rate;
 }
 
-// ৩০ জুন ২০২৬-এর প্রচলিত ভাতাদি (যা ৩১ ডিসেম্বর ২০২৭ পর্যন্ত বহাল থাকবে)
 function calculateOldAllowances(s, baseBasic){
     const grade = s.grade;
     const house = s.govtHouse ? 0 : getOldHouseRent(baseBasic, s.location);
@@ -1048,12 +1037,11 @@ function calculateOldAllowances(s, baseBasic){
     return { house, medical, education, tiffin, commute, washing, acting, training, hill, haor, specialBenefit, special, total };
 }
 
-// ১ জানুয়ারি ২০২৮ থেকে কার্যকর নতুন ভাতাদি
 function calculateNewAllowances(s, targetBasic){
     const grade = s.grade;
     const house = getNewHouseRent(targetBasic, grade, s.location, s.govtHouse);
     const medical = s.age > 50 ? 4000 : 3000;
-    const education = Math.min(2, s.eduCount) * 1000; // সন্তান প্রতি ১,০০০ টাকা (সর্বোচ্চ ২ জন)
+    const education = Math.min(2, s.eduCount) * 500;
     const tiffin = (s.tiffin && grade >= 11 && grade <= 20) ? 500 : 0;
     const commute = (s.cityCommute && grade >= 11 && grade <= 20) ? 600 : 0;
     const washing = (s.washing && grade >= 16 && grade <= 20) ? 300 : 0;
@@ -1203,7 +1191,7 @@ function calculatePay(e){
     const start2015 = scale2015[grade][0];
     const start2026 = scale2026[grade][0];
 
-    // ধাপ ১: ৩০ জুন ২০২৬ তারিখের মূল বেতন নির্ণয় (পে-ফিক্সেশনের ভিত্তি)
+    // ১) ৩০ জুন ২০২৬ তারিখের পুরাতন বেসিক নির্ণয় (fixationBasic)
     let fixationBasic = enteredBasic;
     let stepIndex2015 = scale2015[grade].findIndex(v => v === enteredBasic);
     if(basicDate === 'july2026' && stepIndex2015 > 0){
@@ -1211,27 +1199,36 @@ function calculatePay(e){
     }
     const juneStepNo = scale2015[grade].findIndex(v => v === fixationBasic) + 1;
 
-    // ধাপ ২: অর্জিত ইনক্রিমেন্টের পার্থক্য যোগ ও নতুন স্কেলে পে-ফিক্সেশন
+    // ২) অর্জিত ইনক্রিমেন্টের পার্থক্য যোগ ও নতুন স্কেলে প্রাথমিক বেসিক নির্ধারণ (fixedBasic)
     const earned = fixationBasic - start2015;
     const baseAmount = start2026 + earned;
     const fixedBasic = nextHigherStep(scale2026[grade], baseAmount);
     const fixedStepNo = scale2026[grade].findIndex(v => v === fixedBasic) + 1;
 
-    // ধাপ ৩: ১ জুলাই ২০২৬ তারিখের বার্ষিক ইনক্রিমেন্ট (নতুন স্কেলে ১ ধাপ বৃদ্ধি)
+    // ৩) নতুন বেসিক ও পুরাতন বেসিকের পার্থক্য (যার ওপর ৪০%/৫০%, ৭০%/৭৫% ও ১০০% প্রযোজ্য হবে)
+    const basicDiff = fixedBasic - fixationBasic;
+
+    // ৪) ১ জুলাই ২০২৬ তারিখের ১টি ফুল ইনক্রিমেন্ট নির্ণয়
     const targetBasic = nextIncrement(scale2026[grade], fixedBasic);
     const targetStepNo = scale2026[grade].findIndex(v => v === targetBasic) + 1;
+    const julyIncrement = targetBasic - fixedBasic; // জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট
 
-    // ধাপ ৪: পর্যায়ক্রমিক বাস্তবায়ন (৩০ জুন ২০২৬-এর মূল বেতন থেকে মোট বৃদ্ধির ওপর)
-    const totalIncrease = targetBasic - fixationBasic;
+    // ৫) পর্যায়ক্রমিক মূল বেতন (আপনার দেওয়া সঠিক সূত্র অনুযায়ী):
+    // সূত্র: পুরাতন বেসিক + (নতুন বেসিক - পুরাতন বেসিক) এর ৪০%/৫০% বা ৭০%/৭৫% + জুলাই ২০২৬ এর ১টি ফুল ইনক্রিমেন্ট
     const pct1 = grade <= 9 ? 0.40 : 0.50;
     const pct2 = grade <= 9 ? 0.70 : 0.75;
-    const stage1Increase = totalIncrease * pct1;
-    const stage2Increase = totalIncrease * pct2;
 
-    const stage1Basic = fixationBasic + stage1Increase; // ১ জুলাই ২০২৬ - ৩১ ডিসেম্বর ২০২৬
-    const stage2Basic = fixationBasic + stage2Increase; // ১ জানুয়ারি ২০২৭ - ৩০ জুন ২০২৭
-    const stage3Basic = targetBasic;                    // ১ জুলাই ২০২৭ - ৩১ ডিসেম্বর ২০২৭ (১০০% মূল বেতন)
-    const stage4Basic = targetBasic;                    // ১ জানুয়ারি ২০২৮ হতে (১০০% মূল বেতন + নতুন ভাতা)
+    const stage1DiffShare = basicDiff * pct1;
+    const stage2DiffShare = basicDiff * pct2;
+    const stage3DiffShare = basicDiff; // ১০০%
+
+    const stage1Basic = fixationBasic + stage1DiffShare + julyIncrement; // ১ জুলাই ২০২৬
+    const stage2Basic = fixationBasic + stage2DiffShare + julyIncrement; // ১ জানুয়ারি ২০২৭
+    const stage3Basic = fixationBasic + stage3DiffShare + julyIncrement; // ১ জুলাই ২০২৭ (= targetBasic)
+    const stage4Basic = stage3Basic;                                     // ১ জানুয়ারি ২০২৮ (নতুন ভাতাসহ)
+
+    // মোট বৃদ্ধি (পুরাতন বেসিক হতে চূড়ান্ত নতুন বেসিকের পার্থক্য)
+    const totalIncrease = targetBasic - fixationBasic;
 
     const cur = {
         mode: 'employee', personType: 'employee',
@@ -1259,7 +1256,8 @@ function calculatePay(e){
     appState = {
         ...cur, gpf, tax, otherDeduction, mandatoryDeduction,
         start2015, start2026, earned, baseAmount, fixedBasic, targetBasic,
-        totalIncrease, stage1Increase, stage2Increase,
+        basicDiff, julyIncrement, stage1DiffShare, stage2DiffShare, stage3DiffShare,
+        totalIncrease,
         p1Label: grade <= 9 ? '৪০%' : '৫০%',
         p2Label: grade <= 9 ? '৭০%' : '৭৫%',
         oldAllowances: oldA.total, newAllowances: newA.total,
@@ -1310,41 +1308,46 @@ function generateSlides(){
     const slide1 = `${compare}
     <div class="sec-title">১. ধাপে ধাপে মূল বেতন নির্ধারণ (Pay Fixation)</div>
     <div class="stage-box">
-        <div class="item-row"><span>ক) ৩০ জুন ২০২৬-এর মূল বেতন (ধাপ-${toBengaliNum(s.juneStepNo)})</span><span>${formatMoney(s.fixationBasic)}</span></div>
+        <div class="item-row"><span>ক) পুরাতন বেসিক (৩০ জুন ২০২৬, ধাপ-${toBengaliNum(s.juneStepNo)})</span><span>${formatMoney(s.fixationBasic)}</span></div>
         <div class="item-row sub"><span>(-) ২০১৫ স্কেলের প্রারম্ভিক বেতন (ধাপ-১)</span><span>${formatMoney(s.start2015)}</span></div>
-        <div class="item-row"><span>খ) অর্জিত ইনক্রিমেন্ট লব্ধ পার্থক্য</span><span>${formatMoney(s.earned)}</span></div>
+        <div class="item-row"><span>খ) অর্জিত ইনক্রিমেন্টের পার্থক্য</span><span>${formatMoney(s.earned)}</span></div>
         <div class="item-row sub"><span>(+) ২০২৬ স্কেলের প্রারম্ভিক বেতন (ধাপ-১)</span><span>${formatMoney(s.start2026)}</span></div>
         <div class="item-row"><span>গ) যোগফল (${formatMoney(s.start2026)} + ${formatMoney(s.earned)})</span><span>${formatMoney(s.baseAmount)}</span></div>
-        <div class="item-row highlight"><span>ঘ) ২০২৬ স্কেলে সমাপতিত/উচ্চতর ধাপে নির্ধারণ (ধাপ-${toBengaliNum(s.fixedStepNo)})</span><span>${formatMoney(s.fixedBasic)}</span></div>
-        <div class="item-row highlight"><span>ঙ) ১ জুলাই ২০২৬-এ বার্ষিক ইনক্রিমেন্টসহ মূল বেতন (ধাপ-${toBengaliNum(s.targetStepNo)})</span><span>${formatMoney(s.targetBasic)}</span></div>
+        <div class="item-row highlight"><span>ঘ) নতুন নির্ধারিত বেসিক (সমাপতিত/উচ্চতর ধাপ-${toBengaliNum(s.fixedStepNo)})</span><span>${formatMoney(s.fixedBasic)}</span></div>
+        <div class="item-row"><span>ঙ) বেসিক বৃদ্ধি (নতুন বেসিক − পুরাতন বেসিক)</span><span>${formatMoney(s.basicDiff)}</span></div>
+        <div class="item-row highlight"><span>চ) ১ জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট (ধাপ-${toBengaliNum(s.targetStepNo)} হতে পার্থক্য)</span><span>+${formatMoney(s.julyIncrement)}</span></div>
     </div>`;
 
-    const slide2 = `<div class="sec-title">২. পর্যায়ক্রমিক মূল বেতন বাস্তবায়ন (২০২৬–২০২৭)</div>
-    <div class="desc-box" style="margin-bottom:6px;">
-        ৩০ জুন ২০২৬-এর মূল বেতন (${formatMoney(s.fixationBasic)}) হতে নির্ধারিত নতুন মূল বেতন (${formatMoney(s.targetBasic)})-এর মোট বৃদ্ধি = <strong>${formatMoney(s.totalIncrease)}</strong>
+    const slide2 = `<div class="sec-title">২. পর্যায়ক্রমিক মূল বেতন হিসাব (১ম ও ২য় ধাপ)</div>
+    <div class="stage-box">
+        <div class="stage-header"><strong>১ম ধাপ: ১ জুলাই–৩১ ডিসেম্বর ২০২৬</strong><span class="badge">বৃদ্ধির ${s.p1Label} + ফুল ইনক্রিমেন্ট</span></div>
+        <div class="item-row sub"><span>পুরাতন বেসিক</span><span>${formatMoney(s.fixationBasic)}</span></div>
+        <div class="item-row sub"><span>(+) বেসিক বৃদ্ধির (${formatMoney(s.basicDiff)}) ${s.p1Label}</span><span>+${formatMoney(s.stage1DiffShare)}</span></div>
+        <div class="item-row sub"><span>(+) জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট</span><span>+${formatMoney(s.julyIncrement)}</span></div>
+        <div class="item-row highlight"><span>জুলাই ২০২৬-এর কার্যকর মূল বেতন</span><span>${formatMoney(s.stage1Basic)}</span></div>
+        <div class="item-row"><span>ভাতা (+) ও কর্তন (-) শেষে মাসিক নিট</span><span>${formatMoney(s.stage1Net)}</span></div>
     </div>
     <div class="stage-box">
-        <div class="stage-header"><strong>১ম পর্যায়: ১ জুলাই–৩১ ডিসেম্বর ২০২৬</strong><span class="badge">বৃদ্ধির ${s.p1Label}</span></div>
-        <div class="item-row sub"><span>৩০ জুনের মূল বেতন + ${s.p1Label} বৃদ্ধি (+${formatMoney(s.stage1Increase)})</span><span></span></div>
-        <div class="item-row highlight"><span>কার্যকর মূল বেতন</span><span>${formatMoney(s.stage1Basic)}</span></div>
-        <div class="item-row"><span>প্রচলিত ভাতা (+) ও কর্তন (-) শেষে নিট বেতন</span><span>${formatMoney(s.stage1Net)}</span></div>
-    </div>
-    <div class="stage-box">
-        <div class="stage-header"><strong>২য় পর্যায়: ১ জানুয়ারি–৩০ জুন ২০২৭</strong><span class="badge">বৃদ্ধির ${s.p2Label}</span></div>
-        <div class="item-row sub"><span>৩০ জুনের মূল বেতন + ${s.p2Label} বৃদ্ধি (+${formatMoney(s.stage2Increase)})</span><span></span></div>
-        <div class="item-row highlight"><span>কার্যকর মূল বেতন</span><span>${formatMoney(s.stage2Basic)}</span></div>
-        <div class="item-row"><span>প্রচলিত ভাতা (+) ও কর্তন (-) শেষে নিট বেতন</span><span>${formatMoney(s.stage2Net)}</span></div>
+        <div class="stage-header"><strong>২য় ধাপ: ১ জানুয়ারি–৩০ জুন ২০২৭</strong><span class="badge">বৃদ্ধির ${s.p2Label} + ফুল ইনক্রিমেন্ট</span></div>
+        <div class="item-row sub"><span>পুরাতন বেসিক</span><span>${formatMoney(s.fixationBasic)}</span></div>
+        <div class="item-row sub"><span>(+) বেসিক বৃদ্ধির (${formatMoney(s.basicDiff)}) ${s.p2Label}</span><span>+${formatMoney(s.stage2DiffShare)}</span></div>
+        <div class="item-row sub"><span>(+) জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট</span><span>+${formatMoney(s.julyIncrement)}</span></div>
+        <div class="item-row highlight"><span>জানুয়ারি ২০২৭-এর কার্যকর মূল বেতন</span><span>${formatMoney(s.stage2Basic)}</span></div>
+        <div class="item-row"><span>ভাতা (+) ও কর্তন (-) শেষে মাসিক নিট</span><span>${formatMoney(s.stage2Net)}</span></div>
     </div>`;
 
-    const slide3 = `<div class="sec-title">৩. ৩য় পর্যায়: ১ জুলাই ২০২৭ থেকে ১০০% মূল বেতন</div>
+    const slide3 = `<div class="sec-title">৩. ৩য় ধাপ: ১ জুলাই ২০২৭ থেকে ১০০% মূল বেতন</div>
     <div class="stage-box">
-        <div class="stage-header"><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৭</strong><span class="badge">১০০% মূল বেতন</span></div>
+        <div class="stage-header"><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৭</strong><span class="badge">১০০% বৃদ্ধি + ফুল ইনক্রিমেন্ট</span></div>
+        <div class="item-row sub"><span>পুরাতন বেসিক</span><span>${formatMoney(s.fixationBasic)}</span></div>
+        <div class="item-row sub"><span>(+) বেসিক বৃদ্ধির ১০০%</span><span>+${formatMoney(s.stage3DiffShare)}</span></div>
+        <div class="item-row sub"><span>(+) জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট</span><span>+${formatMoney(s.julyIncrement)}</span></div>
         <div class="item-row highlight"><span>পূর্ণ মূল বেতন (১০০%)</span><span>${formatMoney(s.stage3Basic)}</span></div>
         <div class="item-row"><span>(+) ৩০ জুন ২০২৬-এর হারে বহাল ভাতাদি</span><span>${formatMoney(s.old.total)}</span></div>
         <div class="item-row deduct"><span>(-) মোট কর্তন (বাধ্যতামূলক ২৬০ ৳ সহ)</span><span>${formatMoney(s.totalDeduction)}</span></div>
         <div class="item-row highlight"><span>মাসিক নিট প্রাপ্য বেতন</span><span>${formatMoney(s.stage3Net)}</span></div>
     </div>
-    <div class="desc-box">গেজেট অনুযায়ী ৩০ জুন ২০২৬ তারিখের বিদ্যমান ভাতাদি ৩১ ডিসেম্বর ২০২৭ পর্যন্ত অপরিবর্তিত হারে বহাল থাকবে।</div>`;
+    <div class="desc-box">নোট: ১ জুলাই ২০২৭ তারিখে বার্ষিক নিয়মিত ইনক্রিমেন্ট যুক্ত হলে মূল বেতন পরবর্তী ধাপে (${formatMoney(nextIncrement(scale2026[s.grade], s.stage3Basic))}) উন্নীত হবে।</div>`;
 
     const a = s.newA;
     const allowanceRows = [
@@ -1365,7 +1368,7 @@ function generateSlides(){
 
     const rows = allowanceRows.map(x => `<div class="item-row sub"><span>(+) ${x[0]}</span><span>${formatMoney(x[1])}</span></div>`).join('');
 
-    const slide4 = `<div class="sec-title">৪. ৪র্থ পর্যায়: ১ জানুয়ারি ২০২৮ থেকে নতুন ভাতা</div>
+    const slide4 = `<div class="sec-title">৪. ৪র্থ ধাপ: ১ জানুয়ারি ২০২৮ থেকে নতুন ভাতা</div>
     <div class="stage-box">
         <div class="stage-header"><strong>১ জানুয়ারি ২০২৮ হতে পূর্ণাঙ্গ স্কেল</strong><span class="badge">নতুন ভাতা কার্যকর</span></div>
         <div class="item-row"><span>মূল বেতন</span><span>${formatMoney(s.stage4Basic)}</span></div>
@@ -1438,27 +1441,51 @@ function executePrint(e){
     </div>
     <table class="info-table">
         <tr><td><strong>নাম:</strong> ${name}</td><td><strong>গ্রেড:</strong> ${bengaliOrdinals[s.grade]} গ্রেড</td></tr>
-        <tr><td><strong>পদবি:</strong> ${desig}</td><td><strong>৩০ জুনের মূল বেতন:</strong> ${formatMoney(s.fixationBasic)}</td></tr>
+        <tr><td><strong>পদবি:</strong> ${desig}</td><td><strong>পুরাতন বেসিক (৩০ জুন):</strong> ${formatMoney(s.fixationBasic)}</td></tr>
         <tr><td><strong>কর্মস্থল:</strong> ${workplace}</td><td><strong>তারিখ:</strong> ${dateStr}</td></tr>
     </table>
     <h3 class="print-section">১. ধাপে ধাপে মূল বেতন নির্ধারণ (Pay Fixation)</h3>
     <table class="data-table">
         <tr><th>ধাপ ও বিবরণ</th><th>পরিমাণ</th></tr>
-        <tr><td>১) ৩০ জুন ২০২৬ তারিখের মূল বেতন (২০১৫ স্কেলের ধাপ-${toBengaliNum(s.juneStepNo)})</td><td>${formatMoney(s.fixationBasic)}</td></tr>
-        <tr><td>২) ২০১৫ স্কেলের প্রারম্ভিক মূল বেতন</td><td>${formatMoney(s.start2015)}</td></tr>
+        <tr><td>১) পুরাতন বেসিক (৩০ জুন ২০২৬, ২০১৫ স্কেলের ধাপ-${toBengaliNum(s.juneStepNo)})</td><td>${formatMoney(s.fixationBasic)}</td></tr>
+        <tr><td>২) ২০১৫ স্কেলের প্রারম্ভিক বেতন (ধাপ-১)</td><td>${formatMoney(s.start2015)}</td></tr>
         <tr><td>৩) অর্জিত ইনক্রিমেন্টের পার্থক্য (${formatMoney(s.fixationBasic)} - ${formatMoney(s.start2015)})</td><td>${formatMoney(s.earned)}</td></tr>
         <tr><td>৪) ২০২৬ স্কেলের প্রারম্ভিক বেতনের সাথে যোগফল (${formatMoney(s.start2026)} + ${formatMoney(s.earned)})</td><td>${formatMoney(s.baseAmount)}</td></tr>
-        <tr><td>৫) ২০২৬ স্কেলে সমাপতিত বা উচ্চতর ধাপে প্রাথমিক নির্ধারণ (ধাপ-${toBengaliNum(s.fixedStepNo)})</td><td>${formatMoney(s.fixedBasic)}</td></tr>
-        <tr><td>৬) ১ জুলাই ২০২৬-এর বার্ষিক ইনক্রিমেন্টসহ চূড়ান্ত মূল বেতন (ধাপ-${toBengaliNum(s.targetStepNo)})</td><td><strong>${formatMoney(s.targetBasic)}</strong></td></tr>
-        <tr><td>৭) মূল বেতন বৃদ্ধির মোট অঙ্ক (${formatMoney(s.targetBasic)} - ${formatMoney(s.fixationBasic)})</td><td><strong>${formatMoney(s.totalIncrease)}</strong></td></tr>
+        <tr><td>৫) নতুন নির্ধারিত বেসিক (সমাপতিত বা উচ্চতর ধাপ-${toBengaliNum(s.fixedStepNo)})</td><td><strong>${formatMoney(s.fixedBasic)}</strong></td></tr>
+        <tr><td>৬) বেসিক বৃদ্ধি (নতুন নির্ধারিত বেসিক − পুরাতন বেসিক)</td><td><strong>${formatMoney(s.basicDiff)}</strong></td></tr>
+        <tr><td>৭) ১ জুলাই ২০২৬-এর ১টি ফুল ইনক্রিমেন্ট (ধাপ-${toBengaliNum(s.targetStepNo)} হতে পার্থক্য)</td><td><strong>+${formatMoney(s.julyIncrement)}</strong></td></tr>
     </table>
-    <h3 class="print-section">২. পর্যায়ক্রমিক বাস্তবায়ন ও নিট প্রাপ্যতা</h3>
+    <h3 class="print-section">২. পর্যায়ক্রমিক মূল বেতন ও নিট প্রাপ্যতা</h3>
     <table class="data-table">
-        <tr><th>সময়কাল</th><th>কার্যকর মূল বেতন</th><th>মোট ভাতা</th><th>মোট কর্তন</th><th>নিট বেতন</th></tr>
-        <tr><td>১ জুলাই–৩১ ডিসেম্বর ২০২৬ (${s.p1Label} বৃদ্ধি)</td><td>${formatMoney(s.stage1Basic)}</td><td>${formatMoney(s.old.total)}</td><td>${formatMoney(s.totalDeduction)}</td><td>${formatMoney(s.stage1Net)}</td></tr>
-        <tr><td>১ জানুয়ারি–৩০ জুন ২০২৭ (${s.p2Label} বৃদ্ধি)</td><td>${formatMoney(s.stage2Basic)}</td><td>${formatMoney(s.old.total)}</td><td>${formatMoney(s.totalDeduction)}</td><td>${formatMoney(s.stage2Net)}</td></tr>
-        <tr><td>১ জুলাই–৩১ ডিসেম্বর ২০২৭ (১০০% মূল বেতন)</td><td>${formatMoney(s.stage3Basic)}</td><td>${formatMoney(s.old.total)}</td><td>${formatMoney(s.totalDeduction)}</td><td>${formatMoney(s.stage3Net)}</td></tr>
-        <tr><td>১ জানুয়ারি ২০২৮ হতে (নতুন ভাতাসহ)</td><td><strong>${formatMoney(s.stage4Basic)}</strong></td><td><strong>${formatMoney(s.newA.total)}</strong></td><td>${formatMoney(s.totalDeduction)}</td><td><strong>${formatMoney(s.stage4Net)}</strong></td></tr>
+        <tr><th>সময়কাল ও সূত্র</th><th>কার্যকর মূল বেতন</th><th>মোট ভাতা</th><th>মোট কর্তন</th><th>নিট বেতন</th></tr>
+        <tr>
+            <td><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৬</strong><br><small>পুরাতন বেসিক (${formatMoney(s.fixationBasic)}) + বৃদ্ধির ${s.p1Label} (${formatMoney(s.stage1DiffShare)}) + ফুল ইনক্রিমেন্ট (${formatMoney(s.julyIncrement)})</small></td>
+            <td><strong>${formatMoney(s.stage1Basic)}</strong></td>
+            <td>${formatMoney(s.old.total)}</td>
+            <td>${formatMoney(s.totalDeduction)}</td>
+            <td><strong>${formatMoney(s.stage1Net)}</strong></td>
+        </tr>
+        <tr>
+            <td><strong>১ জানুয়ারি–৩০ জুন ২০২৭</strong><br><small>পুরাতন বেসিক (${formatMoney(s.fixationBasic)}) + বৃদ্ধির ${s.p2Label} (${formatMoney(s.stage2DiffShare)}) + ফুল ইনক্রিমেন্ট (${formatMoney(s.julyIncrement)})</small></td>
+            <td><strong>${formatMoney(s.stage2Basic)}</strong></td>
+            <td>${formatMoney(s.old.total)}</td>
+            <td>${formatMoney(s.totalDeduction)}</td>
+            <td><strong>${formatMoney(s.stage2Net)}</strong></td>
+        </tr>
+        <tr>
+            <td><strong>১ জুলাই–৩১ ডিসেম্বর ২০২৭ (১০০%)</strong><br><small>পুরাতন বেসিক (${formatMoney(s.fixationBasic)}) + বৃদ্ধির ১০০% (${formatMoney(s.stage3DiffShare)}) + ফুল ইনক্রিমেন্ট (${formatMoney(s.julyIncrement)})</small></td>
+            <td><strong>${formatMoney(s.stage3Basic)}</strong></td>
+            <td>${formatMoney(s.old.total)}</td>
+            <td>${formatMoney(s.totalDeduction)}</td>
+            <td><strong>${formatMoney(s.stage3Net)}</strong></td>
+        </tr>
+        <tr>
+            <td><strong>১ জানুয়ারি ২০২৮ হতে</strong><br><small>পূর্ণ মূল বেতন + ২০২৮-এর নতুন ভাতা কার্যকর</small></td>
+            <td><strong>${formatMoney(s.stage4Basic)}</strong></td>
+            <td><strong>${formatMoney(s.newA.total)}</strong></td>
+            <td>${formatMoney(s.totalDeduction)}</td>
+            <td><strong>${formatMoney(s.stage4Net)}</strong></td>
+        </tr>
     </table>
     <div class="print-footer">Developed by NasimSoft · জাতীয় বেতনস্কেল ২০২৬ ক্যালকুলেটর</div>`;
 
@@ -1479,7 +1506,7 @@ function buildShareText(){
         return `📊 জাতীয় বেতনস্কেল ২০২৬ (পেনশন হিসাব)\n৩০ জুনের পেনশন: ${formatMoney(s.current)}\n১ম পর্যায় (জুলাই-ডিসে ২০২৬): ${formatMoney(s.phase1Pension)}\n২য় পর্যায় (জানু-জুন ২০২৭): ${formatMoney(s.phase2Pension)}\nপূর্ণ পেনশন (জুলাই ২০২৭ হতে): ${formatMoney(s.newPension)}\nচিকিৎসাসহ মাসিক মোট: ${formatMoney(s.monthlyWithMedical3)}`;
     }
     if(!s.grade) return '';
-    return `📊 জাতীয় বেতনস্কেল ২০২৬\nগ্রেড: ${bengaliOrdinals[s.grade]}\n৩০ জুন ২০২৬ মূল বেতন: ${formatMoney(s.fixationBasic)}\nপ্রাথমিক Fixation: ${formatMoney(s.fixedBasic)}\n১ জুলাই ইনক্রিমেন্টসহ মূল বেতন: ${formatMoney(s.targetBasic)}\n১ম ধাপ নিট (জুলাই ২০২৬): ${formatMoney(s.stage1Net)}\n২য় ধাপ নিট (জানুয়ারি ২০২৭): ${formatMoney(s.stage2Net)}\n৩য় ধাপ নিট (জুলাই ২০২৭): ${formatMoney(s.stage3Net)}\nনতুন ভাতাসহ চূড়ান্ত নিট (২০২৮): ${formatMoney(s.stage4Net)}`;
+    return `📊 জাতীয় বেতনস্কেল ২০২৬\nগ্রেড: ${bengaliOrdinals[s.grade]}\nপুরাতন বেসিক (৩০ জুন): ${formatMoney(s.fixationBasic)}\nনতুন নির্ধারিত বেসিক: ${formatMoney(s.fixedBasic)}\nজুলাই ২০২৬ ফুল ইনক্রিমেন্ট: +${formatMoney(s.julyIncrement)}\n\n🔹 জুলাই ২০২৬ বেসিক: ${formatMoney(s.stage1Basic)} (নিট: ${formatMoney(s.stage1Net)})\n🔹 জানুয়ারি ২০২৭ বেসিক: ${formatMoney(s.stage2Basic)} (নিট: ${formatMoney(s.stage2Net)})\n🔹 জুলাই ২০২৭ বেসিক (১০০%): ${formatMoney(s.stage3Basic)} (নিট: ${formatMoney(s.stage3Net)})\n🔹 জানুয়ারি ২০২৮ নিট (নতুন ভাতাসহ): ${formatMoney(s.stage4Net)}`;
 }
 
 function shareWhatsApp(){ const t = buildShareText(); if(t) window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank'); }
