@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Player</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:16px;background:#080b12;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif}
+.wrap{width:min(100%,460px)}
+.player-frame{
+  padding:2px;
+  border-radius:15px;
+  background:linear-gradient(115deg,#258dff 0%,#65c5ff 22%,#ffad57 52%,#ff861e 72%,#258dff 100%);
+  background-size:240% 240%;
+  animation:borderFlow 7s linear infinite;
+  box-shadow:0 0 10px #258dff20,0 0 10px #ff861e18;
+}
+@keyframes borderFlow{0%{background-position:0% 50%}100%{background-position:240% 50%}}
+.player-inner{overflow:hidden;border-radius:13px;background:#000}
+video{display:block;width:100%;aspect-ratio:9/16;max-height:78vh;background:#000;object-fit:contain}
+.home-row{display:flex;justify-content:center;margin-top:14px}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 24px;border:1px solid #258dff;border-radius:8px;color:#f7f9fc;background:#101827;text-decoration:none;font-size:15px;font-weight:700;transition:background .2s,border-color .2s}
+.home-btn:hover,.home-btn:focus-visible{background:#17263a;border-color:#ff9a3d;outline:none}
+@media(max-height:650px){video{max-height:70vh}}
+@media(prefers-reduced-motion:reduce){.player-frame{animation:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="player-frame">
+    <div class="player-inner">
+      <video controls playsinline preload="metadata" aria-label="Tutorial video">
+        <source src="https://nasim.ceo.bd/payscale/tutorial.mp4.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+  </div>
+  <div class="home-row"><a class="home-btn" href="https://nasim.ceo.bd/payscale/">Go Home</a></div>
+</main>
+</body>
+</html>
